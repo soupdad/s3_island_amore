@@ -1,0 +1,19 @@
+# Folders and Files for Git to Ignore
+
+## Folders
+.vscode/
+game/cache/
+game/saves/
+
+## Files
+log.txt
+traceback.txt
+errors.txt
+# Game Cache Files (add to when .rpy files are created)
+game/characters.rpyc
+game/e1e2e3.rpyc
+game/gameplay_variables.rpyc
+game/gui.rpyc
+game/options.rpyc
+game/screens.rpyc
+game/script.rpyc
