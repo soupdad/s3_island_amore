@@ -14,9 +14,10 @@ This repo is specifically for the recreation of LITG S3.
 - tl - Standard language files. This is where files will go if we translate game into other languages.
 
 ## Files
-- characters 
-    - Function that controls automatic on screen character movement.
-    - MainCharacter and Npc classes.
+- characters
+    - All custom declared functions and classes including:
+        - Function that controls automatic on screen character movement.
+        - MainCharacter and Npc classes.
     - Each NPC character declaration with their corresponding images.
     - MC character declaration.
     - Text message character declaration.

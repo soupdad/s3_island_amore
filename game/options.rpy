@@ -150,7 +150,7 @@ define config.save_directory = "litg_s3-1708117023"
 ##
 ## The icon displayed on the taskbar or dock.
 
-define config.window_icon = "gui/window_icon.png"
+define config.window_icon = "gui/icon.ico"
 
 
 ## Build configuration #########################################################
@@ -158,6 +158,8 @@ define config.window_icon = "gui/window_icon.png"
 ## This section controls how Ren'Py turns your project into distribution files.
 
 init python:
+    
+    build.name = "IslandAmore"
 
     ## The following functions take file patterns. File patterns are case-
     ## insensitive, and matched against the path relative to the base directory,
@@ -183,6 +185,8 @@ init python:
     build.classify('**/.**', None)
     build.classify('**/#**', None)
     build.classify('**/thumbs.db', None)
+
+    build.classify('README.md', None)
 
     ## To archive files, classify them as 'archive'.
 

@@ -2,6 +2,50 @@
 ## Custom Functions and Classes
 ####################################################################
 init python:
+    def he_she(name):
+            '''
+            Returns the correct pronoun of he or she depending on the NPC.
+            '''
+            women = ["AJ", "Elladine", "Genevieve", "Iona", "Miki", "Lily", "Yasmin"]
+            if name in women:
+                return "she"
+            else:
+                return "he"
+
+    def him_her(name):
+        '''
+        Returns the correct pronoun of him or her depending on the NPC.
+        '''
+        women = ["AJ", "Elladine", "Genevieve", "Iona", "Miki", "Lily", "Yasmin"]
+        if name in women:
+            return "her"
+        else:
+            return "him"
+
+    def his_her(name):
+        '''
+        Returns the correct pronoun of his or her depending on the NPC.
+        '''
+        women = ["AJ", "Elladine", "Genevieve", "Iona", "Miki", "Lily", "Yasmin"]
+        if name in women:
+            return "her"
+        else:
+            return "his"
+
+    def favorite_li():
+        '''
+        Returns the love interest that is currently in game that the MC has most often responded positively.
+        '''
+        rating = 0
+        result = ""
+
+        for name in s3_lis:
+            if s3_mc.like_mc[name] > rating:
+                rating = s3_mc.like_mc[name]
+                result = name
+        
+        return result
+
     on_screen = []
 
     def move_character(event, interact=True, **kwargs):

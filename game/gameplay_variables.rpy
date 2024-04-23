@@ -6,6 +6,8 @@ define s3_3rd_girl_options = {"Bill":"Miki", "Camilo":"Iona", "Harry":"Genevieve
 default s3_3rd_girl = ""
 default s3_character_profile = ""
 
+default s3_lis = []
+default s3_fav_li = ""
 default s3_like_aj = False
 default s3_like_bill = False
 default s3_like_camilo = False
@@ -14,6 +16,10 @@ default s3_like_harry = False
 default s3_bff_he_she = ""
 default s3_bff_him_her = ""
 default s3_bff_his_her = ""
+
+default he_she = ""
+default him_her = ""
+default his_her = ""
 
 ################################################################
 ## Episode 1
@@ -113,7 +119,7 @@ default s3e2p3_clean_off_with_cam = False
 ## Episode 3
 ################################################################
 ## Episode 3, Part 1
-# s3e3p1_visited = ["Pool", "Bean Bags", "Gym", "Kitchen"]
+# s3e3p1_visited = ["Pool", "Bean Bags", "Gym"]
 default s3e3p1_visited = []
 # s3e3p1_bet = (str)("AJ", "Genevieve")
 default s3e3p1_bet = ""
@@ -125,5 +131,29 @@ default s3e3p1_teach_harry = False
 default s3e3p1_arm_wrestle = False
 
 ## Episode 3, Part 2
+# default s3e3p2_visited = ["Lounge", "Bean Bags", "Pool", "Kitchen"]
+default s3e3p2_visited = []
 # s3e3p2_getting_kissy (bool)
 default s3e3p2_getting_kissy = False
+# s3e3p2_kiss_count (int)
+default s3e3p2_kiss_count = 0
+# s3e3p2_kiss_bill (bool)
+default s3e3p2_kiss_bill = False
+# s3e3p2_kiss_camilo (bool)
+default s3e3p2_kiss_camilo = False
+# s3e3p2_kiss_harry (bool)
+default s3e3p2_kiss_harry = False
+# s3e3p2_dare_count (int)
+default s3e3p2_dare_count = 0
+# s3e3p2_completed_dare_count (int)
+default s3e3p2_completed_dare_count = 0
+# s3e3p2_hypnotise_seb (bool)
+default s3e3p2_hypnotise_seb = False
+# s3e3p2_interact_camilo (bool)
+default s3e3p2_interact_camilo = False
+# s3e3p2_draw_on_bucket (bool)
+default s3e3p2_draw_on_bucket = False
+# s3e3p2_win_challenge (bool)
+default s3e3p2_win_challenge = False
+# s3e3p2_s3e3p2_ask_question (str) ("AJ", "Bill", "Camilo", "Harry")
+default s3e3p2_ask_question = ""

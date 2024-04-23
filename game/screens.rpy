@@ -1721,44 +1721,80 @@ screen s3e2p1_select_who_to_talk_to:
 
     Map icons of selected islanders are removed so they cannot be reselected.
 '''
-# screen s3e3p1_select_who_to_talk_to:
-#     image "bgs/s3-outside-villa-wide-shot-day.jpg"
+screen s3e3p1_select_who_to_talk_to:
+    image "bgs/s3-outside-villa-wide-shot-day.jpg"
 
-#     button:
+    # button:
 
-#         frame:
-#             padding(20, 20)
-#             margin(400, 20)
-#             align(0.5, 0.0)
-#             text "Welcome to the Villa Choice Screen. (you need to choose at least two groups of 
-#             Islanders on the Villa choice screen)" size 25 color "#000000" 
+    #     frame:
+    #         padding(20, 20)
+    #         margin(400, 20)
+    #         align(0.5, 0.0)
+    #         text "Welcome to the Villa Choice Screen. You need to choose at least two groups of 
+    #         Islanders on the Villa choice screen." size 25 color "#000000" 
 
-#     if len(s3e3p1_visited) == 2:
-#         textbutton "Continue" size 35 color "#000000" align(0.9, 0.9) action Call("s3e3p1_you_sure")
+    # if len(s3e3p1_visited) == 2:
+    #     textbutton "Continue" size 35 color "#000000" align(0.9, 0.9) action Call("s3e3p1_you_sure")
 
-#     if len(s3e3p1_visited) == 3:
-#         frame:
-#             padding(20, 20)
-#             margin(400, 20)
-#             align(0.5, 0.5)
-#             vbox:
-#                 text "Someone's been grafting hard." size 35 color "#000000"
-#                 text "You've chatted to everyone! Time to see what happens next…" size 35 color "#000000"
-#                 textbutton "Continue" size 35 color "#000000" align(0.9, 0.9) action Call("s3e3p1_ending")
+    # if len(s3e3p1_visited) == 3:
+    #     frame:
+    #         padding(20, 20)
+    #         margin(400, 20)
+    #         align(0.5, 0.5)
+    #         vbox:
+    #             text "Someone's been grafting hard." size 35 color "#000000"
+    #             text "You've chatted to everyone! Time to see what happens next…" size 35 color "#000000"
+    #             textbutton "Continue" size 35 color "#000000" align(0.9, 0.9) action Call("s3e3p1_ending")
 
 
-#     if "Bean Bags" not in s3e3p1_visited:
-#         # bill and camilo at beanbags (s3e3p1_bean_bags)
-#         imagebutton idle "map_icons/bill-icon.png" align(0.2, 0.45) action Call("s3e3p1_bean_bags") at map_icon
-#         imagebutton idle "map_icons/camilo-icon.png" align(0.25, 0.45) action Call("s3e3p1_bean_bags") at map_icon
+    if "Bean Bags" not in s3e3p1_visited:
+        # bill and camilo at beanbags (s3e3p1_bean_bags)
+        imagebutton idle "map_icons/bill-icon.png" align(0.2, 0.45) action Call("s3e3p1_bean_bags") at map_icon
+        imagebutton idle "map_icons/camilo-icon.png" align(0.25, 0.45) action Call("s3e3p1_bean_bags") at map_icon
 
-#     if "Gym" not in s3e3p1_visited:
-#         # AJ and Genevieve at the gym (s3e3p1_gym)
-#         imagebutton idle "map_icons/aj-icon.png" align(0.8, 0.7) action Call("s3e3p1_gym") at map_icon
-#         imagebutton idle "map_icons/genevieve-icon.png" align(0.85, 0.7) action Call("s3e3p1_gym") at map_icon
+    if "Gym" not in s3e3p1_visited:
+        # AJ and Genevieve at the gym (s3e3p1_gym)
+        imagebutton idle "map_icons/aj-icon.png" align(0.8, 0.7) action Call("s3e3p1_gym") at map_icon
+        imagebutton idle "map_icons/genevieve-icon.png" align(0.85, 0.7) action Call("s3e3p1_gym") at map_icon
 
-#     if "Pool" not in s3e3p1_visited:
-#         # iona and miki and harry at pool (s3e3p1_pool)
-#         imagebutton idle "map_icons/harry-icon.png" align(0.65, 0.8) action Call("s3e3p1_pool") at map_icon
-#         imagebutton idle "map_icons/iona-icon.png" align(0.7, 0.8) action Call("s3e3p1_pool") at map_icon
-#         imagebutton idle "map_icons/miki-icon.png" align(0.75, 0.8) action Call("s3e3p1_pool") at map_icon
+    if "Pool" not in s3e3p1_visited:
+        # iona and miki and harry at pool (s3e3p1_pool)
+        imagebutton idle "map_icons/harry-icon.png" align(0.65, 0.8) action Call("s3e3p1_pool") at map_icon
+        imagebutton idle "map_icons/iona-icon.png" align(0.7, 0.8) action Call("s3e3p1_pool") at map_icon
+        imagebutton idle "map_icons/miki-icon.png" align(0.75, 0.8) action Call("s3e3p1_pool") at map_icon
+
+screen s3e3p2_select_who_to_talk_to:
+    image "bgs/s3-outside-villa-wide-shot-day.jpg"
+
+    button:
+
+        frame:
+            padding(20, 20)
+            margin(400, 20)
+            align(0.5, 0.0)
+            text "Welcome to the Villa choice screen! Tap the Islanders you want to chat with." size 25 color "#000000" 
+        
+    if "Bean Bags" not in s3e2p1_visited:
+        # s3e3p2_bean_bags aj and seb
+        imagebutton idle "map_icons/aj-icon.png" align(0.2, 0.45) action Call("s3e3p2_bean_bags") at map_icon
+        imagebutton idle "map_icons/seb-icon.png" align(0.25, 0.45) action Call("s3e3p2_bean_bags") at map_icon
+
+    if "Lounge" not in s3e2p1_visited:
+        # s3e3p2_lounge bill
+        imagebutton idle "map_icons/bill-icon.png" align(0.6, 0.4) action Call("s3e3p2_lounge") at map_icon
+
+    if "Pool" not in s3e2p1_visited:
+        # s3e3p2_pool camilo and nicky
+        imagebutton idle "map_icons/nicky-icon.png" align(0.65, 0.8) action Call("s3e3p2_pool") at map_icon
+        imagebutton idle "map_icons/camilo-icon.png" align(0.7, 0.8) action Call("s3e3p2_pool") at map_icon
+
+    if "Kitchen" not in s3e2p1_visited:
+        # s3e3p2_kitchen genevieve and harry
+        imagebutton idle "map_icons/genevieve-icon.png" align(0.4, 0.4) action Call("s3e3p2_kitchen") at map_icon
+        imagebutton idle "map_icons/harry-icon.png" align(0.45, 0.4) action Call("s3e3p2_kitchen") at map_icon
+
+
+
+
+
+

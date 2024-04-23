@@ -4281,6 +4281,7 @@ label s3e1p3:
             "One hundred percent yes":
                 $ s3_mc.like("AJ")
                 $ s3_like_aj = True
+                $ s3_lis.append("AJ")
                 aj @ very_happy "Amazing!"
                 show aj awkward
                 "She looks at you, her cheeks flushing again."
@@ -7480,6 +7481,7 @@ label s3e2p2_bill_date:
         "We've got to save something for our next date":
             $ s3_mc.like("Bill")
             $ s3_like_bill = True
+            $ s3_lis.append("Bill")
             bill "Yeah?"
             s3_mc "Yeah."
             s3_mc "And we'll see if your beer opinions really stand up to scrutiny."
@@ -7635,7 +7637,8 @@ label s3e2p2_camilo_date:
             camilo "Right back at you."
         "Let's be more than friends":
             $ s3_mc.like("Camilo")
-            $ s3_like_camilo = True 
+            $ s3_like_camilo = True
+            $ s3_lis.append("Camilo")
             s3_mc "I think we've got potential, don't you?"
             camilo "I was kind of hoping you'd say that."
         "Slow down there, buddy":
@@ -7834,6 +7837,7 @@ label s3e2p2_harry_date:
         "I'm looking at him":
             $ s3_mc.like("Harry")
             $ s3_like_harry = True
+            $ s3_lis.append("Harry")
             s3_mc "I've got everything I want right here."
             "He chokes on his champagne."
             harry "I..."
@@ -8504,12 +8508,12 @@ label s3e2p3:
             iona "You badass."
         "I took a girl to a circus" if s3_like_aj == True:
             aj "That sounds fun!"
-            s3_mc "It should have been, but…"
-            s3_mc "…the clowns were really scary."
+            s3_mc "It should have been, but..."
+            s3_mc "...the clowns were really scary."
             "Everyone shudders."
             nicky "Clowns, man. I don't get them. Like, why do they exist?"
             aj "For everyone's amusement!"
-            miki "And nightmares…"
+            miki "And nightmares..."
             s3_mc "But I thought it was going well until the ringmaster asked for a volunteer and my date went up. They made her disappear."
             s3_mc "And that was that."
             iona "Huh?"
@@ -9370,7 +9374,7 @@ label s3e3p1_gym:
         aj "Hey, thanks for believing in me. I was pretty happy when you said you thought I'd win."
 
     if s3_like_aj:
-        s3_mc "I've been admiring those biceps for a while…"
+        s3_mc "I've been admiring those biceps for a while..."
         s3_mc "It was sexy watching you use them."
         aj "Any time, [s3_name]."
 
@@ -9436,7 +9440,7 @@ label s3e3p1_gym:
         aj "Sorry!"
         # CHOICE
         menu:
-            thought "AJ is pressed up against me…"
+            thought "AJ is pressed up against me..."
             "I should have moved, sorry":
                 # FILL IN
                 "EMPTY"
@@ -9445,7 +9449,7 @@ label s3e3p1_gym:
                 aj "I should be going!"
             "I'm enjoying it":
                 "AJ blushes more."
-                aj "Me too…"
+                aj "Me too..."
                 aj "Anyway, I should be going!"
 
     "AJ jogs off towards the Villa."
@@ -10108,1084 +10112,2366 @@ label s3e3p1_ending:
 #########################################################################
 ## Episode 3, Part 2
 #########################################################################
-# label s3e3p2:
-#     scene edited_sandy_intro with dissolve
-#     $ on_screen = []
-
-#     "Previously, the Islanders discussed sexy dreams..."
-#     elladine "I don't remember the details."
-#     elladine "But it was very good."
-#     show elladine at npc_exit
-#     pause 0.3
-#     $ renpy.hide("elladine")
-
-#     "And [s3_name], Genevieve, and AJ got physical..."
-#     "In an arm wrestling competition!"
-#     aj "Wanna try your luck?"
-#     show aj at npc_exit
-#     pause 0.3
-#     $ renpy.hide("aj")
-#     "You're on, AJ."
-#     "I've been single forever."
-#     "Which means I have a distinct advantage when it comes to arm wrestling with my right hand."
-#     "Coming up!"
-#     "The Islanders get stuck in a game of Truth and Dare."
-#     camilo "What are you doing down there?"
-#     show camilo at npc_exit
-#     pause 0.3
-#     $ renpy.hide("camilo")
-
-#     "And Bill is looking a little pail..."
-#     bill "Help me!"
-#     show bill at npc_exit
-#     pause 0.3
-#     $ renpy.hide("bill")
-
-#     "Sorry Bill, can't help you there."
-#     "The last time I did a dare..."
-#     "I ended up having to be a voice over for ten people in their swimwear."
-#     "Here comes [s3_name], AJ, Camilo, Harry, Bill, Genevieve, Elladine, Nicky, Seb and Iona."
-#     "They're raring to get daring!"
-#     "Sigh."
-#     "I wonder if I'll ever escape."
-
-#     scene s3-sun-loungers-day with dissolve
-#     $ on_screen = []
-
-#     "You shield your eyes from the hot summer sun as the other Islanders hurry over."
-#     "Nicky is sipping from his water bottle."
-
-#     # ADD BACK ONCE MC HAS IMAGES
-#     # nicky "Is that the sun that's making me all hot, or is it just MC? "
-#     # nicky "Ha! Just kidding. But seriously, I love the swimsuit today. You look great!"
-#     # s3_mc "Aw, thanks Nicky!"
-#     # nicky "I know you don't need to, but MC, you could totally get away with something more adventurous."
-#     # nicky "Not that you don't already look beautiful, of course."
-#     # s3_mc "Aw, thanks Nicky!"
-
-#     nicky "So, what's the stitch?"
-#     bill "I guess we have to wait for another..."
-#     s3_mc "Text!"
-#     bill "What does it say?"
-#     text "Islanders, you will each be competing to complete three secret dares. The first Islander to complete all their dares will be the winner. #daretowin #dontyoudare"
-#     camilo "Ooh, spicy."
-#     harry "Healthy competition. I love it."
-#     aj "I've got a text."
-#     elladine "Same."
-#     "All of the Islanders look at their phones. Everyone seems to have a different dare."
-#     iona "Oh, this is going to be easy."
-#     elladine "How the heck am I going to get someone to do that?"
-#     "Your phone goes off again in your hand."
-#     thought "This must be my dare."
-#     text "[s3_name], your first dare is to get another Islander to give you a massage, and to make sex noises while they do it."
-
-#     # CHOICE
-#     menu:
-#         thought "I've got to make sex noises while someone massages me."
-#         "I could do that in my sleep":
-#             thought "This is going to be easy."
-#         "This is going to be embarrassing":
-#             thought "I'm never going to live this down!"
-#         "Finally! Unleash the she-wolf":
-#             "You howl like a wolf."
-#             "The other Islanders turn to look at you."
-#             genevieve "You alright, hun?"
-#             s3_mc "Just limbering up, babe."
-
-#     "Iona walks over to Nicky."
-#     iona "What's that over there, Nicky?"
-#     "Nicky turns around. Iona snatches his water bottle and quickly backs away from him."
-#     nicky "Huh?"
-#     "Iona receives another text. She reads it while backing away from Nicky."
-#     iona "One dare down."
-#     iona "Two to go!"
-#     "She runs off into the Villa laughing."
-#     nicky "OK, what just happened?"
-
-#     # CHOICE
-#     menu:
-#         thought "Iona just stole Nicky's water bottle..."
-#         "That must have been her first dare":
-#             s3_mc "She's got a head start."
-#             elladine "[s3_name] is right."
-#         "Offer him your water bottle":
-#             s3_mc "You can use mine if you need to stay hydrated."
-#             nicky "Aw, thanks [s3_name]!"
-#             nicky "But, like, why did she do that?"
-#             elladine "It's her dare, duh."
-#         "Iona is clearly very thirsty":
-#             s3_mc "Maybe she just needed some water, like, before the challenge."
-#             aj "Yeah! A Challenge is thirsty work."
-#             elladine "No, I bet that was her first dare."
-
-#     elladine "She's ahead of us all already!"
-#     harry "Looks like the game is on!"
-#     "The other Islanders all start to disperse around the Villa, laughing as they go."
-#     thought "Oh, I've got another text."
-#     thought "But I haven't done my first dare yet!"
-#     "You look down at your phone."
-#     text "[s3_name], As the only single Islander in the Villa you have the chance to accept a secret dare. You can try and kiss other Islanders...as long as they want you to of course! Each time you kiss an Islanders, it will count as one point. This is your chance to get grafting and win the challenge! #getkissywithit #throwkissestothewind"
-#     thought "Nice! I can finally do some cheeky flirting with some of the Islanders..."
-#     thought "And win the challenge!"
-#     thought "Well, I'm pretty sure I've got a few keen admirers here..."
-#     thought "So I'm sure that wouldn't be a problem."
-
-#     # CHOICE
-#     menu:
-#         thought "Maybe I should take this opportunity to graft!"
-#         "Let's get kissing!":
-#             $ s3e3p2_getting_kissy = True
-#             thought "Who wouldn't want an excuse to go around kissing this gorgeous lot?"
-#             thought "I'm so down for this."
-
-#         "Nah, I don't want to kiss anyone":
-#             $ s3e3p2_getting_kissy = False
-#             thought "I think I'll pass."
-
-# "You see Iona chasing Nicky with a broom across the lawn."
-# thought "I better get cracking if I want to win this challenge!"
-
-# Villa choice screen. (You can only choose three groups of Islanders if you don't buy the gem choice. If you buy the gem choice you can choose all four groups of Islanders)
-
-# Bill in the living room 
-# Someone is slumped on the sofa with a bucket on their head.
-# bill "Hello?"
-# bill "Is anybody there?"
-# bill "It's me!"
-# s3_mc "Hello me."
-# bill "MC?"
-# bill "It's Bill!"
-# bill "Help."
-# bill "I'm stuck!"
-# Choiceseb "Bill's got his head stuck in a bucket."
-# -Try and help him get out of the bucket
-# s3_mc "I'll help you Bill."
-# You tug on the bucket but it's stuck.
-# bill "It's no use."
-
-# -Laugh at him and his helplessness
-# s3_mc "How are you stuck? It's a bucket!"
-# bill "Don't laugh at me!"
-
-# -Ask how he got in this situation
-# s3_mc "How did you get yourself into this situation?"
-
-# bill "It was sort of a dare."
-# bill "But it went wrong."
-# bill "If that wasn't already obvious."
-
-# thought "Maybe I could do my dare on Bill..."
-# thought "I'm sure it'll still count...even with a bucket on his head!"
-# Choiceseb "What should I do with Bill?"
-# -Kiss Bill's bucket head (if you chose the gem choice to kiss the Islanders during Truth and Dare)
-# s3_mc "I've got to say... you actually look so cute in that bucket."
-# bill "Really?"
-# s3_mc "Yeah. It's proper doing things to me."
-# s3_mc "Mind if I kiss it?"
-# bill "You want to kiss it?"
-# s3_mc "Yeah. I want to kiss the bucket."
-# bill "Um, sure. Why not?"
-# bill "My lips are somewhere around here."
-# He points to the centre of the bucket.
-# You lean towards Bill and gently kiss where you think his lips are.
-# He pulls you closer, you straddle him on the sofa while you kiss the plastic bucket with passion.
-# The bucket clunks against the wall.
-# bill "Ouch."
-# thought "We'd better stop that before we get carried away."
-# You get off Bill. He rubs his bucket head.
-# bill "Got to say... That was one of the hottest kisses I've ever had with a bucket on my head."
-# bill "Not that I had loads of anything."
-# bill "You can't see it, but I am proper hot under here after that."
-
-# -Ask Bill for a massage (speaking to Bill as first dare)
-# s3_mc "Bill..."
-# bill "Yeah?"
-# s3_mc "Mind giving me a massage?"
-# bill "What, right now?"
-# bill "But I can't see!"
-# s3_mc "You don't need to see. You just need to feel."
-# bill "To be fair, I think my massages are actually, like, pretty decent quality."
-# bill "Even with a bucket on my head."
-# You sit down in front of him. He starts massaging your earlobes by accident.
-# Though it actually feels quite good.
-# s3_mc "Hmm..."
-# s3_mc "Oh."
-# s3_mc "Oh! Yes!"
-# s3_mc "This feels so good."
-# bill "You like that, huh?"
-# s3_mc "Oh, yes! Hmm. Yes! Yes!"
-# Bill coughs awkwardly.
-# bill "OK. I think you're all massaged out now."
-# You stand up feeling refreshed.
-
-# -Lick Bill's bucket head (speaking to Bill as second dare)
-# You lean forward and lick the bucket. The plastic is cold against your tongue.
-# bill "What are you doing?"
-# bill "Why can I hear you breathing?"
-# bill "Is that your tongue?"
-# You pull away, your tongue a little dryer than before.
-# s3_mc "Don't mind me."
-# Bill shakes his bucket head.
-# bill "I don't know if I'm horrified or horny."
-
-# -Suck Bill's toe (speaking to Bill as third dare)
-# You kneel down beside his feet and pop his toe in your mouth.
-# bill "Ahh!"
-# Bill leaps out of the chair and falls on the floor.
-# bill "What the!?"
-# s3_mc "Sorry Bill!"
-# s3_mc "I didn't mean to scare you."
-# He shakes his head.
-
-# -Draw a face on his bucket
-# thought "Hmm... something is missing from that bucket."
-# s3_mc "Wait right there, Bill."
-# You run up to the dressing room.
-# thought "What do I need?"
-# You see an eyeliner.
-# thought "Ah ha!"
-# You grab the eyeliner and run back downstairs to Bill.
-# bill "Hello?"
-# bill "MC?"
-# bill "Are you still there?"
-# s3_mc "Just hold still, Bill."
-# You draw a face on his bucket.
-# s3_mc "There you go!"
-# bill "Are you giving it a face?"
-# s3_mc "Yeah!"
-# bill "Argh."
-
-# -Just leave him to it
-# You let out an uncontrollable bubble of laughter. Bill sighs.
-
-# bill "I need to try and get this thing off."
-# Bill walks off with his hands outstretched, trying not to bump into anything.
-
-# text "MC, your next dare is to lick the face of another Islander #putyourneckintoit"
-# Choiceseb "I have to lick someone's face!"
-# -I hope they all use lotion
-# thought "I need a smooth surface area to get a good licking."
-
-# -Let's get licking!
-# thought "Time to lick, lick, lick!"
-
-# -Gross. Ew. Yuck.
-# You shudder.
-# thought "This is so weird!"
-
-# AJ and Seb by the beanbags
-# You wander over to AJ and Seb.
-# They are tied together with multiple pairs of G-strings.
-# seb "I can't believe this."
-# seb "She told me to stand still and close my eyes."
-# seb "Next thing I know I'm tied to her by her knick-knocks."
-# aj "To be clear, they're all fresh out of the laundry."
-# Choiceseb "AJ has tied Seb to her with her underwear!"
-# -What a cute bonding exercise for you guys
-# aj "That's actually not what I was going for but..."
-# aj "Yeah!"
-# seb "I feel very..."
-# seb "Bonded."
-
-# -I wouldn't mind getting tangled up in AJ's underwear
-# AJ winks.  (you get 😏 with AJ)
-# AJ: Easy tiger.
-# AJ and Seb laugh. (you get 🙂 with AJ) (MC not interested in AJ)
-
-# -Why don't you just untie yourself?
-# seb "I tried."
-# seb "But this girl seriously knows how to tie a knot."
-# AJ winks mischievously.
-
-# seb "And why exactly am I tied up?"
-# aj "Two stones, one bird."
-# seb "That's not quite how the saying goes..."
-# aj "Whatever. It's two of my dares in one!"
-# aj "I first got a text saying I have to put some underwear on full display."
-# aj "I got my pants out and started wearing them like a scarf."
-# aj "And then I got another text saying I have to spend the afternoon tied up to an Islander."
-# aj "So I combined the two!"
-# She grins, looking proud of herself.
-# Choiceseb "AJ's done two of her dares already!"
-# -You're on a roll, babe
-# aj "You bet I am!"
-
-# -Your dares were so easy
-# aj "Hey!"
-# aj "You try and tie a constrictor knot with nothing but panties. (you get 🙁 with AJ)"
-# aj "It's harder than it looks."
-
-# -What are your dares, Seb?
-# Seb frowns at you and AJ.
-
-# seb "I'm not sure you're meant to, like, tell us what your dares are..."
-# aj "Oh."
-
-# thought "I could do one of my dares on AJ while she's tied up to Seb!"
-# Choiceseb "What dare should I do?"
-# -Kiss AJ (if you chose the gem choice to kiss the Islanders during Truth and Dare; only available if you decided to pursue boys and girls)
-# s3_mc "You can help me out with one of my dares if you like, AJ."
-# aj "Sure, what is it?"
-# You whisper in her ear.
-# s3_mc "To kiss you."
-# seb "Again with the telling and the dares?"
-# AJ nudges Seb playfully out of the way.
-# aj "Shush you."
-# She leans towards you and closes her eyes. (you get 😍 with AJ)
-# Your lips meet. Her free hand travels down to your lower back, pulling you closer towards her.
-# The rest of the Villa melts away for a moment.
-# Eventually AJ pulls away.
-# aj "Woah."
-# Seb coughs awkwardly.
-# seb "Ehem."
-# AJ is blushing profusely.
-# aj "Sorry, mate!"
-# Seb laughs and tickles her.
-# seb "I think AJ's got a crush."
-# aj "Stop! I'm so ticklish."
-
-# -Ask AJ for massage (speaking to AJ and Seb as first dare)
-# s3_mc "Hey AJ."
-# s3_mc "Reckon you could, like, give me a massage?"
-# She smiles and scootches Seb out of the way a little.
-# aj "Sure can."
-# aj "I can give great head massages."
-# You lean your head back. AJs voice drops into a silky smooth and calming tone.
-# aj "Great. Let's begin."
-# Her fingertips dance circles around your scalp.
-# aj "How's the pressure?"
-# s3_mc "It's nice! Wow. Oh, AJ, you're really good. "
-# You let out a moan of pleasure.
-# aj "You like that, don't you?"
-# s3_mc "Oh. Oh!"
-# s3_mc "Oh, yeah. That's good."
-# aj "Yeah?"
-# s3_mc "Oh! Yes! Yes!"
-# AJ stops and starts laughing uncontrollably.
-# seb "OK. Seriously. What is going on?!"
-# s3_mc "Don't stop, babe. Don't stop."
-# s3_mc "Please! I'm so close."
-# AJ howls with laughter.
-# seb "I can't believe what I'm hearing."
-# seb "Is AJ really that good at massages?"
-# aj "I'm sorry, MC. I can't go on!"
-
-# -Lick AJ's face (speaking to AJ and Seb as second dare)
-# s3_mc "I'm sorry, AJ!"
-# You lean in and lick the side of her face.
-# seb "Um, woah."
-# aj "Ew! That's so wet!"
-# aj "It tickles!"
-
-# -Suck AJ's toe (speaking to AJ and Seb as third dare)
-# You kneel down beside AJ.
-# seb "Are you proposing to us, MC?"
-# s3_mc "Not exactly..."
-# You take off AJ's sandal.
-# aj "Oh, am I Cinderella?"
-# aj "Are you my Princess Charming?"
-# You stick her toe in your mouth.
-# seb "Oh, OK."
-# She squeals loudly and falls to the floor, dragging Seb with her.
-# aj "MC!"
-# s3_mc "Umm?"
-# seb "What are you doing?"
-# aj "She's put my toe... in her mouth!"
-# seb "I can see that. But, like, why?"
-# aj "Ahh, stop. It tickles!"
-# She yanks her toe out of your mouth, laughing uncontrollably.
-# aj "It tickled so much!"
-
-
-# -Hypnotise Seb to find out his dares
-# You start pretending to hypnotise him with your finger, swaying it from side to side in front of his eyes.
-# s3_mc "Look into my eyes and tell us."
-# s3_mc "Tell us."
-# s3_mc "Tell us."
-# AJ starts giggling uncontrollably at your hypnotic attempts. Seb crosses his arms and shakes his head.
-# seb "No."
-
-# -Just leave them to it
-# Seb is trying to undo one of the knots.
-# seb "Argh, it's too tight!"
-# AJ starts giggling uncontrollably at Seb's frustration.
-# s3_mc "I think I'm going to go..."
-
-# AJ falls over into a heap of giggles. (you get 😂 with AJ)
-# A pair of pants split in half.
-# aj "No!"
-# aj "I might not win the challenge now."
-# aj "We need to back up pants, Seb."
-# aj "Pronto!"
-# seb "Really?"
-# Seb groans. AJ drags Seb into the Villa.
-
-# text "MC, your next dare is to suck the toe of another Islanders. #taketoetotown"
-# Choiceseb "I need to suck a toe..."
-# -This is a hard one
-# thought "Yuck."
-# thought "This challenge just climbed onto a whole new level of hard."
-
-# -This is a gross one
-# thought "Yuck."
-# thought "This challenge just climbed onto a whole new level of hard."
-
-# -This is my dream come true
-# thought "I am so excited to suck a toe!"
-
-# Nicky and Camilo at the pool
-# You walk over to Nicky and Camilo. Nicky is wearing bright pink lipstick and holding a broom.
-# camilo "Hey, MC!"
-# Camilo adjusts his shorts.
-# camilo "Y'know, silk feels really good against my skin."
-# camilo "It's so comfy."
-# s3_mc "What are you on about?"
-# He winks and pulls down an inch of his swim shorts, revealing a pair of lacy pants.
-# Choiceseb "Camilo is wearing a girl's pair of underwear!"
-# -They look so hot on you, Camilo
-# camilo "You think? (you get ❤️ with Camilo)"
-# s3_mc "Totally."
-# s3_mc "I wish I could get a view of the whole package."
-# Camilo winks.
-# camilo "Maybe one day."
-# camilo "They're Iona's. I'm borrowing them."
-
-# -Did you get dressed in the dark?
-# Camilo shrugs.
-# camilo "No, of course not."
-# camilo "They're Iona's. I'm borrowing them."
-
-# -Whose underwear are they?
-# camilo "They're Iona's. I'm borrowing them."
-
-# thought "Camilo looks like he'd be up for a dare..."
-# Choiceseb "What should I do?"
-# -Kiss Camilo (if you chose the gem choice to kiss the Islanders during Truth and Dare)
-# You bite your bottom lip.
-# s3_mc "Fancy a quick kiss?"
-# Camilo raises an eyebrow and steps closer.
-# camilo "Why?"
-# camilo "These pants doing it for you?"
-# s3_mc "Oh yeah."
-# camilo "Go on then."
-# You lean in and kiss him. (you get 😍 with Camilo)
-# Camilo's hands pull you in closer to him.
-# His warmth radiates around you as he kisses you harder.
-# nicky "Guys!"
-# You both pull away. Camilo rolls his eyes at Nicky.
-# nicky "I hope Iona didn't see that."
-# camilo "Get on with your cleaning, Nicky, and mind your own business."
-# Nicky gives Camilo a little scowl before diving back under.
-# camilo "That was a good kiss, MC."
-# s3_mc "I try my best."
-# Camilo squints a little bit, looking a tad uncomfortable.
-# s3_mc "Are you alright?"
-# camilo "Yeah, yeah that kiss was amazing..."
-# camilo "But downstairs is getting a little tight."
-# s3_mc "Oh, the pants?"
-# He lunges to the side, nodding.
-# camilo "Yeah..."
-# camilo "I'm going to go and sort them out."
-# camilo "But seriously, wow. What a kiss."
-# Camilo hobbles over to the Villa.
-# thought "I wonder who else I can get my kiss on with..."
-
-# -Ask Camilo for a massage (speaking to Camilo and Nicky as first dare)
-# s3_mc "Speaking of feeling comfy..."
-# s3_mc "I could really do with a massage."
-# camilo "Say no more."
-# He sits down cross legged and pats the floor in front of him.
-# camilo "I can take care of that."
-# You sit down in between his legs. He works his way around your shoulders.
-# His hands are strong. Powerful.
-# You instantly feel at ease and you start to let out moans of pleasure.
-# s3_mc "Oh. Oh!"
-# s3_mc "Oh."
-# camilo "You like that, huh?"
-# s3_mc "Oh, yes! Yes, Camilo! Yes!"
-# camilo "Yeah, does that feel good?"
-# s3_mc "It feels so good. Oh, wow."
-# s3_mc "Oh."
-# s3_mc "Oh!"
-# s3_mc "Oooooh."
-# nicky "Get a room you two!"
-# camilo "You love it, mate."
-# iona "What's going on here, babe?"
-# camilo "Just giving MC the massage of her life."
-# iona "Mind if i get in on that?"
-# She gives you a little glare.
-# iona "Inside."
-# Camilo gets up. He stretches out a hand and helps you up from the ground.
-# camilo "Sorry, MC."
-# camilo "Supply and demand."
-# He winks at you and struts over to the Villa with Iona.
-
-# -Lick Camilo's face (speaking to Camilo and Nicky as second dare)
-# You step closer to Camilo.
-# camilo "Um... you OK, MC?"
-# You nod as you lean in towards him and lick his forehead.
-# camilo "Um..."
-# camilo "Ew!"
-# He quickly rubs the wet patch with his arm and wipes it back on you.
-# camilo "Not today, satan. Not today."
-# Camilo walks off into the Villa, still rubbing at his forehead, looking back at you to make sure you're not following him.
-# thought "Oops. He didn't like that!"
-
-# -Suck Camilo's toe (speaking to Camilo and Nicky as third dare)
-# You kneel down on the floor.
-# camilo "Did you drop something?"
-# s3_mc "Not exactly..."
-# You pick up his foot.
-# camilo "That's my foot, MC."
-# s3_mc "I know."
-# You put his little toe in your mouth.
-# camilo "And now you're eating my toe!"
-# camilo "Nicky, mate, she's eating my toe."
-# camilo "Help!"
-# Nicky doesn't hear him. He's swimming underwater. You take Camilo's toe out of your mouth.
-# camilo "I think my whole life just flashed before my eyes."
-# He legs it back into the Villa, slightly hopping on one leg.
-# s3_mc "Oops."
-
-# -Get him to do a catwalk
-# s3_mc "Come on, Camilo."
-# s3_mc "Give us a strut."
-# camilo "Sure."
-# He struts up and down the pool while posing sexily.
-# camilo "I am serving up Iona-Underwear realness with this look."
-# s3_mc "Yes, Camilo."
-# s3_mc "Work it from head to toe."
-# He pivots but stumbles slightly.
-# camilo "Oh."
-# camilo "Ouch."
-# camilo "Um..."
-# camilo "I'll see you around, MC."
-# camilo "I've got to go and untuck something in the lounge."
-# Camilo limps off into the Villa.
-
-# -Just leave him to it
-# s3_mc "You do you, Camilo."
-# camilo "Sure thing."
-# He heads off into the Villa, lunging from side to side.
-
-
-# Genevieve and Harry in the kitchen
-# Genevieve seems to be bending over in front of Harry, grinding against him.
-# Harry sees you and nervously laughs.
-# harry "Um... oh, hi MC."
-# He quickly moves to one side. Genevieve nearly falls over.
-# genevieve "Harry! Why'd you move?"
-# genevieve "I was just getting started the grind-a-thon!"
-# Choiceseb "Harry and Genevieve are doing a grind-a-thon"
-# -What is that?
-# Genevieve winks and taps her nose.
-# harry "It's apparently this proper competition."
-# s3_mc "Oh, really?"
-
-# -Can I join in the grind-a-thon?
-# genevieve "Sure!"
-# Harry's face flushes red.
-# harry "Um, OK. Let's win this grind-a-thon!"
-# You rub against Harry.
-# Genevieve does the same. He squirms with excitement.
-# harry "It's my lucky day."
-
-# -I should do a dare on Harry
-# thought "I wonder how I can do it with Genevieve here..."
-
-# harry "After this grind-a-thon I am going to be way too tired to, like, move."
-# harry "If someone wants to give me a piggyback that would be awesome."
-# Genevieve leans over to you and whispers in your ear.
-# genevieve "You know this grind-a-thon isn't a real thing, right?"
-# She grins a little suspiciously.
-# thought "I bet this is her dare."
-# thought "I better do a dare so Genevieve doesn't take the lead."
-# Choiceseb "What should I do to Harry?"
-# -Kiss Harry (if you chose the gem choice to kiss the Islanders during Truth and Dare)
-# thought "I'll need to distract Genevieve."
-# You clutch your mouth dramatically.
-# s3_mc "Ouch."
-# s3_mc "Um, Genevieve..."
-# s3_mc "Could you get me a toothpick or something?"
-# genevieve "Sure! I'll go and get that."
-# s3_mc "Mind if we have a cheeky kiss while we're alone?"
-# harry "Oh!"
-# Harry looks a little taken aback, but smiles cheekily.
-# harry "Don't you, like, want to get whatever is in your teeth out first?"
-# s3_mc "That was just a decoy to distract."
-# harry "Oh, right. Sneaky."
-# harry "Well, then... yeah, sure, why not?"
-# He looks around, making sure Genevieve hasn't come back.
-# harry "A kiss in the kitchen won't hurt."
-# You lean and kiss Harry on the lips.
-# He's hesitant at first. But his touch is soft and gentle.
-# He moves in closer, exploring your body with his hands.
-# As you pull away just as Genevieve comes back in.
-# genevieve "Sorry, babe."
-# Harry flushes red. He looks apologetically at you and whispers in your ear.
-# harry "Damn."
-# genevieve "I couldn't find the toothpick."
-# s3_mc "Aw, don't worry hun."
-# s3_mc "I got what I wanted."
-# genevieve "What?"
-# harry "Um..."
-# s3_mc "I mean, I got it out. "
-# genevieve "Ah, right."
-
-# -Ask Harry for a massage (speaking to Genevieve and Harry as first dare)
-# You stretch out your arms and yawn.
-# s3_mc "You know what we could also do?"
-# harry "What?"
-# s3_mc "I bet you give the best massages, Harry."
-# harry "Like a massage-a-thon."
-# s3_mc "Yeah, sure...."
-# Harry pretends to roll up his sleeves and flexes his muscles.
-# harry "Let me put my skills to the test."
-# His fingers work their way down from your upper back. They instantly ease you of your stresses.
-# s3_mc "Oh..."
-# s3_mc "Oh, yes!"
-# s3_mc "Right there."
-# harry "There?"
-# s3_mc "Yes! Yeah, right, oh wow."
-# genevieve "Um."
-# genevieve "Can I get in on some of that?"
-# Harry goes to move to Genevieve, but you pull him back.
-# s3_mc "No, don't stop Harry, please, don't stop. Oh. Wow! Yes! Yes! Yes!"
-# You close your eyes, enjoying the moment of fake pleasure.
-# harry "I mean, I knew I was good but..."
-# Genevieve scoffs.
-# genevieve "It sounds like MC really enjoyed that."
-
-# -Lick Harry's face (speaking to Genevieve and Harry as second dare)
-# You stick your tongue out and lick his face.
-# genevieve "Um!?"
-# Harry squeals with delight.
-# harry "Oooh!"
-# genevieve "You hungry, MC?"
-# s3_mc "I guess I am a little."
-# genevieve "Well there is a whole kitchen here."
-# genevieve "Harry isn't for eating!"
-# Harry laughs.
-# harry "That made me feel all tingly inside."
-
-# -Suck Harry's toe (speaking to Genevieve and Harry as third dare)
-# You get down on one knee and pick up Harry's foot.
-# He loses his balance, but quickly grabs the kitchen counter.
-# harry "Um, MC?"
-# harry "That's not how people give you a piggy back."
-# You pinch one of his toes.
-# s3_mc "This little piggy went to the market..."
-# You pinch another, bigger toe.
-# s3_mc "And this little piggy went in my mouth."
-# harry "What?"
-# You put his toe in your mouth.
-# He squeals like a pig.
-# harry "Aaah!"
-# genevieve "What are you doing, MC?"
-# You keep sucking. Harry doesn't move. It feels like he relaxes into it.
-# harry "Ooh."
-# harry "Ooh, that feels kinda good. (you get 😍 with Harry)"
-# You take Harry's toe out of your mouth and stand up.
-# genevieve "Can't believe what I just witnessed."
-# Harry regains his balance, looking a little lustful.
-# harry "I really need someone to carry me after that."
-
-# -Give him a piggyback
-# You hoist him up on your back and run a few lengths around the kitchen.
-# harry "Yes!"
-# harry "Giddy up!"
-# He starts to slip from your grip.
-# harry "Ahh!"
-# He falls to the ground.
-# harry "Ouch."
-# He looks over at Genevieve.
-
-# -Leave them to their grind-a-thon
-# harry "Genevieve, you wanna give me a ride-a-thon?"
-
-# Genevieve gestures to her back.
-# genevieve "You still want that ride?"
-# genevieve "Hop on, Harry."
-# genevieve "I'll carry you, hun."
-# Harry grins.
-# (If you chose to kiss him)
-# As he climbs onto Genevieve's back he glances over at you.
-# A lustful look still caught in his eyes.
-# harry "OK. Let's ride."
-
-# (If you finished all three dares and didn't choose the gem option to kiss someone):
-# thought "I've finished my last dare!"
-# thought "I wonder what I have to do..."
-# A text tone interrupts you mid thought.
-# s3_mc "I've got a text!"
-# text "Islanders, the winner of the challenge has been decided. Please make your way to the lawn. #thewinnertakesitall"
-# thought "Ooh, I hope it was me who managed to do three dares first! (non-gem choice)"
-# thought "Oh, I guess it's time to see who won the challenge. (If you didn't finish all three dares and/or choose the gem option to kiss someone)"
-# You head over to the lawn.
-# AJ and Seb are still tied together.
-# She giggles.
-# (if you played her and Seb's scene):
-# s3_mc "You patched up your pants then, AJ? "
-# aj "Yeah."
-# aj "I didn't manage to do my final dare though."
-# seb "Sorry babe."
-# (if you tried to hypnotise Seb to find out his dares):
-# seb "Don't try hypnotising me again, please, MC."
-# seb "It was a mockery to the art form."
-# Camilo runs over, followed by Harry and Nicky.
-# (If you played Camilo's and Nicky's scene):
-# Camilo tries to avoid your eye contact. (if you sucked on his toe/made him do a catwalk/asked for a massage/Licked his face)
-# He blushes a little when he sees you. (if you chose the diamond choice to kiss him)
-# Nicky's lipstick looks a little smudged.
-# miki "That's a good lipstick shade on you, Nicky."
-# Bill is being guided by Genevieve and Miki.
-# The bucket is still on his head.
-# (if you draw a smiley face on his bucket):
-# miki "Aw, someone drew a face on you, hun!"
-# bill "That would be that cheeky one."
-# He points randomly towards no one.
-# s3_mc "He means me."
-# miki "It's cute!"
-# And he is covered with bright pink lipstick kisses.
-# Choiceseb "Bill has been kissed all over!"
-# -I wish got to kiss him (if you didn't choose the gem choice)
-# Maybe I should have accepted that secret kissy dare after all. 
-
-# -I don't remember kissing him everywhere! (if you chose the gem choice and kissed him) 
-# (no further reactions)
-
-# -Who did this to you, Bill?
-# (no further reactions)
-
-# -I'd give anything to be that bucket right now
-# thought "What a lucky piece of plastic."
-
-# Nicky chuckles.
-# bill "Nicky?"
-# Bill wanders around a little aimlessly.
-# bill "You coming back for round two?"
-# nicky "Don't want to smudge my lippy any more, mate."
-# thought "I hope my lipstick isn't smudged after all that kissing. (if you chose the gem choice to kiss the Islanders during Truth and Dare and kissed at least one) "
-# (if you won):
-# "Looks like all that toe sucking, face licking and massage moaning wasn't for nothing. (if you did all three “normal” dares)"
-# "Looks like MC got her kiss on in this challenge. (if you chose the gem choice to kiss the Islanders during Truth and Dare and kissed at least one)"
-# "And it was worth it!"
-# "Cue the text!"
-# s3_mc "I've got a text!"
-# text "MC, congratulations! You are the winner of the Truth And Dare challenge. As the winner, you now get to ask one other Islander a truth. You may only ask the Islanders who completed fewer than two dares. These Islanders are AJ, Bill, Camilo and Harry. #tellitstraighttomyface"
-# thought "I won!"
-# AJ, Bill, Camilo and Harry step forward.
-# aj "Looks like you've got the power, MC."
-# bill "What do you want to know?"
-# iona "Make it juicy, MC!"
-# genevieve "Yeah, find out some good gossip."
-# Choiceseb "Who should I ask?"
-# -AJ
-# s3_mc "AJ! Please step forward."
-# AJ steps forward, hands on her hips.
-# aj "Come on then. Let's have it."
-
-# Choiceseb "What should I ask AJ?"
-# -What is your wildest sexy fantasy?
-# AJ laughs.
-# aj "Think you lot can handle it?"
-# s3_mc "Try us."
-# aj "I really want to do it in one of those bath tubs in the middle of a room, with like, super big windows."
-# seb "Woah!"
-# aj "But I want the hotel room to be, like, really high up so no one sees us."
-# harry "People flying drones might catch you."
-# aj "Yeah, the risk is still there, obviously, for maximum hotness."
-# Everyone cheers for AJ.
-# aj "Feels good to get that off my chest."
-# elladine "You are filthy, babe."
-
-# -What turns you on and what turns you off?
-# aj "Oh, good question."
-# aj "I love watching a girl work out, like, intensely."
-# aj "Also when smart people tell stuff in a way that doesn't make me feel, like, silly."
-# aj "Smart people can be super hot."
-# aj "I'm not sure about my turn offs."
-# aj "Maybe, like, if people are unkind or snobby. I'm not too keen on that."
-# seb "Yeah, I get that."
-
-# -If I was a food, what would I be, and how would you eat me?
-# Everyone laughs at your question. AJ looks a little concerned.
-# aj "OK. That's kind of random."
-# You shrug.
-# s3_mc "I'm just asking the important questions here."
-# aj "I think you'd be a pomegranate sorbet with sliced strawberries on top."
-# aj "Sweet and cool."
-# aj "And I'd lick you all up."
-
-# Choiceseb "AJ's answer was..."
-# -A good truthful answer
-# s3_mc "You really bared your soul to me and I appreciate that."
-# AJ smiles and does a little bow. The others laugh and cheer her on.
-
-# -Pure and utter complete filth
-# You pretend to wipe AJ down.
-# aj "What are you doing?"
-# s3_mc "Just cleaning you up."
-# s3_mc "Because you are serving some filth!"
-# aj "How?"
-# s3_mc "I can read between the lines."
-# aj "Nope, sorry. You've lost me there."
-
-# -So weak! I want another go
-# s3_mc "That answer was weak sauce, and you know it!"
-# You stomp your feet.
-# s3_mc "I want another question."
-# AJ looks a little hurt. Everyone looks at each other awkwardly.
-# BFF laughs and nudges you.
-# BFF: I don't think that's how the game works, MC.
-# s3_mc "Aw..."
-
-# -Bill
-# s3_mc "Bill! Please step forward."
-# Bill steps forward, hands on his hips.
-# bill "Come on then. Let's have it."
-
-# Choiceseb "What should I ask Bill?"
-# -What is your wildest sexy fantasy?
-# Bill laughs. 
-# bill "Think you lot can handle it?"
-# s3_mc "Try us."
-# bill "I want to order every single dinner off the menu down the pub."
-# Camilo scoffs.
-# camilo "No change there then."
-# miki "Yeah, what's sexy about that?"
-# bill "Oh, we'll get it all delivered to my room and be, like, naked while we eat it."
-# miki "Brilliant."
-# Everyone cheers for Bill.
-# bill "Feels good to get that off my chest."
-# elladine "You are filthy, babe."
-
-# -What turns you on and what turns you off?
-# bill "Oh, good question."
-# bill "My ultimate turn offs are loud eaters and drama seekers."
-# bill "My turns on are people that like going to the pub for a date."
-# bill "And someone that is just happy to spend a lazy Sunday just playing video games."
-# Miki rolls her eyes.
-# miki "You've got low expectations, darling."
-
-# -If I was a food, what would I be, and how would you eat me?
-# Everyone laughs at your question. Bill looks a little concerned.
-# bill "OK. That's kind of random."
-# You shrug.
-# s3_mc "I'm just asking the important questions here."
-# bill "You'd be sweet potato fries and I'd eat you with some homemade mayo."
-# s3_mc "Why potato fries?"
-# bill "Because, like, the upgraded version of any dish has sweet potato fries with it."
-# bill "And you're, like, totally an upgrade."
-# Miki and Genevieve look a little defensive.
-# genevieve "An upgrade from what?"
-# bill "Um, like, just in general."
-# miki "Right..."
-
-# Choiceseb "Bill's answer was..."
-# -A good truthful answer
-# s3_mc "You really bared your soul to me and I appreciate that."
-# Bill does a little bow.
-# bill "You'll have to trust me that I'm smiling."
-
-# -Pure and utter complete filth
-# You pretend to wipe Bill down.
-# bill "What are you doing?"
-# s3_mc "Just cleaning you up."
-# s3_mc "Because you are serving some filth!"
-# Everyone laughs.
-# Bill brushes himself off.
-# bill "I know, I know. I'm pure dirt."
-
-# -So weak! I want another go
-# s3_mc "That answer was weak sauce, and you know it!"
-# You stomp your feet.
-# s3_mc "I want another question."
-# Bill looks a little hurt. Everyone looks at each other awkwardly.
-# BFF laughs and nudges you.
-# BFF: I don't think that's how the game works, MC.
-# s3_mc "Aw..."
-
-# -Camilo
-# s3_mc "Camilo! Please step forward."
-# Camilo steps forward, hands on his hips.
-# camilo "Come on then. Let's have it."
-# Choiceseb "What should I ask Camilo?"
-# -What is your wildest sexy fantasy?
-# Camilo laughs.
-# camilo "Think you lot can handle it?"
-# s3_mc "Try us."
-# camilo "I want to do it with a weather person."
-# s3_mc "On TV?!"
-# camilo "Yeah."
-# camilo "They always know what's coming."
-# camilo "Just when they're announcing that it's wet outside."
-# iona "Golden sunshine with a chance of showers."
-# camilo "Exactly."
-# Everyone cheers for Camilo.
-# camilo "Feels good to get that off my chest."
-# elladine "You are filthy, babe."
-
-# -What turns you on and what turns you off?
-# camilo "Oh, good question."
-# camilo "I love it when people are, like, kinda competitive and strong."
-# s3_mc "And what turns you off?"
-# camilo "When people are controlling."
-# camilo "Can't stand that."
-# bill "Good answer, mate."
-# Iona scoffs.
-# iona "You could have just said 'me'. But whatever."
-
-# -If I was a food, what would I be, and how would you eat me?
-# Everyone laughs at your question. Camilo looks a little concerned.
-# camilo "OK. That's kind of random."
-# You shrug.
-# s3_mc "I'm just asking the important questions here."
-# camilo "You'd be sweet potato fries and I'd eat you with some homemade mayo."
-# s3_mc "Why potato fries?"
-# camilo "Because, like, the upgraded version of any dish has sweet potato fries with it."
-# camilo "And you're, like, totally an upgrade."
-# Miki and Genevieve look a little defensive.
-# genevieve "An upgrade from what?"
-# camilo "Um, like, just in general."
-# miki "Right..."
-
-# Choiceseb "Camilo's answer was..."
-# -A good truthful answer
-# s3_mc "You really bared your soul to me and I appreciate that."
-# Camilo does a little bow. The others laugh and cheer him on.
-
-# -Pure and utter complete filth
-# You pretend to wipe Camilo down.
-# camilo "What are you doing?"
-# s3_mc "Just cleaning you up."
-# s3_mc "Because you are serving some filth!"
-# Everyone laughs.
-# Camilo brushes himself off.
-# camilo "I know, I know. I'm pure dirt."
-
-# -So weak! I want another go
-# s3_mc "That answer was weak sauce, and you know it!"
-# You stomp your feet.
-# s3_mc "I want another question."
-# Camilo looks a little hurt. Everyone looks at each other awkwardly.
-# BFF laughs and nudges you.
-# BFF: I don't think that's how the game works, MC.
-# s3_mc "Aw..."
-
-# -Harry
-# s3_mc "Harry! Please step forward."
-# Harry steps forward, hands on his hips.
-# harry "Come on then. Let's have it."
-# Choiceseb "What should I ask Harry?"
-# -What is your wildest sexy fantasy?
-# Harry laughs. 
-# harry "Think you lot can handle it?"
-# s3_mc "Try us."
-# harry "I want to have sex in an elevator."
-# harry "So I can say I'm up and coming."
-# Genevieve scoffs.
-# genevieve "Course you do, Harry."
-# Everyone cheers for Harry.
-# harry "Feels good to get that off my chest."
-# elladine "You are filthy, babe."
-
-# -What turns you on and what turns you off?
-# harry "Oh, good question."
-# harry "I get well turned on when girls, wear, like, formalwear."
-# genevieve "Oh, really?"
-# genevieve "That's random."
-# genevieve "I don't usually wear that kind of thing."
-# Harry shrugs.
-# harry "Turns off would have be when people take things for granted. I can't stand that."
-
-# -If I was a food, what would I be, and how would you eat me?
-# Everyone laughs at your question. Harry looks a little concerned.
-# harry "OK. That's kind of random."
-# You shrug.
-# s3_mc "I'm just asking the important questions here."
-# harry "I think you'd be a pomegranate sorbet with sliced strawberries on top."
-# harry "Sweet and cool."
-# harry "And I'd lick you all up."
-
-# Choiceseb "Harry's answer was..."
-# -A good truthful answer
-# s3_mc "You really bared your soul to me and I appreciate that."
-# Harry smiles and does a little bow. The others laugh and cheer him on.
-
-# -Pure and utter complete filth
-# You pretend to wipe Harry down.
-# harry "What are you doing?"
-# s3_mc "Just cleaning you up."
-# s3_mc "Because you are serving some filth!"
-# harry "How?"
-# s3_mc "I can read between the lines."
-# Harry winks at you.
-# harry "You get me too well."
-
-# -So weak! I want another go
-# s3_mc "That answer was weak sauce, and you know it!"
-# You stomp your feet.
-# s3_mc "I want another question."
-# Harry looks a little hurt. Everyone looks at each other awkwardly.
-# BFF laughs and nudges you.
-# BFF: I don't think that's how the game works, MC.
-# s3_mc "Aw..."
-
-# (if you lost):
-# iona "I've got a text!"
-# text "Iona, congratulations! You are the winner of the dares challenge. You now get to ask one other Islander a truth. Tellitstraighttomyface"
-# Choiceseb "Iona won!"
-# -It's totally rigged (no further reaction)
-# -I hope she has a good question (no further reaction)
-# -She had a head start (no further reaction)
-# Iona smiles at you all mischievously.
-# nicky "Who are you going to ask, Iona?"
-# She struts over to Camilo.
-# iona "OK hun."
-# iona "I want to know exactly what you look for in a woman."
-# He looks over to you for a brief moment.
-# camilo "Um..."
-# iona "Come on."
-# Iona taps her foot.
-# iona "We haven't got all day."
-# camilo "I guess I like girls who are chill."
-# Iona's foot taps quicker.
-# camilo "And, like, not controlling or people who think that they're better than anyone else."
-# The guys cheer. Iona looks a little cross.
-# bill "Good answer mate."
-# seb "Yeah, no one likes superiority complex."
-# iona "Yeah, well, the right answer was me."
-# iona "But whatever."
-# Camilo rolls his eyes.
-
-# nicky "I've got a text!"
-# text "Islanders, tonight is a recoupling. The boys will be picking who they want to couple up with. Please get ready and gather around the firepit. #gentlemenschoice"
-# Everyone is silent for a moment.
-# aj "Uh oh."
-# thought "A boy's choice recoupling."
-# Then, all at once, the boys cheer.
-# camilo "Get in!"
-# thought "Who's going to pick me?"
-# Everyone looks at you.
-# s3_mc "Oh!"
-# s3_mc "I've got a text as well..."
-# text "MC, as the only single Islander you also will be choosing in tonight's recoupling. You will be picking first. #firstcomesfirstserve #ladiesfirst"
-# s3_mc "I get to choose someone"
-# s3_mc "And I'm picking first."
-# Iona crosses her arms.Genevieve nervously bites her nails.
-# The boys all look at one another.
-# thought "It's about time!"
-# "MC is absolutely right."
-# "It is about time!"
-# "Coming up..."
-# aj "Alright, lads! Excited for this?"
-# "Excited is an understatement."
-# "This is a recoupling, people!"
-# elladine "And the most exciting part of the recoupling is what comes after."
-# "Don't worry, Elladine. I'll make sure someone stocks up the fruit bowl."
-
+label s3e3p2:
+    scene edited_sandy_intro with dissolve
+    $ on_screen = []
+
+    "Previously, the Islanders discussed sexy dreams..."
+    elladine "I don't remember the details."
+    elladine "But it was very good."
+    show elladine at npc_exit
+    pause 0.3
+    $ renpy.hide("elladine")
+
+    "And [s3_name], Genevieve, and AJ got physical..."
+    "In an arm wrestling competition!"
+    aj "Wanna try your luck?"
+    show aj at npc_exit
+    pause 0.3
+    $ renpy.hide("aj")
+    "You're on, AJ."
+    "I've been single forever."
+    "Which means I have a distinct advantage when it comes to arm wrestling with my right hand."
+    "Coming up!"
+    "The Islanders get stuck in a game of Truth and Dare."
+    camilo "What are you doing down there?"
+    show camilo at npc_exit
+    pause 0.3
+    $ renpy.hide("camilo")
+
+    "And Bill is looking a little pail..."
+    bill "Help me!"
+    show bill at npc_exit
+    pause 0.3
+    $ renpy.hide("bill")
+
+    "Sorry Bill, can't help you there."
+    "The last time I did a dare..."
+    "I ended up having to be a voice over for ten people in their swimwear."
+    "Here comes [s3_name], AJ, Camilo, Harry, Bill, Genevieve, Elladine, Nicky, Seb and Iona."
+    "They're raring to get daring!"
+    "Sigh."
+    "I wonder if I'll ever escape."
+
+    scene s3-sun-loungers-day with dissolve
+    $ on_screen = []
+
+    "You shield your eyes from the hot summer sun as the other Islanders hurry over."
+    "Nicky is sipping from his water bottle."
+
+    # ADD BACK ONCE MC HAS IMAGES
+    # nicky "Is that the sun that's making me all hot, or is it just MC? "
+    # nicky "Ha! Just kidding. But seriously, I love the swimsuit today. You look great!"
+    # s3_mc "Aw, thanks Nicky!"
+    # nicky "I know you don't need to, but MC, you could totally get away with something more adventurous."
+    # nicky "Not that you don't already look beautiful, of course."
+    # s3_mc "Aw, thanks Nicky!"
+
+    nicky "So, what's the stitch?"
+    bill "I guess we have to wait for another..."
+    s3_mc "Text!"
+    bill "What does it say?"
+    text "Islanders, you will each be competing to complete three secret dares. The first Islander to complete all their dares will be the winner. #daretowin #dontyoudare"
+    camilo "Ooh, spicy."
+    harry "Healthy competition. I love it."
+    aj "I've got a text."
+    elladine "Same."
+    "All of the Islanders look at their phones. Everyone seems to have a different dare."
+    iona "Oh, this is going to be easy."
+    elladine "How the heck am I going to get someone to do that?"
+    "Your phone goes off again in your hand."
+    thought "This must be my dare."
+    text "[s3_name], your first dare is to get another Islander to give you a massage, and to make sex noises while they do it."
+
+    # CHOICE
+    menu:
+        thought "I've got to make sex noises while someone massages me."
+        "I could do that in my sleep":
+            thought "This is going to be easy."
+        "This is going to be embarrassing":
+            thought "I'm never going to live this down!"
+        "Finally! Unleash the she-wolf":
+            "You howl like a wolf."
+            "The other Islanders turn to look at you."
+            genevieve "You alright, hun?"
+            s3_mc "Just limbering up, babe."
+
+    "Iona walks over to Nicky."
+    iona "What's that over there, Nicky?"
+    "Nicky turns around. Iona snatches his water bottle and quickly backs away from him."
+    nicky "Huh?"
+    "Iona receives another text. She reads it while backing away from Nicky."
+    iona "One dare down."
+    iona "Two to go!"
+    "She runs off into the Villa laughing."
+    nicky "OK, what just happened?"
+
+    # CHOICE
+    menu:
+        thought "Iona just stole Nicky's water bottle..."
+        "That must have been her first dare":
+            s3_mc "She's got a head start."
+            elladine "[s3_name] is right."
+        "Offer him your water bottle":
+            s3_mc "You can use mine if you need to stay hydrated."
+            nicky "Aw, thanks [s3_name]!"
+            nicky "But, like, why did she do that?"
+            elladine "It's her dare, duh."
+        "Iona is clearly very thirsty":
+            s3_mc "Maybe she just needed some water, like, before the challenge."
+            aj "Yeah! A Challenge is thirsty work."
+            elladine "No, I bet that was her first dare."
+
+    elladine "She's ahead of us all already!"
+    harry "Looks like the game is on!"
+    "The other Islanders all start to disperse around the Villa, laughing as they go."
+    thought "Oh, I've got another text."
+    thought "But I haven't done my first dare yet!"
+    "You look down at your phone."
+    text "[s3_name], As the only single Islander in the Villa you have the chance to accept a secret dare. You can try and kiss other Islanders...as long as they want you to of course! Each time you kiss an Islanders, it will count as one point. This is your chance to get grafting and win the challenge! #getkissywithit #throwkissestothewind"
+    thought "Nice! I can finally do some cheeky flirting with some of the Islanders..."
+    thought "And win the challenge!"
+    thought "Well, I'm pretty sure I've got a few keen admirers here..."
+    thought "So I'm sure that wouldn't be a problem."
+
+    # CHOICE
+    menu:
+        thought "Maybe I should take this opportunity to graft!"
+        "Let's get kissing!":
+            $ s3e3p2_getting_kissy = True
+            thought "Who wouldn't want an excuse to go around kissing this gorgeous lot?"
+            thought "I'm so down for this."
+
+        "Nah, I don't want to kiss anyone":
+            $ s3e3p2_getting_kissy = False
+            thought "I think I'll pass."
+
+    "You see Iona chasing Nicky with a broom across the lawn."
+    thought "I better get cracking if I want to win this challenge!"
+
+    # Villa choice screen. (You can only choose three groups of Islanders if you don't buy the gem choice. 
+    # If you buy the gem choice you can choose all four groups of Islanders)
+
+    call screen s3e3p2_select_who_to_talk_to
+
+    text "[s3_name], your next dare is to lick the face of another Islander #putyourneckintoit"
+
+    # CHOICE
+    menu:
+        thought "I have to lick someone's face!"
+        "I hope they all use lotion":
+            thought "I need a smooth surface area to get a good licking."
+        "Let's get licking!":
+            thought "Time to lick, lick, lick!"
+        "Gross. Ew. Yuck.":
+            "You shudder."
+            thought "This is so weird!"
+
+    call screen s3e3p2_select_who_to_talk_to
+
+    text "[s3_name], your next dare is to suck the toe of another Islanders. #taketoetotown"
+
+    # CHOICE
+    menu: 
+        thought "I need to suck a toe..."
+        "This is a hard one":
+            thought "Yuck."
+            thought "This challenge just climbed onto a whole new level of hard."
+        "This is a gross one":
+            thought "Yuck."
+            thought "This challenge just climbed onto a whole new level of hard."
+        "This is my dream come true":
+            thought "I am so excited to suck a toe!"
+
+    call screen s3e3p2_select_who_to_talk_to
+
+    jump s3e3p2_ending
+
+label s3e3p2_lounge:
+    scene s3-lounge as dissolve
+    $ on_screen = []
+    $ s3e3p2_dare_count += 1
+    $ s3e3p2_visited.append("Lounge")
+
+    "Someone is slumped on the sofa with a bucket on their head."
+    bill "Hello?"
+    bill "Is anybody there?"
+    bill "It's me!"
+    s3_mc "Hello me."
+    bill "MC?"
+    bill "It's Bill!"
+    bill "Help."
+    bill "I'm stuck!"
+
+    # CHOICE
+    menu:
+        thought "Bill's got his head stuck in a bucket."
+        "Try and help him get out of the bucket":
+            s3_mc "I'll help you Bill."
+            "You tug on the bucket but it's stuck."
+            bill "It's no use."
+        "Laugh at him and his helplessness":
+            s3_mc "How are you stuck? It's a bucket!"
+            bill "Don't laugh at me!"
+        "Ask how he got in this situation":
+            s3_mc "How did you get yourself into this situation?"
+
+    bill "It was sort of a dare."
+    bill "But it went wrong."
+    bill "If that wasn't already obvious."
+
+    thought "Maybe I could do my dare on Bill..."
+    thought "I'm sure it'll still count...even with a bucket on his head!"
+
+    # CHOICE
+    menu:
+        thought "What should I do with Bill?"
+        "Kiss Bill's bucket head" if s3e3p2_getting_kissy:
+            $ s3e3p2_kiss_count += 1
+            $ s3e3p2_kiss_bill = True
+            s3_mc "I've got to say... you actually look so cute in that bucket."
+            bill "Really?"
+            s3_mc "Yeah. It's proper doing things to me."
+            s3_mc "Mind if I kiss it?"
+            bill "You want to kiss it?"
+            s3_mc "Yeah. I want to kiss the bucket."
+            bill "Um, sure. Why not?"
+            bill "My lips are somewhere around here."
+            "He points to the centre of the bucket."
+            "You lean towards Bill and gently kiss where you think his lips are."
+            "He pulls you closer, you straddle him on the sofa while you kiss the plastic bucket with passion."
+            "The bucket clunks against the wall."
+            bill "Ouch."
+            thought "We'd better stop that before we get carried away."
+            "You get off Bill. He rubs his bucket head."
+            bill "Got to say... That was one of the hottest kisses I've ever had with a bucket on my head."
+            bill "Not that I had loads of anything."
+            bill "You can't see it, but I am proper hot under here after that."
+        "Ask Bill for a massage" if s3e3p2_dare_count == 1:
+            $ s3e3p2_completed_dare_count += 1
+            s3_mc "Bill..."
+            bill "Yeah?"
+            s3_mc "Mind giving me a massage?"
+            bill "What, right now?"
+            bill "But I can't see!"
+            s3_mc "You don't need to see. You just need to feel."
+            bill "To be fair, I think my massages are actually, like, pretty decent quality."
+            bill "Even with a bucket on my head."
+            "You sit down in front of him. He starts massaging your earlobes by accident."
+            "Though it actually feels quite good."
+            s3_mc "Hmm..."
+            s3_mc "Oh."
+            s3_mc "Oh! Yes!"
+            s3_mc "This feels so good."
+            bill "You like that, huh?"
+            s3_mc "Oh, yes! Hmm. Yes! Yes!"
+            "Bill coughs awkwardly."
+            bill "OK. I think you're all massaged out now."
+            "You stand up feeling refreshed."
+        "Lick Bill's bucket head" if s3e3p2_dare_count == 2:
+            $ s3e3p2_completed_dare_count += 1
+            "You lean forward and lick the bucket. The plastic is cold against your tongue."
+            bill "What are you doing?"
+            bill "Why can I hear you breathing?"
+            bill "Is that your tongue?"
+            "You pull away, your tongue a little dryer than before."
+            s3_mc "Don't mind me."
+            "Bill shakes his bucket head."
+            bill "I don't know if I'm horrified or horny."
+        "Suck Bill's toe" if s3e3p2_dare_count == 3:
+            $ s3e3p2_completed_dare_count += 1
+            "You kneel down beside his feet and pop his toe in your mouth."
+            bill "Ahh!"
+            "Bill leaps out of the chair and falls on the floor."
+            bill "What the!?"
+            s3_mc "Sorry Bill!"
+            s3_mc "I didn't mean to scare you."
+            "He shakes his head."
+        "Draw a face on his bucket":
+            $ s3e3p2_draw_on_bucket = True
+            thought "Hmm... something is missing from that bucket."
+            s3_mc "Wait right there, Bill."
+            "You run up to the dressing room."
+            thought "What do I need?"
+            "You see an eyeliner."
+            thought "Ah ha!"
+            "You grab the eyeliner and run back downstairs to Bill."
+            bill "Hello?"
+            bill "[s3_name]?"
+            bill "Are you still there?"
+            s3_mc "Just hold still, Bill."
+            "You draw a face on his bucket."
+            s3_mc "There you go!"
+            bill "Are you giving it a face?"
+            s3_mc "Yeah!"
+            bill "Argh."
+        "Just leave him to it":
+            "You let out an uncontrollable bubble of laughter. Bill sighs."
+
+    bill "I need to try and get this thing off."
+    "Bill walks off with his hands outstretched, trying not to bump into anything."
+
+    return
+    
+label s3e3p2_bean_bags:
+    scene s3-bean-bags-day with dissolve
+    $ on_screen = []
+    $ s3e3p2_dare_count += 1
+    $ s3e3p2_visited.append("Bean Bags")
+
+    "AJ and Seb by the beanbags"
+    "You wander over to AJ and Seb."
+    "They are tied together with multiple pairs of G-strings."
+    seb "I can't believe this."
+    seb "She told me to stand still and close my eyes."
+    seb "Next thing I know I'm tied to her by her knick-knocks."
+    aj "To be clear, they're all fresh out of the laundry."
+
+    # CHOICE
+    menu:
+        thought "AJ has tied Seb to her with her underwear!"
+        "What a cute bonding exercise for you guys":
+            aj "That's actually not what I was going for but..."
+            aj "Yeah!"
+            seb "I feel very..."
+            seb "Bonded."
+        "I wouldn't mind getting tangled up in AJ's underwear":
+            if s3_like_aj:
+                $ s3_mc.like("AJ")
+                "AJ winks."
+                aj "Easy tiger."
+            else:
+                "AJ and Seb laugh."
+        "Why don't you just untie yourself?":
+            seb "I tried."
+            seb "But this girl seriously knows how to tie a knot."
+            "AJ winks mischievously."
+
+    seb "And why exactly am I tied up?"
+    aj "Two stones, one bird."
+    seb "That's not quite how the saying goes..."
+    aj "Whatever. It's two of my dares in one!"
+    aj "I first got a text saying I have to put some underwear on full display."
+    aj "I got my pants out and started wearing them like a scarf."
+    aj "And then I got another text saying I have to spend the afternoon tied up to an Islander."
+    aj "So I combined the two!"
+    "She grins, looking proud of herself."
+
+    # CHOICE
+    menu:
+        thought "AJ's done two of her dares already!"
+        "You're on a roll, babe":
+            aj "You bet I am!"
+        "Your dares were so easy":
+            $ s3_mc.dislike("AJ")
+            aj "Hey!"
+            aj "You try and tie a constrictor knot with nothing but panties."
+            aj "It's harder than it looks."
+        "What are your dares, Seb?":
+            "Seb frowns at you and AJ."
+
+    seb "I'm not sure you're meant to, like, tell us what your dares are..."
+    aj "Oh."
+
+    thought "I could do one of my dares on AJ while she's tied up to Seb!"
+
+    # CHOICE
+    menu:
+        thought "What dare should I do?"
+        "Kiss AJ" if s3e3p2_getting_kissy and s3_mc.bisexual:
+            $ s3e3p2_kiss_count += 1
+            $ s3_mc.like("AJ")
+            s3_mc "You can help me out with one of my dares if you like, AJ."
+            aj "Sure, what is it?"
+            "You whisper in her ear."
+            s3_mc "To kiss you."
+            seb "Again with the telling and the dares?"
+            "AJ nudges Seb playfully out of the way."
+            aj "Shush you."
+            "She leans towards you and closes her eyes."
+            "Your lips meet. Her free hand travels down to your lower back, pulling you closer towards her."
+            "The rest of the Villa melts away for a moment."
+            "Eventually AJ pulls away."
+            aj "Woah."
+            "Seb coughs awkwardly."
+            seb "Ehem."
+            "AJ is blushing profusely."
+            aj "Sorry, mate!"
+            "Seb laughs and tickles her."
+            seb "I think AJ's got a crush."
+            aj "Stop! I'm so ticklish."
+        "Ask AJ for massage" if s3e3p2_dare_count == 1:
+            $ s3e3p2_completed_dare_count += 1
+            s3_mc "Hey AJ."
+            s3_mc "Reckon you could, like, give me a massage?"
+            "She smiles and scootches Seb out of the way a little."
+            aj "Sure can."
+            aj "I can give great head massages."
+            "You lean your head back. AJs voice drops into a silky smooth and calming tone."
+            aj "Great. Let's begin."
+            "Her fingertips dance circles around your scalp."
+            aj "How's the pressure?"
+            s3_mc "It's nice! Wow. Oh, AJ, you're really good."
+            "You let out a moan of pleasure."
+            aj "You like that, don't you?"
+            s3_mc "Oh. Oh!"
+            s3_mc "Oh, yeah. That's good."
+            aj "Yeah?"
+            s3_mc "Oh! Yes! Yes!"
+            "AJ stops and starts laughing uncontrollably."
+            seb "OK. Seriously. What is going on?!"
+            s3_mc "Don't stop, babe. Don't stop."
+            s3_mc "Please! I'm so close."
+            "AJ howls with laughter."
+            seb "I can't believe what I'm hearing."
+            seb "Is AJ really that good at massages?"
+            aj "I'm sorry, [s3_name]. I can't go on!"
+        "Lick AJ's face" if s3e3p2_dare_count == 2:
+            $ s3e3p2_completed_dare_count += 1
+            s3_mc "I'm sorry, AJ!"
+            "You lean in and lick the side of her face."
+            seb "Um, woah."
+            aj "Ew! That's so wet!"
+            aj "It tickles!"
+        "Suck AJ's toe" if s3e3p2_dare_count == 3:
+            $ s3e3p2_completed_dare_count += 1
+            "You kneel down beside AJ."
+            seb "Are you proposing to us, [s3_name]?"
+            s3_mc "Not exactly..."
+            "You take off AJ's sandal."
+            aj "Oh, am I Cinderella?"
+            aj "Are you my Princess Charming?"
+            "You stick her toe in your mouth."
+            seb "Oh, OK."
+            "She squeals loudly and falls to the floor, dragging Seb with her."
+            aj "[s3_name]!"
+            s3_mc "Umm?"
+            seb "What are you doing?"
+            aj "She's put my toe... in her mouth!"
+            seb "I can see that. But, like, why?"
+            aj "Ahh, stop. It tickles!"
+            "She yanks her toe out of your mouth, laughing uncontrollably."
+            aj "It tickled so much!"
+        "Hypnotise Seb to find out his dares":
+            $ s3e3p2_hypnotise_seb = True
+            "You start pretending to hypnotise him with your finger, swaying it from side to side in front of his eyes."
+            s3_mc "Look into my eyes and tell us."
+            s3_mc "Tell us."
+            s3_mc "Tell us."
+            "AJ starts giggling uncontrollably at your hypnotic attempts. Seb crosses his arms and shakes his head."
+            seb "No."
+        "Just leave them to it":
+            "Seb is trying to undo one of the knots."
+            seb "Argh, it's too tight!"
+            "AJ starts giggling uncontrollably at Seb's frustration."
+            s3_mc "I think I'm going to go..."
+
+    "AJ falls over into a heap of giggles."
+    "A pair of pants split in half."
+    aj "No!"
+    aj "I might not win the challenge now."
+    aj "We need to back up pants, Seb."
+    aj "Pronto!"
+    seb "Really?"
+    "Seb groans. AJ drags Seb into the Villa."
+
+    return
+
+label s3e3p2_pool:
+    scene s3-poolside-day with dissolve
+    $ on_screen = []
+    $ s3e3p2_dare_count += 1
+    $ s3e3p2_visited.append("Pool")
+
+    "You walk over to Nicky and Camilo. Nicky is wearing bright pink lipstick and holding a broom."
+    camilo "Hey, [s3_name]!"
+    "Camilo adjusts his shorts."
+    camilo "Y'know, silk feels really good against my skin."
+    camilo "It's so comfy."
+    s3_mc "What are you on about?"
+    "He winks and pulls down an inch of his swim shorts, revealing a pair of lacy pants."
+
+    # CHOICE
+    menu:
+        thought "Camilo is wearing a girl's pair of underwear!"
+        "They look so hot on you, Camilo":
+            $ s3_mc.like("Camilo")
+            camilo "You think?"
+            s3_mc "Totally."
+            s3_mc "I wish I could get a view of the whole package."
+            "Camilo winks."
+            camilo "Maybe one day."
+            camilo "They're Iona's. I'm borrowing them."
+        "Did you get dressed in the dark?":
+            "Camilo shrugs."
+            camilo "No, of course not."
+            camilo "They're Iona's. I'm borrowing them."
+        "Whose underwear are they?":
+            camilo "They're Iona's. I'm borrowing them."
+
+    thought "Camilo looks like he'd be up for a dare..."
+
+    # CHOICE
+    menu:
+        thought "What should I do?"
+        "Kiss Camilo" if s3e3p2_getting_kissy:
+            $ s3_mc.like("Camilo")
+            $ s3e3p2_kiss_count += 1
+            $ s3e3p2_kiss_camilo = True
+            "You bite your bottom lip."
+            s3_mc "Fancy a quick kiss?"
+            "Camilo raises an eyebrow and steps closer."
+            camilo "Why?"
+            camilo "These pants doing it for you?"
+            s3_mc "Oh yeah."
+            camilo "Go on then."
+            "You lean in and kiss him."
+            "Camilo's hands pull you in closer to him."
+            "His warmth radiates around you as he kisses you harder."
+            nicky "Guys!"
+            "You both pull away. Camilo rolls his eyes at Nicky."
+            nicky "I hope Iona didn't see that."
+            camilo "Get on with your cleaning, Nicky, and mind your own business."
+            "Nicky gives Camilo a little scowl before diving back under."
+            camilo "That was a good kiss, [s3_name]."
+            s3_mc "I try my best."
+            "Camilo squints a little bit, looking a tad uncomfortable."
+            s3_mc "Are you alright?"
+            camilo "Yeah, yeah that kiss was amazing..."
+            camilo "But downstairs is getting a little tight."
+            s3_mc "Oh, the pants?"
+            "He lunges to the side, nodding."
+            camilo "Yeah..."
+            camilo "I'm going to go and sort them out."
+            camilo "But seriously, wow. What a kiss."
+            "Camilo hobbles over to the Villa."
+            thought "I wonder who else I can get my kiss on with..."
+        "Ask Camilo for a massage" if s3e3p2_dare_count == 1:
+            $ s3e3p2_completed_dare_count += 1
+            $ s3e3p2_interact_camilo = True
+            s3_mc "Speaking of feeling comfy..."
+            s3_mc "I could really do with a massage."
+            camilo "Say no more."
+            "He sits down cross legged and pats the floor in front of him."
+            camilo "I can take care of that."
+            "You sit down in between his legs. He works his way around your shoulders."
+            "His hands are strong. Powerful."
+            "You instantly feel at ease and you start to let out moans of pleasure."
+            s3_mc "Oh. Oh!"
+            s3_mc "Oh."
+            camilo "You like that, huh?"
+            s3_mc "Oh, yes! Yes, Camilo! Yes!"
+            camilo "Yeah, does that feel good?"
+            s3_mc "It feels so good. Oh, wow."
+            s3_mc "Oh."
+            s3_mc "Oh!"
+            s3_mc "Oooooh."
+            nicky "Get a room you two!"
+            camilo "You love it, mate."
+            iona "What's going on here, babe?"
+            camilo "Just giving [s3_name] the massage of her life."
+            iona "Mind if i get in on that?"
+            "She gives you a little glare."
+            iona "Inside."
+            "Camilo gets up. He stretches out a hand and helps you up from the ground."
+            camilo "Sorry, [s3_name]."
+            camilo "Supply and demand."
+            "He winks at you and struts over to the Villa with Iona."
+        "Lick Camilo's face" if s3e3p2_dare_count == 2:
+            $ s3e3p2_completed_dare_count += 1
+            $ s3e3p2_interact_camilo = True
+            "You step closer to Camilo."
+            camilo "Um... you OK, [s3_name]?"
+            "You nod as you lean in towards him and lick his forehead."
+            camilo "Um..."
+            camilo "Ew!"
+            "He quickly rubs the wet patch with his arm and wipes it back on you."
+            camilo "Not today, satan. Not today."
+            "Camilo walks off into the Villa, still rubbing at his forehead, looking back at you to make sure you're not following him."
+            thought "Oops. He didn't like that!"
+        "Suck Camilo's toe" if s3e3p2_dare_count == 3:
+            $ s3e3p2_completed_dare_count += 1
+            $ s3e3p2_interact_camilo = True
+            "You kneel down on the floor."
+            camilo "Did you drop something?"
+            s3_mc "Not exactly..."
+            "You pick up his foot."
+            camilo "That's my foot, [s3_name]."
+            s3_mc "I know."
+            "You put his little toe in your mouth."
+            camilo "And now you're eating my toe!"
+            camilo "Nicky, mate, she's eating my toe."
+            camilo "Help!"
+            "Nicky doesn't hear him. He's swimming underwater. You take Camilo's toe out of your mouth."
+            camilo "I think my whole life just flashed before my eyes."
+            "He legs it back into the Villa, slightly hopping on one leg."
+            s3_mc "Oops."
+        "Get him to do a catwalk":
+            $ s3e3p2_interact_camilo = True
+            s3_mc "Come on, Camilo."
+            s3_mc "Give us a strut."
+            camilo "Sure."
+            "He struts up and down the pool while posing sexily."
+            camilo "I am serving up Iona-Underwear realness with this look."
+            s3_mc "Yes, Camilo."
+            s3_mc "Work it from head to toe."
+            "He pivots but stumbles slightly."
+            camilo "Oh."
+            camilo "Ouch."
+            camilo "Um..."
+            camilo "I'll see you around, [s3_name]."
+            camilo "I've got to go and untuck something in the lounge."
+            "Camilo limps off into the Villa."
+        "Just leave him to it":
+            s3_mc "You do you, Camilo."
+            camilo "Sure thing."
+            "He heads off into the Villa, lunging from side to side."
+    
+    return
+
+label s3e3p2_kitchen:
+    scene s3-kitchen-day with dissolve
+    $ on_screen = []
+    $ s3e3p2_dare_count += 1
+    $ s3e3p2_visited.append("Kitchen")
+
+    "Genevieve seems to be bending over in front of Harry, grinding against him."
+    "Harry sees you and nervously laughs."
+    harry "Um... oh, hi [s3_name]."
+    "He quickly moves to one side. Genevieve nearly falls over."
+    genevieve "Harry! Why'd you move?"
+    genevieve "I was just getting started the grind-a-thon!"
+
+    # CHOICE
+    menu:
+        thought "Harry and Genevieve are doing a grind-a-thon"
+        "What is that?":
+            "Genevieve winks and taps her nose."
+            harry "It's apparently this proper competition."
+            s3_mc "Oh, really?"
+        "Can I join in the grind-a-thon?":
+            genevieve "Sure!"
+            "Harry's face flushes red."
+            harry "Um, OK. Let's win this grind-a-thon!"
+            "You rub against Harry."
+            "Genevieve does the same. He squirms with excitement."
+            harry "It's my lucky day."
+        "I should do a dare on Harry":
+            thought "I wonder how I can do it with Genevieve here..."
+
+    harry "After this grind-a-thon I am going to be way too tired to, like, move."
+    harry "If someone wants to give me a piggyback that would be awesome."
+    "Genevieve leans over to you and whispers in your ear."
+    genevieve "You know this grind-a-thon isn't a real thing, right?"
+    "She grins a little suspiciously."
+    thought "I bet this is her dare."
+    thought "I better do a dare so Genevieve doesn't take the lead."
+
+    # CHOICE
+    menu:
+        thought "What should I do to Harry?"
+        "Kiss Harry" if s3e3p2_getting_kissy:
+            $ s3_mc.like("Harry")
+            $ s3e3p2_kiss_harry = True
+            $ s3e3p2_kiss_count += 1
+            thought "I'll need to distract Genevieve."
+            "You clutch your mouth dramatically."
+            s3_mc "Ouch."
+            s3_mc "Um, Genevieve..."
+            s3_mc "Could you get me a toothpick or something?"
+            genevieve "Sure! I'll go and get that."
+            s3_mc "Mind if we have a cheeky kiss while we're alone?"
+            harry "Oh!"
+            "Harry looks a little taken aback, but smiles cheekily."
+            harry "Don't you, like, want to get whatever is in your teeth out first?"
+            s3_mc "That was just a decoy to distract."
+            harry "Oh, right. Sneaky."
+            harry "Well, then... yeah, sure, why not?"
+            "He looks around, making sure Genevieve hasn't come back."
+            harry "A kiss in the kitchen won't hurt."
+            "You lean and kiss Harry on the lips."
+            "He's hesitant at first. But his touch is soft and gentle."
+            "He moves in closer, exploring your body with his hands."
+            "As you pull away just as Genevieve comes back in."
+            genevieve "Sorry, babe."
+            "Harry flushes red. He looks apologetically at you and whispers in your ear."
+            harry "Damn."
+            genevieve "I couldn't find the toothpick."
+            s3_mc "Aw, don't worry hun."
+            s3_mc "I got what I wanted."
+            genevieve "What?"
+            harry "Um..."
+            s3_mc "I mean, I got it out. "
+            genevieve "Ah, right."
+        "Ask Harry for a massage" if s3e3p2_dare_count == 1:
+            $ s3e3p2_completed_dare_count += 1
+            "You stretch out your arms and yawn."
+            s3_mc "You know what we could also do?"
+            harry "What?"
+            s3_mc "I bet you give the best massages, Harry."
+            harry "Like a massage-a-thon."
+            s3_mc "Yeah, sure...."
+            "Harry pretends to roll up his sleeves and flexes his muscles."
+            harry "Let me put my skills to the test."
+            "His fingers work their way down from your upper back. They instantly ease you of your stresses."
+            s3_mc "Oh..."
+            s3_mc "Oh, yes!"
+            s3_mc "Right there."
+            harry "There?"
+            s3_mc "Yes! Yeah, right, oh wow."
+            genevieve "Um."
+            genevieve "Can I get in on some of that?"
+            "Harry goes to move to Genevieve, but you pull him back."
+            s3_mc "No, don't stop Harry, please, don't stop. Oh. Wow! Yes! Yes! Yes!"
+            "You close your eyes, enjoying the moment of fake pleasure."
+            harry "I mean, I knew I was good but..."
+            "Genevieve scoffs."
+            genevieve "It sounds like [s3_name] really enjoyed that."
+        "Lick Harry's face" if s3e3p2_dare_count == 2:
+            $ s3e3p2_completed_dare_count += 1
+            "You stick your tongue out and lick his face."
+            genevieve "Um!?"
+            "Harry squeals with delight."
+            harry "Oooh!"
+            genevieve "You hungry, [s3_name]?"
+            s3_mc "I guess I am a little."
+            genevieve "Well there is a whole kitchen here."
+            genevieve "Harry isn't for eating!"
+            "Harry laughs."
+            harry "That made me feel all tingly inside."
+        "Suck Harry's toe" if s3e3p2_dare_count == 3:
+            $ s3e3p2_completed_dare_count += 1
+            "You get down on one knee and pick up Harry's foot."
+            "He loses his balance, but quickly grabs the kitchen counter."
+            harry "Um, [s3_name]?"
+            harry "That's not how people give you a piggy back."
+            "You pinch one of his toes."
+            s3_mc "This little piggy went to the market..."
+            "You pinch another, bigger toe."
+            s3_mc "And this little piggy went in my mouth."
+            harry "What?"
+            "You put his toe in your mouth."
+            "He squeals like a pig."
+            harry "Aaah!"
+            genevieve "What are you doing, [s3_name]?"
+            "You keep sucking. Harry doesn't move. It feels like he relaxes into it."
+            harry "Ooh."
+            harry "Ooh, that feels kinda good."
+            "You take Harry's toe out of your mouth and stand up."
+            genevieve "Can't believe what I just witnessed."
+            "Harry regains his balance, looking a little lustful."
+            harry "I really need someone to carry me after that."
+        "Give him a piggyback":
+            "You hoist him up on your back and run a few lengths around the kitchen."
+            harry "Yes!"
+            harry "Giddy up!"
+            "He starts to slip from your grip."
+            harry "Ahh!"
+            "He falls to the ground."
+            harry "Ouch."
+            "He looks over at Genevieve."
+        "Leave them to their grind-a-thon":
+            harry "Genevieve, you wanna give me a ride-a-thon?"
+
+    "Genevieve gestures to her back."
+    genevieve "You still want that ride?"
+    genevieve "Hop on, Harry."
+    genevieve "I'll carry you, hun."
+    "Harry grins."
+
+    if s3e3p2_kiss_harry:
+        "As he climbs onto Genevieve's back he glances over at you."
+        "A lustful look still caught in his eyes."
+        harry "OK. Let's ride."
+    
+    return
+
+label s3e3p2_ending:
+    if s3e3p2_getting_kissy == False and s3e3p2_dare_count == 3:
+        thought "I've finished my last dare!"
+        thought "I wonder what I have to do..."
+
+    "A text tone interrupts you mid thought."
+    s3_mc "I've got a text!"
+    text "Islanders, the winner of the challenge has been decided. Please make your way to the lawn. #thewinnertakesitall"
+
+    if s3e3p2_getting_kissy == False and s3e3p2_dare_count == 3:
+        thought "Ooh, I hope it was me who managed to do three dares first!"
+    elif s3e3p2_getting_kissy == True or s3e3p2_dare_count != 3:
+        thought "Oh, I guess it's time to see who won the challenge."
+
+    "You head over to the lawn."
+
+    scene s3-lawn-day with dissolve
+    $ on_screen = []
+
+    "AJ and Seb are still tied together."
+    "She giggles."
+
+    if "Bean Bags" in s3e3p2_visited:  
+        s3_mc "You patched up your pants then, AJ? "
+        aj "Yeah."
+        aj "I didn't manage to do my final dare though."
+        seb "Sorry babe."
+
+        if s3e3p2_hypnotise_seb:
+            seb "Don't try hypnotising me again, please, [s3_name]."
+            seb "It was a mockery to the art form."
+
+    "Camilo runs over, followed by Harry and Nicky."
+
+    if s3e3p2_interact_camilo:
+        "Camilo tries to avoid your eye contact."
+    elif s3e3p2_kiss_camilo:
+        "He blushes a little when he sees you."
+
+    "Nicky's lipstick looks a little smudged."
+    miki "That's a good lipstick shade on you, Nicky."
+    "Bill is being guided by Genevieve and Miki."
+    "The bucket is still on his head."
+
+    if s3e3p2_draw_on_bucket:
+        miki "Aw, someone drew a face on you, hun!"
+        bill "That would be that cheeky one."
+        "He points randomly towards no one."
+        s3_mc "He means me."
+        miki "It's cute!"
+    
+    "And he is covered with bright pink lipstick kisses."
+
+    # CHOICE
+    menu:
+        thought "Bill has been kissed all over!"
+        "I wish got to kiss him" if s3e3p2_getting_kissy == False:
+            "Maybe I should have accepted that secret kissy dare after all."
+        "I don't remember kissing him everywhere!" if s3e3p2_kiss_bill:
+            pass
+        "Who did this to you, Bill?":
+            pass
+        "I'd give anything to be that bucket right now":
+            thought "What a lucky piece of plastic."
+
+    "Nicky chuckles."
+    bill "Nicky?"
+    "Bill wanders around a little aimlessly."
+    bill "You coming back for round two?"
+    nicky "Don't want to smudge my lippy any more, mate."
+
+    if s3e3p2_kiss_count > 0:
+        thought "I hope my lipstick isn't smudged after all that kissing."
+
+    if s3e3p2_dare_count >= 3:
+        $ s3e3p2_win_challenge = True
+        "Looks like all that toe sucking, face licking and massage moaning wasn't for nothing."
+    elif s3e3p2_kiss_count > 0:
+        $ s3e3p2_win_challenge = True
+        "Looks like [s3_name] got her kiss on in this challenge."
+        "And it was worth it!"
+    else:
+        $ s3e3p2_win_challenge = False
+
+    if s3e3p2_win_challenge:
+        "Cue the text!"
+        s3_mc "I've got a text!"
+
+        if s3e3p2_dare_count >= 3 or s3e3p2_kiss_count >= 3:
+            text "[s3_name], congratulations! You are the winner of the Truth And Dare challenge. As the winner, you now get to ask one other Islander a truth. You may only ask the Islanders who completed fewer than two dares. These Islanders are AJ, Bill, Camilo and Harry. #tellitstraighttomyface"
+            thought "I won!"
+
+        "AJ, Bill, Camilo and Harry step forward."
+        aj "Looks like you've got the power, [s3_name]."
+        bill "What do you want to know?"
+        iona "Make it juicy, [s3_name]!"
+        genevieve "Yeah, find out some good gossip."
+
+        # CHOICE
+        menu:
+            thought "Who should I ask?"
+            "AJ":
+                $ s3e3p2_ask_question = "AJ"
+            "Bill":
+                $ s3e3p2_ask_question = "Bill"
+            "Harry":
+                $ s3e3p2_ask_question = "Harry"
+            "Camilo":
+                $ s3e3p2_ask_question = "Camilo"
+
+        $ he_she = he_she(s3e3p2_ask_question)
+        $ him_her = him_her(s3e3p2_ask_question)
+        $ his_her = his_her(s3e3p2_ask_question)
+
+        if s3e3p2_ask_question == "AJ":
+            s3_mc "[s3e3p2_ask_question]! Please step forward."
+            "[s3e3p2_ask_question] steps forward, hands on [his_her] hips."
+            aj "Come on then. Let's have it."
+        elif s3e3p2_ask_question == "Bill":
+            s3_mc "[s3e3p2_ask_question]! Please step forward."
+            "[s3e3p2_ask_question] steps forward, hands on [his_her] hips."
+            bill "Come on then. Let's have it."
+        elif s3e3p2_ask_question == "Camilo":
+            s3_mc "[s3e3p2_ask_question]! Please step forward."
+            "[s3e3p2_ask_question] steps forward, hands on [his_her] hips."
+            camilo "Come on then. Let's have it."
+        elif s3e3p2_ask_question == "Harry":
+            s3_mc "[s3e3p2_ask_question]! Please step forward."
+            "[s3e3p2_ask_question] steps forward, hands on [his_her] hips."
+            harry "Come on then. Let's have it."
+
+        # CHOICE
+        menu:
+            thought "What should I ask [s3e3p2_ask_question]?"
+            "What is your wildest sexy fantasy?":
+                "[s3e3p2_ask_question] laughs."
+
+                if s3e3p2_ask_question == "AJ":
+                    aj "Think you lot can handle it?"
+                    s3_mc "Try us."
+                    aj "I really want to do it in one of those bath tubs in the middle of a room, with like, super big windows."
+                    seb "Woah!"
+                    aj "But I want the hotel room to be, like, really high up so no one sees us."
+                    harry "People flying drones might catch you."
+                    aj "Yeah, the risk is still there, obviously, for maximum hotness."
+                    "Everyone cheers for AJ."
+                    aj "Feels good to get that off my chest."
+                elif s3e3p2_ask_question == "Bill":
+                    bill "Think you lot can handle it?"
+                    s3_mc "Try us."
+                    bill "I want to order every single dinner off the menu down the pub."
+                    "Camilo scoffs."
+                    camilo "No change there then."
+                    miki "Yeah, what's sexy about that?"
+                    bill "Oh, we'll get it all delivered to my room and be, like, naked while we eat it."
+                    miki "Brilliant."
+                    "Everyone cheers for Bill."
+                    bill "Feels good to get that off my chest."
+                elif s3e3p2_ask_question == "Camilo":
+                    camilo "Think you lot can handle it?"
+                    s3_mc "Try us."
+                    camilo "I want to do it with a weather person."
+                    s3_mc "On TV?!"
+                    camilo "Yeah."
+                    camilo "They always know what's coming."
+                    camilo "Just when they're announcing that it's wet outside."
+                    iona "Golden sunshine with a chance of showers."
+                    camilo "Exactly."
+                    "Everyone cheers for Camilo."
+                    camilo "Feels good to get that off my chest."
+                elif s3e3p2_ask_question == "Harry":
+                    harry "Think you lot can handle it?"
+                    s3_mc "Try us."
+                    harry "I want to have sex in an elevator."
+                    harry "So I can say I'm up and coming."
+                    "Genevieve scoffs."
+                    genevieve "Course you do, Harry."
+                    "Everyone cheers for Harry."
+                    harry "Feels good to get that off my chest."
+                        
+                elladine "You are filthy, babe."
+            "What turns you on and what turns you off?":
+                if s3e3p2_ask_question == "AJ":
+                    aj "Oh, good question."
+                    aj "I love watching a girl work out, like, intensely."
+                    aj "Also when smart people tell stuff in a way that doesn't make me feel, like, silly."
+                    aj "Smart people can be super hot."
+                    aj "I'm not sure about my turn offs."
+                    aj "Maybe, like, if people are unkind or snobby. I'm not too keen on that."
+                    seb "Yeah, I get that."
+                elif s3e3p2_ask_question == "Bill":
+                    bill "Oh, good question."
+                    bill "My ultimate turn offs are loud eaters and drama seekers."
+                    bill "My turns on are people that like going to the pub for a date."
+                    bill "And someone that is just happy to spend a lazy Sunday just playing video games."
+                    "Miki rolls her eyes."
+                    miki "You've got low expectations, darling."
+                elif s3e3p2_ask_question == "Camilo":
+                    camilo "Oh, good question."
+                    camilo "I love it when people are, like, kinda competitive and strong."
+                    s3_mc "And what turns you off?"
+                    camilo "When people are controlling."
+                    camilo "Can't stand that."
+                    bill "Good answer, mate."
+                    "Iona scoffs."
+                    iona "You could have just said 'me'. But whatever."
+                elif s3e3p2_ask_question == "Harry":
+                    harry "Oh, good question."
+                    harry "I get well turned on when girls, wear, like, formalwear."
+                    genevieve "Oh, really?"
+                    genevieve "That's random."
+                    genevieve "I don't usually wear that kind of thing."
+                    "Harry shrugs."
+                    harry "Turns off would have be when people take things for granted. I can't stand that."
+                
+            "If I was a food, what would I be, and how would you eat me?":
+                "Everyone laughs at your question. [s3e3p2_ask_question] looks a little concerned."
+
+                if s3e3p2_ask_question == "AJ":
+                    aj "OK. That's kind of random."
+                    "You shrug."
+                    s3_mc "I'm just asking the important questions here."
+                    aj "I think you'd be a pomegranate sorbet with sliced strawberries on top."
+                    aj "Sweet and cool."
+                    aj "And I'd lick you all up."
+                elif s3e3p2_ask_question == "Bill":
+                    bill "OK. That's kind of random."
+                    "You shrug."
+                    s3_mc "I'm just asking the important questions here."
+                    bill "You'd be sweet potato fries and I'd eat you with some homemade mayo."
+                    s3_mc "Why potato fries?"
+                    bill "Because, like, the upgraded version of any dish has sweet potato fries with it."
+                    bill "And you're, like, totally an upgrade."
+                    "Miki and Genevieve look a little defensive."
+                    genevieve "An upgrade from what?"
+                    bill "Um, like, just in general."
+                    miki "Right..."
+                elif s3e3p2_ask_question == "Camilo":
+                    camilo "OK. That's kind of random."
+                    "You shrug."
+                    s3_mc "I'm just asking the important questions here."
+                    camilo "You'd be sweet potato fries and I'd eat you with some homemade mayo."
+                    s3_mc "Why potato fries?"
+                    camilo "Because, like, the upgraded version of any dish has sweet potato fries with it."
+                    camilo "And you're, like, totally an upgrade."
+                    "Miki and Genevieve look a little defensive."
+                    genevieve "An upgrade from what?"
+                    camilo "Um, like, just in general."
+                    miki "Right..."
+                elif s3e3p2_ask_question == "Harry":
+                    harry "OK. That's kind of random."
+                    "You shrug."
+                    s3_mc "I'm just asking the important questions here."
+                    harry "I think you'd be a pomegranate sorbet with sliced strawberries on top."
+                    harry "Sweet and cool."
+                    harry "And I'd lick you all up."
+
+        # CHOICE
+        menu:
+            s3_mc "[s3e3p2_ask_question]'s answer was..."
+            "A good truthful answer":
+                s3_mc "You really bared your soul to me and I appreciate that."
+
+                if s3e3p2_ask_question == "Bill":
+                    "Bill does a little bow."
+                    bill "You'll have to trust me that I'm smiling."
+                else:
+                    "[s3e3p2_ask_question] smiles and does a little bow. The others laugh and cheer [him_her] on."
+                
+            "Pure and utter complete filth":
+                "You pretend to wipe [s3e3p2_ask_question] down."
+
+                if s3e3p2_ask_question == "AJ":
+                    aj "What are you doing?"
+                    s3_mc "Just cleaning you up."
+                    s3_mc "Because you are serving some filth!"
+                    aj "How?"
+                    s3_mc "I can read between the lines."
+                    aj "Nope, sorry. You've lost me there."
+                elif s3e3p2_ask_question == "Bill":
+                    bill "What are you doing?"
+                    s3_mc "Just cleaning you up."
+                    s3_mc "Because you are serving some filth!"
+                    "Everyone laughs."
+                    "Bill brushes himself off."
+                    bill "I know, I know. I'm pure dirt."
+                elif s3e3p2_ask_question == "Camilo":
+                    camilo "What are you doing?"
+                    s3_mc "Just cleaning you up."
+                    s3_mc "Because you are serving some filth!"
+                    "Everyone laughs."
+                    "Camilo brushes himself off."
+                    camilo "I know, I know. I'm pure dirt."
+                elif s3e3p2_ask_question == "Harry":
+                    harry "What are you doing?"
+                    s3_mc "Just cleaning you up."
+                    s3_mc "Because you are serving some filth!"
+                    harry "How?"
+                    s3_mc "I can read between the lines."
+                    "Harry winks at you."
+                    harry "You get me too well."
+            "So weak! I want another go":
+                s3_mc "That answer was weak sauce, and you know it!"
+                "You stomp your feet."
+                s3_mc "I want another question."
+                "[s3e3p2_ask_question] looks a little hurt. Everyone looks at each other awkwardly."
+                "[s3_mc.bff] laughs and nudges you."
+                if s3_mc.bff == "Genevieve":
+                    genevieve "I don't think that's how the game works, [s3_name]."
+                elif s3_mc.bff == "Elladine":
+                    elladine "I don't think that's how the game works, [s3_name]."
+                elif s3_mc.bff == "Nicky":
+                    nicky "I don't think that's how the game works, [s3_name]."
+                elif s3_mc.bff == "Seb":
+                    seb "I don't think that's how the game works, [s3_name]."
+                s3_mc "Aw..."
+    else:
+        iona "I've got a text!"
+        text "Iona, congratulations! You are the winner of the dares challenge. You now get to ask one other Islander a truth. #Tellitstraighttomyface"
+
+        # CHOICE
+        menu:
+            thought "Iona won!"
+            "It's totally rigged":
+                pass
+            "I hope she has a good question":
+                pass
+            "She had a head start":
+                pass
+        
+        "Iona smiles at you all mischievously."
+        nicky "Who are you going to ask, Iona?"
+        "She struts over to Camilo."
+        iona "OK hun."
+        iona "I want to know exactly what you look for in a woman."
+        "He looks over to you for a brief moment."
+        camilo "Um..."
+        iona "Come on."
+        "Iona taps her foot."
+        iona "We haven't got all day."
+        camilo "I guess I like girls who are chill."
+        "Iona's foot taps quicker."
+        camilo "And, like, not controlling or people who think that they're better than anyone else."
+        "The guys cheer. Iona looks a little cross."
+        bill "Good answer mate."
+        seb "Yeah, no one likes superiority complex."
+        iona "Yeah, well, the right answer was me."
+        iona "But whatever."
+        "Camilo rolls his eyes."
+
+    nicky "I've got a text!"
+    text "Islanders, tonight is a recoupling. The boys will be picking who they want to couple up with. Please get ready and gather around the firepit. #gentlemenschoice"
+    "Everyone is silent for a moment."
+    aj "Uh oh."
+    thought "A boy's choice recoupling."
+    "Then, all at once, the boys cheer."
+    camilo "Get in!"
+    thought "Who's going to pick me?"
+    "Everyone looks at you."
+    s3_mc "Oh!"
+    s3_mc "I've got a text as well..."
+    text "[s3_name], as the only single Islander you also will be choosing in tonight's recoupling. You will be picking first. #firstcomesfirstserve #ladiesfirst"
+    s3_mc "I get to choose someone"
+    s3_mc "And I'm picking first."
+    "Iona crosses her arms. Genevieve nervously bites her nails."
+    "The boys all look at one another."
+    thought "It's about time!"
+    "[s3_name] is absolutely right."
+    "It is about time!"
+
+    scene edited_sandy_intro with dissolve
+    $ on_screen = []
+
+    "Coming up..."
+    aj "Alright, lads! Excited for this?"
+    show aj at npc_exit
+    pause 0.3
+    $ renpy.hide("aj")
+
+    "Excited is an understatement."
+    "This is a recoupling, people!"
+    
+    show elladine at npc_center
+    elladine "And the most exciting part of the recoupling is what comes after."
+    show elladine at npc_exit
+    pause 0.3
+    $ renpy.hide("elladine")
+    "Don't worry, Elladine. I'll make sure someone stocks up the fruit bowl."
+
+    # CHOICE
+    menu:
+        "Do you want to continue to next part or go back to the main menu?"
+        "Next Part":
+            jump s3e3p3
+        "Main Menu":
+            jump main_menu
 
 #########################################################################
 ## Episode 3, Part 3
 #########################################################################
+
+# label s3e3p3:
+#     scene edited_sandy_intro with dissolve
+#     $ on_screen = []
+
+#     "Last time on Love Island..."
+#     "The Islanders played a bit of Truth and Dare, and it all went as smoothly as you'd imagine."
+#     bill "I was starting to feel dizzy."
+#     nicky "Don't want to smudge my lippy any more, mate."
+#     show bill at npc_exit
+#     show nicky at npc_exit
+#     pause 0.3
+#     $ renpy.hide("bill")
+#     $ renpy.hide("nicky")
+#     "I play Truth and Dare every time I make a cup of tea."
+#     "The Dare is to put milk in it, even though that bottle's been in there for weeks."
+#     "The Truth is that I need to make some changes in my life."
+#     "Anyway, tonight..."
+#     "It's recoupling time!"
+#     "This time it's the boys' turn to pick...but they'll have to get in line behind [s3_name]."
+#     "She's had a whale of a time being the only single girl, but now's the time to stop grafting and make a decision."
+#     "Are her wild days behind her? Or are they only just beginning?"
+#     "And who will she choose to couple up with?"
+
+#     $ s3_fav_li = favorite_li()
+
+#     s3_mc "I really hit it off with [s3_fav_li]..."
+
+#     "I remember the last time I had to make a big decision."
+#     "Was I going to stick with what I knew, and choose pepperoni?"
+#     "Or try something strange and new, and ask for pineapple on my pizza?"
+#     "I played it safe that time, but ever since then I've wondered..."
+#     "What if?"
+#     "What might my life have been like, if only I'd chosen differently that day?"
+#     "..."
+#     "I need to get out more."
+#     "There's an air of nervous excitement in the dressing room as the girls get ready for the recoupling."
+
+#     scene s3-dressing-room with dissolve
+#     $ on_screen = []
+
+#     thought "This recoupling is a big deal."
+
+#     # Add back one MC has images in game
+#     # thought "So if there was a time to push the boat out, it's now..."
+#     # # MC outfit change to evening wear
+#     # thought "I've got compliments about this one before. It's tried and true. "
+#     # genevieve "The boys will love that, [s3_name]. Nice choice. "
+#     # genevieve "Wow, [s3_name]!"
+#     # genevieve "You look amazing!"
+#     # thought "Well, it's not like I need to turn heads when I'm the one picking."
+#     # genevieve "I'm sure I'll probably live to regret it, but you should really thinking about something more daring, babe!"
+#     # genevieve "You know, to get the boys' attention tonight. I know you could pull it off."
+#     # "You check out your look in the mirror and nod to yourself."
+#     # thought "Nice."
+
+#     "Miki peeks over your shoulder at her reflection and starts anxiously rearranging her hair."
+#     miki "I'm so nervous about tonight."
+#     miki "You're so lucky to get to choose first, [s3_name]."
+#     iona "Yeah, you're in the best position out of everyone!"
+#     genevieve "You must be on top of the world."
+
+
+#     # CHOICE
+#     menu:
+#         thought "How do I feel about the recoupling?"
+#         "I'm well excited":
+#             s3_mc "I've been looking forward to this since day one. It's gonna be great."
+#             elladine "Yeah it is, babes!"
+#         "I'm actually nervous":
+#             s3_mc "Just because I'm going first doesn't mean I can be all chill about it. Anything could still happen."
+#             elladine "I'm sure you'll be fine, babes."
+#         "I'm not sure yet":
+#             s3_mc "We haven't had a proper recoupling yet, so I'm not sure what to expect."
+#             elladine "I'm sure you'll be fine, babes."
+
+#     elladine "And the most exciting part of the recoupling is what comes after."
+#     elladine "Once you're safely coupled up, how are you going to celebrate?"
+
+#     # CHOICE
+#     menu:
+#         s3_mc "I want to celebrate the recoupling with..."
+#         "Some time alone with my partner":
+#             s3_mc "It'll be great to feel all cute and secure in a couple for once."
+#             s3_mc "No grafting, no pressure. Just the two of us, enjoying each other's company."
+#         "Some 'alone time' with my partner...":
+#             s3_mc "...if you know what I mean."
+#             elladine "Celebration bits?"
+#             s3_mc "Celebration bits."
+#         "An early night":
+#             s3_mc "I'm gonna need a rest after all this excitement."
+#             s3_mc "And it'll be great to finally have someone to share a bed with."
+
+#     if s3_mc.bff == "Genevieve":
+#         genevieve "That sounds so nice, babes."
+#     else:
+#         elladine "That sounds so nice, babes."
+
+#     "Iona mists herself with one last squirt of strawberry-scented perfume."
+#     iona "Right, is everyone ready?"
+#     miki "As I'll ever be!"
+#     aj "Then let's go, team!"
+#     "The six of you head out of the dressing room and towards the firepit."
+
+#     if s3_mc.bff == "Genevieve" or s3_mc.bff == "Elladine":
+#         "[s3_mc.bff] gives your hand a supportive squeeze as you."
+
+# "There's the same nervous energy in the air at the firepit, where the boys are already waiting."
+# "They all look impressed by your outfit. [s3_fav_li] even does a double take."
+
+# if s3_fav_li == "AJ":
+#     aj "Wow, [s3_name]. Looking good."
+# elif s3_fav_li == "AJ":
+
+# aj "Alright, lads! Excited for this?"
+# H: Of course!
+# Harry grins, but you can tell he's worried.
+# camilo "Excited, but a bit nervous as well, y'know?"
+# bill "Yeah, I'm the same myself, to be honest."
+# Choices: The boys seem a little bit nervous...
+# -Then let's hurry up and get on with it!
+# s3_mc "What are we waiting for?"
+# elladine "A text?"
+
+# -Don't stress boys, you'll be fine
+# s3_mc "Come on, boys."
+# s3_mc "There's nothing to be scared of."
+# s3_mc "You're the ones doing the choosing tonight, remember?"
+# s3_mc "Well, once I had my go, obviously."
+
+# -How about a group hug before we start?
+# You hold out your arms.
+# s3_mc "Bring it in, guys."
+# Laughing, the other Islanders all crowd around in a group hug.
+# H: This is nice. (you get 😍 with Harry)
+# bill "Yeah, I won't lie, this is actually making me feel better. (you get 😍 with Bill)"
+# camilo "You big softie, MC.  (you get 😍 with Camilo)"
+
+# Everyone gets into position for the recoupling.
+# The boys sit around the firepit, and the girls stand opposite them in a row.
+# You sit with the boys.
+# elladine "A text!"
+# s3_mc "I think it was mine!"
+# You check your phone.
+# Text: MC, as you are currently the only single Islander, you will be choosing first. Please tell the group who you'd like to couple up with and why.
+# A hush falls.
+# You step up to the fire and look at the boys lined up opposite you.
+# thought "Here we go. Moment of truth."
+# thought "It's pretty clear Bill, Camilo and Harry all fancy me."
+# thought "So I can choose whichever one of them I like."
+# thought "I'll be stealing someone's partner no matter who I pick, but there's no avoiding that."
+# thought "Right. Let's do this."
+# You clear your throat and start your speech.
+# s3_mc "Okay."
+# Choices: I want to couple up with this Islander because...
+# -They have great chat
+# s3_mc "When we talk, I'm always laughing or learning something new."
+
+# -They're ridiculously fit
+# s3_mc "Just the hottest. Like, the kind of hot that has to be seen to be believed."
+
+# -They're the whole package
+# s3_mc "Fit and funny and interesting all at once. I couldn't ask for anything more."
+
+# Choices: And I'm looking forward to...
+# -Sharing a bed with this person
+# s3_mc "I'm done with sleeping alone."
+
+# -Getting to know each other better
+# s3_mc "I've loved all our chats so far."
+# s3_mc "I can't wait to spend more time together and see how that spark develops."
+# s3_mc "I can't wait for tonight."
+
+# -A long, happy future together
+# s3_mc "I know it's happened fast, but that's really how I feel."
+# s3_mc "The connection we've made is already so strong."
+
+# Choices: So the Islander I want to couple up with is...
+# -Bill/Harry/Camilo/AJ
+# Bill's/Harry's/Camilo's/AJ's face breaks into a big smile.
+# B/H/Cam/aj "Get in."
+
+# He/She comes over to take your hand.
+# Choices: Bill/Harry/Camilo/AJ seems pleased!
+# -Hug him/her
+# You wrap your arms around his/her waist and squeeze.
+# He/She grins and squeezes you back.
+
+# -Kiss him/her
+# You take his/her face in your hands and press a kiss to his/her lips. (you get 😍 with Bill/Harry/Camilo/AJ)
+# You can feel him/her pressing back, smiling against your mouth.
+
+# -Just sit down
+# (no further reaction)
+
+# Together, you go to sit beside the firepit.
+# The other Islanders are cheering and clapping for you, led by BFF, who gives a whoop of celebration. (if Viv/Seb is BFF and MC couples with Harry/AJ, then it's only “The other Islanders are cheering and clapping for you”)
+# As you take your seats, you see Miki (MC picked Bill) / Genevieve (MC picked Harry) / Iona (MC picked Camilo) / Seb (MC picked AJ) biting her/her lip, looking down at the ground.
+# Bill/Harry/Camilo/AJ wraps an arm around your waist.
+# He/She whispers to you, his/her breath tickling sweetly against your neck...
+# B/H/Cam/aj "Thank you for choosing me."
+# nicky "Hey, I've got a text."
+# nicky "It's my turn to choose."
+# Nicky steps forward and looks at the remaining girls.
+# nicky "OK, I've been proper thinking about this all day, 'cause I don't want to make this choice for the wrong reason."
+# nicky "See, at first I was thinking, it'd be too easy to just choose this girl because I'm in my comfort zone with her."
+# nicky "But then I realised that's actually exactly what I like about her."
+# nicky "She does make me feel comfy. When I'm with her, I can be myself."
+# nicky "So the girl I want to couple up with is..."
+# nicky "Elladine."
+# Elladine squeals happily and throws her arms around Nicky's neck.
+# The two of them sit down next to you and Bill/Harry/Camilo/AJ.
+# Bill/Harry/Camilo/AJ whispers to you.
+# B/H/Cam/aj "This was a pretty good speech."
+# B/H/Cam/aj " Not as good as yours, though."
+# Choices: Nicky and Elladine...
+# -They make a good couple
+# s3_mc "I think they go really well together."
+# s3_mc "We'll see them in the final for sure."
+# B/H/Cam/aj "I think you're probably right there..."
+
+# -They're totally fake
+# s3_mc "They're acting all cute now, but I'm not buying it. I don't think it'll last."
+# B/H/Cam/aj "Aw, I thought you and Elladine were mates."
+# s3_mc "You can like two people separately without liking them together."
+# s3_mc "I just don't buy it. There's no way they'd work outside of the Villa."
+# B/H/Cam/aj "If you say so..."
+
+# -They're not as cute as us
+# s3_mc "They're alright, but you and me take the top spot, no contest."
+# B/H/Cam/aj "Good answer. (you get 😍 with Bill/Harry/Camilo/AJ)"
+
+# In turn, the remaining boys choose their partners.
+# (depending on who MC picked)
+# bill "I was really flattered when this girl chose me, so now I get to return the favour."
+# bill "The girl I want to couple up with is MIki."
+# miki "Yay!"
+# camilo "This girl is a legend, but we haven't actually spent that much quality time together yet."
+# camilo "So the girl I want to couple up with is Iona."
+# iona "Get in!"
+# H: This girl is just the nicest human being. She's been a good partner to me over the past few days.
+# H: So the girl I want to couple up with is Genevieve.
+# genevieve "Thanks, sweetheart."
+# S: We're not into each other romantically, but she's an amazing human being and I'm really lucky to have her as a friend.
+# S: And I don't want her to be at risk at going home, because I know she'll find the right person for her any day now.
+# S: So the girl I want to couple up with is AJ.
+# aj "Phew! Thanks, mate!"
+# AJ gives Seb a high five. Laughing, they sit down.
+# Finally, there are five couples sitting around the firepit.
+# elladine "Is that everyone?"
+# B/H/camilo "Wait...where's Miki/Genevieve/Iona/Seb? (depending on who MC is coupled with)"
+# nicky "She's/He's wandered off."
+# elladine "Poor thing. She/He must be gutted."
+# thought "Right, Miki/Genevieve/Iona/Seb is single because nobody else ended up with her after I took Bill/Harry/Camilo/AJ."
+# thought "I hope she's/he's alright..."
+# Bill/Harry/Camilo/AJ looks concerned.
+# B/H/Cam/aj "Me and MC should go check on her."
+# elladine "Yeah, I think that'd be a good idea."
+# Choices: Bill/Harry/Camilo/AJ wants us to go and check on Miki/Genevieve/Iona/Seb...
+# -That's a good idea
+# s3_mc "Just to make sure she's/he's OK. We owe her/him that much."
+# s3_mc "BFF was there for me after the first recoupling, so I know what a difference it can make."
+# B/H/Cam/aj "Exactly. (you get 😍 with Bill/Harry/Camilo/AJ)"
+
+# -I'd rather go alone
+# s3_mc "I think I'm probably the one she wants to talk to right now."
+# s3_mc "BFF was there for me after the first recoupling, so I know what a difference it can make."
+# B/H/Cam/aj "That's so thoughtful, MC. (you get 😍 with Bill/Harry/Camilo/AJ)"
+# B/H/Cam/aj "I'll see you in a bit, then, babe."
+# Bill/Harry/Camilo/AJ gives you a kiss on the cheek before you set off away from the firepit.
+
+# -Ugh, do we have to?
+# B/H/Cam/aj "I just want to make sure she's/he's OK. We owe her that much. (you get 🙁 with Bill/Harry/Camilo/AJ)"
+# B/H/Cam/aj "Remember how BFF was there for you after the first recoupling?"
+# B/H/Cam/aj "This is your chance to be that person for Miki/Genevieve/Iona/Seb."
+# s3_mc "Fine..."
+
+# (MC going alone to Miki/Genevieve/Iona/Seb):
+# You find Miki/Genevieve/Iona/Seb sitting alone by the pool, lost in thought.
+# She/He jumps when you sit down next to her.
+# M/G/I/S: Oh! Sorry, you scared me.
+# miki "What are you doing here?"
+# s3_mc "I just thought I'd come and check on you."
+# s3_mc "Y'know, to make sure you're feeling OK, after the recoupling."
+# M/G/I/S: MC...that's really nice of you. Thank you. (you get 🙂 with Miki/Genevieve/Iona/AJ)
+# She/He looks out across the pool and sighs.
+# M/G/I/S: I really didn't want to cause a scene.
+# M/G/I/S: This is your big moment. I didn't want to ruin it for you.
+# G/S (if BFF with MC): Especially for you, MC. I definitely think of you as a friend. 
+# M/G(if not BFF with MC)/I/S(if not BFF with MC): 'Cause I do like you, MC. I want us to be friends.
+# M/G/I/S: So I don't want you to think I'm in a mood with you or anything. I'm not.
+# M/G/I/S: It's just...
+# M/G/I/S: It's a bit scary to find yourself single in here. You know that better than anyone.
+# M/G/iona "Plus, I was kinda holding onto hope for me and Bill/Harry/Camilo."
+# S: And I know me and AJ weren't compatible in that way, like, at all. So it's a silly thing to get upset about.
+# S: But it really leaves me wondering what I'm gonna do next.
+# M/G/I/S: It leaves me wondering what I'm supposed to do now.
+# Choices: Miki/Genevieve/Iona/Seb doesn't know what to do now she's/he's single...
+# -Just stay positive, babes
+# s3_mc "I've been there too, so you can take it from me. It can actually be really fun and liberating."
+# s3_mc "And it's still early days. You've got loads of time to meet someone else."
+# s3_mc "Just keep your chin up, OK? We're all here for you."
+# She/He smiles gratefully. (you get 🙂 with Miki/Genevieve/Iona/Seb)
+# M/G/I/S: Thanks, MC. I'll try to keep that in mind.
+
+# -Better get grafting, then!
+# s3_mc "I've been there too, so you can take it from me. Being single can be great fun, but you've got to graft."
+# s3_mc "Just turn that charm up to eleven and keep cracking on until you find the one."
+# Miki/Genevieve/Iona/Seb laughs despite herself. (you get 🙂 with Miki/Genevieve/Iona/Seb)
+# M/G/I/S: Thanks, MC. I'll try to keep that in mind.
+
+# -Just stay away from Bill/Harry/Camilo/AJ
+# s3_mc "I don't care what you do, as long as you don't go getting any ideas."
+# s3_mc "Bill/Harry/Camilo/AJ is with me now, so get used to it."
+# M/G/I/S: That's not what this is about. (you get 😲 with Miki/Genevieve/Iona/Seb)
+# M/G/I/S: I'm not gonna try and split you up. I know i've got to move on.
+
+# M/G/iona "I'm trying to see it as a positive thing. I'm free to start getting to know somebody new!"
+# miki "It's just a shame there's nobody else I really have my eye on yet."
+# s3_mc "You've got loads of options!"
+# Choices: Maybe you should be getting to know... (depending on who MC's coupled with)
+# -Bill
+# s3_mc "I know he's with Miki, but I don't think they're serious yet. His head could def still be turned."
+# G/iona "I don't know. He's not the kind of guy I'd usually go for."
+# G/iona "But he is cool. Maybe I'll try talking to him tomorrow."
+# G/iona "Thanks, hun."
+
+# -Camilo
+# s3_mc "I know he's with Iona, but I don't think they're serious yet. His head could def still be turned."
+# M/genevieve "I don't know. He's not the kind of guy I'd usually go for."
+# M/genevieve "But he is cool. Maybe I'll try talking to him tomorrow."
+# M/genevieve "Thanks, hun."
+
+# -Harry
+# s3_mc "I know he's with Genevieve, but I don't think they're serious yet. His head could def still be turned."
+# M/iona "I don't know. He's not the kind of guy I'd usually go for."
+# M/iona "But he is cool. Maybe I'll try talking to him tomorrow."
+# M/iona "Thanks, hun."
+
+# -Nicky
+# s3_mc "I know people see him and Elladine as a solid couple, but I think his could still be turned."
+# M/G/iona "I don't know. He's not the kind of guy I'd usually go for."
+# M/G/iona "But he is cool. Maybe I'll try talking to him tomorrow."
+# M/G/iona "Thanks, hun."
+
+# -Seb
+# s3_mc "He's still in a friendship couple with AJ, so there's no reason not to be chatting to him."
+# She thinks about it seriously for a moment.
+# G/I/miki "That's... actually a really good idea."
+# G/I/miki "Thanks, hun."
+
+# Choices: Maybe you should be getting to know...
+# -Elladine
+# -Miki
+# s3_mc "I know she likes Bill, but I don't think they're serious yet. Her head could def still be turned."
+# S: Hm,maybe. Miki's one of these well romantic girls. I think I might be a bit too cynical for her.
+# S: But she is cool. Maybe I'll try talking to her a bit tomorrow.
+# S: Thanks mate.
+
+# -Iona
+# s3_mc "I know she likes Camilo, but I don't think they're serious yet. Her head could def still be turned."
+# S: Iona's great, but she's so high-energy. I think I might just end up dragging her down.
+# S: But she is cool. Maybe I'll try talking to her a bit tomorrow.
+# S: Thanks mate.
+
+# -Genevieve
+# s3_mc "I know she likes Harry, but I don't think they're serious yet. Her head could def still be turned."
+# He thinks about it seriously for a moment.
+# S: That's... actually a really good idea.
+# S: Thanks mate.
+
+# You look over your shoulder to see Bill/Harry/Camilo/AJ coming closer across the lawn. Miki/Genevieve/Iona/Seb smiles.
+# M/G/I/S: I guess I should be getting to bed. Give you two a little privacy.
+# She/He winks as gets to her/his feet.
+# Miki/Genevieve/Iona/Seb walks away towards the Villa, leaving you alone by the pool.
+# A moment later, Bill/Harry/Camilo/AJ arrives and sits down next to you.
+# B/H/Cam/aj "How did it go?"
+# s3_mc "OK, I think. She/He didn't seem annoyed with me or anything."
+# B/H/Cam/aj "That's good."
+# B/H/Cam/aj "Thanks for talking to her. It really means a lot to me."
+
+# (MC going with Bill/Harry/Camilo/AJ to Miki/Genevieve/Iona/Seb; also going with Bill/Harry/Camilo/AJ after “Ugh, do we have to?”):
+# With a smile, Bill/Harry/Camilo/AJ takes your arm and leads you away from the firepit.
+# You find Miki/Genevieve/Iona/Seb sitting alone by the pool, lost in thought.
+# She/He jumps when you sit down next to her/him.
+# M/G/I/S: Oh! Sorry, you scared me.
+# M/G/I/S: What are you doing here?
+# B/H/Cam/aj "We just thought we'd come and check on you."
+# B/H/Cam/aj "Y'know, to make sure you're feeling OK, after the recoupling."
+# M/G/I/S: You guys...that's really nice of you. Thank you. (you get 🙂 with Miki/Genevieve/Iona/Seb)
+# She/He looks out across the pool and sighs.
+# M/G/iona "I really didn't want to cause a scene."
+# M/G/iona "This is your big moment. I didn't want to ruin it for you."
+# G/S (if BFF with MC): Especially for you, MC. I definitely think of you as a friend. 
+# M/G(if not BFF with MC)/I/S(if not BFF with MC): 'Cause I do like you, MC. I want us to be friends.
+# M/G/I/S:  So I don't want you to think I'm in a mood with you or anything. I'm not.
+# M/G/I/S:  It's just...
+# M/G/I/S: It's a bit scary to find yourself single in here. You know that better than anyone.
+# M/G/I/:  Plus, I was kinda holding onto hope for me and Bill/Harry/Camilo.
+# S: And I know me and AJ weren't compatible in that way, like, at all. So it's a silly thing to get upset about.
+# S: But it really leaves me wondering what I'm gonna do next.
+# Choices: Miki/Genevieve/Iona/Seb doesn't know what to do now she's/he's single...
+# -Just stay positive, babes
+# s3_mc "I've been there too, so you can take it from me. It can actually be really fun and liberating."
+# s3_mc "And it's still early days. You've got loads of time to meet someone else."
+# s3_mc "Just keep your chin up, OK? We're all here for you."
+# She/He smiles gratefully. (you get 🙂 with Miki/Genevieve/Iona/Seb)
+# M/G/I/S: Thanks, MC. I'll try to keep that in mind.
+
+# -Better get grafting, then!
+# s3_mc "I've been there too, so you can take it from me. Being single can be great fun, but you've got to graft."
+# s3_mc "Just turn that charm up to eleven and keep cracking on until you find the one."
+# Miki/Genevieve/Iona/Seb laughs despite herself. (you get 🙂 with Miki/Genevieve/Iona/Seb)
+# M/G/I/S: Thanks, MC. I'll try to keep that in mind.
+
+# -Just stay away from Bill/Harry/Camilo/AJ
+# s3_mc "I don't care what you do, as long as you don't go getting any ideas."
+# s3_mc "Bill/Harry/Camilo/AJ is with me now, so get used to it."
+# M/G/I/S: That's not what this is about. (you get 😲 with Miki/Genevieve/Iona/Seb)
+# M/G/I/S: I'm not gonna try and split you up. I know i've got to move on.
+
+# B/H/Cam/aj "You'll be OK, MIki/Genevieve/Iona/Seb. You're a gem. Everybody here knows that."
+# M/G/I/Sebill "Thanks Bill/Harry/Camilo/AJ."
+# M/G/I/Sebill "I'm trying to see it as a positive thing. I'm free to start getting to know somebody new!"
+# M/G/I/Sebill "It's just a shame there's nobody else I really have my eye on yet."
+# s3_mc "You've got loads of options!"
+# Choices: Maybe you should be getting to know... (depending on who MC's coupled with)
+# -Bill
+# s3_mc "I know he's with Miki, but I don't think they're serious yet. His head could def still be turned."
+# G/iona "I don't know. He's not the kind of guy I'd usually go for."
+# G/iona "But he is cool. Maybe I'll try talking to him tomorrow."
+# G/iona "Thanks, hun."
+
+# -Camilo
+# s3_mc "I know he's with Iona, but I don't think they're serious yet. His head could def still be turned."
+# M/genevieve "I don't know. He's not the kind of guy I'd usually go for."
+# M/genevieve "But he is cool. Maybe I'll try talking to him tomorrow."
+# M/genevieve "Thanks, hun."
+
+# -Harry
+# s3_mc "I know he's with Genevieve, but I don't think they're serious yet. His head could def still be turned."
+# M/iona "I don't know. He's not the kind of guy I'd usually go for."
+# M/iona "But he is cool. Maybe I'll try talking to him tomorrow."
+# M/iona "Thanks, hun."
+
+# -Nicky
+# s3_mc "I know people see him and Elladine as a solid couple, but I think his could still be turned."
+# M/G/iona "I don't know. He's not the kind of guy I'd usually go for."
+# M/G/iona "But he is cool. Maybe I'll try talking to him tomorrow."
+# M/G/iona "Thanks, hun."
+
+# -Seb
+# s3_mc "He's still in a friendship couple with AJ, so there's no reason not to be chatting to him."
+# She (Genevieve) thinks about it seriously for a moment.
+# genevieve "That's... actually a really good idea."
+# M/iona "I don't know. He's not the kind of guy I'd usually go for."
+# M/iona "But he is cool. Maybe I'll try talking to him tomorrow."
+# M/G/iona "Thanks, hun."
+
+# Choices: Maybe you should be getting to know...
+# -Elladine
+# -Miki
+# s3_mc "I know she likes Bill, but I don't think they're serious yet. Her head could def still be turned."
+# S: Hm,maybe. Miki's one of these well romantic girls. I think I might be a bit too cynical for her.
+# S: But she is cool. Maybe I'll try talking to her a bit tomorrow.
+# S: Thanks mate.
+
+# -Iona
+# s3_mc "I know she likes Camilo, but I don't think they're serious yet. Her head could def still be turned."
+# S:Iona's great, but she's so high-energy. I think I might just end up dragging her down.
+# S: But she is cool. Maybe I'll try talking to her a bit tomorrow.
+# S: Thanks mate.
+
+# -Genevieve
+# s3_mc "I know she likes Harry, but I don't think they're serious yet. Her head could def still be turned."
+# He thinks about it seriously for a moment.
+# S: That's... actually a really good idea.
+# S: Thanks mate.
+
+# M/G/I/S: I guess I should be getting to bed. Give you two a little privacy.
+# She/He winks as gets to her/his feet.
+# Miki/Genevieve/Iona/Seb walks away towards the Villa, leaving you and Bill/Harry/Camilo/AJ alone by the pool.
+# B/H/Cam/aj "I think she'll/he'll be fine."
+# s3_mc "Yeah, probably."
+# B/H/Cam/aj "Thanks for talking to her/him. It really means a lot to me."
+
+# B/H/Cam/aj "Anyway, let's not worry about it any more for now."
+# B/H/Cam/aj "This should be our night!"
+# A warm breeze sends ripples across the surface of the pool.
+
+# Bill smiles at you, his blue eyes twinkling.
+# bill "Alright there, beautiful?"
+# Choices:
+# -Kiss him
+# You run your fingers down his muscular chest before kissing him deeply on the lips.
+# For a few seconds, there's nothing but his lips on yours and the warm press of your bodies against one another.
+# When you pull away, Bill speaks first.
+# bill "Now that was a good kiss."
+# bill "Not too forceful, but just a little bit firm. Good rhythm, too."
+# bill "Like a goldilocks kiss."
+# s3_mc "Do you just have an opinion on, like, everything?"
+# bill "Yes and no."
+# s3_mc "What does that mean?"
+# bill "I'm always one-hundred-percent genuine with myself and the things I believe in."
+# bill "I don't mind speaking what I think, but also don't give a monkeys if people don't agree."
+# bill "They can be wrong if they want to."
+# s3_mc "But I've seen you arguing with people. The other night you and Camilo were debating smoked versus unsmoked bacon until two in the morning."
+# bill "How could he even think unsmoked is better?"
+# He shakes his head.
+# bill "But I don't care about making him come around. It's the back and forth I like."
+# bill "Helps people see where you're coming from, and let's you see the same, you know?"
+# bill "I think it makes everyone understand each other better."
+# Choices: Bill thinks arguing helps the group...
+# -I see your point
+# s3_mc "I can see that. Maybe I'll even help you stir up some debates in future!"
+# bill "I'd love that!"
+
+# -I think there's a time and a place
+# s3_mc "Sometimes that might be true."
+# s3_mc "But sometimes, causing a debate is just gonna annoy people."
+# bill "Well, that's their choice, isn't it?"
+# s3_mc "You're the worst."
+# bill "That's up for debate..."
+
+# -Not everyone thinks like you do
+# s3_mc "Fair enough, but you don't get a lot of people doing that."
+# s3_mc "People just want to be able to have their own opinions without someone jumping down their throat."
+# bill "I don't shove it down their throat. I state my opinion. If they want to debate, they can."
+# s3_mc "I'm not sure everyone sees it like that..."
+# bill "Well, that's their choice, isn't it?"
+# s3_mc "You're doing it right now, aren't you?"
+# bill "Am I?"
+# s3_mc "Yeah! You're even debating if we're debating."
+# bill "I guess I can't help it!"
+
+# -Flirt with him
+# s3_mc "How come you're extra good-looking today?"
+# bill "Well, that's cos I put extra effort in today, just for you."
+# bill "And you? The only word I can think of right now is..."
+# bill "Um..."
+# bill "Fit."
+# bill "I thought I had a better one. Wait..."
+# bill "You look banging."
+# bill "That's better, right?"
+# s3_mc "Hah, thanks."
+# Choices: If I had to describe you in one word, it would be...
+# -Charming
+# s3_mc "You've got a great attitude. Respectful, confident, but not too cocky."
+# s3_mc "And really level-headed."
+# bill "Cheers."
+# He pauses and smiles in thought.
+# bill "That actually means a lot to me."
+
+# -Hot
+# s3_mc "I mean oof."
+# s3_mc "Have you looked in a mirror lately?"
+# bill "Thanks, babe. I know I'm not bad looking, but it's nice to hear it, you know?"
+
+# -Bill
+# He frowns.
+# bill "Like, my name?"
+# s3_mc "Yeah."
+# He pauses, stroking his chin, milling it over.
+# bill "All right, I'll take it."
+# bill "It gets right to the point."
+# s3_mc "Just like you."
+# He laughs.
+
+# bill "My last girlfriend didn't compliment me. She felt like she had to, I dunno, 'keep me on my toes' or something."
+# s3_mc "That sucks."
+# bill "Yeah. I get it, though, she'd been cheated on by lads in the past. It made her well insecure."
+# bill "She didn't let on how much she liked me in case I took her for granted."
+# bill "But, in my opinion, relationships should be open and honest."
+
+# -Tell him a joke
+# s3_mc "I've got a joke for you."
+# bill "Go for it."
+# Choices: What joke should I tell Bill?
+# -What do you call a talking turtle?
+# bill "A money-making opportunity?"
+# s3_mc "Whatever his name is."
+
+# -Why did the dinosaur say 'hello' to the girl?
+# bill "Because he wanted a snack?"
+# s3_mc "Because he was being polite."
+
+# -What ended after 2002?
+# bill "My belief in Father Christmas..."
+# s3_mc "Nope!"
+# s3_mc "Well, maybe, but also..."
+# s3_mc "2003!"
+
+# Bill snorts, bu then looks at you.
+# bill "Wait, what's the joke?"
+# s3_mc "That was it. That was the joke."
+# bill "No, that wasn't a joke."
+# s3_mc "It made you laugh, didn't it?"
+# bill "Yeah, but it's not a joke, right? A joke has to be, like, wordplay or something."
+# s3_mc "I guess you could call them anti-jokes."
+# bill "Exactly. They're not jokes."
+# Choices: Bill doesn't think my jokes were real jokes...
+# -Agree
+# s3_mc "You have a point there."
+# bill "Right?"
+
+# -Disagree
+# s3_mc "You're not going to convince me."
+# bill "Then I'll stop trying. I'll just know how wrong you are."
+# s3_mc "I can live with that!"
+
+# -Tell him another
+# s3_mc "OK, what about this..."
+# s3_mc "What did one lawyer say to the other lawyer?"
+# bill "I don't know..."
+# s3_mc "'We're both lawyers!'"
+# bill "Argh! That wasn't a joke either! That's gotta be on purpose."
+# s3_mc " You got me."
+
+# Harry's dark eyes look out at you from under long eyelashes. A small smile plays across his lips.
+# Choices: He's unbearably cute...
+# -Smother him in kisses
+# You plant tiny little kisses all over his cheeks, down the muscle of his neck to his shoulders.
+# He puts his arms around you as you keep kissing him, finally putting your lips to his.
+# You pull apart and look at each other for a moment. Harry looks a little dazed.
+# H: Wow.
+# s3_mc "More."
+# He kisses you again.
+# H: Wish granted.
+
+# -Give him one deep kiss
+# You slowly kiss him on the lips, pressing against him.
+# You can feel the heat between you.
+# He wraps his arms around you, and you thread your fingers through the hair at the back of his neck.
+# You pull back and look at each other for a moment.
+# H: Wow.
+# s3_mc "More."
+# He kisses you again.
+# H: Wish granted.
+
+# -Talk to him
+# s3_mc "Do you mind if we chat for a bit?"
+# He smiles
+# H: Of course not.
+# H: Your wish is my command.
+
+# s3_mc "So you're a genie now?"
+# H: Yup.
+# s3_mc "Roleplay already?"
+# s3_mc "What other wishes can you grant?"
+# H: What kind of wish would you like?
+# Choices: What do I want?
+# -To find romance
+# He smiles a brilliant smile at you.
+# H: Great choice.
+# H: Usually genies can't grant wishes like that, but in your case I think I can make an exception.
+# s3_mc "That's good, because I fancy the genie. Is that allowed?"
+# H: Let me check the Genie Code.
+# He pretends to flip through a book.
+# H: Nope, looks like we're good to go.
+# He puts his arms around your waist and kisses you softly and sweetly.
+
+# -To find happiness
+# H: Right for the big guns, eh?
+# H: That's a tricky one.
+# H: Because, like, happiness is different for different people, right?
+# H: Some people's idea of happiness might be owning a mega-yacht by 45.
+# H: Or founding a startup and selling it for billions.
+# s3_mc "To select two examples totally at random."
+# He grins and winks at you.
+# H: It might sound pretty shallow, but it's not the yacht or the money that would make me happy.
+# H: It's knowing I'm successful.
+# H: What about you? What does happiness look like to you?
+# Choices: What's my idea of happiness?
+# -An active, stimulating life 
+# H: That's pretty important, too.
+
+# -A family who loves me
+# H: That's pretty important, too.
+
+# -Being able to help people
+# H: That's pretty important, too
+
+# -To find success
+# Harry beams.
+# H: That's exactly what I was thinking.
+# H: I always said I want to own a mega-yacht by the age of 45.
+# H: But it's not like the yacht would be the thing making me happy.
+# H: It's being able to look around and know that I succeeded at what I do.
+# Choices: To me, success means...
+# -Providing for my family
+# H: Yeah, I get that.
+# H: I think you're already amazing, though.
+
+# -Being in celebrity magazines
+# H: Yeah, I get that.
+# H: I think you're already amazing, though.
+
+# -Honing my skills as a scientist (depending on MCs job)
+# H: Yeah, I get that.
+# H: I think you're already amazing, though.
+
+
+# The air is warm and heavy, Camilo strokes your arm softly and murmurs into your ear.
+# camilo "Eres muy guapa."
+# s3_mc "What?"
+# camilo "It's Spanish. Means 'you're really pretty'."
+# Choices: Maybe I should try some Spanish of my own. How do you say 'it's so hot' again?
+# -I'll just stick to English
+# thought "Better not risk saying something silly in Spanish."
+# s3_mc "Is it just me, or is it hot in here?"
+# camilo "Not as hot as you, mamacita."
+# s3_mc "I thought about trying some Spanish on you, but decided against it."
+# camilo "Appreciate it. I'm not a big fan of pulling the GCSE Spanish on me."
+# camilo "Like it's OK if they get it right. But they never get it right."
+# He reaches out and touches your cheek.
+# camilo "I really feel like you get me."
+
+# -Tengo calor
+# You grin at him and pretend to fan yourself.
+# s3_mc "Tengo calor."
+# He whistles.
+# camilo "Beauty and brains. What can't you do?"
+# camilo "It was pretty sexy."
+# camilo "Say it again."
+# s3_mc "Tengo calor?"
+# He pretends to shiver.
+# camilo "Ooh!"
+# s3_mc "Tengo calor, tengo calor, tengo calor!"
+# He reaches out and touches your cheek.
+# camilo "I have so much fun with you."
+
+# -Estoy muy caliente
+# You grin at him and pretend to fan yourself.
+# s3_mc "Estoy muy caliente."
+# He laughs.
+# camilo "Well, at least you're honest. I like that in a girl."
+# camilo "In Colombia, that means 'I'm horny'."
+# Choices: I just told Camilo I'm horny...
+# -Oh no, that's so embarrassing
+# s3_mc "Nooo!"
+# camilo "Like I said, I like a girl who's up front."
+# s3_mc "I don't think I'll try my Spanish skills again any time soon..."
+# camilo "Aw, I didn't mean to tease you.I love that you tried. Promise me you'll try again?"
+# s3_mc "I'll think about it. Maybe after buying a Colombian phrasebook."
+
+# -But that's how he said it!
+# camilo "Who?"
+# s3_mc "That hot tour guide."
+# camilo "Oh, did he now?"
+# s3_mc "Eww! I can't believe he told me it meant it was hot!"
+# camilo "Hey, don't worry. I love that you tried. Promise me you'll try again?"
+# s3_mc "I'll think about it."
+
+# -I meant what I said
+# s3_mc "Why are you assuming that's not what I meant?"
+# camilo "What, really?"
+# You wink at him.
+# s3_mc "If you play your cards right, maybe you'll find out."
+
+# He comes closer. He moves like a dancer, smooth and practised. His fingers run gently down the line of your jaw.
+# Choices: Oof, he's so sexy...
+# -Kiss him
+# You lean in and press your lips to his. Camilo puts his hands up to cup your chin and you lose yourself in warm sweetness.
+# You don't stop kissing for several minutes. When you pull away at last, you see he's wearing the biggest grin.
+# s3_mc "What's so funny?"
+# camilo "Nothing. Just thinking about how well we got on."
+# camilo "You're gorgeous, and I like kissing you, but I like chatting to you as well."
+
+# -Wait for him to kiss you
+# You hold Camilo's gaze and let a faint smile touch your lips. He leans in and tilts you chin up with one hand, then presses his lips to yours.
+# You don't stop kissing for several minutes. When you pull away at last, you see he's wearing the biggest grin.
+# s3_mc "What's so funny?"
+# camilo "Nothing. Just thinking about how well we got on."
+# camilo "You're gorgeous, and I like kissing you, but I like chatting to you as well."
+
+# -Tease him a little instead
+# You lean in as if to kiss him, but stop short of touching his lips. You can feel his breath on your skin.
+# You lightly touch him behind his ear, running your fingernails down his neck.
+# camilo "You're incredible."
+# s3_mc "You don't mind that I didn't kiss you?"
+# camilo "Of course not."
+# camilo "I'd wait forever for a kiss from you, chica."
+# s3_mc "Right answer."
+
+# AJ tucks a strand of hair behind her ear.
+# aj "So, MC..."
+# aj "I was wondering, like, out of just general nosiness and stuff..."
+# aj "How did you realise you liked girls?"
+# Choices: How did I realise I liked girls?
+# -I had a teacher crush
+# -I've literally always known
+# s3_mc "Even when I was a kid I knew I liked women."
+# aj "Yeah, I feel that."
+# aj "Looking back, there were definitely signs and stuff."
+# aj "But my biggest sign was the fact that I was totally in love with my first hockey coach."
+
+# -I was totes in love with my friend
+# aj "That must have been so stressful."
+# s3_mc "Yeah, it was."
+# s3_mc "Like, I always had to pretend it was just friendly love."
+# s3_mc "When really she was eating at my heart from the inside out."
+# aj "Oh, you poor thing."
+# s3_mc "Yeah, unrequited love is the hardest thing."
+# She holds your hand and squeezes it reassuringly.
+# aj "At least, you're here now, hanging out with me."
+# aj "And there is nothing one sided about us."
+# She gestures to you and her.
+# aj "I had that whole unrequited love with my first hockey coach so I sorta can relate."
+# aj "She was the one who made me realise."
+
+# -You made me realise, AJ
+# aj "Oh, woah."
+# aj "I did? (you get 😍 with AJ)"
+# You hold AJ's hands.
+# s3_mc "Yeah, you did."
+# She squeezes your hand reassuringly.
+# aj "That's, like, the loveliest thing ever."
+# aj "Wow."
+# aj "I feel, like, all warm inside."
+# aj "That means so much."
+# aj "I don't think anyone's ever said that to me before!"
+# She grins and hugs you.
+# s3_mc "What about you?"
+# aj "I knew before coming here."
+# aj "It was my first hockey coach who made me realise."
+
+# aj "She was, like, proper patient with teaching me."
+# aj "I'm sporty, but I used to struggle with the hockey theory and stuff."
+# aj "She always took her time to explain things to me when I didn't get it."
+# AJ smiles at you.
+# aj "It's always so good to chat with you about stuff."
+# aj "Feels chill, and like, we can just be ourselves around each other."
+# Her hair falls in front of her face again.
+# She edges her body closer to you and stretches.
+# aj "Speaking of relaxing..."
+# aj "My back is tense from being at the gym earlier."
+# Choices: I should...
+# -Suggest she takes up yoga
+# -Make out with AJ
+# s3_mc "I know what could help relieve the tension."
+# You lean forward and kiss her lips.
+# She kisses you back, urgent at first, but slowly relaxes into your touch.
+# aj "Hmm..."
+# AJ lets out a little moan as you kiss her.
+# aj "That's one way to relieve the tension."
+# s3_mc "Yeah, feeling better?"
+# aj "Much better."
+# AJ grins at you.
+
+# -Give AJ a massage
+# s3_mc "Do you want a massage, hun?"
+# aj "Oh, MC! You read my mind."
+# AJ turns around and points in between her shoulder blades. (you get 😍 with AJ)
+# aj "It's right there where it's proper tense."
+# You massage her back gently. She moans with pleasure.
+# aj "I don't know what you're doing..."
+# aj "But that feels amazing."
+# Her body relaxes into you as you vary the pressure.
+# s3_mc "Better?"
+# aj "Much better."
+
+# AJ leans her head onto your shoulder.
+# You enjoy a moment of closeness and comfortable silence together.
+
+# You sit in comfortable silence for a moment, until Bill/Harry/Camilo/AJ speaks again.
+# B/H/Cam/aj "MC..."
+# B/H/Cam/aj "It's cool if you're not in the mood, but..."
+# He/She bites his/her lips.
+# B/H/Cam/aj "I really want to do something naughty with you."
+# B/H/Cam/aj "How about we go up to the roof terrace and see what happens?"
+# B/H/Cam/aj "We'll have more privacy up there than the bedroom..."
+# thought "This is my chance to spend some private time with Bill/Harry/Camilo/AJ!"
+# thought "If I say yes, we could even take our relationship to the next level..."
+# Choices: Should we...?
+# -Sneak off for some private time on the roof terrace (gem choice)
+# s3_mc "I thought you'd never ask."
+# Bill/Harry/Camilo/AJ grins and takes your hand. (You get 😍 with Bill/Harry/Camilo/AJ)
+# B/H/Cam/aj "Let's go, babe."
+
+# -Not tonight.
+# s3_mc "I'm a bit tired."
+# B/H/Cam/aj "Oh yeah, I don't blame you. It's been a long day."
+# B/H/Cam/aj "Let's go get some rest."
+# He/She stands up and puts out a hand to help you to your feet.
+# thought "I know we'll be sharing a bed... but it's less romantic, and much less private."
+# thought "Sneaking off to the roof would make tonight really special."
+# Choices: There's still time to tell Bill/Harry/Camilo/AJ I changed my mind...
+# -Invite him/her up to the roof terrace (gem choice)
+# s3_mc "Actually Bill/Harry/Camilo/AJ..."
+# s3_mc "I think I do wanna spend some special time together after all."
+# Bill's/Harry's/Camilo's/AJ's face lights up. (You get 😍 with Bill/Harry/Camilo/AJ)
+# B/H/Cam/aj "Then let's go, babe."
+# Together you head back towards the Villa.
+# -Go to bed
+# Together you head back towards the Villa.
+
+
+# Gem choice:
+# You step out onto the roof terrace with Bill/Harry/Camilo/AJ.
+# bill "This is blatantly the best place in the Villa to be alone. 'Cause in the bedroom, you're bound to be overheard."
+# bill "And anywhere else there's always a chance someone'll look out a window and spot you."
+# bill "But up here, nobody can see a thing. Basic common sense, innit."
+# H: Wow. Look at me, alone on the roof with a glamorous woman. Makes me feel like James Bond.
+# H: Except without any of the intense secret agent stuff.
+# H: Just the bits with the glamorous women.
+# s3_mc "Women? Plural?"
+# H: Woman! I mean woman singular. Obviously.
+# camilo "This is totally the most romantic place to be alone."
+# camilo "There's something about being outside with someone at night that's like... I dunno."
+# camilo "It makes me wish I was the kind of guy who knows poetry, so I could say something all poetic about it."
+# aj "I never would've thought to come up here to be alone, but I heard the others talking about it."
+# aj "Like, it makes sense, doesn't it? You can't do anything in the bedroom without being overheard."
+# aj "But up here we'll be fine, as long as we're quiet!"
+# She realises she's raising her voice and quickly drops to a whisper, smiling sheepishly.
+# aj "Sorry. Got a bit overexcited there. I'll try to keep the noise down."
+
+# For a while you just stand there, your hands clasped in his/her, gazing into each other's eyes.
+# The night is clear and quiet, with only a slight breeze rustling through the trees far below.
+# B/H/Cam/aj "You're so beautiful."
+# B/H/Cam/aj " That outfit makes you look too good to be real. Like you're in a magazine or a painting or something."
+# B/H/Cam/aj "Except you're right here in front of me."
+# B/H/Cam/aj "I could look at you all night."
+
+# Choices: Bill/Harry/Camilo/AJ could look at me all night...
+# -Well yeah, you're only human
+# s3_mc "I can't blame you for admiring the view."
+
+# -You look gorgeous, too
+# s3_mc "I can't take my eyes off you."
+# s3_mc "We make such a hot couple."
+
+# -Shut up and kiss me
+# Bill/Harry/Camilo/AJ grins and takes your face in both hands.
+# He/She kisses you gently on the corner of your mouth before pulling away to stare into your eyes again.
+
+# Bill/Harry/Camilo/AJ smiles. (You get 😍 with Bill/Harry/Camilo/AJ)
+# He/She leans in close and whispers, his/her voice low.
+# B/H/Cam/aj "MC..."
+
+# bill "I want you."
+# H: I'm ready.
+# s3_mc "You sure?"
+# H: I've never been more sure about anything.
+# camilo "I wanna make you feel amazing."
+# B/H/camilo "And..."
+# He slips a condom out of his pocket.
+# B/H/camilo "I brought this, just in case you feel the same."
+
+# aj "Is it OK if I just come out and say it?"
+# aj "I really wanna..."
+# She blushes.
+# aj "OK, I'm actually too nervous to just come out and say it."
+
+# Choices: This is my chance to do bits with Bill/Harry/Camilo/AJ...
+# -No, I'd rather just cuddle
+# Bill/Harry/Camilo/AJ smiles and strokes your hair. (You get 😍 with Bill/Harry/Camilo/AJ)
+# B/H/Cam/aj "That sounds great, babe."
+
+# -Yes, let's get right down to it!
+# s3_mc "I want you, too..."
+# You reach for Bill's/Harry's/Camilo's/AJ's clothes and start pulling them off as fast as you can.
+# He/She slips you out of your outfit in one smooth motion, leaving it crumpled on the floor.
+# You fall into each other's arms, kissing roughly and passionately, as the rest of the world seems to fall away.
+# Bill's body fits perfectly against yours, from his large hands on your hips, to his strong jaw nuzzling your throat. (you get ❤️ with Bill)
+# Harry's slender fingers trace patterns across your skin, urgent and somehow gentle at the same time.(you get ❤️ with Harry)
+# Camilo's hips roll against yours with a fluidity that's almost like dancing, every movement perfectly in sync. (you get ❤️ with Camilo)
+
+# -Yes, let's savour every moment
+# s3_mc "It's our first time together. Let's make the most of it."
+# You run your hand slowly down the length of Bill's/Harry's/Camilo's/AJ's neck and along his/her shoulder, making him/her shiver.
+# He/She caresses you back, stroking you through your clothes, enjoying every shape and curve of your body.
+# Finally you both start to get undressed, revealing yourselves one step at a time.
+# Bill's body fits perfectly against yours, from his large hands on your hips, to his strong jaw nuzzling your throat. (you get ❤️ with Bill)
+# Harry's slender fingers trace patterns across your skin, urgent and somehow gentle at the same time.(you get ❤️ with Harry)
+# Camilo's hips roll against yours with a fluidity that's almost like dancing, every movement perfectly in sync. (you get ❤️ with Camilo)
+# He seems confident, guiding your moves with ease.
+# B/H/camilo "Is this OK?"
+# AJ's hair drapes across your chest, soft and shimmering in the moonlight, as her hands slide around your waist. (you get ❤️ with AJ)
+# She follows your movements, waiting for you to decide what happens next.
+
+# Choices: How should we do this?
+# -Let's just play it by ear
+# s3_mc "As long as I'm with you, I'm happy."
+# B/H/Cam/aj "Me too, babe."
+
+# -I want to take the lead
+# You wrap your legs around Bill/Harry/Camilo/AJ and roll on top of him.
+# You touch him/her everywhere he/she wants to be touched.
+# s3_mc "How's that?"
+# B/H/Cam/aj "It's amazing..."
+
+# -I want Bill/Harry/Camilo/AJ to take the lead
+# Bill/Harry/Camilo/AJ wraps his/her legs around you and rolls on top of you.
+# He/She touches you everywhere you want to be touched.
+# B/H/Cam/aj "How's that?"
+# s3_mc "It's amazing..."
+
+# You lose yourselves in a long, deep kiss.
+# For a while, it's like you're the only two people in the world.
+# Afterwards, you lie on the roof together, sweaty and tired and happy.
+# B/H/Cam/aj "Wow. (you get ❤️ with Bill/Harry/Camilo/AJ)"
+# bill "Now that is what I call good sex."
+# s3_mc "You're always so matter of fact."
+# bill "Of course I am. That's what you like about me."
+# H: If this really was a James Bond movie, I think that scene would've had to fade to black.
+# H: Which is a shame. I wouldn't want to miss a single second of it.
+# camilo "It's never felt exactly like that before."
+# s3_mc "In a good way, right?"
+# camilo "In a wicked good way."
+# aj "Sorry if I got a little overexcited again. I tried to keep the noise down, but you didn't make it easy."
+# s3_mc "Do you think anyone overheard us?"
+# aj "Right now, I don't even care if they did."
+
+# You cuddle close in the warm night air.
+# B/H/Cam/aj "I'm so glad you picked me tonight."
+# B/H/Cam/aj "I was hoping you would. You were definitely giving me those vibes."
+# B/H/Cam/aj "But I was trying not to get my hopes up too much, just in case."
+# B/H/Cam/aj "I guess I should've known after what you said yesterday. About this spark between us. (only appears If ???)"
+# B/H/Cam/aj "I loved what you said in your speech tonight. I love knowing you like me the same way I like you."
+
+# Choices: Choosing to couple up with Bill/Harry/Camilo/AJ...
+# -It was a tough decision
+# s3_mc "I really had to think about it. I didn't want to just rush into this without being sure."
+# s3_mc "But in the end, it had to be you."
+
+# -It was an easy decision
+# s3_mc "I knew you were the one I wanted. No contest."
+
+# -I flipped a coin 
+# s3_mc "Well, a few coins. I had to narrow down my options."
+# Bill/Harry/Camilo/AJ laughs.
+# B/H/Cam/aj "Is that really how you make decisions?"
+# s3_mc "It's always worked for me so far."
+
+# He/She squeezes you closer to his/her chest.
+# You can feel his/her heart beating. It's incredibly soothing.
+# Bill's/Harry's/Camilo's/AJ's hand gently strokes your back as you feel your eyes start to get heavy...
+# B/H/Cam/aj "Hey sleepyhead."
+# s3_mc "Huh? Did I fall asleep?"
+# B/H/Cam/aj "I think you just dozed off for a second."
+# B/H/Cam/aj "Maybe we should go back inside and get some sleep."
+# B/H/Cam/aj "I've had a great time up here with you."
+
+# Choices: Hanging out with Bill/Harry/Camilo/AJ on the roof terrace...
+# -We should totally do this again
+# s3_mc "It's been so nice. I want to spend every night up here with you."
+# B/H/Cam/aj "That would be fun."
+# B/H/Cam/aj "But I think the others would definitely start asking questions..."
+# s3_mc "Let them ask."
+
+# -I'd rather be in a nice soft bed
+# s3_mc "This is cool and all, but beds are beds for a reason. 'Cause they're comfy."
+# B/H/Cam/aj "Then let's go."
+
+# -As long as we're together, I don't care
+# s3_mc "We could do this in any room of the Villa and I'd enjoy it just as much."
+# B/H/camilo "Even the kitchen?"
+# s3_mc "What part of 'any room' don't you understand?"
+
+# He/She grins and takes your hand. (You get 😍 with Bill/Harry/Camilo/AJ)
+# Together, you go back down the steps into the Villa.
+
+# When you arrive in the bedroom, the other Islanders are already getting into bed.
+# thought "Hmm, I should probably get into some comfier clothes..."
+# MC outfit change to sleepwear
+# thought "These'll do."
+# B/H/Cam/aj "Hey, babe."
+# B/H/Cam/aj "You look so great in those."
+# (if you chose the gem option to sneak off to the roof terrace)
+# B/H/Cam/aj "Oops, forgot to brush my teeth."
+# B/H/Cam/aj "Back in a second!"
+# Bill/Harry/Camilo/AJ hurries off towards the bathroom.
+# BFF flashes you a sly smile.
+# BFF: There you are, MC. Where have you and Bill/Harry/Camilo/AJ been all this time?
+# She/He leans in conspiratorially.
+# BFF: Any exciting developments?
+# Choices: Me and Bill/Harry/Camilo/AJ...
+# -We had sex on the roof! (if you choose this option)
+# BFF: No way! 
+# s3_mc "Yes way!"
+# BFF: Aah, that's so exciting!
+# BFF: And a really romantic place for your first time as a couple, too.
+# G/elladine "Ugh, you two are such goals already."
+# G/elladine "I'm so happy for you."
+# S/nicky "Is that going to be a problem now that you're coupled up? You and Bill/Harry/Camilo/AJ being disgustingly cute all over the place?"
+# s3_mc "Shut up."
+# S/nicky "I'm kidding. I'm really happy for you."
+
+# -We went to the roof to snuggle (if you chose to cuddle)
+# BFF: Aw, that's a romantic way to spend your first night as a couple!
+# G/elladine "Ugh, you two are such goals already."
+# G/elladine "I'm so happy for you."
+# S/nicky "Is that going to be a problem now that you're coupled up? You and Bill/Harry/Camilo/AJ being disgustingly cute all over the place?"
+# s3_mc "Shut up."
+# S/nicky "I'm kidding. I'm really happy for you."
+
+# -Wouldn't you like to know...
+# BFF: Uh, yeah! I wanna know all your gossip!
+# s3_mc "Sorry, but you'll just have to keep guessing."
+# BFF: You're so mysterious!
+# BFF: So you don't mind if I just assume the truth is something really saucy and scandalous, right?
+# s3_mc "Be my guest. You're not getting a word out of me."
+
+# -We were just getting coffee
+# BFF: Coffee?
+# BFF: But... it's night time.
+# s3_mc "Nothing wrong with a nice cup of night time coffee."
+# s3_mc "Gets you feeling all warm and cosy and ready for bed."
+# BFF: Are you sure you mean 'coffee'? You don't mean something else?
+# s3_mc "Coffee. The brown bean juice, sometimes with milk. You know."
+# s3_mc "Coffee."
+# BFF: I don't know how to break this to you, but I think you're doing coffee wrong.
+
+# Bill/Harry/Camilo/AJ comes back from the bathroom, his breath smelling of mint.
+# B/H/Cam/aj "What did I miss?"
+# BFF: Nothing...
+
+# Bill/Harry/Camilo/AJ cheerfully climbs onto your bed. You settle in next to him.
+
+# bill "Hey, don't worry. Sharing a bed with me is really easy."
+# s3_mc "What do you mean?"
+# bill "I'm a well heavy sleeper. Nothing wakes me up. Once I'm out you could be playing the drums right by my ears, doesn't matter."
+# bill "It comes from hammering on roofs all day, see. You get used to the noise."
+# H: I hope you're not a light sleeper, by the way.
+# H: I usually wake up early, like, really early. To do my affirmations. So I don't wanna disturb you.
+# camilo "Are you a heavy sleeper or a light sleeper?"
+# camilo "For me it kinda depends on how tired I am. Sometimes after a long day on my feet, I go out like a light, and that's me."
+# camilo "But other times I have nights where anything can wake me up."
+# aj "Sorry in advance, by the way."
+# s3_mc "What for?"
+# aj "I tend to move around a lot in my sleep. I'm usually dreaming about playing hockey."
+# aj "So don't worry if my legs are kicking and stuff, it's totally normal. But it might wake you up, if you're a light sleeper."
+
+# Choices: Am I a light sleeper?
+# -Yeah, I get woken up pretty easily
+# B/H/Cam/aj "Got it. I'll do my best not to wake you up, then."
+
+# -Nah, I sleep through most things
+# B/H/Cam/aj "Awesome. This should be easy, then."
+
+# -I don't mind being woken up by you
+# B/H/Cam/aj "Aw, babe. (You get 😍 with Bill/Harry/Camilo/AJ)"
+# B/H/Cam/aj "Still, I'll try not to wake you up till the morning."
+# B/H/Cam/aj "Whatever happens tomorrow, we don't wanna be all tired for it, right?"
+# s3_mc "Totally."
+# You make yourselves comfortable under the covers.
+# A hush falls over the bedroom as the Islanders settle in to sleep. The only sound is Bill's/Harry/Camilo/AJ breathing beside you.
+# thought "This is nice."
+# Bill/Harry/Camilo/AJ leans on his/her hands beside you and whispers.
+# B/H/Cam/aj "So, do you like your personal space at night..."
+# B/H/Cam/aj "Or are you down for a cuddle?"
+
+# Choices: Should I cuddle up to Bill/Harry/Camilo/AJ?
+# -Wrap your arms around him/her
+# You gently put your arms around Bill's/Harry's/Camilo's/AJ's body.
+# He/She snuggles closer against your chest and makes a small, happy, sleepy noise. (You get 😍 with Bill/Harry/Camilo/AJ)
+# thought "He's/She's so warm."
+# thought "And I feel so safe."
+
+# -Ask him/her to spoon you
+# s3_mc "Can I be the little spoon?"
+# He/She murmurs in agreement and wraps his/her arms around you. (You get 😍 with Bill/Harry/Camilo/AJ)
+# You roll over so your back is pressed into his/her chest, his/her hands holding you firmly around your waist.
+# thought "He's/She's so warm."
+# thought "And I feel so safe."
+
+# -I'd rather just go to sleep
+# B/H/Cam/aj "Alright. Sleep well."
+
+# You close your eyes and drift into a deep, comfortable sleep.
+
+# "It's strange to think that this morning, MC was the only single girl in the Villa..."
+# "And now she's coupled up with Bill/Harry/Camilo/AJ."
+# "They're so cute together, I totally can't even."
+# "Sorry, what it actually says here is I need to 'totally clean the oven.'"
+# "Alright, I see what's happened here. I'm just reading off my to-do list."
+# (if you chose the gem choice for the roof terrace)
+# "Anyway, that moment with the two of them on the roof terrace?"
+# "Most romantic thing I've seen so far this year."
+# "And that's including the slow-burn romance between Bill's tastebuds and Camilo's empanadas."
+# "Next time..."
+# "The Islanders buy washing powder and defrost the freezer!"
+# "Nope, sorry, that's my to-do list again."
+# "Next time..."
+# "Our happy couples will be put to the ultimate test."
+# camilo "Are those...?"
+# bill "Just follow the instructions, mate. It's simple."
+# H: All my ice cream melted.
+# "Will MC and Bill's/Harry's/Camilo's/AJ's relationship be strong enough to survive?"
