@@ -2,15 +2,26 @@
 ## Custom Functions and Classes
 ####################################################################
 init python:
+    def pronouns(name):
+        women = ["AJ", "Elladine", "Genevieve", "Iona", "Miki", "Lily", "Yasmin"]
+        if name in women:
+            he_she = "she"
+            him_her = "her"
+            his_her = "her"
+        else:
+            he_she = "he"
+            him_her = "him"
+            his_her = "his"
+
     def he_she(name):
-            '''
-            Returns the correct pronoun of he or she depending on the NPC.
-            '''
-            women = ["AJ", "Elladine", "Genevieve", "Iona", "Miki", "Lily", "Yasmin"]
-            if name in women:
-                return "she"
-            else:
-                return "he"
+        '''
+        Returns the correct pronoun of he or she depending on the NPC.
+        '''
+        women = ["AJ", "Elladine", "Genevieve", "Iona", "Miki", "Lily", "Yasmin"]
+        if name in women:
+            return "she"
+        else:
+            return "he"
 
     def him_her(name):
         '''

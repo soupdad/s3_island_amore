@@ -2,7 +2,7 @@
 ## General
 ################################################################
 default s3_hints = False
-define s3_3rd_girl_options = {"Bill":"Miki", "Camilo":"Iona", "Harry":"Genevieve"}
+define s3_3rd_girl_options = {"Bill":"Miki", "Camilo":"Iona", "Harry":"Genevieve", "AJ":"Seb"}
 default s3_3rd_girl = ""
 default s3_character_profile = ""
 
@@ -12,6 +12,7 @@ default s3_like_aj = False
 default s3_like_bill = False
 default s3_like_camilo = False
 default s3_like_harry = False
+default s3_couples = {"AJ":"", "Elladine":"", "Genevieve":"", "Miki":"", "Iona":"", "Bill":"", "Camilo":"", "Harry":"", "Seb":"", "Nicky":""}
 
 default s3_bff_he_she = ""
 default s3_bff_him_her = ""
@@ -157,3 +158,9 @@ default s3e3p2_draw_on_bucket = False
 default s3e3p2_win_challenge = False
 # s3e3p2_s3e3p2_ask_question (str) ("AJ", "Bill", "Camilo", "Harry")
 default s3e3p2_ask_question = ""
+
+## Episode 3, Part 3
+# s3e3p3_go_alone (bool)
+default s3e3p3_go_alone = False
+# s3e3p3_get_to_know (str) ["Bill", "Camilo", "Harry"]
+default s3e3p3_get_to_know = ""
