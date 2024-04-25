@@ -11410,6 +11410,8 @@ label s3e3p3:
     else:
         elladine "That sounds so nice, babes."
 
+    $ outfit = "evening"
+
     "Iona mists herself with one last squirt of strawberry-scented perfume."
     iona "Right, is everyone ready?"
     miki "As I'll ever be!"
@@ -12512,18 +12514,22 @@ label s3e3p3:
             elif s3_mc.current_partner == "AJ":
                 aj "Let's go, babe."
             "Together you head back towards the Villa."
-            jump label s3e3p3_roof_sex
+            jump s3e3p3_roof_sex
         "Not tonight.":
             s3_mc "I'm a bit tired."
             aj "Oh yeah, I don't blame you. It's been a long day."
             aj "Let's go get some rest."
             "[he_she] stands up and puts out a hand to help you to your feet."
             "Together you head back towards the Villa."
+            jump s3e3p3_ending
 
     
 label s3e3p3_roof_sex:
     scene s3-roof-night with dissolve
     $ on_screen = []
+    $ s3_mc.like_mc[s3_mc.current_partner] += 3
+    $ pronouns(s3_mc.current_partner)
+    $ s3e3p3_roof_sex = True
 
     "You step out onto the roof terrace with [s3_mc.current_partner]."
 
@@ -12613,241 +12619,597 @@ label s3e3p3_roof_sex:
         "She blushes."
         aj "OK, I'm actually too nervous to just come out and say it."
 
-# CHOICE
-"This is my chance to do bits with [s3_mc.current_partner]..."
-"No, I'd rather just cuddle":
-"[s3_mc.current_partner] smiles and strokes your hair."
+    # CHOICE
+    menu:
+        thought "This is my chance to do bits with [s3_mc.current_partner]..."
+        "No, I'd rather just cuddle":
+            $ s3e3p3_just_cuddle = True
+            "[s3_mc.current_partner] smiles and strokes your hair."
 
-B/H/Cam/aj "That sounds great, babe."
+            if s3_mc.current_partner == "Bill":
+                bill "That sounds great, babe."
+            elif s3_mc.current_partner == "Camilo":
+                camilo "That sounds great, babe."
+            elif s3_mc.current_partner == "Harry":
+                harry "That sounds great, babe."
+            elif s3_mc.current_partner == "AJ":
+                aj "That sounds great, babe."
+        "Yes, let's get right down to it!":
+            s3_mc "I want you, too..."
+            "You reach for [s3_mc.current_partner]'s clothes and start pulling them off as fast as you can."
+            "[he_she.capitalize()] slips you out of your outfit in one smooth motion, leaving it crumpled on the floor."
+            "You fall into each other's arms, kissing roughly and passionately, as the rest of the world seems to fall away."
+        "Yes, let's savour every moment":
+            s3_mc "It's our first time together. Let's make the most of it."
+            "You run your hand slowly down the length of [s3_mc.current_partner]'s neck and along [his_her] shoulder, making [him_her] shiver."
+            "[he_she.capitalize()] caresses your back, stroking you through your clothes, enjoying every shape and curve of your body."
+            "Finally you both start to get undressed, revealing yourselves one step at a time."
 
--Yes, let's get right down to it!
-s3_mc "I want you, too..."
-You reach for Bill's/Harry's/Camilo's/AJ's clothes and start pulling them off as fast as you can.
-He/She slips you out of your outfit in one smooth motion, leaving it crumpled on the floor.
-You fall into each other's arms, kissing roughly and passionately, as the rest of the world seems to fall away.
-Bill's body fits perfectly against yours, from his large hands on your hips, to his strong jaw nuzzling your throat. (you get ❤️ with Bill)
-Harry's slender fingers trace patterns across your skin, urgent and somehow gentle at the same time.(you get ❤️ with Harry)
-Camilo's hips roll against yours with a fluidity that's almost like dancing, every movement perfectly in sync. (you get ❤️ with Camilo)
 
--Yes, let's savour every moment
-s3_mc "It's our first time together. Let's make the most of it."
-You run your hand slowly down the length of Bill's/Harry's/Camilo's/AJ's neck and along his/her shoulder, making him/her shiver.
-He/She caresses you back, stroking you through your clothes, enjoying every shape and curve of your body.
-Finally you both start to get undressed, revealing yourselves one step at a time.
-Bill's body fits perfectly against yours, from his large hands on your hips, to his strong jaw nuzzling your throat. (you get ❤️ with Bill)
-Harry's slender fingers trace patterns across your skin, urgent and somehow gentle at the same time.(you get ❤️ with Harry)
-Camilo's hips roll against yours with a fluidity that's almost like dancing, every movement perfectly in sync. (you get ❤️ with Camilo)
-He seems confident, guiding your moves with ease.
-B/H/camilo "Is this OK?"
-AJ's hair drapes across your chest, soft and shimmering in the moonlight, as her hands slide around your waist. (you get ❤️ with AJ)
-She follows your movements, waiting for you to decide what happens next.
+    if s3e3p3_just_cuddle == False:
+        if s3_mc.current_partner == "Bill":
+            "Bill's body fits perfectly against yours, from his large hands on your hips, to his strong jaw nuzzling your throat."
+            "He seems confident, guiding your moves with ease."
+            bill "Is this OK?"
+        elif s3_mc.current_partner == "Camilo":
+            "Camilo's hips roll against yours with a fluidity that's almost like dancing, every movement perfectly in sync."
+            "He seems confident, guiding your moves with ease."
+            camilo "Is this OK?"
+        elif s3_mc.current_partner == "Harry":
+            "Harry's slender fingers trace patterns across your skin, urgent and somehow gentle at the same time."
+            "He seems confident, guiding your moves with ease."
+            harry "Is this OK?"
+        elif s3_mc.current_partner == "AJ":
+            "AJ's hair drapes across your chest, soft and shimmering in the moonlight, as her hands slide around your waist."
+            "She follows your movements, waiting for you to decide what happens next."
 
-Choiceseb "How should we do this?"
--Let's just play it by ear
-s3_mc "As long as I'm with you, I'm happy."
-B/H/Cam/aj "Me too, babe."
+        # CHOICE
+        menu:
+            thought "How should we do this?"
+            "Let's just play it by ear":
+                s3_mc "As long as I'm with you, I'm happy."
 
--I want to take the lead
-You wrap your legs around Bill/Harry/Camilo/AJ and roll on top of him.
-You touch him/her everywhere he/she wants to be touched.
-s3_mc "How's that?"
-B/H/Cam/aj "It's amazing..."
+                if s3_mc.current_partner == "Bill":
+                    bill "Me too, babe."
+                elif s3_mc.current_partner == "Camilo":
+                    camilo "Me too, babe."
+                elif s3_mc.current_partner == "Harry":
+                    harry "Me too, babe."
+                elif s3_mc.current_partner == "AJ":
+                    aj "Me too, babe."
+            "I want to take the lead":
+                "You wrap your legs around [s3_mc.current_partner] and roll on top of him."
+                "You touch [him_her] everywhere [he_she] wants to be touched."
+                s3_mc "How's that?"
 
--I want Bill/Harry/Camilo/AJ to take the lead
-Bill/Harry/Camilo/AJ wraps his/her legs around you and rolls on top of you.
-He/She touches you everywhere you want to be touched.
-B/H/Cam/aj "How's that?"
-s3_mc "It's amazing..."
+                if s3_mc.current_partner == "Bill":
+                    bill "It's amazing..."
+                elif s3_mc.current_partner == "Camilo":
+                    camilo "It's amazing..."
+                elif s3_mc.current_partner == "Harry":
+                    harry "It's amazing..."
+                elif s3_mc.current_partner == "AJ":
+                    aj "It's amazing..."
+            "I want [s3_mc.current_partner] to take the lead":
+                "[s3_mc.current_partner] wraps [his_her] legs around you and rolls on top of you."
+                "[he_she.capitalize()] touches you everywhere you want to be touched."
 
-You lose yourselves in a long, deep kiss.
-For a while, it's like you're the only two people in the world.
-Afterwards, you lie on the roof together, sweaty and tired and happy.
-B/H/Cam/aj "Wow. (you get ❤️ with Bill/Harry/Camilo/AJ)"
-bill "Now that is what I call good sex."
-s3_mc "You're always so matter of fact."
-bill "Of course I am. That's what you like about me."
-harry "If this really was a James Bond movie, I think that scene would've had to fade to black."
-harry "Which is a shame. I wouldn't want to miss a single second of it."
-camilo "It's never felt exactly like that before."
-s3_mc "In a good way, right?"
-camilo "In a wicked good way."
-aj "Sorry if I got a little overexcited again. I tried to keep the noise down, but you didn't make it easy."
-s3_mc "Do you think anyone overheard us?"
-aj "Right now, I don't even care if they did."
+                if s3_mc.current_partner == "Bill":
+                    bill "How's that?"
+                elif s3_mc.current_partner == "Camilo":
+                    camilo "How's that?"
+                elif s3_mc.current_partner == "Harry":
+                    harry "How's that?"
+                elif s3_mc.current_partner == "AJ":
+                    aj "How's that?"
+                s3_mc "It's amazing..."
 
-You cuddle close in the warm night air.
-B/H/Cam/aj "I'm so glad you picked me tonight."
-B/H/Cam/aj "I was hoping you would. You were definitely giving me those vibes."
-B/H/Cam/aj "But I was trying not to get my hopes up too much, just in case."
-B/H/Cam/aj "I guess I should've known after what you said yesterday. About this spark between us. (only appears If ???)"
-B/H/Cam/aj "I loved what you said in your speech tonight. I love knowing you like me the same way I like you."
+        "You lose yourselves in a long, deep kiss."
+        "For a while, it's like you're the only two people in the world."
+        "Afterwards, you lie on the roof together, sweaty and tired and happy."
 
-Choiceseb "Choosing to couple up with Bill/Harry/Camilo/AJ..."
--It was a tough decision
-s3_mc "I really had to think about it. I didn't want to just rush into this without being sure."
-s3_mc "But in the end, it had to be you."
+        if s3_mc.current_partner == "Bill":
+            bill "Wow."
+            bill "Now that is what I call good sex."
+            s3_mc "You're always so matter of fact."
+            bill "Of course I am. That's what you like about me."
+        elif s3_mc.current_partner == "Camilo":
+            camilo "Wow."
+            camilo "It's never felt exactly like that before."
+            s3_mc "In a good way, right?"
+            camilo "In a wicked good way."
+        elif s3_mc.current_partner == "Harry":
+            harry "Wow."
+            harry "If this really was a James Bond movie, I think that scene would've had to fade to black."
+            harry "Which is a shame. I wouldn't want to miss a single second of it."
+        elif s3_mc.current_partner == "AJ":
+            aj "Wow."
+            aj "Sorry if I got a little overexcited again. I tried to keep the noise down, but you didn't make it easy."
+            s3_mc "Do you think anyone overheard us?"
+            aj "Right now, I don't even care if they did."
 
--It was an easy decision
-s3_mc "I knew you were the one I wanted. No contest."
+    "You cuddle close in the warm night air."
 
--I flipped a coin 
-s3_mc "Well, a few coins. I had to narrow down my options."
-Bill/Harry/Camilo/AJ laughs.
-B/H/Cam/aj "Is that really how you make decisions?"
-s3_mc "It's always worked for me so far."
+    if s3_mc.current_partner == "Bill":
+        bill "I'm so glad you picked me tonight."
+        bill "I was hoping you would. You were definitely giving me those vibes."
+        bill "But I was trying not to get my hopes up too much, just in case."
+        if s3e2p2_special_spark == s3_mc.current_partner:
+            bill "I guess I should've known after what you said yesterday. About this spark between us."
+        else:
+            bill "I loved what you said in your speech tonight. I love knowing you like me the same way I like you."
+    elif s3_mc.current_partner == "Camilo":
+        camilo "I'm so glad you picked me tonight."
+        camilo "I was hoping you would. You were definitely giving me those vibes."
+        camilo "But I was trying not to get my hopes up too much, just in case."
+        if s3e2p2_special_spark == s3_mc.current_partner:
+            camilo "I guess I should've known after what you said yesterday. About this spark between us."
+        else:
+            camilo "I loved what you said in your speech tonight. I love knowing you like me the same way I like you."
+    elif s3_mc.current_partner == "Harry":
+        harry "I'm so glad you picked me tonight."
+        harry "I was hoping you would. You were definitely giving me those vibes."
+        harry "But I was trying not to get my hopes up too much, just in case."
+        if s3e2p2_special_spark == s3_mc.current_partner:
+            harry "I guess I should've known after what you said yesterday. About this spark between us."
+        else:
+            harry "I loved what you said in your speech tonight. I love knowing you like me the same way I like you."
+    elif s3_mc.current_partner == "AJ":
+        aj "I'm so glad you picked me tonight."
+        aj "I was hoping you would. You were definitely giving me those vibes."
+        aj "But I was trying not to get my hopes up too much, just in case."
+        if s3e2p2_special_spark == s3_mc.current_partner:
+            aj "I guess I should've known after what you said yesterday. About this spark between us."
+        else:
+            aj "I loved what you said in your speech tonight. I love knowing you like me the same way I like you."
 
-He/She squeezes you closer to his/her chest.
-You can feel his/her heart beating. It's incredibly soothing.
-Bill's/Harry's/Camilo's/AJ's hand gently strokes your back as you feel your eyes start to get heavy...
-B/H/Cam/aj "Hey sleepyhead."
-s3_mc "Huh? Did I fall asleep?"
-B/H/Cam/aj "I think you just dozed off for a second."
-B/H/Cam/aj "Maybe we should go back inside and get some sleep."
-B/H/Cam/aj "I've had a great time up here with you."
+    # CHOICE
+    menu:
+        s3_mc "Choosing to couple up with [s3_mc.current_partner]..."
+        "It was a tough decision":
+            s3_mc "I really had to think about it. I didn't want to just rush into this without being sure."
+            s3_mc "But in the end, it had to be you."
+        "It was an easy decision":
+            s3_mc "I knew you were the one I wanted. No contest."
+        "I flipped a coin ":
+            s3_mc "Well, a few coins. I had to narrow down my options."
+            "[s3_mc.current_partner] laughs."
 
-Choiceseb "Hanging out with Bill/Harry/Camilo/AJ on the roof terrace..."
--We should totally do this again
-s3_mc "It's been so nice. I want to spend every night up here with you."
-B/H/Cam/aj "That would be fun."
-B/H/Cam/aj "But I think the others would definitely start asking questions..."
-s3_mc "Let them ask."
+            if s3_mc.current_partner == "Bill":
+                bill "Is that really how you make decisions?"
+            elif s3_mc.current_partner == "Camilo":
+                camilo "Is that really how you make decisions?"
+            elif s3_mc.current_partner == "Harry":
+                harry "Is that really how you make decisions?"
+            elif s3_mc.current_partner == "AJ":
+                aj "Is that really how you make decisions?"
+                
+            s3_mc "It's always worked for me so far."
 
--I'd rather be in a nice soft bed
-s3_mc "This is cool and all, but beds are beds for a reason. 'Cause they're comfy."
-B/H/Cam/aj "Then let's go."
+    "[he_she.capitalize()] squeezes you closer to [his_her] chest."
+    "You can feel [his_her] heart beating. It's incredibly soothing."
+    "[s3_mc.current_partner]'s hand gently strokes your back as you feel your eyes start to get heavy..."
 
--As long as we're together, I don't care
-s3_mc "We could do this in any room of the Villa and I'd enjoy it just as much."
-B/H/camilo "Even the kitchen?"
-s3_mc "What part of 'any room' don't you understand?"
+    if s3_mc.current_partner == "Bill":
+        bill "Hey sleepyhead."
+        s3_mc "Huh? Did I fall asleep?"
+        bill "I think you just dozed off for a second."
+        bill "Maybe we should go back inside and get some sleep."
+        bill "I've had a great time up here with you."
+    elif s3_mc.current_partner == "Camilo":
+        camilo "Hey sleepyhead."
+        s3_mc "Huh? Did I fall asleep?"
+        camilo "I think you just dozed off for a second."
+        camilo "Maybe we should go back inside and get some sleep."
+        camilo "I've had a great time up here with you."
+    elif s3_mc.current_partner == "Harry":
+        harry "Hey sleepyhead."
+        s3_mc "Huh? Did I fall asleep?"
+        harry "I think you just dozed off for a second."
+        harry "Maybe we should go back inside and get some sleep."
+        harry "I've had a great time up here with you."
+    elif s3_mc.current_partner == "AJ":
+        aj "Hey sleepyhead."
+        s3_mc "Huh? Did I fall asleep?"
+        aj "I think you just dozed off for a second."
+        aj "Maybe we should go back inside and get some sleep."
+        aj "I've had a great time up here with you."
 
-He/She grins and takes your hand. (You get 😍 with Bill/Harry/Camilo/AJ)
-Together, you go back down the steps into the Villa.
+    # CHOICE
+    menu:
+        thought "Hanging out with [s3_mc.current_partner] on the roof terrace..."
+        "We should totally do this again":
+            s3_mc "It's been so nice. I want to spend every night up here with you."
+            if s3_mc.current_partner == "Bill":
+                bill "That would be fun."
+                bill "But I think the others would definitely start asking questions..."
+            elif s3_mc.current_partner == "Camilo":
+                camilo "That would be fun."
+                camilo "But I think the others would definitely start asking questions..."
+            elif s3_mc.current_partner == "Harry":
+                harry "That would be fun."
+                harry "But I think the others would definitely start asking questions..."
+            elif s3_mc.current_partner == "AJ":
+                aj "That would be fun."
+                aj "But I think the others would definitely start asking questions..."
+            s3_mc "Let them ask."
+        "I'd rather be in a nice soft bed":
+            s3_mc "This is cool and all, but beds are beds for a reason. 'Cause they're comfy."
+            if s3_mc.current_partner == "Bill":
+                bill "Then let's go."
+            elif s3_mc.current_partner == "Camilo":
+                camilo "Then let's go."
+            elif s3_mc.current_partner == "Harry":
+                harry "Then let's go."
+            elif s3_mc.current_partner == "AJ":
+                aj "Then let's go."
+        "As long as we're together, I don't care":
+            s3_mc "We could do this in any room of the Villa and I'd enjoy it just as much."
+            if s3_mc.current_partner == "Bill":
+                bill "Even the kitchen?"
+            elif s3_mc.current_partner == "Camilo":
+                camilo "Even the kitchen?"
+            elif s3_mc.current_partner == "Harry":
+                harry "Even the kitchen?"
+            elif s3_mc.current_partner == "AJ":
+                aj "Even the kitchen?"
+            s3_mc "What part of 'any room' don't you understand?"
 
-When you arrive in the bedroom, the other Islanders are already getting into bed.
-thought "Hmm, I should probably get into some comfier clothes..."
-MC outfit change to sleepwear
-thought "These'll do."
-B/H/Cam/aj "Hey, babe."
-B/H/Cam/aj "You look so great in those."
-(if you chose the gem option to sneak off to the roof terrace)
-B/H/Cam/aj "Oops, forgot to brush my teeth."
-B/H/Cam/aj "Back in a second!"
-Bill/Harry/Camilo/AJ hurries off towards the bathroom.
-BFF flashes you a sly smile.
-BFF: There you are, MC. Where have you and Bill/Harry/Camilo/AJ been all this time?
-She/He leans in conspiratorially.
-BFF: Any exciting developments?
-Choiceseb "Me and Bill/Harry/Camilo/AJ..."
--We had sex on the roof! (if you choose this option)
-BFF: No way! 
-s3_mc "Yes way!"
-BFF: Aah, that's so exciting!
-BFF: And a really romantic place for your first time as a couple, too.
-G/elladine "Ugh, you two are such goals already."
-G/elladine "I'm so happy for you."
-S/nicky "Is that going to be a problem now that you're coupled up? You and Bill/Harry/Camilo/AJ being disgustingly cute all over the place?"
-s3_mc "Shut up."
-S/nicky "I'm kidding. I'm really happy for you."
+    "[he_she.capitalize()] grins and takes your hand."
+    "Together, you go back down the steps into the Villa."
 
--We went to the roof to snuggle (if you chose to cuddle)
-BFF: Aw, that's a romantic way to spend your first night as a couple!
-G/elladine "Ugh, you two are such goals already."
-G/elladine "I'm so happy for you."
-S/nicky "Is that going to be a problem now that you're coupled up? You and Bill/Harry/Camilo/AJ being disgustingly cute all over the place?"
-s3_mc "Shut up."
-S/nicky "I'm kidding. I'm really happy for you."
+label s3e3p3_ending:
+    scene s3-bedroom-night with dissolve
+    $ on_screen = []
 
--Wouldn't you like to know...
-BFF: Uh, yeah! I wanna know all your gossip!
-s3_mc "Sorry, but you'll just have to keep guessing."
-BFF: You're so mysterious!
-BFF: So you don't mind if I just assume the truth is something really saucy and scandalous, right?
-s3_mc "Be my guest. You're not getting a word out of me."
+    "When you arrive in the bedroom, the other Islanders are already getting into bed."
+    thought "Hmm, I should probably get into some comfier clothes..."
 
--We were just getting coffee
-BFF: Coffee?
-BFF: But... it's night time.
-s3_mc "Nothing wrong with a nice cup of night time coffee."
-s3_mc "Gets you feeling all warm and cosy and ready for bed."
-BFF: Are you sure you mean 'coffee'? You don't mean something else?
-s3_mc "Coffee. The brown bean juice, sometimes with milk. You know."
-s3_mc "Coffee."
-BFF: I don't know how to break this to you, but I think you're doing coffee wrong.
+    scene s3-dressing-room with dissolve
+    $ on_screen = []
 
-Bill/Harry/Camilo/AJ comes back from the bathroom, his breath smelling of mint.
-B/H/Cam/aj "What did I miss?"
-BFF: Nothing...
+    # Add back one MC has images in game
+    # "MC outfit change to sleepwear"
+    # "Hey, babe." -> always
+    # "You look so great in those." -> if one of current partner fav outfits, else nothing
 
-Bill/Harry/Camilo/AJ cheerfully climbs onto your bed. You settle in next to him.
+    "You get changed into your pjs."
+    thought "That's better."
 
-bill "Hey, don't worry. Sharing a bed with me is really easy."
-s3_mc "What do you mean?"
-bill "I'm a well heavy sleeper. Nothing wakes me up. Once I'm out you could be playing the drums right by my ears, doesn't matter."
-bill "It comes from hammering on roofs all day, see. You get used to the noise."
-harry "I hope you're not a light sleeper, by the way."
-harry "I usually wake up early, like, really early. To do my affirmations. So I don't wanna disturb you."
-camilo "Are you a heavy sleeper or a light sleeper?"
-camilo "For me it kinda depends on how tired I am. Sometimes after a long day on my feet, I go out like a light, and that's me."
-camilo "But other times I have nights where anything can wake me up."
-aj "Sorry in advance, by the way."
-s3_mc "What for?"
-aj "I tend to move around a lot in my sleep. I'm usually dreaming about playing hockey."
-aj "So don't worry if my legs are kicking and stuff, it's totally normal. But it might wake you up, if you're a light sleeper."
+    $ outfit = "pjs"
 
-Choiceseb "Am I a light sleeper?"
--Yeah, I get woken up pretty easily
-B/H/Cam/aj "Got it. I'll do my best not to wake you up, then."
+    scene s3-bedroom-night with dissolve
+    $ on_screen = []
 
--Nah, I sleep through most things
-B/H/Cam/aj "Awesome. This should be easy, then."
+    if s3_mc.current_partner == "Bill":
+        bill "Hey, babe."
+        bill "You look so great in those."
+        if s3e3p3_roof_sex:
+            bill "Oops, forgot to brush my teeth."
+            bill "Back in a second!"
+    elif s3_mc.current_partner == "Camilo":
+        camilo "Hey, babe."
+        camilo "You look so great in those."
+        if s3e3p3_roof_sex:
+            camilo "Oops, forgot to brush my teeth."
+            camilo "Back in a second!"
+    elif s3_mc.current_partner == "Harry":
+        harry "Hey, babe."
+        harry "You look so great in those."
+        if s3e3p3_roof_sex:
+            harry "Oops, forgot to brush my teeth."
+            harry "Back in a second!"
+    elif s3_mc.current_partner == "AJ":
+        aj "Hey, babe."
+        aj "You look so great in those."
+        if s3e3p3_roof_sex:
+            aj "Oops, forgot to brush my teeth."
+            aj "Back in a second!"
 
--I don't mind being woken up by you
-B/H/Cam/aj "Aw, babe. (You get 😍 with Bill/Harry/Camilo/AJ)"
-B/H/Cam/aj "Still, I'll try not to wake you up till the morning."
-B/H/Cam/aj "Whatever happens tomorrow, we don't wanna be all tired for it, right?"
-s3_mc "Totally."
-You make yourselves comfortable under the covers.
-A hush falls over the bedroom as the Islanders settle in to sleep. The only sound is Bill's/Harry/Camilo/AJ breathing beside you.
-thought "This is nice."
-Bill/Harry/Camilo/AJ leans on his/her hands beside you and whispers.
-B/H/Cam/aj "So, do you like your personal space at night..."
-B/H/Cam/aj "Or are you down for a cuddle?"
+    "[s3_mc.current_partner] hurries off towards the bathroom."
 
-Choiceseb "Should I cuddle up to Bill/Harry/Camilo/AJ?"
--Wrap your arms around him/her
-You gently put your arms around Bill's/Harry's/Camilo's/AJ's body.
-He/She snuggles closer against your chest and makes a small, happy, sleepy noise. (You get 😍 with Bill/Harry/Camilo/AJ)
-thought "He's/She's so warm."
-thought "And I feel so safe."
+    $ pronouns(s3_mc.bff)
+    "[s3_mc.bff] flashes you a sly smile."
+    seb "There you are, [s3_name]. Where have you and [s3_mc.current_partner] been all this time?"
+    "[he_she.capitalize()] leans in conspiratorially."
+    seb "Any exciting developments?"
 
--Ask him/her to spoon you
-s3_mc "Can I be the little spoon?"
-He/She murmurs in agreement and wraps his/her arms around you. (You get 😍 with Bill/Harry/Camilo/AJ)
-You roll over so your back is pressed into his/her chest, his/her hands holding you firmly around your waist.
-thought "He's/She's so warm."
-thought "And I feel so safe."
+    # CHOICE
+    menu:
+        s3_mc "Me and [s3_mc.current_partner]..."
+        "We had sex on the roof!" if s3e3p3_roof_sex and s3e3p3_just_cuddle == False:
+            if s3_mc.bff == "Elladine":
+                elladine "No way!"
+                s3_mc "Yes way!"
+                elladine "Aah, that's so exciting!"
+                elladine "And a really romantic place for your first time as a couple, too."
+                elladine "Ugh, you two are such goals already."
+                elladine "I'm so happy for you."
+            elif s3_mc.bff == "Genevieve":
+                genevieve "No way!"
+                s3_mc "Yes way!"
+                genevieve "Aah, that's so exciting!"
+                genevieve "And a really romantic place for your first time as a couple, too."
+                genevieve "Ugh, you two are such goals already."
+                genevieve "I'm so happy for you."
+            elif s3_mc.bff == "Nicky":
+                nicky "No way!"
+                s3_mc "Yes way!"
+                nicky "Aah, that's so exciting!"
+                nicky "And a really romantic place for your first time as a couple, too."
+                nicky "Is that going to be a problem now that you're coupled up? You and [s3_mc.current_partner] being disgustingly cute all over the place?"
+                s3_mc "Shut up."
+                nicky "I'm kidding. I'm really happy for you."
+            elif s3_mc.bff == "Seb":
+                seb "No way!"
+                s3_mc "Yes way!"
+                seb "Aah, that's so exciting!"
+                seb "And a really romantic place for your first time as a couple, too."
+                seb "Is that going to be a problem now that you're coupled up? You and [s3_mc.current_partner] being disgustingly cute all over the place?"
+                s3_mc "Shut up."
+                seb "I'm kidding. I'm really happy for you."
+        "We went to the roof to snuggle" if s3e3p3_roof_sex and s3e3p3_just_cuddle == True:
+            if s3_mc.bff == "Elladine":
+                elladine "Aw, that's a romantic way to spend your first night as a couple!"
+                elladine "Ugh, you two are such goals already."
+                elladine "I'm so happy for you."
+            elif s3_mc.bff == "Genevieve":
+                genevieve "Aw, that's a romantic way to spend your first night as a couple!"
+                genevieve "Ugh, you two are such goals already."
+                genevieve "I'm so happy for you."
+            elif s3_mc.bff == "Nicky":
+                nicky "Aw, that's a romantic way to spend your first night as a couple!"
+                nicky "Is that going to be a problem now that you're coupled up? You and [s3_mc.current_partner] being disgustingly cute all over the place?"
+                s3_mc "Shut up."
+                nicky "I'm kidding. I'm really happy for you."
+            elif s3_mc.bff == "Seb":
+                seb "Aw, that's a romantic way to spend your first night as a couple!"
+                seb "Is that going to be a problem now that you're coupled up? You and [s3_mc.current_partner] being disgustingly cute all over the place?"
+                s3_mc "Shut up."
+                seb "I'm kidding. I'm really happy for you."
+        "Wouldn't you like to know...":
+            if s3_mc.bff == "Elladine":
+                elladine "Uh, yeah! I wanna know all your gossip!"
+                s3_mc "Sorry, but you'll just have to keep guessing."
+                elladine "You're so mysterious!"
+                elladine "So you don't mind if I just assume the truth is something really saucy and scandalous, right?"
+                s3_mc "Be my guest. You're not getting a word out of me."
+            elif s3_mc.bff == "Genevieve":
+                genevieve "Uh, yeah! I wanna know all your gossip!"
+                s3_mc "Sorry, but you'll just have to keep guessing."
+                genevieve "You're so mysterious!"
+                genevieve "So you don't mind if I just assume the truth is something really saucy and scandalous, right?"
+                s3_mc "Be my guest. You're not getting a word out of me."
+            elif s3_mc.bff == "Nicky":
+                nicky "Uh, yeah! I wanna know all your gossip!"
+                s3_mc "Sorry, but you'll just have to keep guessing."
+                nicky "You're so mysterious!"
+                nicky "So you don't mind if I just assume the truth is something really saucy and scandalous, right?"
+                s3_mc "Be my guest. You're not getting a word out of me."
+            elif s3_mc.bff == "Seb":
+                seb "Uh, yeah! I wanna know all your gossip!"
+                s3_mc "Sorry, but you'll just have to keep guessing."
+                seb "You're so mysterious!"
+                seb "So you don't mind if I just assume the truth is something really saucy and scandalous, right?"
+                s3_mc "Be my guest. You're not getting a word out of me."
+        "We were just getting coffee":
+            if s3_mc.bff == "Elladine":
+                elladine "Coffee?"
+                elladine "But... it's night time."
+                s3_mc "Nothing wrong with a nice cup of night time coffee."
+                s3_mc "Gets you feeling all warm and cosy and ready for bed."
+                elladine "Are you sure you mean 'coffee'? You don't mean something else?"
+                s3_mc "Coffee. The brown bean juice, sometimes with milk. You know."
+                s3_mc "Coffee."
+                elladine "I don't know how to break this to you, but I think you're doing coffee wrong."
+            elif s3_mc.bff == "Genevieve":
+                genevieve "Coffee?"
+                genevieve "But... it's night time."
+                s3_mc "Nothing wrong with a nice cup of night time coffee."
+                s3_mc "Gets you feeling all warm and cosy and ready for bed."
+                genevieve "Are you sure you mean 'coffee'? You don't mean something else?"
+                s3_mc "Coffee. The brown bean juice, sometimes with milk. You know."
+                s3_mc "Coffee."
+                genevieve "I don't know how to break this to you, but I think you're doing coffee wrong."
+            elif s3_mc.bff == "Nicky":
+                nicky "Coffee?"
+                nicky "But... it's night time."
+                s3_mc "Nothing wrong with a nice cup of night time coffee."
+                s3_mc "Gets you feeling all warm and cosy and ready for bed."
+                nicky "Are you sure you mean 'coffee'? You don't mean something else?"
+                s3_mc "Coffee. The brown bean juice, sometimes with milk. You know."
+                s3_mc "Coffee."
+                nicky "I don't know how to break this to you, but I think you're doing coffee wrong."
+            elif s3_mc.bff == "Seb":
+                seb "Coffee?"
+                seb "But... it's night time."
+                s3_mc "Nothing wrong with a nice cup of night time coffee."
+                s3_mc "Gets you feeling all warm and cosy and ready for bed."
+                seb "Are you sure you mean 'coffee'? You don't mean something else?"
+                s3_mc "Coffee. The brown bean juice, sometimes with milk. You know."
+                s3_mc "Coffee."
+                seb "I don't know how to break this to you, but I think you're doing coffee wrong."
 
--I'd rather just go to sleep
-B/H/Cam/aj "Alright. Sleep well."
+    $ pronouns(s3_mc.current_partner)
+    "[s3_mc.current_partner] comes back from the bathroom, [his_her] breath smelling of mint."
 
-You close your eyes and drift into a deep, comfortable sleep.
+    if s3_mc.current_partner == "Bill":
+        bill "What did I miss?"
+    elif s3_mc.current_partner == "Camilo":
+        camilo "What did I miss?"
+    elif s3_mc.current_partner == "Harry":
+        harry "What did I miss?"
+    elif s3_mc.current_partner == "AJ":
+        aj "What did I miss?"
 
-"It's strange to think that this morning, [s3_name] was the only single girl in the Villa..."
-"And now she's coupled up with [s3_mc.current_partner]."
-"They're so cute together, I totally can't even."
-"Sorry, what it actually says here is I need to 'totally clean the oven.'"
-"Alright, I see what's happened here. I'm just reading off my to-do list."
-(if you chose the gem choice for the roof terrace)
-"Anyway, that moment with the two of them on the roof terrace?"
-"Most romantic thing I've seen so far this year."
-"And that's including the slow-burn romance between Bill's tastebuds and Camilo's empanadas."
-"Next time..."
-"The Islanders buy washing powder and defrost the freezer!"
-"Nope, sorry, that's my to-do list again."
-"Next time..."
-"Our happy couples will be put to the ultimate test."
-camilo "Are those...?"
-bill "Just follow the instructions, mate. It's simple."
-harry "All my ice cream melted."
-"Will MC and Bill's/Harry's/Camilo's/AJ's relationship be strong enough to survive?"
+    if s3_mc.bff == "Elladine":
+        elladine "Nothing..."
+        show elladine at npc_exit
+        pause .3
+        $ renpy.hide("elladine")
+        $ on_screen.remove("elladine")
+    elif s3_mc.bff == "Genevieve":
+        genevieve "Nothing..."
+        show genevieve at npc_exit
+        pause .3
+        $ renpy.hide("genevieve")
+        $ on_screen.remove("genevieve")
+    elif s3_mc.bff == "Nicky":
+        nicky "Nothing..."
+        show nicky at npc_exit
+        pause .3
+        $ renpy.hide("nicky")
+        $ on_screen.remove("nicky")
+    elif s3_mc.bff == "Seb":
+        seb "Nothing..."
+        show seb at npc_exit
+        pause .3
+        $ renpy.hide("seb")
+        $ on_screen.remove("seb")
+
+    if s3_mc.current_partner == "Bill":
+        show bill at npc_center
+    elif s3_mc.current_partner == "Camilo":
+        show camilo at npc_center
+    elif s3_mc.current_partner == "Harry":
+        show harry at npc_center
+    elif s3_mc.current_partner == "AJ":
+        show aj at npc_center
+
+    "[s3_mc.current_partner] cheerfully climbs onto your bed. You settle in next to [him_her]."
+
+    if s3_mc.current_partner == "Bill":
+        bill "Hey, don't worry. Sharing a bed with me is really easy."
+        s3_mc "What do you mean?"
+        bill "I'm a well heavy sleeper. Nothing wakes me up. Once I'm out you could be playing the drums right by my ears, doesn't matter."
+        bill "It comes from hammering on roofs all day, see. You get used to the noise."
+    elif s3_mc.current_partner == "Camilo":
+        camilo "Are you a heavy sleeper or a light sleeper?"
+        camilo "For me it kinda depends on how tired I am. Sometimes after a long day on my feet, I go out like a light, and that's me."
+        camilo "But other times I have nights where anything can wake me up."
+    elif s3_mc.current_partner == "Harry":
+        harry "I hope you're not a light sleeper, by the way."
+        harry "I usually wake up early, like, really early. To do my affirmations. So I don't wanna disturb you."
+    elif s3_mc.current_partner == "AJ":
+        aj "Sorry in advance, by the way."
+        s3_mc "What for?"
+        aj "I tend to move around a lot in my sleep. I'm usually dreaming about playing hockey."
+        aj "So don't worry if my legs are kicking and stuff, it's totally normal. But it might wake you up, if you're a light sleeper."
+
+    # CHOICE
+    menu:
+        thought "Am I a light sleeper?"
+        "Yeah, I get woken up pretty easily":
+            if s3_mc.current_partner == "Bill":
+                bill "Got it. I'll do my best not to wake you up, then."
+            elif s3_mc.current_partner == "Camilo":
+                camilo "Got it. I'll do my best not to wake you up, then."
+            elif s3_mc.current_partner == "Harry":
+                harry "Got it. I'll do my best not to wake you up, then."
+            elif s3_mc.current_partner == "AJ":
+                aj "Got it. I'll do my best not to wake you up, then."
+        "Nah, I sleep through most things":
+            if s3_mc.current_partner == "Bill":
+                bill "Awesome. This should be easy, then."
+            elif s3_mc.current_partner == "Camilo":
+                camilo "Awesome. This should be easy, then."
+            elif s3_mc.current_partner == "Harry":
+                harry "Awesome. This should be easy, then."
+            elif s3_mc.current_partner == "AJ":
+                aj "Awesome. This should be easy, then."
+        "I don't mind being woken up by you":
+            if s3_mc.current_partner == "Bill":
+                bill "Aw, babe."
+                bill "Still, I'll try not to wake you up till the morning."
+                bill "Whatever happens tomorrow, we don't wanna be all tired for it, right?"
+            elif s3_mc.current_partner == "Camilo":
+                camilo "Aw, babe."
+                camilo "Still, I'll try not to wake you up till the morning."
+                camilo "Whatever happens tomorrow, we don't wanna be all tired for it, right?"
+            elif s3_mc.current_partner == "Harry":
+                harry "Aw, babe."
+                harry "Still, I'll try not to wake you up till the morning."
+                harry "Whatever happens tomorrow, we don't wanna be all tired for it, right?"
+            elif s3_mc.current_partner == "AJ":
+                aj "Aw, babe."
+                aj "Still, I'll try not to wake you up till the morning."
+                aj "Whatever happens tomorrow, we don't wanna be all tired for it, right?"
+            s3_mc "Totally."
+
+    "You make yourselves comfortable under the covers."
+    "A hush falls over the bedroom as the Islanders settle in to sleep. The only sound is [s3_mc.current_partner]'s breathing beside you."
+    thought "This is nice."
+    "[s3_mc.current_partner] leans on [his_her] hands beside you and whispers."
+
+    if s3_mc.current_partner == "Bill":
+        bill "So, do you like your personal space at night..."
+        bill "Or are you down for a cuddle?"
+    elif s3_mc.current_partner == "Camilo":
+        camilo "So, do you like your personal space at night..."
+        camilo "Or are you down for a cuddle?"
+    elif s3_mc.current_partner == "Harry":
+        harry "So, do you like your personal space at night..."
+        harry "Or are you down for a cuddle?"
+    elif s3_mc.current_partner == "AJ":
+        aj "So, do you like your personal space at night..."
+        aj "Or are you down for a cuddle?"
+
+    # CHOICE
+    menu:
+        thought "Should I cuddle up to [s3_mc.current_partner]?"
+        "Wrap your arms around [him_her]":
+            $ s3_mc.like(s3_mc.current_partner)
+            "You gently put your arms around [s3_mc.current_partner]'s body."
+            "[he_she.capitalize()] snuggles closer against your chest and makes a small, happy, sleepy noise."
+            thought "[he_she.capitalize()]'s so warm."
+            thought "And I feel so safe."
+        "Ask [him_her] to spoon you":
+            $ s3_mc.like(s3_mc.current_partner)
+            s3_mc "Can I be the little spoon?"
+            "[he_she.capitalize()] murmurs in agreement and wraps [his_her] arms around you."
+            "You roll over so your back is pressed into [his_her] chest, [his_her] hands holding you firmly around your waist."
+            thought "[he_she.capitalize()]'s so warm."
+            thought "And I feel so safe."
+        "I'd rather just go to sleep":
+            if s3_mc.current_partner == "Bill":
+                bill "Alright. Sleep well."
+            elif s3_mc.current_partner == "Camilo":
+                camilo "Alright. Sleep well."
+            elif s3_mc.current_partner == "Harry":
+                harry "Alright. Sleep well."
+            elif s3_mc.current_partner == "AJ":
+                aj "Alright. Sleep well."
+
+    "You close your eyes and drift into a deep, comfortable sleep."
+
+    scene edited_sandy_intro with dissolve
+    $ on_screen = []
+
+    "It's strange to think that this morning, [s3_name] was the only single girl in the Villa..."
+    "And now she's coupled up with [s3_mc.current_partner]."
+    "They're so cute together, I totally can't even."
+    "Sorry, what it actually says here is I need to 'totally clean the oven.'"
+    "Alright, I see what's happened here. I'm just reading off my to-do list."
+
+    if s3e3p3_roof_sex:
+        "Anyway, that moment with the two of them on the roof terrace?"
+        "Most romantic thing I've seen so far this year."
+        "And that's including the slow-burn romance between Bill's tastebuds and Camilo's empanadas."
+
+    "Next time..."
+    "The Islanders buy washing powder and defrost the freezer!"
+    "Nope, sorry, that's my to-do list again."
+    "Next time..."
+    "Our happy couples will be put to the ultimate test."
+    camilo "Are those...?"
+    bill "Just follow the instructions, mate. It's simple."
+    harry "All my ice cream melted."
+    "Will [s3_name] and [s3_mc.current_partner]'s relationship be strong enough to survive?"
+
+    # CHOICE
+    menu:
+        "Do you want to continue to next part or go back to the main menu?"
+        "Next Part":
+            jump s3e4p1
+        "Main Menu":
+            jump main_menu

@@ -164,3 +164,7 @@ default s3e3p2_ask_question = ""
 default s3e3p3_go_alone = False
 # s3e3p3_get_to_know (str) ["Bill", "Camilo", "Harry"]
 default s3e3p3_get_to_know = ""
+# s3e3p3_just_cuddle (bool)
+default s3e3p3_just_cuddle = False
+# s3e3p3_roof_sex (bool)
+default s3e3p3_roof_sex = False
