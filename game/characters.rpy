@@ -3,45 +3,22 @@
 ####################################################################
 init python:
     def pronouns(name):
+        '''
+        Saves the correct pronouns to generic variables depending on the NPC.
+        '''
         women = ["AJ", "Elladine", "Genevieve", "Iona", "Miki", "Lily", "Yasmin"]
+        global he_she, him_her, his_her, his_hers
+
         if name in women:
             he_she = "she"
             him_her = "her"
             his_her = "her"
+            his_hers = "hers"
         else:
             he_she = "he"
             him_her = "him"
             his_her = "his"
-
-    def he_she(name):
-        '''
-        Returns the correct pronoun of he or she depending on the NPC.
-        '''
-        women = ["AJ", "Elladine", "Genevieve", "Iona", "Miki", "Lily", "Yasmin"]
-        if name in women:
-            return "she"
-        else:
-            return "he"
-
-    def him_her(name):
-        '''
-        Returns the correct pronoun of him or her depending on the NPC.
-        '''
-        women = ["AJ", "Elladine", "Genevieve", "Iona", "Miki", "Lily", "Yasmin"]
-        if name in women:
-            return "her"
-        else:
-            return "him"
-
-    def his_her(name):
-        '''
-        Returns the correct pronoun of his or her depending on the NPC.
-        '''
-        women = ["AJ", "Elladine", "Genevieve", "Iona", "Miki", "Lily", "Yasmin"]
-        if name in women:
-            return "her"
-        else:
-            return "his"
+            his_hers = "his"
 
     def favorite_li():
         '''
@@ -181,10 +158,13 @@ init python:
             self.like_mc[npc] -= 1
 
 
+    # This is currently unnecessary but I want to leave in incase if I find a way to use it.
+    # I don't want to have to recode all of this.
+    # If end up using fav_outfits. Delete current_partner and gender.
     class Npcs:
         def __init__(self, gender):
             """
-            A character that isn't controlled by the user.
+            Defines attributes and actions of a character that isn't controlled by the user.
 
             Args:
             gender (str) - The gender of the NPC, either woman or man
@@ -196,33 +176,6 @@ init python:
             self.fav_outfits = []
             self.current_partner = ""
             self.gender = gender
-
-        def he_she(self):
-            '''
-            Returns the correct pronoun of he or she depending on the NPC.
-            '''
-            if self.gender == "woman":
-                return "she"
-            else:
-                return "he"
-
-        def him_her(self):
-            '''
-            Returns the correct pronoun of him or her depending on the NPC.
-            '''
-            if self.gender == "woman":
-                return "her"
-            else:
-                return "him"
-
-        def his_her(self):
-            '''
-            Returns the correct pronoun of his or her depending on the NPC.
-            '''
-            if self.gender == "woman":
-                return "her"
-            else:
-                return "his"
 
         def like_mc_outfit(self, mc_current_outfit):
             '''

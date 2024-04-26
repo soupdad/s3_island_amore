@@ -38,7 +38,7 @@ define gui.hover_color = '#45210c'
 
 ## The color used for a text button when it is selected but not focused. A
 ## button is selected if it is the current screen or preference value.
-define gui.selected_color = '#e5266c'
+define gui.selected_color = '#00bcf0'
 
 ## The color used for a text button when it cannot be selected.
 define gui.insensitive_color = '#7070707f'
@@ -49,8 +49,8 @@ define gui.muted_color = '#8d5218'
 define gui.hover_muted_color = '#6b3413'
 
 ## The colors used for dialogue and menu choice text.
-define gui.text_color = '#404040'
-define gui.interface_text_color = '#404040'
+define gui.text_color = '#1f1f1f'
+define gui.interface_text_color = '#1f1f1f'
 
 
 ## Fonts and Font Sizes ########################################################

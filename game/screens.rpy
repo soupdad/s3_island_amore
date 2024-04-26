@@ -1620,7 +1620,7 @@ style slider_slider:
 
     ** Still need to be adjusted and made to look nicer/text be more readable.
 '''
-screen s3_character_profile:
+screen s3_character_profile():
     image "bgs/edited_sandy_intro.png"
 
     if s3_character_profile == "AJ":
@@ -1666,6 +1666,23 @@ screen s3_character_profile:
     elif s3_character_profile == "Yasmin":
         pass
 
+'''
+Displays the day and part at the beginning of each part.
+
+Maybe want to add the titles that they gave them in LITG?
+'''
+screen day_title(day, part):
+    vbox:
+        align(0.5, 0.3)
+
+        hbox:
+            text "Day [day] Part [part]" at title:
+                size 120
+                color "#ffffff"
+                align(0.5, 0.5)
+                textalign 0.5
+                bold True
+    
 
 ###############################################
 ## Episode Specific
@@ -1674,7 +1691,6 @@ screen s3_character_profile:
 #### Add screen where you can click on image of either Bill, Camilo, or Harry when deciding who to couple up with.
 #### Either it is all 3 on screen and they get larger on hover or you click through with arrows.
 
-## Episode 2, Part 1
 '''
     Used in episode 2, part 1.
 
@@ -1682,13 +1698,13 @@ screen s3_character_profile:
 
     Map icons of selected islanders are removed so they cannot be reselected.
 '''
-screen s3e2p1_select_who_to_talk_to:
+screen s3e2p1_select_who_to_talk_to():
     image "bgs/s3-outside-villa-wide-shot-day.jpg"
 
     button:
 
         frame:
-            padding(20, 20)
+            padding(50, 60)
             margin(400, 20)
             align(0.5, 0.0)
             text "Welcome to the Villa choice screen! Tap the Islanders you want to chat with." size 25 color "#000000" 
@@ -1713,7 +1729,7 @@ screen s3e2p1_select_who_to_talk_to:
         # seb and bill at s3e2p1_kitchen
         imagebutton idle "map_icons/seb-icon.png" align(0.4, 0.4) action Call("s3e2p1_kitchen") at map_icon
         imagebutton idle "map_icons/bill-icon.png" align(0.45, 0.4) action Call("s3e2p1_kitchen") at map_icon
-    
+
 '''
     Used in episode 3, part 1.
 
@@ -1721,31 +1737,16 @@ screen s3e2p1_select_who_to_talk_to:
 
     Map icons of selected islanders are removed so they cannot be reselected.
 '''
-screen s3e3p1_select_who_to_talk_to:
+screen s3e3p1_select_who_to_talk_to():
     image "bgs/s3-outside-villa-wide-shot-day.jpg"
 
-    # button:
+    button:
 
-    #     frame:
-    #         padding(20, 20)
-    #         margin(400, 20)
-    #         align(0.5, 0.0)
-    #         text "Welcome to the Villa Choice Screen. You need to choose at least two groups of 
-    #         Islanders on the Villa choice screen." size 25 color "#000000" 
-
-    # if len(s3e3p1_visited) == 2:
-    #     textbutton "Continue" size 35 color "#000000" align(0.9, 0.9) action Call("s3e3p1_you_sure")
-
-    # if len(s3e3p1_visited) == 3:
-    #     frame:
-    #         padding(20, 20)
-    #         margin(400, 20)
-    #         align(0.5, 0.5)
-    #         vbox:
-    #             text "Someone's been grafting hard." size 35 color "#000000"
-    #             text "You've chatted to everyone! Time to see what happens next…" size 35 color "#000000"
-    #             textbutton "Continue" size 35 color "#000000" align(0.9, 0.9) action Call("s3e3p1_ending")
-
+        frame:
+            padding(50, 60)
+            margin(400, 20)
+            align(0.5, 0.0)
+            text "Welcome to the Villa Choice Screen. \nYou need to choose at least two groups of Islanders on the Villa choice screen." size 25 color "#000000" text_align 0.5
 
     if "Bean Bags" not in s3e3p1_visited:
         # bill and camilo at beanbags (s3e3p1_bean_bags)
@@ -1763,32 +1764,39 @@ screen s3e3p1_select_who_to_talk_to:
         imagebutton idle "map_icons/iona-icon.png" align(0.7, 0.8) action Call("s3e3p1_pool") at map_icon
         imagebutton idle "map_icons/miki-icon.png" align(0.75, 0.8) action Call("s3e3p1_pool") at map_icon
 
-screen s3e3p2_select_who_to_talk_to:
+'''
+    Used in episode 3, part 2.
+
+    User can visually select who they want to talk to first.
+
+    Map icons of selected islanders are removed so they cannot be reselected.
+'''
+screen s3e3p2_select_who_to_talk_to():
     image "bgs/s3-outside-villa-wide-shot-day.jpg"
 
     button:
 
         frame:
-            padding(20, 20)
+            padding(50, 60)
             margin(400, 20)
             align(0.5, 0.0)
             text "Welcome to the Villa choice screen! Tap the Islanders you want to chat with." size 25 color "#000000" 
         
-    if "Bean Bags" not in s3e2p1_visited:
+    if "Bean Bags" not in s3e3p2_visited:
         # s3e3p2_bean_bags aj and seb
         imagebutton idle "map_icons/aj-icon.png" align(0.2, 0.45) action Call("s3e3p2_bean_bags") at map_icon
         imagebutton idle "map_icons/seb-icon.png" align(0.25, 0.45) action Call("s3e3p2_bean_bags") at map_icon
 
-    if "Lounge" not in s3e2p1_visited:
+    if "Lounge" not in s3e3p2_visited:
         # s3e3p2_lounge bill
         imagebutton idle "map_icons/bill-icon.png" align(0.6, 0.4) action Call("s3e3p2_lounge") at map_icon
 
-    if "Pool" not in s3e2p1_visited:
+    if "Pool" not in s3e3p2_visited:
         # s3e3p2_pool camilo and nicky
         imagebutton idle "map_icons/nicky-icon.png" align(0.65, 0.8) action Call("s3e3p2_pool") at map_icon
         imagebutton idle "map_icons/camilo-icon.png" align(0.7, 0.8) action Call("s3e3p2_pool") at map_icon
 
-    if "Kitchen" not in s3e2p1_visited:
+    if "Kitchen" not in s3e3p2_visited:
         # s3e3p2_kitchen genevieve and harry
         imagebutton idle "map_icons/genevieve-icon.png" align(0.4, 0.4) action Call("s3e3p2_kitchen") at map_icon
         imagebutton idle "map_icons/harry-icon.png" align(0.45, 0.4) action Call("s3e3p2_kitchen") at map_icon

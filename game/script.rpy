@@ -25,6 +25,10 @@ transform npc_center:
     xalign 1.75 yalign 0
     easein 0.2 xalign 0.5 yalign 0
 
+transform move_center:
+    anchor(0.5, 0)
+    easein 0.2 zoom 1.15 xalign 0.5
+
 # Moves character from current position on screen to off screen.
 # Should call renpy.hide("character_name") after performing transform.
 transform npc_exit:
@@ -45,6 +49,11 @@ transform map_icon:
         zoom 0.5
     on idle:
         zoom 0.4
+
+# Adds slow zoom for 4secs for the Day and Part title screen.
+transform title:
+    anchor(0.5, 0.5)
+    linear 4 zoom 1.1
 
 ################################################################
 ## Game Start

@@ -1,6 +1,8 @@
 ################################################################
 ## General
 ################################################################
+define config.autosave_on_quit = True
+
 default s3_hints = False
 define s3_3rd_girl_options = {"Bill":"Miki", "Camilo":"Iona", "Harry":"Genevieve", "AJ":"Seb"}
 default s3_3rd_girl = ""
@@ -13,10 +15,6 @@ default s3_like_bill = False
 default s3_like_camilo = False
 default s3_like_harry = False
 default s3_couples = {"AJ":"", "Elladine":"", "Genevieve":"", "Miki":"", "Iona":"", "Bill":"", "Camilo":"", "Harry":"", "Seb":"", "Nicky":""}
-
-default s3_bff_he_she = ""
-default s3_bff_him_her = ""
-default s3_bff_his_her = ""
 
 default he_she = ""
 default him_her = ""
@@ -68,12 +66,6 @@ default s3e1p2_talk_to_new_girl = False
 default s3e1p3_prank = False
 # s3e1p3_prankee ("AJ", "Bill", "Camilo", "Harry")
 default s3e1p3_prankee = "None"
-# s3_prankee_he_she ("he", "she")
-default s3_prankee_he_she = "he"
-# s3_prankee_him_her ("him", "her")
-default s3_prankee_him_her = "him"
-# s3_prankee_his_hers ("his", "hers")
-default s3_prankee_his_hers = "his"
 
 ################################################################
 ## Episode 2

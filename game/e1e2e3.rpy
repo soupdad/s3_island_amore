@@ -5,6 +5,9 @@ label s3e1p1:
 
     scene edited_sandy_intro
 
+    show screen day_title(1, 1) with Pause(4)
+    hide screen day_title with dissolve
+
     menu:
         "Have you played this game before?"
         "I'm a seasoned pro":
@@ -45,8 +48,21 @@ label s3e1p1:
     ## MC Look Customizer Here
         # Defines name and maybe clothes and appearance if we get the images
     # Uncomment below once actually initializing, and change s3_name in characters.rpy to "You"
-        # s3_name = renpy.input("What do you want to be called?", length = 32)
-        # s3_name = s3_name.strip()
+
+    $ bad_name = True
+
+    while bad_name:
+        $ s3_name = renpy.input("What do you want to be called?", length = 30)
+        $ s3_name = s3_name.strip()
+        if len(s3_name) == 0:
+            "Sorry, you're name must be something. Try again :)"
+        else:
+            menu:
+                "Your name is '[s3_name]'. Is this correct?"
+                "Yes":
+                    $ bad_name = False
+                "No, please I need to change it":
+                    "Ok, we are merciful."
 
     scene s3-outside-villa-entrance
     with dissolve
@@ -485,13 +501,6 @@ label s3e1p1:
             $ s3_mc.current_partner = "Bill"
             $ s3_mc.like("Bill")
             $ s3_mc.like("Bill")
-
-            # maybe remove these? dunno if i will use them
-            # $ bill.current_partner = "MC"
-            # $ iona.current_partner = "Camilo"
-            # $ camilo.current_partner = "Iona"
-            # $ harry.current_partner = "Genevieve"
-            # $ genevieve.current_partner = "Harry"
             s3_mc "The boy I want to couple up with is... Bill!"
             "You stride over to Bill."
             "He grins like he can't hardly believe his luck."
@@ -502,11 +511,6 @@ label s3e1p1:
             $ s3_mc.current_partner = "Camilo"
             $ s3_mc.like("Camilo")
             $ s3_mc.like("Camilo")
-            # $ camilo.current_partner = "MC"
-            # $ miki.current_partner = "Bill"
-            # $ bill.current_partner = "Miki"
-            # $ harry.current_partner = "Genevieve"
-            # $ genevieve.current_partner = "Harry"
             s3_mc "The boy I want to couple up with is... Camilo!"
             "You stride over to Camilo."
             "He grins like he can't hardly believe his luck."
@@ -517,26 +521,12 @@ label s3e1p1:
             $ s3_mc.current_partner = "Harry"
             $ s3_mc.like("Harry")
             $ s3_mc.like("Harry")
-            # $ harry.current_partner = "MC"
-            # $ iona.current_partner = "Camilo"
-            # $ camilo.current_partner = "Iona"
-            # $ miki.current_partner = "Bill"
-            # $ bill.current_partner = "Miki"
             s3_mc "The boy I want to couple up with is... Harry!"
             "You stride over to Harry."
             "He grins like he can't hardly believe his luck."
             harry happy "Nice one."
 
     $ s3_3rd_girl = s3_3rd_girl_options[s3_mc.current_partner]
-
-    # $ s3_couples["AJ"] = "Seb"
-    # $ s3_couples["Seb"] = "AJ"
-    # $ s3_women_couples["Elladine"] = 
-
-    # $ seb.current_partner = "AJ"
-    # $ aj.current_partner = "Seb"
-    # $ elladine.current_partner = "Nicky"
-    # $ nicky.current_partner = "Elladine"
 
     menu:
         thought "Me and [s3_mc.current_partner] are officially coupled up..."
@@ -601,7 +591,7 @@ label s3e1p1:
     "{i}Seb\n
     -28, from Liverpool\n
     -Runs a music shop\n
-    -Owns 52 t-shirts and 1 shirt{/1}"
+    -Owns 52 t-shirts and 1 shirt{/i}"
 
     aj @ talk "I coupled up with a musician, too!"
     show aj
@@ -706,14 +696,14 @@ label s3e1p1:
 
     # IF STATEMENT (which women show up in villa first)
     if s3_mc.current_partner == "Harry":
-        call s3e1p1_meet_miki
-        call s3e1p1_meet_iona
+        call s3e1p1_meet_miki from _call_s3e1p1_meet_miki
+        call s3e1p1_meet_iona from _call_s3e1p1_meet_iona
     elif s3_mc.current_partner == "Bill":
-        call s3e1p1_meet_iona
-        call s3e1p1_meet_genevieve
+        call s3e1p1_meet_iona from _call_s3e1p1_meet_iona_1
+        call s3e1p1_meet_genevieve from _call_s3e1p1_meet_genevieve
     elif s3_mc.current_partner == "Camilo":
-        call s3e1p1_meet_miki
-        call s3e1p1_meet_genevieve
+        call s3e1p1_meet_miki from _call_s3e1p1_meet_miki_1
+        call s3e1p1_meet_genevieve from _call_s3e1p1_meet_genevieve_1
 
     # CHOICE
     menu:
@@ -1289,14 +1279,9 @@ label s3e1p1:
         pause 0.3
         $ renpy.hide("miki")
 
-    # CHOICE
-    # Change once episode selection screen is made
-    menu:
-        "Do you want to continue to next part or go back to the main menu?"
-        "Next Part":
-            jump s3e1p2
-        "Main Menu":
-            jump start
+    jump s3e1p2
+
+    return
 
 # LABELS FOR s3e1p1
 label s3e1p1_meet_miki:
@@ -1399,6 +1384,9 @@ label s3e1p1_meet_genevieve:
 label s3e1p2:
     scene edited_sandy_intro with dissolve
     $ on_screen = []
+
+    show screen day_title(1, 2) with Pause(4)
+    hide screen day_title with dissolve
 
     "Last time on this brand spanking new season of Island Amore..."
     "The Islander checked out what the Villa has to offer..."
@@ -2956,7 +2944,7 @@ label s3e1p2:
         "Spend some time with the new girl":
             $ s3_mc.like(s3_3rd_girl)
             $ s3e1p2_talk_to_new_girl = True
-            call s3e1p2_talk_to_new_girl
+            call s3e1p2_talk_to_new_girl from _call_s3e1p2_talk_to_new_girl
         "Don't talk to her":
             $ s3_mc.dislike(s3_3rd_girl)
             $ s3e1p2_talk_to_new_girl = False
@@ -3208,13 +3196,7 @@ label s3e1p2:
     scene edited_sandy_intro with dissolve
     $ on_screen = []
 
-    # CHOICE
-    menu:
-        "Do you want to contine to next part or go back to the main menu?"
-        "Next Part":
-            jump s3e1p3
-        "Main Menu":
-            call screen main_menu
+    jump s3e1p3
     
     return
 
@@ -3485,6 +3467,9 @@ label s3e1p2_talk_to_new_girl:
 label s3e1p3:
     scene edited_sandy_intro with dissolve
     $ on_screen = []
+
+    show screen day_title(1, 3) with Pause(4)
+    hide screen day_title with dissolve
 
     "Welcome back..."
     "To Island Amore!"
@@ -4219,10 +4204,10 @@ label s3e1p3:
         "Seb":
             $ s3_mc.bff = 'Seb'
 
-    call s3e1p3_best_friend_chat
+    call s3e1p3_best_friend_chat from _call_s3e1p3_best_friend_chat
     
     if s3e1p3_prank:
-        call s3e1p3_prank
+        call s3e1p3_prank from _call_s3e1p3_prank
 
     # Uncomment if MC imgs are added to game.
     # scene s3-dressing-room with dissolve
@@ -4439,13 +4424,7 @@ label s3e1p3:
     "And we've got a whole bunch of other surprises lined up for you."
     "It's a whole new series! I can't wait to see what's going to happen."
     
-    # CHOICE
-    menu:
-        "Do you want to continue to next part or go back to the main menu?"
-        "Next Part":
-            jump s3e2p1
-        "Main Menu":
-            jump main_menu
+    jump s3e2p1
 
     return
 
@@ -4459,11 +4438,9 @@ label s3e1p3_best_friend_chat:
         seb "Didn't realise I'd need a fluffy onesie at night"
     s3_mc "Hey, [s3_mc.bff]..."
 
+    $ pronouns(s3_mc.bff)
     $ s3_mc.like(s3_mc.bff)
     if s3_mc.bff == "Elladine":
-        $ s3_bff_he_she = elladine.he_she()
-        $ s3_bff_him_her = elladine.him_her()
-        $ s3_bff_his_hers = elladine.his_her()
         elladine "Yeah?"
         s3_mc "Could I speak to you in private?"
         elladine @ happy "Of course, hun!"
@@ -4471,9 +4448,6 @@ label s3e1p3_best_friend_chat:
         s3_mc "Sounds good!"
         "The two of you make your way upstairs."
     elif s3_mc.bff == "Genevieve":
-        $ s3_bff_he_she = genevieve.he_she()
-        $ s3_bff_him_her = genevieve.him_her()
-        $ s3_bff_his_hers = genevieve.his_her()
         genevieve "Yeah?"
         s3_mc "Could I speak to you in private?"
         genevieve @ happy "Of course, babes!"
@@ -4481,9 +4455,6 @@ label s3e1p3_best_friend_chat:
         s3_mc "Sounds good!"
         "The two of you make your way upstairs."
     elif s3_mc.bff == "Nicky":
-        $ s3_bff_he_she = nicky.he_she()
-        $ s3_bff_him_her = nicky.him_her()
-        $ s3_bff_his_hers = nicky.his_her()
         nicky "Yeah?"
         s3_mc "Could I speak to you in private?"
         nicky @ happy "Yeah, man. Let's go."
@@ -4491,9 +4462,6 @@ label s3e1p3_best_friend_chat:
         s3_mc "Sounds good!"
         "The two of you make your way upstairs."
     elif s3_mc.bff == "Seb":
-        $ s3_bff_he_she = seb.he_she()
-        $ s3_bff_him_her = seb.him_her()
-        $ s3_bff_his_hers = seb.his_her()
         seb "Yeah?"
         s3_mc "Could I speak to you in private?"
         seb @ happy "Yeah, man. Let's go."
@@ -4716,11 +4684,11 @@ label s3e1p3_best_friend_chat:
     # IF STATEMENT
     if s3_mc.bff == "Elladine":
         "The two of you say nothing for a while, taking in the moment in silence."
-        elladeine @ talk "I still can't believe we're here. It doesn't feel real!"
+        elladine @ talk "I still can't believe we're here. It doesn't feel real!"
         s3_mc "Feels pretty real to me. I've just had my man snatched."
-        elladeine "It's only the start, hun."
-        elladeine "But seriously, look at where we are. The Island Amore Villa!"
-        elladeine "This place is lush, don't you think?"
+        elladine "It's only the start, hun."
+        elladine "But seriously, look at where we are. The Island Amore Villa!"
+        elladine "This place is lush, don't you think?"
     elif s3_mc.bff == "Genevieve":
         genevieve "It's well dark already, isn't it?"
         s3_mc "Yeah, it is actually."
@@ -4859,9 +4827,9 @@ label s3e1p3_best_friend_chat:
         menu:
             s3_mc "The Villa's..."
             "Completely mind blowing":
-                elladeine "Right? Like you see it on telly and are just like, yeah, it's a big house."
-                elladeine "But actually being here is like..."
-                elladeine @ talk "It's a huge house! It has walk-in showers!"
+                elladine "Right? Like you see it on telly and are just like, yeah, it's a big house."
+                elladine "But actually being here is like..."
+                elladine @ talk "It's a huge house! It has walk-in showers!"
             "Smaller than I expected":
                 # NEED TO FILL
                 "EMPTY"
@@ -4869,8 +4837,8 @@ label s3e1p3_best_friend_chat:
                 # NEED TO FILL
                 "EMPTY"
 
-        elladeine "And there's something even better here..."
-        elladeine @ happy "A group of fit boys all wanting to get with us!"
+        elladine "And there's something even better here..."
+        elladine @ happy "A group of fit boys all wanting to get with us!"
         
         # CHOICE 
         menu:
@@ -4878,8 +4846,8 @@ label s3e1p3_best_friend_chat:
             "Definitely the highlight":
                 $ s3_mc.like("Elladine")
                 s3_mc "They are just all so fit!"
-                elladeine @ flirt "Nicky seems like my cup of tea, but that doesn't mean I'm not checking out the others."
-                elladeine @ awkward "I wonder how Camilo's muscles bulge when he does push ups?"
+                elladine @ flirt "Nicky seems like my cup of tea, but that doesn't mean I'm not checking out the others."
+                elladine @ awkward "I wonder how Camilo's muscles bulge when he does push ups?"
             "Too basic for me":
                 # NEED TO FILL
                 "EMPTY"
@@ -4889,9 +4857,9 @@ label s3e1p3_best_friend_chat:
 
         "She looks off into the distance for a while."
         "Elladine takes a deep breath of the cool night air."
-        elladeine "It's so fresh out here."
-        elladeine "This place really does seem perfect. Flawless, even."
-        elladeine "I hope it stays that way..."
+        elladine "It's so fresh out here."
+        elladine "This place really does seem perfect. Flawless, even."
+        elladine "I hope it stays that way..."
 
     elif s3_mc.bff == "Nicky":
         # CHOICE
@@ -5180,24 +5148,14 @@ label s3e1p3_prank:
         thought "Who do I want to scare?"
         "Harry":
             $ s3e1p3_prankee = "Harry"
-            $ s3_prankee_he_she = harry.he_she()
-            $ s3_prankee_him_her = harry.him_her()
-            $ s3_prankee_his_her = harry.his_her()
         "Camilo":
             $ s3e1p3_prankee = "Camilo"
-            $ s3_prankee_he_she = camilo.he_she()
-            $ s3_prankee_him_her = camilo.him_her()
-            $ s3_prankee_his_her = camilo.his_her()
         "Bill":
             $ s3e1p3_prankee = "Bill"
-            $ s3_prankee_he_she = bill.he_she()
-            $ s3_prankee_him_her = bill.him_her()
-            $ s3_prankee_his_her = bill.his_her()
         "AJ":
             $ s3e1p3_prankee = "AJ"
-            $ s3_prankee_he_she = aj.he_she()
-            $ s3_prankee_him_her = aj.him_her()
-            $ s3_prankee_his_her = aj.his_her()
+
+    $ pronouns(s3e3p3_prankee)
 
     if s3e1p3_prankee == "AJ":
         "AJ's bed is too far away for you to dive under in time. Instead, you quickly slip into a cupboard."
@@ -5218,7 +5176,7 @@ label s3e1p3_prank:
     elladine "It's been very..."
     elladine @ serious "...enlightening."
     nicky @ awkward "That's a word. Not sure the one I'd for this conversation, but definitely a word."
-    "From your hiding spot, you see [s3e1p3_prankee] making [s3_prankee_his_her] way over to you."
+    "From your hiding spot, you see [s3e1p3_prankee] making [his_her] way over to you."
     
     if s3e1p3_prankee == "AJ":
         aj "Anyone seen [s3_name]?"
@@ -5247,7 +5205,7 @@ label s3e1p3_prank:
     elif s3e1p3_prankee == "Harry":
         harry "Weird. Maybe she's gone to sleep on the daybeds?"
 
-    "[s3_mc.bff] lowers [s3_bff_his_hers] voice into a harsh whisper."
+    "[s3_mc.bff] lowers [his_her] voice into a harsh whisper."
     if s3_mc.bff == "Elladine":
         elladine "Or maybe a ghost got her..."
         "She wiggles her fingers dramatically."
@@ -5300,8 +5258,8 @@ label s3e1p3_prank:
 
     # CHOICE
     menu:
-        thought "This is it! How should I scare [s3_prankee_him_her]?"
-        "Call out [s3_prankee_his_her] name":
+        thought "This is it! How should I scare [him_her]?"
+        "Call out [his_her] name":
             "You start with a whisper..."
             if s3e1p3_prankee == "AJ":
                 s3_mc "[s3e1p3_prankee]..."
@@ -5344,32 +5302,32 @@ label s3e1p3_prank:
                 "You crawl out from under the bed, cackling wildly."
                 harry -serious "Nice one."
 
-        "Jump out at [s3_prankee_him_her]":
+        "Jump out at [him_her]":
             if s3e1p3_prankee == "AJ":
                 "You go to quickly jump out of the closet, but the sliding door gets jammed, making you fall out instead."
             else:
                 "You quickly try to wiggle your way out from under the bed, your arms thrashing towards [s3e1p3_prankee]."
             if s3e1p3_prankee == "AJ":
                 s3_mc "Argh!"
-                "[s3_prankee_he_she.capitalize()] looks down at you in bemusement."
+                "[he_she!c] looks down at you in bemusement."
                 aj "Um, what?"
                 s3_mc "...Boo?"
                 aj @ happy "Nice one."
             elif s3e1p3_prankee == "Bill":
                 s3_mc "Argh!"
-                "[s3_prankee_he_she.capitalize()] looks down at you in bemusement."
+                "[he_she!c] looks down at you in bemusement."
                 bill "Um, what?"
                 s3_mc "...Boo?"
                 bill @ happy "Nice one."
             elif s3e1p3_prankee == "Camilo":
                 s3_mc "Argh!"
-                "[s3_prankee_he_she.capitalize()] looks down at you in bemusement."
+                "[he_she!c] looks down at you in bemusement."
                 camilo "Um, what?"
                 s3_mc "...Boo?"
                 camilo @ happy "Nice one."
             elif s3e1p3_prankee == "Harry":
                 s3_mc "Argh!"
-                "[s3_prankee_he_she.capitalize()] looks down at you in bemusement."
+                "[he_she!c] looks down at you in bemusement."
                 harry "Um, what?"
                 s3_mc "...Boo?"
                 harry @ happy "Nice one."
@@ -5443,23 +5401,23 @@ label s3e1p3_prank:
                 bill @ flirt "It can be if you want..."
         bill -awkward "You realise I have to get you back for this, right?"
     elif s3e1p3_prankee == "Camilo":
-        cam @ happy "You're lucky my reflexes didn't kick in!"
-        cam "A mate once pulled the same thing on me, and before I knew it, I was throwing him over my head..."
-        cam "Luckily we were in someone's room so he landed on the bed, and he just kinda bounced a bit."
+        camilo @ happy "You're lucky my reflexes didn't kick in!"
+        camilo "A mate once pulled the same thing on me, and before I knew it, I was throwing him over my head..."
+        camilo "Luckily we were in someone's room so he landed on the bed, and he just kinda bounced a bit."
         # CHOICE
         menu:
             thought "Camilo once threw a friend onto a bed."
             "Oh my, you're so strong":
-                cam "It's not about strength or stamina."
-                cam @ flirt "It's all in the technique..."
+                camilo "It's not about strength or stamina."
+                camilo @ flirt "It's all in the technique..."
                 s3_mc "Maybe you can show me some day."
             "Sounds like an overreaction":
                 $ s3_mc.dislike("Camilo")
-                cam "Maybe. Or maybe he deserved it."
+                camilo "Maybe. Or maybe he deserved it."
             "I hope you throw me onto a bed one day":
                 $ s3_mc.like("Camilo")
-                cam @ flirt "Maybe someday soon I will."
-        cam "You realise I have to get you back for this, right?"
+                camilo @ flirt "Maybe someday soon I will."
+        camilo "You realise I have to get you back for this, right?"
     elif s3e1p3_prankee == "Harry":
         harry @ awkward "I'd rather it was you under the bed than some kind of monster."
         harry flirt "Maybe next time you should warn me, and I can just join you down there?"
@@ -5480,7 +5438,7 @@ label s3e1p3_prank:
         harry -happy "You realise I have to get you back for this, right?"
 
     s3_mc "I'd like to see you try..."
-    "Before [s3_prankee_he_she] can say anything else, the rest of the Islanders reappear, laughing."
+    "Before [he_she] can say anything else, the rest of the Islanders reappear, laughing."
     iona "[s3_mc.bff] told us what you were up to, [s3_name]."
     nicky "It sounds like it worked."
     miki @ sad "Just never spook me, yeah? I hate jump scares..."
@@ -5497,6 +5455,10 @@ label s3e1p3_prank:
 label s3e2p1:
     scene edited_sandy_intro with dissolve
     $ on_screen = []
+
+    show screen day_title(2, 1) with Pause(4)
+    hide screen day_title with dissolve
+
     "Previously on Island Amore..."
     "[s3_3rd_girl] made an entrance and stole [s3_name]'s man."
 
@@ -6409,7 +6371,7 @@ label s3e2p1_kitchen:
         thought "Bill wants to have our first breakfast together!"
         "I'd love to have breakfast with you":
             $ s3e2p1_bfast_with_bill = True
-            call s3e2p1_bfast_with_bill
+            call s3e2p1_bfast_with_bill from _call_s3e2p1_bfast_with_bill
         "Nah, I'm not actually that hungry anymore":
             s3_mc "Sorry Bill, I'm not actually that hungry anymore."
             bill "Oh, OK."
@@ -6658,6 +6620,9 @@ label s3e2p2:
     scene edited_sandy_intro with dissolve
     $ on_screen = []
 
+    show screen day_title(2, 2) with Pause(4)
+    hide screen day_title with dissolve
+
     "Welcome back to Island Amore!"
     "Last time, the Islanders got some exciting news..."
 
@@ -6882,11 +6847,11 @@ label s3e2p2:
     "He pulls your chair out for you and you both take your seats."
     
     if s3e2p2_first_date == "Bill":
-        call s3e2p2_bill_date
+        call s3e2p2_bill_date from _call_s3e2p2_bill_date
     elif s3e2p2_first_date == "Camilo":
-        call s3e2p2_camilo_date
+        call s3e2p2_camilo_date from _call_s3e2p2_camilo_date
     elif s3e2p2_first_date == "Harry":
-        call s3e2p2_harry_date
+        call s3e2p2_harry_date from _call_s3e2p2_harry_date
 
     $ on_screen = []
 
@@ -6987,11 +6952,11 @@ label s3e2p2:
     "He takes a seat opposite you and pours himself some champagne."
 
     if s3e2p2_second_date == "Bill":
-        call s3e2p2_bill_date
+        call s3e2p2_bill_date from _call_s3e2p2_bill_date_1
     elif s3e2p2_second_date == "Camilo":
-        call s3e2p2_camilo_date
+        call s3e2p2_camilo_date from _call_s3e2p2_camilo_date_1
     elif s3e2p2_second_date == "Harry":
-        call s3e2p2_harry_date
+        call s3e2p2_harry_date from _call_s3e2p2_harry_date_1
 
     $ on_screen = []
 
@@ -7030,11 +6995,11 @@ label s3e2p2:
     
     if s3e2p2_only_two_dates == False:
         if s3e2p2_third_date == "Bill":
-            call s3e2p2_bill_date
+            call s3e2p2_bill_date from _call_s3e2p2_bill_date_2
         elif s3e2p2_third_date == "Camilo":
-            call s3e2p2_camilo_date
+            call s3e2p2_camilo_date from _call_s3e2p2_camilo_date_2
         elif s3e2p2_third_date == "Harry":
-            call s3e2p2_harry_date
+            call s3e2p2_harry_date from _call_s3e2p2_harry_date_2
 
     scene s3-lawn-day with dissolve
     $ on_screen = ["camilo"]
@@ -7314,13 +7279,13 @@ label s3e2p2:
     aj "We were talking about our dates."
     bill "Oh yeah, of course. What a day, huh?"
 
-    if s3e2p2_special_spark = "Bill":
+    if s3e2p2_special_spark == "Bill":
         bill "I hope [s3_name] said good things."
         seb "She certainly did..."
-    elif s3e2p2_special_spark = "Camilo":
+    elif s3e2p2_special_spark == "Camilo":
         camilo "I hope [s3_name] said good things."
         seb "She certainly did..."
-    elif s3e2p2_special_spark = "Harry":
+    elif s3e2p2_special_spark == "Harry":
         harry "I hope [s3_name] said good things."
         seb "She certainly did..."
 
@@ -7362,13 +7327,9 @@ label s3e2p2:
     pause 0.3
     $ renpy.hide("genevieve")
 
-    # CHOICE
-    menu:
-        "Do you want to continue to next part or go back to the main menu?"
-        "Next Part":
-            jump s3e2p3
-        "Main Menu":
-            jump main_menu
+    jump s3e2p3
+
+    return
 
 label s3e2p2_bill_date:
 
@@ -7904,6 +7865,9 @@ label s3e2p3:
     scene edited_sandy_intro with dissolve
     $ on_screen = []
 
+    show screen day_title(2, 3) with Pause(4)
+    hide screen day_title with dissolve
+
     "Welcome back..."
     "To the island of love most commonly referred to as..."
     "Island Amore!"
@@ -8136,7 +8100,7 @@ label s3e2p3:
     iona "Or lack of..."
     nicky "Out!"
 
-    scene s3-lawn-light with dissolve
+    scene s3-lawn-night with dissolve
     $ on_screen = []
 
     "You all walk away giggling."
@@ -8572,7 +8536,7 @@ label s3e2p3:
         thought "Maybe I should show them I mean business..."
         "Start a food fight":
             $ s3e2p3_food_fight = True
-            call s3e2p3_food_fight
+            call s3e2p3_food_fight from _call_s3e2p3_food_fight
         "Just grumble instead...":
             "No-one seems to listen."
             thought "Hey, come on..."
@@ -8592,7 +8556,7 @@ label s3e2p3:
         "That'd be great, thanks!":
             $ s3_mc.like("Camilo")
             $ s3e2p3_clean_off_with_cam = True
-            call s3e2p3_clean_off_with_cam
+            call s3e2p3_clean_off_with_cam from _call_s3e2p3_clean_off_with_cam
         "Nah, I've got this":
             camilo "Cool, cool. Don't forget the bits of spaghetti at the back of your neck."
 
@@ -8676,13 +8640,9 @@ label s3e2p3:
     s3_mc "Maybe next time we chat it'll be a different kind of saucy."
     "Stay tuned."
 
-    # CHOICE
-    menu:
-        "Do you want to continue to next part or go back to the main menu?"
-        "Next Part":
-            jump s3e3p1
-        "Main Menu":
-            jump main_menu
+    jump s3e3p1
+
+    return
 
 label s3e2p3_food_fight:
     "You grab a handful of the pasta out of your hair."
@@ -9091,6 +9051,9 @@ label s3e3p1:
     scene edited_sandy_intro with dissolve
     $ on_screen = []
 
+    show screen day_title(3, 1) with Pause(4)
+    hide screen day_title with dissolve
+
     "Welcome back to Island Amore!"
     "Last night, the boys cooked dinner..."
     "...well, 'cooked' might be an overstatement."
@@ -9098,12 +9061,14 @@ label s3e3p1:
     show nicky at npc_exit
     pause 0.3
     $ renpy.hide("nicky")
+    $ on_screen = []
 
     "Come to think of it, 'dinner' might be generous as well..."
     elladine "How's this a fruit salad? It's just watermelon."
     show elladine at npc_exit
     pause 0.3
     $ renpy.hide("elladine")
+    $ on_screen = []
 
     if s3e2p3_food_fight:
         "Though in the end, most of it ended up on the Islanders..."
@@ -9113,6 +9078,7 @@ label s3e3p1:
     show aj at npc_exit
     pause 0.3
     $ renpy.hide("aj")
+    $ on_screen = []
 
     "Look out for a surge in empanada-making courses this summer."
     "Coming up!"
@@ -9253,11 +9219,11 @@ label s3e3p1:
                     pass
             seb "Oh yeah, that'll do it."
             nicky "What was the last dream you had?"
-            call s3e3p1_dream
+            call s3e3p1_dream from _call_s3e3p1_dream
         "I have weird dreams anyway":
             s3_mc "I don't need food to give me bizarre dreams. They happen anyway!"
             nicky "What was the last dream you had?"
-            call s3e3p1_dream
+            call s3e3p1_dream from _call_s3e3p1_dream_1
         "I don't really dream much":
             s3_mc "I'm not a big dreamer, to be honest."
             s3_mc "My friends are always telling me about their dreams and I'm just like 'I had a nice sleep'."
@@ -9268,6 +9234,23 @@ label s3e3p1:
     thought "I should go see what everyone else is up to. "
 
     call screen s3e3p1_select_who_to_talk_to
+
+    call screen s3e3p1_select_who_to_talk_to
+
+    menu:
+        "Talk to last group?"
+        "Sure":
+            call screen s3e3p1_select_who_to_talk_to
+        "No, I'm done chatting":
+            "Are you bantering?"
+            "There are still Islanders waiting to talk to you. You can continue onto the next stage if you want, but you might miss out on juicy gossip!"
+            menu:
+                "Talk to rest of Islanders":
+                    call screen s3e3p1_select_who_to_talk_to
+                "No thanks":
+                    pass         
+                    
+    jump s3e3p1_ending
 
     label s3e3p1_dream:
         # SUB-CHOICE
@@ -9298,22 +9281,15 @@ label s3e3p1:
                 s3_mc "I have no idea. That's when I woke up."
         return
 
-    label s3e3p1_you_sure:
-        "Are you bantering?"
-        "There are still Islanders waiting to talk to you. You can continue onto the next stage if you can, but you might miss out on juicy gossip!"
-        menu:
-            "Stay":
-                call screen s3e3p1_select_who_to_talk_to
-            "Continue":
-                jump s3e3p1_ending
+    
                 
 
 # Map Choice "AJ and Genevieve at the gym"
 label s3e3p1_gym:
     scene s3-gym-day
     $ on_screen = []
-
     $ s3e3p1_visited.append("Gym")
+
     "AJ and Genevieve are in the gym. Genevieve has a serious look on her face. AJ is doing a cross-body shoulder stretch."
     s3_mc "What's going on?"
     genevieve "We were talking about our arm day routines and it kinda... escalated."
@@ -9481,14 +9457,13 @@ label s3e3p1_gym:
     "AJ jogs off towards the Villa."
     thought "I wonder what everyone else is up to?"
 
-    call screen s3e3p1_select_who_to_talk_to
-
     return
 
 # Map Choice "Bill and Camilo at beanbags (s3e3p1_bean_bags)"
 label s3e3p1_bean_bags:
     scene s3-bean-bags-day with dissolve
     $ on_screen = []
+    $ s3e3p1_visited.append("Bean Bags")
 
     "Bill and Camilo are in the middle of a heated discussion when you arrive. You plop down on a beanbag between them."
     camilo "Nah bruv, it's aji picante all the way."
@@ -9562,7 +9537,7 @@ label s3e3p1_bean_bags:
         thought "What should I do?"
         "Flirt with Camilo":
             $ s3_mc.like("Camilo")
-            s3_mc "Pretty well. I managed to grab some alone with a guy I'm really into?"
+            s3_mc "Pretty well. I managed to grab some alone time with a guy I'm really into?"
             "You lightly stroke Camilo's leg with your foot. When he looks at you, you give him your best sexy eyes."
             s3_mc "Maybe next time we chat it'll be a different kind of saucy."
             camilo "Mint."
@@ -9608,8 +9583,6 @@ label s3e3p1_bean_bags:
     s3_mc "See you around, boys."
     bill "See you."
     camilo "Later!"
-
-    call screen s3e3p1_select_who_to_talk_to
 
     return
 
@@ -9795,7 +9768,7 @@ label s3e3p1_ending:
 
     "You find Genevieve in the kitchen."
     "The air sizzles with the sound and scent of frying onions."
-    genevieve "Oh, hey MC. I thought I'd make some breakfast for everyone."
+    genevieve "Oh, hey [s3_name]. I thought I'd make some breakfast for everyone."
     genevieve "This is my famous Indian Frittata. I make a big one almost every week and take it cold to work."
     "She tips a bowl of ground spices into the pan. While the onions brown, Genevieve starts beating eggs."
 
@@ -9829,8 +9802,9 @@ label s3e3p1_ending:
     show genevieve at npc_exit
     pause 0.3
     $ renpy.hide("genevieve")
-    $ on_screen.pop("genevieve")
+    $ on_screen.remove("genevieve")
 
+    show harry at move_center
     "Harry turns to you with a glum look on his face."
     s3_mc "What's up?"
     harry "I didn't want to say it to Viv, but I really hate coriander."
@@ -10011,7 +9985,7 @@ label s3e3p1_ending:
                                     s3_mc "It was very nice as well."
                                     harry "That's good. You deserve the best."
                                     s3_mc "Well, 'best' might be stretching it!"
-                                "Like most first timeseb "short":"
+                                "Like most first times: short":
                                     "He laughs."
                                     harry "Yeah... I'd be lying if I said mine wasn't the same!"
                                 "I don't want to talk about it":
@@ -10127,13 +10101,9 @@ label s3e3p1_ending:
     scene edited_sandy_intro with dissolve
     $ on_screen = []
 
-    # CHOICE
-    menu:
-        "Do you want to continue to next part or go back to the main menu?"
-        "Next Part":
-            jump s3e3p2
-        "Main Menu":
-            jump main_menu
+    jump s3e3p2
+
+    return
 
 #########################################################################
 ## Episode 3, Part 2
@@ -10142,12 +10112,16 @@ label s3e3p2:
     scene edited_sandy_intro with dissolve
     $ on_screen = []
 
+    show screen day_title(3, 2) with Pause(4)
+    hide screen day_title with dissolve
+
     "Previously, the Islanders discussed sexy dreams..."
     elladine "I don't remember the details."
     elladine "But it was very good."
     show elladine at npc_exit
     pause 0.3
     $ renpy.hide("elladine")
+    $ on_screen = []
 
     "And [s3_name], Genevieve, and AJ got physical..."
     "In an arm wrestling competition!"
@@ -10155,6 +10129,8 @@ label s3e3p2:
     show aj at npc_exit
     pause 0.3
     $ renpy.hide("aj")
+    $ on_screen = []
+
     "You're on, AJ."
     "I've been single forever."
     "Which means I have a distinct advantage when it comes to arm wrestling with my right hand."
@@ -10164,6 +10140,7 @@ label s3e3p2:
     show camilo at npc_exit
     pause 0.3
     $ renpy.hide("camilo")
+    $ on_screen = []
 
     "And Bill is looking a little pail..."
     bill "Help me!"
@@ -10254,7 +10231,8 @@ label s3e3p2:
     thought "Oh, I've got another text."
     thought "But I haven't done my first dare yet!"
     "You look down at your phone."
-    text "[s3_name], As the only single Islander in the Villa you have the chance to accept a secret dare. You can try and kiss other Islanders...as long as they want you to of course! Each time you kiss an Islanders, it will count as one point. This is your chance to get grafting and win the challenge! #getkissywithit #throwkissestothewind"
+    text "[s3_name], As the only single Islander in the Villa you have the chance to accept a secret dare. You can try and kiss other Islanders...as long as they want you to of course!"
+    text "Each time you kiss an Islander, it will count as one point. This is your chance to get grafting and win the challenge! #getkissywithit #throwkissestothewind"
     thought "Nice! I can finally do some cheeky flirting with some of the Islanders..."
     thought "And win the challenge!"
     thought "Well, I'm pretty sure I've got a few keen admirers here..."
@@ -10274,9 +10252,6 @@ label s3e3p2:
 
     "You see Iona chasing Nicky with a broom across the lawn."
     thought "I better get cracking if I want to win this challenge!"
-
-    # Villa choice screen. (You can only choose three groups of Islanders if you don't buy the gem choice. 
-    # If you buy the gem choice you can choose all four groups of Islanders)
 
     call screen s3e3p2_select_who_to_talk_to
 
@@ -10311,6 +10286,9 @@ label s3e3p2:
 
     call screen s3e3p2_select_who_to_talk_to
 
+    if s3e3p2_getting_kissy:
+        call screen s3e3p2_select_who_to_talk_to
+
     jump s3e3p2_ending
 
 label s3e3p2_lounge:
@@ -10324,7 +10302,7 @@ label s3e3p2_lounge:
     bill "Is anybody there?"
     bill "It's me!"
     s3_mc "Hello me."
-    bill "MC?"
+    bill "[s3_name]?"
     bill "It's Bill!"
     bill "Help."
     bill "I'm stuck!"
@@ -10659,6 +10637,13 @@ label s3e3p2_pool:
             nicky "I hope Iona didn't see that."
             camilo "Get on with your cleaning, Nicky, and mind your own business."
             "Nicky gives Camilo a little scowl before diving back under."
+            show nicky at npc_exit
+            pause .3
+            $ renpy.hide("nicky")
+            $ on_screen.remove("nicky")
+
+            show camilo at move_center
+
             camilo "That was a good kiss, [s3_name]."
             s3_mc "I try my best."
             "Camilo squints a little bit, looking a tad uncomfortable."
@@ -10986,10 +10971,10 @@ label s3e3p2_ending:
     if s3e3p2_kiss_count > 0:
         thought "I hope my lipstick isn't smudged after all that kissing."
 
-    if s3e3p2_dare_count >= 3:
+    if s3e3p2_completed_dare_count >= 3:
         $ s3e3p2_win_challenge = True
         "Looks like all that toe sucking, face licking and massage moaning wasn't for nothing."
-    elif s3e3p2_kiss_count > 0:
+    elif s3e3p2_kiss_count > 1:
         $ s3e3p2_win_challenge = True
         "Looks like [s3_name] got her kiss on in this challenge."
         "And it was worth it!"
@@ -11000,9 +10985,9 @@ label s3e3p2_ending:
         "Cue the text!"
         s3_mc "I've got a text!"
 
-        if s3e3p2_dare_count >= 3 or s3e3p2_kiss_count >= 3:
-            text "[s3_name], congratulations! You are the winner of the Truth And Dare challenge. As the winner, you now get to ask one other Islander a truth. You may only ask the Islanders who completed fewer than two dares. These Islanders are AJ, Bill, Camilo and Harry. #tellitstraighttomyface"
-            thought "I won!"
+        text "[s3_name], congratulations! You are the winner of the Truth And Dare challenge. As the winner, you now get to ask one other Islander a truth."
+        text " You may only ask the Islanders who completed fewer than two dares. These Islanders are AJ, Bill, Camilo and Harry. #tellitstraighttomyface"
+        thought "I won!"
 
         "AJ, Bill, Camilo and Harry step forward."
         aj "Looks like you've got the power, [s3_name]."
@@ -11022,9 +11007,7 @@ label s3e3p2_ending:
             "Camilo":
                 $ s3e3p2_ask_question = "Camilo"
 
-        $ he_she = he_she(s3e3p2_ask_question)
-        $ him_her = him_her(s3e3p2_ask_question)
-        $ his_her = his_her(s3e3p2_ask_question)
+        $ pronouns(s3e3p2_ask_question)
 
         if s3e3p2_ask_question == "AJ":
             s3_mc "[s3e3p2_ask_question]! Please step forward."
@@ -11301,13 +11284,9 @@ label s3e3p2_ending:
     $ renpy.hide("elladine")
     "Don't worry, Elladine. I'll make sure someone stocks up the fruit bowl."
 
-    # CHOICE
-    menu:
-        "Do you want to continue to next part or go back to the main menu?"
-        "Next Part":
-            jump s3e3p3
-        "Main Menu":
-            jump main_menu
+    jump s3e3p3
+
+    return
 
 #########################################################################
 ## Episode 3, Part 3
@@ -11316,6 +11295,9 @@ label s3e3p2_ending:
 label s3e3p3:
     scene edited_sandy_intro with dissolve
     $ on_screen = []
+
+    show screen day_title(3, 3) with Pause(4)
+    hide screen day_title with dissolve
 
     "Last time on Love Island..."
     "The Islanders played a bit of Truth and Dare, and it all went as smoothly as you'd imagine."
@@ -11374,7 +11356,6 @@ label s3e3p3:
     iona "Yeah, you're in the best position out of everyone!"
     genevieve "You must be on top of the world."
 
-
     # CHOICE
     menu:
         thought "How do I feel about the recoupling?"
@@ -11410,6 +11391,13 @@ label s3e3p3:
     else:
         elladine "That sounds so nice, babes."
 
+    show genevieve at npc_exit
+    show elladine at npc_exit
+    pause .3
+    $ renpy.hide("genevieve")
+    $ renpy.hide("elladine")
+    $ on_screen = []
+    
     $ outfit = "evening"
 
     "Iona mists herself with one last squirt of strawberry-scented perfume."
@@ -11505,19 +11493,19 @@ label s3e3p3:
     menu:
         s3_mc "So the Islander I want to couple up with is..."
         "Bill":
-            $ s3_mc.current_partner == "Bill"
+            $ s3_mc.current_partner = "Bill"
             $ s3_mc.past_partners.append("Bill")
             $ s3_mc.like_mc["Bill"] += 5
         "Harry":
-            $ s3_mc.current_partner == "Harry"
+            $ s3_mc.current_partner = "Harry"
             $ s3_mc.past_partners.append("Harry")
             $ s3_mc.like_mc["Harry"] += 5
         "Camilo":
-            $ s3_mc.current_partner == "Camilo"
+            $ s3_mc.current_partner = "Camilo"
             $ s3_mc.past_partners.append("Camilo")
             $ s3_mc.like_mc["Camilo"] += 5
         "AJ" if s3_mc.bisexual:
-            $ s3_mc.current_partner == "AJ"
+            $ s3_mc.current_partner = "AJ"
             $ s3_mc.past_partners.append("AJ")
             $ s3_mc.like_mc["AJ"] += 5
 
@@ -11534,14 +11522,14 @@ label s3e3p3:
     elif s3_mc.current_partner == "AJ":
         aj "Get in."
 
-    "[he_she] comes over to take your hand."
+    "[he_she!c] comes over to take your hand."
 
     # CHOICE
     menu:
         "[s3_mc.current_partner] seems pleased!"
         "Hug [him_her]":
             "You wrap your arms around [his_her] waist and squeeze."
-            "[he_she.capitalize()] grins and squeezes you back."
+            "[he_she!c] grins and squeezes you back."
         "Kiss [him_her]":
             "You take [his_her] face in your hands and press a kiss to [his_her] lips."
             "You can feel [him_her] pressing back, smiling against your mouth."
@@ -11565,7 +11553,7 @@ label s3e3p3:
         "As you take your seats, you see Seb biting his lip, looking down at the ground."
 
     "[s3_mc.current_partner] wraps an arm around your waist."
-    "[he_she.capitalize()] whispers to you, [his_her] breath tickling sweetly against your neck..."
+    "[he_she!c] whispers to you, [his_her] breath tickling sweetly against your neck..."
 
     if s3_mc.current_partner == "Bill":
         bill "Thank you for choosing me."
@@ -11679,21 +11667,23 @@ label s3e3p3:
     "Finally, there are five couples sitting around the firepit."
     elladine "Is that everyone?"
 
-    $ pronouns([s3_3rd_girl_options[s3_mc.current_partner]])
+    $ s3e3p3_lonely_one = s3_3rd_girl_options[s3_mc.current_partner]
+
+    $ pronouns(s3e3p3_lonely_one)
 
     if s3_mc.current_partner == "Bill":
-        bill "Wait...where's [s3_3rd_girl_options[s3_mc.current_partner]]?"
+        bill "Wait...where's [s3e3p3_lonely_one]?"
     elif s3_mc.current_partner == "Camilo":
-        camilo "Wait...where's [s3_3rd_girl_options[s3_mc.current_partner]]?"
+        camilo "Wait...where's [s3e3p3_lonely_one]?"
     elif s3_mc.current_partner == "Harry":
-        harry "Wait...where's [s3_3rd_girl_options[s3_mc.current_partner]]?"
+        harry "Wait...where's [s3e3p3_lonely_one]?"
     elif s3_mc.current_partner == "AJ":
-        aj "Wait...where's [s3_3rd_girl_options[s3_mc.current_partner]]?"
+        aj "Wait...where's [s3e3p3_lonely_one]?"
 
 
-    nicky "[he_she]'s wandered off."
-    elladine "Poor thing. [he_she] must be gutted."
-    thought "Right, [s3_3rd_girl_options[s3_mc.current_partner]] is single because nobody else ended up with [him_her] after I took [s3_mc.current_partner]."
+    nicky "[he_she!c]'s wandered off."
+    elladine "Poor thing. [he_she!c] must be gutted."
+    thought "Right, [s3e3p3_lonely_one] is single because nobody else ended up with [him_her] after I took [s3_mc.current_partner]."
     thought "I hope [he_she]'s alright..."
     "[s3_mc.current_partner] looks concerned."
 
@@ -11710,9 +11700,10 @@ label s3e3p3:
 
     # CHOICE
     menu:
-        "[s3_mc.current_partner] wants us to go and check on [s3_3rd_girl_options[s3_mc.current_partner]]..."
+        "[s3_mc.current_partner] wants us to go and check on [s3e3p3_lonely_one]..."
         "That's a good idea":
             $ s3_mc.like(s3_mc.current_partner)
+            $ s3_mc.like(s3e3p3_lonely_one)
             s3_mc "Just to make sure [he_she]'s OK. We owe [him_her] that much."
             s3_mc "[s3_mc.bff] was there for me after the first recoupling, so I know what a difference it can make."
             if s3_mc.current_partner == "Bill":
@@ -11726,6 +11717,7 @@ label s3e3p3:
         "I'd rather go alone":
             $ s3e3p3_go_alone = True
             $ s3_mc.like(s3_mc.current_partner)
+            $ s3_mc.like(s3e3p3_lonely_one)
             s3_mc "I think I'm probably the one [he_she] wants to talk to right now."
             s3_mc "[s3_mc.bff] was there for me after the first recoupling, so I know what a difference it can make."
             if s3_mc.current_partner == "Bill":
@@ -11743,31 +11735,32 @@ label s3e3p3:
             "[s3_mc.current_partner] gives you a kiss on the cheek before you set off away from the firepit."
         "Ugh, do we have to?":
             $ s3_mc.dislike(s3_mc.current_partner)
+            $ s3_mc.dislike(s3e3p3_lonely_one)
             if s3_mc.current_partner == "Bill":
                 bill "I just want to make sure [he_she]'s OK. We owe her that much."
                 bill "Remember how [s3_mc.bff] was there for you after the first recoupling?"
-                bill "This is your chance to be that person for [s3_3rd_girl_options[s3_mc.current_partner]]."
+                bill "This is your chance to be that person for [s3e3p3_lonely_one]."
             elif s3_mc.current_partner == "Camilo":
                 camilo "I just want to make sure [he_she]'s OK. We owe her that much."
                 camilo "Remember how [s3_mc.bff] was there for you after the first recoupling?"
-                camilo "This is your chance to be that person for [s3_3rd_girl_options[s3_mc.current_partner]]."
+                camilo "This is your chance to be that person for [s3e3p3_lonely_one]."
             elif s3_mc.current_partner == "Harry":
                 harry "I just want to make sure [he_she]'s OK. We owe her that much."
                 harry "Remember how [s3_mc.bff] was there for you after the first recoupling?"
-                harry "This is your chance to be that person for [s3_3rd_girl_options[s3_mc.current_partner]]."
+                harry "This is your chance to be that person for [s3e3p3_lonely_one]."
             elif s3_mc.current_partner == "AJ":
                 aj "I just want to make sure [he_she]'s OK. We owe her that much."
                 aj "Remember how [s3_mc.bff] was there for you after the first recoupling?"
-                aj "This is your chance to be that person for [s3_3rd_girl_options[s3_mc.current_partner]]."  
+                aj "This is your chance to be that person for [s3e3p3_lonely_one]."  
             s3_mc "Fine..."
 
     scene s3-poolside-night with dissolve
     $ on_screen = []
 
     if s3e3p3_go_alone:
-        $ s3_mc.like([s3_3rd_girl_options[s3_mc.current_partner]])
-        "You find [s3_3rd_girl_options[s3_mc.current_partner]] sitting alone by the pool, lost in thought."
-        "[he_she.capitalize()] jumps when you sit down next to [him_her]."
+        $ s3_mc.like([s3e3p3_lonely_one])
+        "You find [s3e3p3_lonely_one] sitting alone by the pool, lost in thought."
+        "[he_she!c] jumps when you sit down next to [him_her]."
 
         if s3_mc.current_partner == "Bill":
             miki "Oh! Sorry, you scared me."
@@ -11796,8 +11789,8 @@ label s3e3p3:
         
     else:
         "With a smile, [s3_mc.current_partner] takes your arm and leads you away from the firepit."
-        "You find Miki/Genevieve/Iona/Seb sitting alone by the pool, lost in thought."
-        "She/He jumps when you sit down next to her/him."
+        "You find [s3e3p3_lonely_one] sitting alone by the pool, lost in thought."
+        "[he_she!c] jumps when you sit down next to [him_her]."
         if s3_mc.current_partner == "Bill":
             miki "Oh! Sorry, you scared me."
             miki "What are you doing here?"
@@ -11825,7 +11818,7 @@ label s3e3p3:
     
 
     if s3_mc.current_partner == "Bill":
-        "[he_she.capitalize()] looks out across the pool and sighs."
+        "[he_she!c] looks out across the pool and sighs."
         miki "I really didn't want to cause a scene."
         miki "This is your big moment. I didn't want to ruin it for you."
         miki "'Cause I do like you, [s3_name]. I want us to be friends."
@@ -11835,7 +11828,7 @@ label s3e3p3:
         miki "Plus, I was kinda holding onto hope for me and [s3_mc.current_partner]."
         miki "It leaves me wondering what I'm supposed to do now."
     elif s3_mc.current_partner == "Camilo":
-        "[he_she.capitalize()] looks out across the pool and sighs."
+        "[he_she!c] looks out across the pool and sighs."
         iona "I really didn't want to cause a scene."
         iona "This is your big moment. I didn't want to ruin it for you."
         iona "'Cause I do like you, [s3_name]. I want us to be friends."
@@ -11845,7 +11838,7 @@ label s3e3p3:
         iona "Plus, I was kinda holding onto hope for me and [s3_mc.current_partner]."
         iona "It leaves me wondering what I'm supposed to do now."
     elif s3_mc.current_partner == "Harry":
-        "[he_she.capitalize()] looks out across the pool and sighs."
+        "[he_she!c] looks out across the pool and sighs."
         genevieve "I really didn't want to cause a scene."
         genevieve "This is your big moment. I didn't want to ruin it for you."
         if s3_mc.bff == "Genevieve":
@@ -11858,7 +11851,7 @@ label s3e3p3:
         genevieve "Plus, I was kinda holding onto hope for me and [s3_mc.current_partner]."
         genevieve "It leaves me wondering what I'm supposed to do now."
     elif s3_mc.current_partner == "AJ":
-        "[he_she.capitalize()] looks out across the pool and sighs."
+        "[he_she!c] looks out across the pool and sighs."
         seb "I really didn't want to cause a scene."
         seb "This is your big moment. I didn't want to ruin it for you."
         if s3_mc.bff == "Genevieve":
@@ -11873,12 +11866,13 @@ label s3e3p3:
 
     # CHOICE
     menu:
-        thought "[s3_3rd_girl_options[s3_mc.current_partner]] doesn't know what to do now [he_she]'s single..."
+        thought "[s3e3p3_lonely_one] doesn't know what to do now [he_she]'s single..."
         "Just stay positive, babes":
+            $ s3_mc.like(s3e3p3_lonely_one)
             s3_mc "I've been there too, so you can take it from me. It can actually be really fun and liberating."
             s3_mc "And it's still early days. You've got loads of time to meet someone else."
             s3_mc "Just keep your chin up, OK? We're all here for you."
-            "[he_she.capitalize()] smiles gratefully."
+            "[he_she!c] smiles gratefully."
             if s3_mc.current_partner == "Bill":
                 miki "Thanks, [s3_name]. I'll try to keep that in mind."
             elif s3_mc.current_partner == "Camilo":
@@ -11890,7 +11884,7 @@ label s3e3p3:
         "Better get grafting, then!":
             s3_mc "I've been there too, so you can take it from me. Being single can be great fun, but you've got to graft."
             s3_mc "Just turn that charm up to eleven and keep cracking on until you find the one."
-            "[s3_3rd_girl_options[s3_mc.current_partner]] laughs despite herself."
+            "[s3e3p3_lonely_one] laughs despite herself."
             if s3_mc.current_partner == "Bill":
                 miki "Thanks, [s3_name]. I'll try to keep that in mind."
             elif s3_mc.current_partner == "Camilo":
@@ -11900,6 +11894,7 @@ label s3e3p3:
             elif s3_mc.current_partner == "AJ":
                 seb "Thanks, [s3_name]. I'll try to keep that in mind."
         "Just stay away from [s3_mc.current_partner]":
+            $ s3_mc.dislike(s3e3p3_lonely_one)
             s3_mc "I don't care what you do, as long as you don't go getting any ideas."
             s3_mc "[s3_mc.current_partner] is with me now, so get used to it."
             if s3_mc.current_partner == "Bill":
@@ -11955,7 +11950,7 @@ label s3e3p3:
                     genevieve "That's... actually a really good idea."
                     genevieve "Thanks, hun."
 
-        if s3e3p3_get_to_know in ["Bill", "Camilo", "Harry", "Nicky"]:
+        if s3e3p3_get_to_know == "Bill" or s3e3p3_get_to_know == "Camilo" or s3e3p3_get_to_know == "Harry" or s3e3p3_get_to_know ==  "Nicky":
             if s3e3p3_get_to_know == "Nicky":
                 s3_mc "I know people see him and Elladine as a solid couple, but I think his could still be turned."
             else:
@@ -12000,7 +11995,7 @@ label s3e3p3:
                 seb "Thanks mate."
 
     if s3e3p3_go_alone:
-        "You look over your shoulder to see [s3_mc.current_partner] coming closer across the lawn. [s3_3rd_girl_options[s3_mc.current_partner]] smiles."
+        "You look over your shoulder to see [s3_mc.current_partner] coming closer across the lawn. [s3e3p3_lonely_one] smiles."
 
     if s3_mc.current_partner == "Bill":
         miki "I guess I should be getting to bed. Give you two a little privacy."
@@ -12011,62 +12006,78 @@ label s3e3p3:
     elif s3_mc.current_partner == "AJ":
         seb "I guess I should be getting to bed. Give you two a little privacy."
 
-    "[he_she.capitalize()] winks as gets to [his_her] feet."
+    "[he_she!c] winks as gets to [his_her] feet."
 
     if s3_mc.current_partner == "Bill":
         show miki at npc_exit
         pause .3
         $ renpy.hide("miki")
         $ on_screen.remove("miki")
+
+        show bill at move_center
     elif s3_mc.current_partner == "Camilo":
         show iona at npc_exit
         pause .3
         $ renpy.hide("iona")
         $ on_screen.remove("iona")
+
+        show camilo at move_center
     elif s3_mc.current_partner == "Harry":
         show genevieve at npc_exit
         pause .3
         $ renpy.hide("genevieve")
         $ on_screen.remove("genevieve")
+
+        show harry at move_center
     elif s3_mc.current_partner == "AJ":
         show seb at npc_exit
         pause .3
         $ renpy.hide("seb")
         $ on_screen.remove("seb")
 
-    "[s3_3rd_girl_options[s3_mc.current_partner]] walks away towards the Villa, leaving you alone by the pool."
-    "A moment later, [s3_mc.current_partner] arrives and sits down next to you."
+        show seb at move_center
 
+    "[s3e3p3_lonely_one] walks away towards the Villa, leaving you alone by the pool."
+
+    if s3e3p3_go_alone:
+        "A moment later, [s3_mc.current_partner] arrives and sits down next to you."
+
+        if s3_mc.current_partner == "Bill":
+            bill "How did it go?"
+            s3_mc "OK, I think. [he_she] didn't seem annoyed with me or anything."
+            bill "That's good."
+        elif s3_mc.current_partner == "Camilo":
+            camilo "How did it go?"
+            s3_mc "OK, I think. [he_she] didn't seem annoyed with me or anything."
+            camilo "That's good."
+        elif s3_mc.current_partner == "Harry":
+            harry "How did it go?"
+            s3_mc "OK, I think. [he_she] didn't seem annoyed with me or anything."
+            harry "That's good."
+        elif s3_mc.current_partner == "AJ":
+            aj "How did it go?"
+            s3_mc "OK, I think. [he_she] didn't seem annoyed with me or anything."
+            aj "That's good."
+            
+            
     if s3_mc.current_partner == "Bill":
-        bill "How did it go?"
-        s3_mc "OK, I think. [he_she] didn't seem annoyed with me or anything."
-        bill "That's good."
         bill "Thanks for talking to [him_her]. It really means a lot to me."
         bill "Anyway, let's not worry about it any more for now."
         bill "This should be our night!"
     elif s3_mc.current_partner == "Camilo":
-        camilo "How did it go?"
-        s3_mc "OK, I think. [he_she] didn't seem annoyed with me or anything."
-        camilo "That's good."
         camilo "Thanks for talking to [him_her]. It really means a lot to me."
         camilo "Anyway, let's not worry about it any more for now."
         camilo "This should be our night!"
     elif s3_mc.current_partner == "Harry":
-        harry "How did it go?"
-        s3_mc "OK, I think. [he_she] didn't seem annoyed with me or anything."
-        harry "That's good."
         harry "Thanks for talking to [him_her]. It really means a lot to me."
         harry "Anyway, let's not worry about it any more for now."
         harry "This should be our night!"
     elif s3_mc.current_partner == "AJ":
-        aj "How did it go?"
-        s3_mc "OK, I think. [he_she] didn't seem annoyed with me or anything."
-        aj "That's good."
         aj "Thanks for talking to [him_her]. It really means a lot to me."
         aj "Anyway, let's not worry about it any more for now."
         aj "This should be our night!"
     
-        "A warm breeze sends ripples across the surface of the pool."
+    "A warm breeze sends ripples across the surface of the pool."
 
     if s3_mc.current_partner == "Bill":
         "Bill smiles at you, his blue eyes twinkling."
@@ -12363,15 +12374,15 @@ label s3e3p3:
                         # SUB-SUB-CHOICE
                         menu:
                             s3_mc "To me, success means..."
-                        "Providing for my family":
-                            harry "Yeah, I get that."
-                            harry "I think you're already amazing, though."
-                        "Being in celebrity magazines":
-                            harry "Yeah, I get that."
-                            harry "I think you're already amazing, though."
-                        "Honing my skills as a [s3_mc.job.lower()]":
-                            harry "Yeah, I get that."
-                            harry "I think you're already amazing, though."
+                            "Providing for my family":
+                                harry "Yeah, I get that."
+                                harry "I think you're already amazing, though."
+                            "Being in celebrity magazines":
+                                harry "Yeah, I get that."
+                                harry "I think you're already amazing, though."
+                            "Honing my skills as a [s3_mc.job.lower()]":
+                                harry "Yeah, I get that."
+                                harry "I think you're already amazing, though."
 
     elif s3_mc.current_partner == "AJ":
         "AJ tucks a strand of hair behind her ear."
@@ -12468,28 +12479,28 @@ label s3e3p3:
     if s3_mc.current_partner == "Bill":
         bill "[s3_name]..."
         bill "It's cool if you're not in the mood, but..."
-        "[he_she] bites [his_her] lips."
+        "[he_she!c] bites [his_her] lip."
         bill "I really want to do something naughty with you."
         bill "How about we go up to the roof terrace and see what happens?"
         bill "We'll have more privacy up there than the bedroom..."
     elif s3_mc.current_partner == "Camilo":
         camilo "[s3_name]..."
         camilo "It's cool if you're not in the mood, but..."
-        "[he_she] bites [his_her] lips."
+        "[he_she!c] bites [his_her] lip."
         camilo "I really want to do something naughty with you."
         camilo "How about we go up to the roof terrace and see what happens?"
         camilo "We'll have more privacy up there than the bedroom..."
     elif s3_mc.current_partner == "Harry":
         harry "[s3_name]..."
         harry "It's cool if you're not in the mood, but..."
-        "[he_she] bites [his_her] lips."
+        "[he_she!c] bites [his_her] lip."
         harry "I really want to do something naughty with you."
         harry "How about we go up to the roof terrace and see what happens?"
         harry "We'll have more privacy up there than the bedroom..."
     elif s3_mc.current_partner == "AJ":
         aj "[s3_name]..."
         aj "It's cool if you're not in the mood, but..."
-        "[he_she] bites [his_her] lips."
+        "[he_she!c] bites [his_her] lip."
         aj "I really want to do something naughty with you."
         aj "How about we go up to the roof terrace and see what happens?"
         aj "We'll have more privacy up there than the bedroom..."
@@ -12554,7 +12565,7 @@ label s3e3p3_roof_sex:
         "She realises she's raising her voice and quickly drops to a whisper, smiling sheepishly."
         aj "Sorry. Got a bit overexcited there. I'll try to keep the noise down."
 
-    "For a while you just stand there, your hands clasped in his/her, gazing into each other's eyes."
+    "For a while you just stand there, your hands clasped in [his_hers], gazing into each other's eyes."
     "The night is clear and quiet, with only a slight breeze rustling through the trees far below."
     if s3_mc.current_partner == "Bill":
         bill "You're so beautiful."
@@ -12587,10 +12598,10 @@ label s3e3p3_roof_sex:
             s3_mc "We make such a hot couple."
         "Shut up and kiss me":
             "[s3_mc.current_partner] grins and takes your face in both hands."
-            "[he_she.capitalize()] kisses you gently on the corner of your mouth before pulling away to stare into your eyes again."
+            "[he_she!c] kisses you gently on the corner of your mouth before pulling away to stare into your eyes again."
 
     "[s3_mc.current_partner] smiles."
-    "[he_she.capitalize()] leans in close and whispers, [his_her] voice low."
+    "[he_she!c] leans in close and whispers, [his_her] voice low."
 
     if s3_mc.current_partner == "Bill":
         bill "[s3_name]..."
@@ -12637,12 +12648,12 @@ label s3e3p3_roof_sex:
         "Yes, let's get right down to it!":
             s3_mc "I want you, too..."
             "You reach for [s3_mc.current_partner]'s clothes and start pulling them off as fast as you can."
-            "[he_she.capitalize()] slips you out of your outfit in one smooth motion, leaving it crumpled on the floor."
+            "[he_she!c] slips you out of your outfit in one smooth motion, leaving it crumpled on the floor."
             "You fall into each other's arms, kissing roughly and passionately, as the rest of the world seems to fall away."
         "Yes, let's savour every moment":
             s3_mc "It's our first time together. Let's make the most of it."
             "You run your hand slowly down the length of [s3_mc.current_partner]'s neck and along [his_her] shoulder, making [him_her] shiver."
-            "[he_she.capitalize()] caresses your back, stroking you through your clothes, enjoying every shape and curve of your body."
+            "[he_she!c] caresses your back, stroking you through your clothes, enjoying every shape and curve of your body."
             "Finally you both start to get undressed, revealing yourselves one step at a time."
 
 
@@ -12692,7 +12703,7 @@ label s3e3p3_roof_sex:
                     aj "It's amazing..."
             "I want [s3_mc.current_partner] to take the lead":
                 "[s3_mc.current_partner] wraps [his_her] legs around you and rolls on top of you."
-                "[he_she.capitalize()] touches you everywhere you want to be touched."
+                "[he_she!c] touches you everywhere you want to be touched."
 
                 if s3_mc.current_partner == "Bill":
                     bill "How's that?"
@@ -12770,6 +12781,7 @@ label s3e3p3_roof_sex:
             s3_mc "I really had to think about it. I didn't want to just rush into this without being sure."
             s3_mc "But in the end, it had to be you."
         "It was an easy decision":
+            $ s3_mc.like(s3_mc.current_partner)
             s3_mc "I knew you were the one I wanted. No contest."
         "I flipped a coin ":
             s3_mc "Well, a few coins. I had to narrow down my options."
@@ -12786,7 +12798,7 @@ label s3e3p3_roof_sex:
                 
             s3_mc "It's always worked for me so far."
 
-    "[he_she.capitalize()] squeezes you closer to [his_her] chest."
+    "[he_she!c] squeezes you closer to [his_her] chest."
     "You can feel [his_her] heart beating. It's incredibly soothing."
     "[s3_mc.current_partner]'s hand gently strokes your back as you feel your eyes start to get heavy..."
 
@@ -12855,7 +12867,7 @@ label s3e3p3_roof_sex:
                 aj "Even the kitchen?"
             s3_mc "What part of 'any room' don't you understand?"
 
-    "[he_she.capitalize()] grins and takes your hand."
+    "[he_she!c] grins and takes your hand."
     "Together, you go back down the steps into the Villa."
 
 label s3e3p3_ending:
@@ -12908,10 +12920,29 @@ label s3e3p3_ending:
 
     "[s3_mc.current_partner] hurries off towards the bathroom."
 
+    if s3_mc.current_partner == "Bill":
+        show bill at npc_exit
+        pause .3
+        $ renpy.hide("bill")
+    elif s3_mc.current_partner == "Camilo":
+        show camilo at npc_exit
+        pause .3
+        $ renpy.hide("camilo")
+    elif s3_mc.current_partner == "Harry":
+        show harry at npc_exit
+        pause .3
+        $ renpy.hide("harry")
+    elif s3_mc.current_partner == "AJ":
+        show aj at npc_exit
+        pause .3
+        $ renpy.hide("aj")
+
+    $ on_screen = []
+
     $ pronouns(s3_mc.bff)
     "[s3_mc.bff] flashes you a sly smile."
     seb "There you are, [s3_name]. Where have you and [s3_mc.current_partner] been all this time?"
-    "[he_she.capitalize()] leans in conspiratorially."
+    "[he_she!c] leans in conspiratorially."
     seb "Any exciting developments?"
 
     # CHOICE
@@ -13068,13 +13099,13 @@ label s3e3p3_ending:
         $ on_screen.remove("seb")
 
     if s3_mc.current_partner == "Bill":
-        show bill at npc_center
+        show bill at move_center
     elif s3_mc.current_partner == "Camilo":
-        show camilo at npc_center
+        show camilo at move_center
     elif s3_mc.current_partner == "Harry":
-        show harry at npc_center
+        show harry at move_center
     elif s3_mc.current_partner == "AJ":
-        show aj at npc_center
+        show aj at move_center
 
     "[s3_mc.current_partner] cheerfully climbs onto your bed. You settle in next to [him_her]."
 
@@ -13160,15 +13191,15 @@ label s3e3p3_ending:
         "Wrap your arms around [him_her]":
             $ s3_mc.like(s3_mc.current_partner)
             "You gently put your arms around [s3_mc.current_partner]'s body."
-            "[he_she.capitalize()] snuggles closer against your chest and makes a small, happy, sleepy noise."
-            thought "[he_she.capitalize()]'s so warm."
+            "[he_she!c] snuggles closer against your chest and makes a small, happy, sleepy noise."
+            thought "[he_she!c]'s so warm."
             thought "And I feel so safe."
         "Ask [him_her] to spoon you":
             $ s3_mc.like(s3_mc.current_partner)
             s3_mc "Can I be the little spoon?"
-            "[he_she.capitalize()] murmurs in agreement and wraps [his_her] arms around you."
+            "[he_she!c] murmurs in agreement and wraps [his_her] arms around you."
             "You roll over so your back is pressed into [his_her] chest, [his_her] hands holding you firmly around your waist."
-            thought "[he_she.capitalize()]'s so warm."
+            thought "[he_she!c]'s so warm."
             thought "And I feel so safe."
         "I'd rather just go to sleep":
             if s3_mc.current_partner == "Bill":
@@ -13196,6 +13227,8 @@ label s3e3p3_ending:
         "Most romantic thing I've seen so far this year."
         "And that's including the slow-burn romance between Bill's tastebuds and Camilo's empanadas."
 
+    $ outfit = "swim"
+
     "Next time..."
     "The Islanders buy washing powder and defrost the freezer!"
     "Nope, sorry, that's my to-do list again."
@@ -13205,11 +13238,3 @@ label s3e3p3_ending:
     bill "Just follow the instructions, mate. It's simple."
     harry "All my ice cream melted."
     "Will [s3_name] and [s3_mc.current_partner]'s relationship be strong enough to survive?"
-
-    # CHOICE
-    menu:
-        "Do you want to continue to next part or go back to the main menu?"
-        "Next Part":
-            jump s3e4p1
-        "Main Menu":
-            jump main_menu

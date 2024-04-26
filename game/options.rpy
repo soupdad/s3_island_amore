@@ -37,7 +37,7 @@ define gui.about = _p("""
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "litg_s3"
+define build.name = "island-amore"
 
 
 ## Sounds and music ############################################################
@@ -143,7 +143,7 @@ default preferences.afm_time = 15
 ## This generally should not be changed, and if it is, should always be a
 ## literal string, not an expression.
 
-define config.save_directory = "litg_s3-1708117023"
+define config.save_directory = "island-amore-1708117023"
 
 
 ## Icon ########################################################################
@@ -186,7 +186,12 @@ init python:
     build.classify('**/#**', None)
     build.classify('**/thumbs.db', None)
 
-    build.classify('README.md', None)
+    build.classify('**.md', None)
+    build.classify('**.txt', None)
+    build.classify('.gitignore', None)
+    build.classify('game/saves', None)
+    build.classify('game/cache', None)
+    build.classify('game/e4e5e6.rpy', None)
 
     ## To archive files, classify them as 'archive'.
 
@@ -210,4 +215,4 @@ init python:
 ## The username and project name associated with an itch.io project, separated
 ## by a slash.
 
-# define build.itch_project = "renpytom/test-project"
+define build.itch_project = "soupdad/island-amore"
