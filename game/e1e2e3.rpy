@@ -3,7 +3,7 @@
 #########################################################################
 label s3e1p1:
 
-    scene edited_sandy_intro
+    scene sand
 
     show screen day_title(1, 1) with Pause(4)
     hide screen day_title with dissolve
@@ -1248,7 +1248,7 @@ label s3e1p1:
                 s3_mc "To the challenge platform at once!"
                 "He sets off, carrying you bridal-style across the lawn."
 
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     "It's only day 1, and [s3_name] is already turning heads all over the Villa!"
@@ -1382,7 +1382,7 @@ label s3e1p1_meet_genevieve:
 ## Episode 1, Part 2
 #########################################################################
 label s3e1p2:
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     show screen day_title(1, 2) with Pause(4)
@@ -3172,7 +3172,7 @@ label s3e1p2:
     "I don't know how I'd actually stop them. I can't leave this shed."
     "Maybe if I shout loud enough."
 
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     "Coming up..."
@@ -3193,7 +3193,7 @@ label s3e1p2:
         "And the power is in Miki's hands."
         genevieve serious "But, ultimately, I do have to make a choice and so..."
 
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     jump s3e1p3
@@ -3465,7 +3465,7 @@ label s3e1p2_talk_to_new_girl:
 ## Episode 1, Part 3
 #########################################################################
 label s3e1p3:
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     show screen day_title(1, 3) with Pause(4)
@@ -4403,7 +4403,7 @@ label s3e1p3:
     "AJ chuckles again."
     aj @ happy "I guess we should go."
 
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     "Don't fret, [s3_name]! So, you've lost [s3_mc.current_partner], but at least you've got a bed!"
@@ -5453,7 +5453,7 @@ label s3e1p3_prank:
 ## Episode 2, Part 1
 #########################################################################
 label s3e2p1:
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     show screen day_title(2, 1) with Pause(4)
@@ -5476,7 +5476,7 @@ label s3e2p1:
         genevieve happy "[s3_mc.current_partner]."
         show genevieve at npc_exit
     
-    scene edited_sandy_intro
+    scene sand
     $ on_screen = []
 
     "And so [s3_name] was sent to bed alone."
@@ -5496,7 +5496,7 @@ label s3e2p1:
         elif s3e1p3_prankee == "Harry":
             harry "You realise I have to get you back for this, [s3_name], right?"
             show harry at npc_exit
-        scene edited_sandy_intro 
+        scene sand 
         $ on_screen = []
     else:
         s3_mc "I guess I'll be sleeping alone."
@@ -5678,7 +5678,7 @@ label s3e2p1_end:
     harry @ happy "Right on."
     "Everyone rushes inside to get ready."
 
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     "Things are heating up in the Villa..."
@@ -5690,7 +5690,7 @@ label s3e2p1_end:
     miki sad "What?!"
     iona flirt "Did you feel that special spark with someone?"
     
-    scene edited_sandy_intro
+    scene sand
     $ on_screen = []
 
     # CHOICE
@@ -6617,7 +6617,7 @@ label s3e2p1_bfast_with_bill:
 ## Episode 2, Part 2
 #########################################################################
 label s3e2p2:
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     show screen day_title(2, 2) with Pause(4)
@@ -7300,7 +7300,7 @@ label s3e2p2:
     nicky "That's the spirit. Come on, lads, let's get to the kitchen."
     seb "You girls go relax. The boys have got this."
 
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     "Coming up..."
@@ -7862,7 +7862,7 @@ label s3e2p2_harry_date:
 ## Episode 2, Part 3
 #########################################################################
 label s3e2p3:
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     show screen day_title(2, 3) with Pause(4)
@@ -8620,7 +8620,7 @@ label s3e2p3:
     thought "I better get some sleep."
     thought "Got another full day of grafting to do tomorrow..."
 
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     "Didn't their muss ever tell our Islanders not to play with their food?"
@@ -9048,7 +9048,7 @@ label s3e2p3_clean_off_with_cam:
 #########################################################################
 
 label s3e3p1:
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     show screen day_title(3, 1) with Pause(4)
@@ -10090,7 +10090,7 @@ label s3e3p1_ending:
     "Aren't we, guys?"
     "They still can't hear me."
 
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     "Coming up, the Islanders get up to what can only be called 'shenanigans' in a game of 'Truth and Dare'!"
@@ -10098,7 +10098,7 @@ label s3e3p1_ending:
     bill "Hello?"
     "Until next time!"
 
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     jump s3e3p2
@@ -10109,15 +10109,15 @@ label s3e3p1_ending:
 ## Episode 3, Part 2
 #########################################################################
 label s3e3p2:
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     show screen day_title(3, 2) with Pause(4)
     hide screen day_title with dissolve
 
     "Previously, the Islanders discussed sexy dreams..."
+    
     elladine "I don't remember the details."
-    elladine "But it was very good."
     show elladine at npc_exit
     pause 0.3
     $ renpy.hide("elladine")
@@ -10143,6 +10143,7 @@ label s3e3p2:
     $ on_screen = []
 
     "And Bill is looking a little pail..."
+    show bill bucket at npc_center
     bill "Help me!"
     show bill at npc_exit
     pause 0.3
@@ -10298,8 +10299,8 @@ label s3e3p2_lounge:
     $ s3e3p2_visited.append("Lounge")
 
     "Someone is slumped on the sofa with a bucket on their head."
-    bill "Hello?"
-    bill "Is anybody there?"
+    bill bucket "Hello?"
+    bill bucket "Is anybody there?"
     bill "It's me!"
     s3_mc "Hello me."
     bill "[s3_name]?"
@@ -10405,6 +10406,9 @@ label s3e3p2_lounge:
             bill "Are you still there?"
             s3_mc "Just hold still, Bill."
             "You draw a face on his bucket."
+
+            $ bucket = "smile"
+
             s3_mc "There you go!"
             bill "Are you giving it a face?"
             s3_mc "Yeah!"
@@ -10898,6 +10902,11 @@ label s3e3p2_kitchen:
     return
 
 label s3e3p2_ending:
+    if s3e3p2_draw_on_bucket:
+        $ bucket = "smile-kiss"
+    else:
+        $ bucket = "kiss"
+
     if s3e3p2_getting_kissy == False and s3e3p2_dare_count == 3:
         thought "I've finished my last dare!"
         thought "I wonder what I have to do..."
@@ -10943,7 +10952,7 @@ label s3e3p2_ending:
 
     if s3e3p2_draw_on_bucket:
         miki "Aw, someone drew a face on you, hun!"
-        bill "That would be that cheeky one."
+        bill bucket "That would be that cheeky one."
         "He points randomly towards no one."
         s3_mc "He means me."
         miki "It's cute!"
@@ -10963,9 +10972,9 @@ label s3e3p2_ending:
             thought "What a lucky piece of plastic."
 
     "Nicky chuckles."
-    bill "Nicky?"
+    bill bucket "Nicky?"
     "Bill wanders around a little aimlessly."
-    bill "You coming back for round two?"
+    bill bucket "You coming back for round two?"
     nicky "Don't want to smudge my lippy any more, mate."
 
     if s3e3p2_kiss_count > 0:
@@ -11265,7 +11274,7 @@ label s3e3p2_ending:
     "[s3_name] is absolutely right."
     "It is about time!"
 
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     "Coming up..."
@@ -11293,7 +11302,7 @@ label s3e3p2_ending:
 #########################################################################
 
 label s3e3p3:
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     show screen day_title(3, 3) with Pause(4)
@@ -13213,7 +13222,7 @@ label s3e3p3_ending:
 
     "You close your eyes and drift into a deep, comfortable sleep."
 
-    scene edited_sandy_intro with dissolve
+    scene sand with dissolve
     $ on_screen = []
 
     "It's strange to think that this morning, [s3_name] was the only single girl in the Villa..."

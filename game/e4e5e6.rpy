@@ -1,6 +1,8 @@
 #########################################################################
 ## Episode 4, Part 1
 #########################################################################
+# label s3e4p1:
+#     scene sand
 # "Last time on Love Island…"
 # "The ball was finally back in MC's court."
 # (if MC chose the same person as on the first day:)

@@ -53,9 +53,10 @@ init python:
                 Look into these commands to see if any would help:
                     config.say_attribute_transition
                     config.say_attribute_transition_layer
-                    config.say_attribute_transiton_callback
+                    config.say_attribute_transition_callback
                     https://www.reddit.com/r/RenPy/comments/ostkua/layered_images_with_a_transition_problem/
                     https://www.renpy.org/doc/html/config.html#var-config.say_attribute_transition
+                    https://www.renpy.org/doc/html/layeredimage.html
             Needs on_screen = [] called after each new scene, not impossible but slightly annoying.
                 Not a needed fix.
      
@@ -65,6 +66,7 @@ init python:
         
         # Gets speaking character's name.
         character = renpy.get_say_image_tag()
+        #attribute = renpy.get_say_attributes()
 
         # If speaking character already on screen function stops running.
         if renpy.showing(character):
@@ -218,7 +220,19 @@ define thought = Character("s3_name", dynamic = True, what_italic = True, window
 default outfit = "swim"
 default hair = "hair"
 
+# For E3P2 - Bill's Bucket Head
+default bucket = "normal"
+
 ## AJ
+# layeredimage aj:
+#     always:
+#         "npcs/aj/aj-body.png"
+        
+#     (0, 0), "npcs/aj/aj-outfit-[outfit].png",
+#     (0, 0), "npcs/aj/aj-face-neutral.png",
+#     (0, 0), "npcs/aj/aj-hair-[hair].png"
+
+
 image aj = Composite(
     (965, 1500),
     (0, 0), "npcs/aj/aj-body.png",
@@ -349,6 +363,13 @@ image bill very_happy= Composite(
     (0, 0), "npcs/bill/bill-outfit-[outfit].png",
     (0, 0), "npcs/bill/bill-face-very_happy.png",
     (0, 0), "npcs/bill/bill-hair-[hair].png"
+)
+image bill bucket= Composite(
+    (965, 1500),
+    (0, 0), "npcs/bill/bill-body.png",
+    (0, 0), "npcs/bill/bill-outfit-[outfit].png",
+    (0, 0), "npcs/bill/bill-face-very_happy.png",
+    (0, 0), "npcs/bill/bill-hair-bucket_[bucket].png"
 )
 
 define character.bill = Character("Bill", image = "bill", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
