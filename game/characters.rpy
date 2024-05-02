@@ -2,6 +2,19 @@
 ## Custom Functions and Classes
 ####################################################################
 init python:
+    on_screen = []
+
+    def npc_exit(name):
+        '''
+        Manually removes NPC from being visible on screen.
+
+        Currently doesn't work.
+        '''
+        renpy.show(name, [npc_exit])
+        renpy.pause(0.3)
+        renpy.hide(name)
+        on_screen.remove(name)
+
     def pronouns(name):
         '''
         Saves the correct pronouns to generic variables depending on the NPC.
@@ -33,8 +46,6 @@ init python:
                 result = name
         
         return result
-
-    on_screen = []
 
     def move_character(event, interact=True, **kwargs):
         """
@@ -224,221 +235,106 @@ default hair = "hair"
 default bucket = "normal"
 
 ## AJ
-# layeredimage aj:
-#     always:
-#         "npcs/aj/aj-body.png"
-        
-#     (0, 0), "npcs/aj/aj-outfit-[outfit].png",
-#     (0, 0), "npcs/aj/aj-face-neutral.png",
-#     (0, 0), "npcs/aj/aj-hair-[hair].png"
+layeredimage aj:
+    always:
+        "npcs/aj/aj-body.png"
+    
+    attribute outfit default:
+        "npcs/aj/aj-outfit-[outfit].png"
 
+    group face auto:
+        attribute neutral default:
+            "npcs/aj/aj-face-neutral.png"
+        attribute angry:
+            "npcs/aj/aj-face-angry.png"
+        attribute awkward:
+            "npcs/aj/aj-face-awkward.png"
+        attribute flirt:
+            "npcs/aj/aj-face-flirt.png"
+        attribute happy:
+            "npcs/aj/aj-face-happy.png"
+        attribute sad:
+            "npcs/aj/aj-face-sad.png"
+        attribute serious:
+            "npcs/aj/aj-face-serious.png"
+        attribute talk:
+            "npcs/aj/aj-face-talk.png"
+        attribute very_happy:
+            "npcs/aj/aj-face-very_happy.png"
 
-image aj = Composite(
-    (965, 1500),
-    (0, 0), "npcs/aj/aj-body.png",
-    (0, 0), "npcs/aj/aj-outfit-[outfit].png",
-    (0, 0), "npcs/aj/aj-face-neutral.png",
-    (0, 0), "npcs/aj/aj-hair-[hair].png"
-)
-image aj angry= Composite(
-    (965, 1500),
-    (0, 0), "npcs/aj/aj-body.png",
-    (0, 0), "npcs/aj/aj-outfit-[outfit].png",
-    (0, 0), "npcs/aj/aj-face-angry.png",
-    (0, 0), "npcs/aj/aj-hair-[hair].png"
-)
-image aj awkward= Composite(
-    (965, 1500),
-    (0, 0), "npcs/aj/aj-body.png",
-    (0, 0), "npcs/aj/aj-outfit-[outfit].png",
-    (0, 0), "npcs/aj/aj-face-awkward.png",
-    (0, 0), "npcs/aj/aj-hair-[hair].png"
-)
-image aj flirt= Composite(
-    (965, 1500),
-    (0, 0), "npcs/aj/aj-body.png",
-    (0, 0), "npcs/aj/aj-outfit-[outfit].png",
-    (0, 0), "npcs/aj/aj-face-flirt.png",
-    (0, 0), "npcs/aj/aj-hair-[hair].png"
-)
-image aj happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/aj/aj-body.png",
-    (0, 0), "npcs/aj/aj-outfit-[outfit].png",
-    (0, 0), "npcs/aj/aj-face-happy.png",
-    (0, 0), "npcs/aj/aj-hair-[hair].png"
-)
-image aj sad= Composite(
-    (965, 1500),
-    (0, 0), "npcs/aj/aj-body.png",
-    (0, 0), "npcs/aj/aj-outfit-[outfit].png",
-    (0, 0), "npcs/aj/aj-face-sad.png",
-    (0, 0), "npcs/aj/aj-hair-[hair].png"
-)
-image aj serious= Composite(
-    (965, 1500),
-    (0, 0), "npcs/aj/aj-body.png",
-    (0, 0), "npcs/aj/aj-outfit-[outfit].png",
-    (0, 0), "npcs/aj/aj-face-serious.png",
-    (0, 0), "npcs/aj/aj-hair-[hair].png"
-)
-image aj talk= Composite(
-    (965, 1500),
-    (0, 0), "npcs/aj/aj-body.png",
-    (0, 0), "npcs/aj/aj-outfit-[outfit].png",
-    (0, 0), "npcs/aj/aj-face-talk.png",
-    (0, 0), "npcs/aj/aj-hair-[hair].png"
-)
-image aj very_happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/aj/aj-body.png",
-    (0, 0), "npcs/aj/aj-outfit-[outfit].png",
-    (0, 0), "npcs/aj/aj-face-very_happy.png",
-    (0, 0), "npcs/aj/aj-hair-[hair].png"
-)
+    attribute hair default:
+        "npcs/aj/aj-hair-[hair].png"
 
 define character.aj = Character("AJ", image = "aj", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default aj = Npcs("woman")
 
 ## Bill
-image bill = Composite(
-    (965, 1500),
-    (0, 0), "npcs/bill/bill-body.png",
-    (0, 0), "npcs/bill/bill-outfit-[outfit].png",
-    (0, 0), "npcs/bill/bill-face-neutral.png",
-    (0, 0), "npcs/bill/bill-hair-[hair].png"
-)
-image bill angry= Composite(
-    (965, 1500),
-    (0, 0), "npcs/bill/bill-body.png",
-    (0, 0), "npcs/bill/bill-outfit-[outfit].png",
-    (0, 0), "npcs/bill/bill-face-angry.png",
-    (0, 0), "npcs/bill/bill-hair-[hair].png"
-)
-image bill awkward= Composite(
-    (965, 1500),
-    (0, 0), "npcs/bill/bill-body.png",
-    (0, 0), "npcs/bill/bill-outfit-[outfit].png",
-    (0, 0), "npcs/bill/bill-face-awkward.png",
-    (0, 0), "npcs/bill/bill-hair-[hair].png"
-)
-image bill flirt= Composite(
-    (965, 1500),
-    (0, 0), "npcs/bill/bill-body.png",
-    (0, 0), "npcs/bill/bill-outfit-[outfit].png",
-    (0, 0), "npcs/bill/bill-face-flirt.png",
-    (0, 0), "npcs/bill/bill-hair-[hair].png"
-)
-image bill happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/bill/bill-body.png",
-    (0, 0), "npcs/bill/bill-outfit-[outfit].png",
-    (0, 0), "npcs/bill/bill-face-happy.png",
-    (0, 0), "npcs/bill/bill-hair-[hair].png"
-)
-image bill sad= Composite(
-    (965, 1500),
-    (0, 0), "npcs/bill/bill-body.png",
-    (0, 0), "npcs/bill/bill-outfit-[outfit].png",
-    (0, 0), "npcs/bill/bill-face-sad.png",
-    (0, 0), "npcs/bill/bill-hair-[hair].png"
-)
-image bill serious= Composite(
-    (965, 1500),
-    (0, 0), "npcs/bill/bill-body.png",
-    (0, 0), "npcs/bill/bill-outfit-[outfit].png",
-    (0, 0), "npcs/bill/bill-face-serious.png",
-    (0, 0), "npcs/bill/bill-hair-[hair].png"
-)
-image bill talk= Composite(
-    (965, 1500),
-    (0, 0), "npcs/bill/bill-body.png",
-    (0, 0), "npcs/bill/bill-outfit-[outfit].png",
-    (0, 0), "npcs/bill/bill-face-talk.png",
-    (0, 0), "npcs/bill/bill-hair-[hair].png"
-)
-image bill very_happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/bill/bill-body.png",
-    (0, 0), "npcs/bill/bill-outfit-[outfit].png",
-    (0, 0), "npcs/bill/bill-face-very_happy.png",
-    (0, 0), "npcs/bill/bill-hair-[hair].png"
-)
-image bill bucket= Composite(
-    (965, 1500),
-    (0, 0), "npcs/bill/bill-body.png",
-    (0, 0), "npcs/bill/bill-outfit-[outfit].png",
-    (0, 0), "npcs/bill/bill-face-very_happy.png",
-    (0, 0), "npcs/bill/bill-hair-bucket_[bucket].png"
-)
+layeredimage bill:
+    always:
+        "npcs/bill/bill-body.png"
+    
+    attribute outfit default:
+        "npcs/bill/bill-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/bill/bill-face-neutral.png"
+        attribute angry:
+            "npcs/bill/bill-face-angry.png"
+        attribute awkward:
+            "npcs/bill/bill-face-awkward.png"
+        attribute flirt:
+            "npcs/bill/bill-face-flirt.png"
+        attribute happy:
+            "npcs/bill/bill-face-happy.png"
+        attribute sad:
+            "npcs/bill/bill-face-sad.png"
+        attribute serious:
+            "npcs/bill/bill-face-serious.png"
+        attribute talk:
+            "npcs/bill/bill-face-talk.png"
+        attribute very_happy:
+            "npcs/bill/bill-face-very_happy.png"
+
+    group hair auto:
+        attribute hair default:
+            "npcs/bill/bill-hair-[hair].png"
+        attribute bucket:
+            "npcs/bill/bill-hair-bucket_[bucket].png"
 
 define character.bill = Character("Bill", image = "bill", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default bill = Npcs("man")
 
 ## Camilo
-image camilo = Composite(
-    (965, 1500),
-    (0, 0), "npcs/camilo/camilo-body.png",
-    (0, 0), "npcs/camilo/camilo-outfit-[outfit].png",
-    (0, 0), "npcs/camilo/camilo-face-neutral.png",
-    (0, 0), "npcs/camilo/camilo-hair-[hair].png"
-)
-image camilo angry= Composite(
-    (965, 1500),
-    (0, 0), "npcs/camilo/camilo-body.png",
-    (0, 0), "npcs/camilo/camilo-outfit-[outfit].png",
-    (0, 0), "npcs/camilo/camilo-face-angry.png",
-    (0, 0), "npcs/camilo/camilo-hair-[hair].png"
-)
-image camilo awkward= Composite(
-    (965, 1500),
-    (0, 0), "npcs/camilo/camilo-body.png",
-    (0, 0), "npcs/camilo/camilo-outfit-[outfit].png",
-    (0, 0), "npcs/camilo/camilo-face-awkward.png",
-    (0, 0), "npcs/camilo/camilo-hair-[hair].png"
-)
-image camilo flirt= Composite(
-    (965, 1500),
-    (0, 0), "npcs/camilo/camilo-body.png",
-    (0, 0), "npcs/camilo/camilo-outfit-[outfit].png",
-    (0, 0), "npcs/camilo/camilo-face-flirt.png",
-    (0, 0), "npcs/camilo/camilo-hair-[hair].png"
-)
-image camilo happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/camilo/camilo-body.png",
-    (0, 0), "npcs/camilo/camilo-outfit-[outfit].png",
-    (0, 0), "npcs/camilo/camilo-face-happy.png",
-    (0, 0), "npcs/camilo/camilo-hair-[hair].png"
-)
-image camilo sad= Composite(
-    (965, 1500),
-    (0, 0), "npcs/camilo/camilo-body.png",
-    (0, 0), "npcs/camilo/camilo-outfit-[outfit].png",
-    (0, 0), "npcs/camilo/camilo-face-sad.png",
-    (0, 0), "npcs/camilo/camilo-hair-[hair].png"
-)
-image camilo serious= Composite(
-    (965, 1500),
-    (0, 0), "npcs/camilo/camilo-body.png",
-    (0, 0), "npcs/camilo/camilo-outfit-[outfit].png",
-    (0, 0), "npcs/camilo/camilo-face-serious.png",
-    (0, 0), "npcs/camilo/camilo-hair-[hair].png"
-)
-image camilo talk= Composite(
-    (965, 1500),
-    (0, 0), "npcs/camilo/camilo-body.png",
-    (0, 0), "npcs/camilo/camilo-outfit-[outfit].png",
-    (0, 0), "npcs/camilo/camilo-face-talk.png",
-    (0, 0), "npcs/camilo/camilo-hair-[hair].png"
-)
-image camilo very_happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/camilo/camilo-body.png",
-    (0, 0), "npcs/camilo/camilo-outfit-[outfit].png",
-    (0, 0), "npcs/camilo/camilo-face-very_happy.png",
-    (0, 0), "npcs/camilo/camilo-hair-[hair].png"
-)
+layeredimage camilo:
+    always:
+        "npcs/camilo/camilo-body.png"
+    
+    attribute outfit default:
+        "npcs/camilo/camilo-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/camilo/camilo-face-neutral.png"
+        attribute angry:
+            "npcs/camilo/camilo-face-angry.png"
+        attribute awkward:
+            "npcs/camilo/camilo-face-awkward.png"
+        attribute flirt:
+            "npcs/camilo/camilo-face-flirt.png"
+        attribute happy:
+            "npcs/camilo/camilo-face-happy.png"
+        attribute sad:
+            "npcs/camilo/camilo-face-sad.png"
+        attribute serious:
+            "npcs/camilo/camilo-face-serious.png"
+        attribute talk:
+            "npcs/camilo/camilo-face-talk.png"
+        attribute very_happy:
+            "npcs/camilo/camilo-face-very_happy.png"
+
+    attribute hair default:
+        "npcs/camilo/camilo-hair-[hair].png"
 
 define character.camilo = Character("Camilo", image = "camilo", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default camilo = Npcs("man")
@@ -448,276 +344,140 @@ define character.ciaran = Character("Ciaran", window_background = Image("npc_dia
 default ciaran = Npcs("man")
 
 ## Elladine
-image elladine = Composite(
-    (965, 1500),
-    (0, 0), "npcs/elladine/elladine-body.png",
-    (0, 0), "npcs/elladine/elladine-outfit-[outfit].png",
-    (0, 0), "npcs/elladine/elladine-face-neutral.png",
-    (0, 0), "npcs/elladine/elladine-hair-[hair].png"
-)
-image elladine angry= Composite(
-    (965, 1500),
-    (0, 0), "npcs/elladine/elladine-body.png",
-    (0, 0), "npcs/elladine/elladine-outfit-[outfit].png",
-    (0, 0), "npcs/elladine/elladine-face-angry.png",
-    (0, 0), "npcs/elladine/elladine-hair-[hair].png"
-)
-image elladine awkward= Composite(
-    (965, 1500),
-    (0, 0), "npcs/elladine/elladine-body.png",
-    (0, 0), "npcs/elladine/elladine-outfit-[outfit].png",
-    (0, 0), "npcs/elladine/elladine-face-awkward.png",
-    (0, 0), "npcs/elladine/elladine-hair-[hair].png"
-)
-image elladine flirt= Composite(
-    (965, 1500),
-    (0, 0), "npcs/elladine/elladine-body.png",
-    (0, 0), "npcs/elladine/elladine-outfit-[outfit].png",
-    (0, 0), "npcs/elladine/elladine-face-flirt.png",
-    (0, 0), "npcs/elladine/elladine-hair-[hair].png"
-)
-image elladine happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/elladine/elladine-body.png",
-    (0, 0), "npcs/elladine/elladine-outfit-[outfit].png",
-    (0, 0), "npcs/elladine/elladine-face-happy.png",
-    (0, 0), "npcs/elladine/elladine-hair-[hair].png"
-)
-image elladine sad= Composite(
-    (965, 1500),
-    (0, 0), "npcs/elladine/elladine-body.png",
-    (0, 0), "npcs/elladine/elladine-outfit-[outfit].png",
-    (0, 0), "npcs/elladine/elladine-face-sad.png",
-    (0, 0), "npcs/elladine/elladine-hair-[hair].png"
-)
-image elladine serious= Composite(
-    (965, 1500),
-    (0, 0), "npcs/elladine/elladine-body.png",
-    (0, 0), "npcs/elladine/elladine-outfit-[outfit].png",
-    (0, 0), "npcs/elladine/elladine-face-serious.png",
-    (0, 0), "npcs/elladine/elladine-hair-[hair].png"
-)
-image elladine talk= Composite(
-    (965, 1500),
-    (0, 0), "npcs/elladine/elladine-body.png",
-    (0, 0), "npcs/elladine/elladine-outfit-[outfit].png",
-    (0, 0), "npcs/elladine/elladine-face-talk.png",
-    (0, 0), "npcs/elladine/elladine-hair-[hair].png"
-)
-image elladine very_happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/elladine/elladine-body.png",
-    (0, 0), "npcs/elladine/elladine-outfit-[outfit].png",
-    (0, 0), "npcs/elladine/elladine-face-very_happy.png",
-    (0, 0), "npcs/elladine/elladine-hair-[hair].png"
-)
+layeredimage elladine:
+    always:
+        "npcs/elladine/elladine-body.png"
+    
+    attribute outfit default:
+        "npcs/elladine/elladine-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/elladine/elladine-face-neutral.png"
+        attribute angry:
+            "npcs/elladine/elladine-face-angry.png"
+        attribute awkward:
+            "npcs/elladine/elladine-face-awkward.png"
+        attribute flirt:
+            "npcs/elladine/elladine-face-flirt.png"
+        attribute happy:
+            "npcs/elladine/elladine-face-happy.png"
+        attribute sad:
+            "npcs/elladine/elladine-face-sad.png"
+        attribute serious:
+            "npcs/elladine/elladine-face-serious.png"
+        attribute talk:
+            "npcs/elladine/elladine-face-talk.png"
+        attribute very_happy:
+            "npcs/elladine/elladine-face-very_happy.png"
+
+    attribute hair default:
+        "npcs/elladine/elladine-hair-[hair].png"
 
 define character.elladine = Character("Elladine", image = "elladine", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default elladine = Npcs("woman")
 
 
 ## Genevieve
-image genevieve = Composite(
-    (965, 1500),
-    (0, 0), "npcs/genevieve/genevieve-body.png",
-    (0, 0), "npcs/genevieve/genevieve-outfit-[outfit].png",
-    (0, 0), "npcs/genevieve/genevieve-face-neutral.png",
-    (0, 0), "npcs/genevieve/genevieve-hair-[hair].png"
-)
-image genevieve angry= Composite(
-    (965, 1500),
-    (0, 0), "npcs/genevieve/genevieve-body.png",
-    (0, 0), "npcs/genevieve/genevieve-outfit-[outfit].png",
-    (0, 0), "npcs/genevieve/genevieve-face-angry.png",
-    (0, 0), "npcs/genevieve/genevieve-hair-[hair].png"
-)
-image genevieve awkward= Composite(
-    (965, 1500),
-    (0, 0), "npcs/genevieve/genevieve-body.png",
-    (0, 0), "npcs/genevieve/genevieve-outfit-[outfit].png",
-    (0, 0), "npcs/genevieve/genevieve-face-awkward.png",
-    (0, 0), "npcs/genevieve/genevieve-hair-[hair].png"
-)
-image genevieve flirt= Composite(
-    (965, 1500),
-    (0, 0), "npcs/genevieve/genevieve-body.png",
-    (0, 0), "npcs/genevieve/genevieve-outfit-[outfit].png",
-    (0, 0), "npcs/genevieve/genevieve-face-flirt.png",
-    (0, 0), "npcs/genevieve/genevieve-hair-[hair].png"
-)
-image genevieve happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/genevieve/genevieve-body.png",
-    (0, 0), "npcs/genevieve/genevieve-outfit-[outfit].png",
-    (0, 0), "npcs/genevieve/genevieve-face-happy.png",
-    (0, 0), "npcs/genevieve/genevieve-hair-[hair].png"
-)
-image genevieve sad= Composite(
-    (965, 1500),
-    (0, 0), "npcs/genevieve/genevieve-body.png",
-    (0, 0), "npcs/genevieve/genevieve-outfit-[outfit].png",
-    (0, 0), "npcs/genevieve/genevieve-face-sad.png",
-    (0, 0), "npcs/genevieve/genevieve-hair-[hair].png"
-)
-image genevieve serious= Composite(
-    (965, 1500),
-    (0, 0), "npcs/genevieve/genevieve-body.png",
-    (0, 0), "npcs/genevieve/genevieve-outfit-[outfit].png",
-    (0, 0), "npcs/genevieve/genevieve-face-serious.png",
-    (0, 0), "npcs/genevieve/genevieve-hair-[hair].png"
-)
-image genevieve talk= Composite(
-    (965, 1500),
-    (0, 0), "npcs/genevieve/genevieve-body.png",
-    (0, 0), "npcs/genevieve/genevieve-outfit-[outfit].png",
-    (0, 0), "npcs/genevieve/genevieve-face-talk.png",
-    (0, 0), "npcs/genevieve/genevieve-hair-[hair].png"
-)
-image genevieve very_happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/genevieve/genevieve-body.png",
-    (0, 0), "npcs/genevieve/genevieve-outfit-[outfit].png",
-    (0, 0), "npcs/genevieve/genevieve-face-very_happy.png",
-    (0, 0), "npcs/genevieve/genevieve-hair-[hair].png"
-)
+layeredimage genevieve:
+    always:
+        "npcs/genevieve/genevieve-body.png"
+    
+    attribute outfit default:
+        "npcs/genevieve/genevieve-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/genevieve/genevieve-face-neutral.png"
+        attribute angry:
+            "npcs/genevieve/genevieve-face-angry.png"
+        attribute awkward:
+            "npcs/genevieve/genevieve-face-awkward.png"
+        attribute flirt:
+            "npcs/genevieve/genevieve-face-flirt.png"
+        attribute happy:
+            "npcs/genevieve/genevieve-face-happy.png"
+        attribute sad:
+            "npcs/genevieve/genevieve-face-sad.png"
+        attribute serious:
+            "npcs/genevieve/genevieve-face-serious.png"
+        attribute talk:
+            "npcs/genevieve/genevieve-face-talk.png"
+        attribute very_happy:
+            "npcs/genevieve/genevieve-face-very_happy.png"
+
+    attribute hair default:
+        "npcs/genevieve/genevieve-hair-[hair].png"
 
 define character.genevieve = Character("Genevieve", image = "genevieve", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default genevieve = Npcs("woman")
 
 
 ## Harry
-image harry = Composite(
-    (965, 1500),
-    (0, 0), "npcs/harry/harry-body.png",
-    (0, 0), "npcs/harry/harry-outfit-[outfit].png",
-    (0, 0), "npcs/harry/harry-face-neutral.png",
-    (0, 0), "npcs/harry/harry-hair-[hair].png"
-)
-image harry angry= Composite(
-    (965, 1500),
-    (0, 0), "npcs/harry/harry-body.png",
-    (0, 0), "npcs/harry/harry-outfit-[outfit].png",
-    (0, 0), "npcs/harry/harry-face-angry.png",
-    (0, 0), "npcs/harry/harry-hair-[hair].png"
-)
-image harry awkward= Composite(
-    (965, 1500),
-    (0, 0), "npcs/harry/harry-body.png",
-    (0, 0), "npcs/harry/harry-outfit-[outfit].png",
-    (0, 0), "npcs/harry/harry-face-awkward.png",
-    (0, 0), "npcs/harry/harry-hair-[hair].png"
-)
-image harry flirt= Composite(
-    (965, 1500),
-    (0, 0), "npcs/harry/harry-body.png",
-    (0, 0), "npcs/harry/harry-outfit-[outfit].png",
-    (0, 0), "npcs/harry/harry-face-flirt.png",
-    (0, 0), "npcs/harry/harry-hair-[hair].png"
-)
-image harry happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/harry/harry-body.png",
-    (0, 0), "npcs/harry/harry-outfit-[outfit].png",
-    (0, 0), "npcs/harry/harry-face-happy.png",
-    (0, 0), "npcs/harry/harry-hair-[hair].png"
-)
-image harry sad= Composite(
-    (965, 1500),
-    (0, 0), "npcs/harry/harry-body.png",
-    (0, 0), "npcs/harry/harry-outfit-[outfit].png",
-    (0, 0), "npcs/harry/harry-face-sad.png",
-    (0, 0), "npcs/harry/harry-hair-[hair].png"
-)
-image harry serious= Composite(
-    (965, 1500),
-    (0, 0), "npcs/harry/harry-body.png",
-    (0, 0), "npcs/harry/harry-outfit-[outfit].png",
-    (0, 0), "npcs/harry/harry-face-serious.png",
-    (0, 0), "npcs/harry/harry-hair-[hair].png"
-)
-image harry talk= Composite(
-    (965, 1500),
-    (0, 0), "npcs/harry/harry-body.png",
-    (0, 0), "npcs/harry/harry-outfit-[outfit].png",
-    (0, 0), "npcs/harry/harry-face-talk.png",
-    (0, 0), "npcs/harry/harry-hair-[hair].png"
-)
-image harry very_happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/harry/harry-body.png",
-    (0, 0), "npcs/harry/harry-outfit-[outfit].png",
-    (0, 0), "npcs/harry/harry-face-very_happy.png",
-    (0, 0), "npcs/harry/harry-hair-[hair].png"
-)
+layeredimage harry:
+    always:
+        "npcs/harry/harry-body.png"
+    
+    attribute outfit default:
+        "npcs/harry/harry-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/harry/harry-face-neutral.png"
+        attribute angry:
+            "npcs/harry/harry-face-angry.png"
+        attribute awkward:
+            "npcs/harry/harry-face-awkward.png"
+        attribute flirt:
+            "npcs/harry/harry-face-flirt.png"
+        attribute happy:
+            "npcs/harry/harry-face-happy.png"
+        attribute sad:
+            "npcs/harry/harry-face-sad.png"
+        attribute serious:
+            "npcs/harry/harry-face-serious.png"
+        attribute talk:
+            "npcs/harry/harry-face-talk.png"
+        attribute very_happy:
+            "npcs/harry/harry-face-very_happy.png"
+
+    attribute hair default:
+        "npcs/harry/harry-hair-[hair].png"
 
 define character.harry = Character("Harry", image = "harry", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default harry = Npcs("man")
 
 
 ## Iona
-image iona = Composite(
-    (965, 1500),
-    (0, 0), "npcs/iona/iona-body.png",
-    (0, 0), "npcs/iona/iona-outfit-[outfit].png",
-    (0, 0), "npcs/iona/iona-face-neutral.png",
-    (0, 0), "npcs/iona/iona-hair-[hair].png"
-)
-image iona angry= Composite(
-    (965, 1500),
-    (0, 0), "npcs/iona/iona-body.png",
-    (0, 0), "npcs/iona/iona-outfit-[outfit].png",
-    (0, 0), "npcs/iona/iona-face-angry.png",
-    (0, 0), "npcs/iona/iona-hair-[hair].png"
-)
-image iona awkward= Composite(
-    (965, 1500),
-    (0, 0), "npcs/iona/iona-body.png",
-    (0, 0), "npcs/iona/iona-outfit-[outfit].png",
-    (0, 0), "npcs/iona/iona-face-awkward.png",
-    (0, 0), "npcs/iona/iona-hair-[hair].png"
-)
-image iona flirt= Composite(
-    (965, 1500),
-    (0, 0), "npcs/iona/iona-body.png",
-    (0, 0), "npcs/iona/iona-outfit-[outfit].png",
-    (0, 0), "npcs/iona/iona-face-flirt.png",
-    (0, 0), "npcs/iona/iona-hair-[hair].png"
-)
-image iona happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/iona/iona-body.png",
-    (0, 0), "npcs/iona/iona-outfit-[outfit].png",
-    (0, 0), "npcs/iona/iona-face-happy.png",
-    (0, 0), "npcs/iona/iona-hair-[hair].png"
-)
-image iona sad= Composite(
-    (965, 1500),
-    (0, 0), "npcs/iona/iona-body.png",
-    (0, 0), "npcs/iona/iona-outfit-[outfit].png",
-    (0, 0), "npcs/iona/iona-face-sad.png",
-    (0, 0), "npcs/iona/iona-hair-[hair].png"
-)
-image iona serious= Composite(
-    (965, 1500),
-    (0, 0), "npcs/iona/iona-body.png",
-    (0, 0), "npcs/iona/iona-outfit-[outfit].png",
-    (0, 0), "npcs/iona/iona-face-serious.png",
-    (0, 0), "npcs/iona/iona-hair-[hair].png"
-)
-image iona talk= Composite(
-    (965, 1500),
-    (0, 0), "npcs/iona/iona-body.png",
-    (0, 0), "npcs/iona/iona-outfit-[outfit].png",
-    (0, 0), "npcs/iona/iona-face-talk.png",
-    (0, 0), "npcs/iona/iona-hair-[hair].png"
-)
-image iona very_happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/iona/iona-body.png",
-    (0, 0), "npcs/iona/iona-outfit-[outfit].png",
-    (0, 0), "npcs/iona/iona-face-very_happy.png",
-    (0, 0), "npcs/iona/iona-hair-[hair].png"
-)
+layeredimage iona:
+    always:
+        "npcs/iona/iona-body.png"
+    
+    attribute outfit default:
+        "npcs/iona/iona-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/iona/iona-face-neutral.png"
+        attribute angry:
+            "npcs/iona/iona-face-angry.png"
+        attribute awkward:
+            "npcs/iona/iona-face-awkward.png"
+        attribute flirt:
+            "npcs/iona/iona-face-flirt.png"
+        attribute happy:
+            "npcs/iona/iona-face-happy.png"
+        attribute sad:
+            "npcs/iona/iona-face-sad.png"
+        attribute serious:
+            "npcs/iona/iona-face-serious.png"
+        attribute talk:
+            "npcs/iona/iona-face-talk.png"
+        attribute very_happy:
+            "npcs/iona/iona-face-very_happy.png"
+
+    attribute hair default:
+        "npcs/iona/iona-hair-[hair].png"
 
 define character.iona = Character("Iona", image = "iona", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default iona = Npcs("woman")
@@ -729,138 +489,70 @@ default lily = Npcs("woman")
 
 
 ## Miki
-image miki = Composite(
-    (965, 1500),
-    (0, 0), "npcs/miki/miki-body.png",
-    (0, 0), "npcs/miki/miki-outfit-[outfit].png",
-    (0, 0), "npcs/miki/miki-face-neutral.png",
-    (0, 0), "npcs/miki/miki-hair-[hair].png"
-)
-image miki angry= Composite(
-    (965, 1500),
-    (0, 0), "npcs/miki/miki-body.png",
-    (0, 0), "npcs/miki/miki-outfit-[outfit].png",
-    (0, 0), "npcs/miki/miki-face-angry.png",
-    (0, 0), "npcs/miki/miki-hair-[hair].png"
-)
-image miki awkward= Composite(
-    (965, 1500),
-    (0, 0), "npcs/miki/miki-body.png",
-    (0, 0), "npcs/miki/miki-outfit-[outfit].png",
-    (0, 0), "npcs/miki/miki-face-awkward.png",
-    (0, 0), "npcs/miki/miki-hair-[hair].png"
-)
-image miki flirt= Composite(
-    (965, 1500),
-    (0, 0), "npcs/miki/miki-body.png",
-    (0, 0), "npcs/miki/miki-outfit-[outfit].png",
-    (0, 0), "npcs/miki/miki-face-flirt.png",
-    (0, 0), "npcs/miki/miki-hair-[hair].png"
-)
-image miki happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/miki/miki-body.png",
-    (0, 0), "npcs/miki/miki-outfit-[outfit].png",
-    (0, 0), "npcs/miki/miki-face-happy.png",
-    (0, 0), "npcs/miki/miki-hair-[hair].png"
-)
-image miki sad= Composite(
-    (965, 1500),
-    (0, 0), "npcs/miki/miki-body.png",
-    (0, 0), "npcs/miki/miki-outfit-[outfit].png",
-    (0, 0), "npcs/miki/miki-face-sad.png",
-    (0, 0), "npcs/miki/miki-hair-[hair].png"
-)
-image miki serious= Composite(
-    (965, 1500),
-    (0, 0), "npcs/miki/miki-body.png",
-    (0, 0), "npcs/miki/miki-outfit-[outfit].png",
-    (0, 0), "npcs/miki/miki-face-serious.png",
-    (0, 0), "npcs/miki/miki-hair-[hair].png"
-)
-image miki talk= Composite(
-    (965, 1500),
-    (0, 0), "npcs/miki/miki-body.png",
-    (0, 0), "npcs/miki/miki-outfit-[outfit].png",
-    (0, 0), "npcs/miki/miki-face-talk.png",
-    (0, 0), "npcs/miki/miki-hair-[hair].png"
-)
-image miki very_happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/miki/miki-body.png",
-    (0, 0), "npcs/miki/miki-outfit-[outfit].png",
-    (0, 0), "npcs/miki/miki-face-very_happy.png",
-    (0, 0), "npcs/miki/miki-hair-[hair].png"
-)
+layeredimage miki:
+    always:
+        "npcs/miki/miki-body.png"
+    
+    attribute outfit default:
+        "npcs/miki/miki-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/miki/miki-face-neutral.png"
+        attribute angry:
+            "npcs/miki/miki-face-angry.png"
+        attribute awkward:
+            "npcs/miki/miki-face-awkward.png"
+        attribute flirt:
+            "npcs/miki/miki-face-flirt.png"
+        attribute happy:
+            "npcs/miki/miki-face-happy.png"
+        attribute sad:
+            "npcs/miki/miki-face-sad.png"
+        attribute serious:
+            "npcs/miki/miki-face-serious.png"
+        attribute talk:
+            "npcs/miki/miki-face-talk.png"
+        attribute very_happy:
+            "npcs/miki/miki-face-very_happy.png"
+
+    attribute hair default:
+        "npcs/miki/miki-hair-[hair].png"
 
 define character.miki = Character("Miki", image = "miki", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default miki = Npcs("woman")
 
 
 ## Nicky
-image nicky = Composite(
-    (965, 1500),
-    (0, 0), "npcs/nicky/nicky-body.png",
-    (0, 0), "npcs/nicky/nicky-outfit-[outfit].png",
-    (0, 0), "npcs/nicky/nicky-face-neutral.png",
-    (0, 0), "npcs/nicky/nicky-hair-[hair].png"
-)
-image nicky angry= Composite(
-    (965, 1500),
-    (0, 0), "npcs/nicky/nicky-body.png",
-    (0, 0), "npcs/nicky/nicky-outfit-[outfit].png",
-    (0, 0), "npcs/nicky/nicky-face-angry.png",
-    (0, 0), "npcs/nicky/nicky-hair-[hair].png"
-)
-image nicky awkward= Composite(
-    (965, 1500),
-    (0, 0), "npcs/nicky/nicky-body.png",
-    (0, 0), "npcs/nicky/nicky-outfit-[outfit].png",
-    (0, 0), "npcs/nicky/nicky-face-awkward.png",
-    (0, 0), "npcs/nicky/nicky-hair-[hair].png"
-)
-image nicky flirt= Composite(
-    (965, 1500),
-    (0, 0), "npcs/nicky/nicky-body.png",
-    (0, 0), "npcs/nicky/nicky-outfit-[outfit].png",
-    (0, 0), "npcs/nicky/nicky-face-flirt.png",
-    (0, 0), "npcs/nicky/nicky-hair-[hair].png"
-)
-image nicky happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/nicky/nicky-body.png",
-    (0, 0), "npcs/nicky/nicky-outfit-[outfit].png",
-    (0, 0), "npcs/nicky/nicky-face-happy.png",
-    (0, 0), "npcs/nicky/nicky-hair-[hair].png"
-)
-image nicky sad= Composite(
-    (965, 1500),
-    (0, 0), "npcs/nicky/nicky-body.png",
-    (0, 0), "npcs/nicky/nicky-outfit-[outfit].png",
-    (0, 0), "npcs/nicky/nicky-face-sad.png",
-    (0, 0), "npcs/nicky/nicky-hair-[hair].png"
-)
-image nicky serious= Composite(
-    (965, 1500),
-    (0, 0), "npcs/nicky/nicky-body.png",
-    (0, 0), "npcs/nicky/nicky-outfit-[outfit].png",
-    (0, 0), "npcs/nicky/nicky-face-serious.png",
-    (0, 0), "npcs/nicky/nicky-hair-[hair].png"
-)
-image nicky talk= Composite(
-    (965, 1500),
-    (0, 0), "npcs/nicky/nicky-body.png",
-    (0, 0), "npcs/nicky/nicky-outfit-[outfit].png",
-    (0, 0), "npcs/nicky/nicky-face-talk.png",
-    (0, 0), "npcs/nicky/nicky-hair-[hair].png"
-)
-image nicky very_happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/nicky/nicky-body.png",
-    (0, 0), "npcs/nicky/nicky-outfit-[outfit].png",
-    (0, 0), "npcs/nicky/nicky-face-very_happy.png",
-    (0, 0), "npcs/nicky/nicky-hair-[hair].png"
-)
+layeredimage nicky:
+    always:
+        "npcs/nicky/nicky-body.png"
+    
+    attribute outfit default:
+        "npcs/nicky/nicky-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/nicky/nicky-face-neutral.png"
+        attribute angry:
+            "npcs/nicky/nicky-face-angry.png"
+        attribute awkward:
+            "npcs/nicky/nicky-face-awkward.png"
+        attribute flirt:
+            "npcs/nicky/nicky-face-flirt.png"
+        attribute happy:
+            "npcs/nicky/nicky-face-happy.png"
+        attribute sad:
+            "npcs/nicky/nicky-face-sad.png"
+        attribute serious:
+            "npcs/nicky/nicky-face-serious.png"
+        attribute talk:
+            "npcs/nicky/nicky-face-talk.png"
+        attribute very_happy:
+            "npcs/nicky/nicky-face-very_happy.png"
+
+    attribute hair default:
+        "npcs/nicky/nicky-hair-[hair].png"
 
 define character.nicky = Character("Nicky", image = "nicky", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default nicky = Npcs("man")
@@ -872,69 +564,35 @@ default rafi = Npcs("man")
 
 
 ## Seb
-image seb = Composite(
-    (965, 1500),
-    (0, 0), "npcs/seb/seb-body.png",
-    (0, 0), "npcs/seb/seb-outfit-[outfit].png",
-    (0, 0), "npcs/seb/seb-face-neutral.png",
-    (0, 0), "npcs/seb/seb-hair-[hair].png"
-)
-image seb angry= Composite(
-    (965, 1500),
-    (0, 0), "npcs/seb/seb-body.png",
-    (0, 0), "npcs/seb/seb-outfit-[outfit].png",
-    (0, 0), "npcs/seb/seb-face-angry.png",
-    (0, 0), "npcs/seb/seb-hair-[hair].png"
-)
-image seb awkward= Composite(
-    (965, 1500),
-    (0, 0), "npcs/seb/seb-body.png",
-    (0, 0), "npcs/seb/seb-outfit-[outfit].png",
-    (0, 0), "npcs/seb/seb-face-awkward.png",
-    (0, 0), "npcs/seb/seb-hair-[hair].png"
-)
-image seb flirt= Composite(
-    (965, 1500),
-    (0, 0), "npcs/seb/seb-body.png",
-    (0, 0), "npcs/seb/seb-outfit-[outfit].png",
-    (0, 0), "npcs/seb/seb-face-flirt.png",
-    (0, 0), "npcs/seb/seb-hair-[hair].png"
-)
-image seb happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/seb/seb-body.png",
-    (0, 0), "npcs/seb/seb-outfit-[outfit].png",
-    (0, 0), "npcs/seb/seb-face-happy.png",
-    (0, 0), "npcs/seb/seb-hair-[hair].png"
-)
-image seb sad= Composite(
-    (965, 1500),
-    (0, 0), "npcs/seb/seb-body.png",
-    (0, 0), "npcs/seb/seb-outfit-[outfit].png",
-    (0, 0), "npcs/seb/seb-face-sad.png",
-    (0, 0), "npcs/seb/seb-hair-[hair].png"
-)
-image seb serious= Composite(
-    (965, 1500),
-    (0, 0), "npcs/seb/seb-body.png",
-    (0, 0), "npcs/seb/seb-outfit-[outfit].png",
-    (0, 0), "npcs/seb/seb-face-serious.png",
-    (0, 0), "npcs/seb/seb-hair-[hair].png"
-)
-image seb talk= Composite(
-    (965, 1500),
-    (0, 0), "npcs/seb/seb-body.png",
-    (0, 0), "npcs/seb/seb-outfit-[outfit].png",
-    (0, 0), "npcs/seb/seb-face-talk.png",
-    (0, 0), "npcs/seb/seb-hair-[hair].png"
-)
-image seb very_happy= Composite(
-    (965, 1500),
-    (0, 0), "npcs/seb/seb-body.png",
-    (0, 0), "npcs/seb/seb-outfit-[outfit].png",
-    (0, 0), "npcs/seb/seb-face-very_happy.png",
-    (0, 0), "npcs/seb/seb-hair-[hair].png"
-)
+layeredimage seb:
+    always:
+        "npcs/seb/seb-body.png"
+    
+    attribute outfit default:
+        "npcs/seb/seb-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/seb/seb-face-neutral.png"
+        attribute angry:
+            "npcs/seb/seb-face-angry.png"
+        attribute awkward:
+            "npcs/seb/seb-face-awkward.png"
+        attribute flirt:
+            "npcs/seb/seb-face-flirt.png"
+        attribute happy:
+            "npcs/seb/seb-face-happy.png"
+        attribute sad:
+            "npcs/seb/seb-face-sad.png"
+        attribute serious:
+            "npcs/seb/seb-face-serious.png"
+        attribute talk:
+            "npcs/seb/seb-face-talk.png"
+        attribute very_happy:
+            "npcs/seb/seb-face-very_happy.png"
+
+    attribute hair default:
+        "npcs/seb/seb-hair-[hair].png"
 
 define character.seb = Character("Seb", image = "seb", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default seb = Npcs("man")

@@ -83,9 +83,8 @@ label s3e1p1:
     elladine @ talk "Hey! You made it!"
     elladine @ happy "It's so nice to meet you! I'm Elladine."
 
-    $ s3_character_profile = "Elladine"
     window hide
-    show screen s3_character_profile with Pause(3)
+    show screen s3_character_profile("elladine") with Pause(3)
     hide screen s3_character_profile with dissolve
 
     # solo portrait shot of elladine
@@ -126,7 +125,6 @@ label s3e1p1:
             elladine @ sad "Um, sure. Understood."
 
     elladine @ sad "I've been feeling well nervous ever since I got here."
-    
     elladine -serious "I mean it's exciting, but it's also a lot of pressure, isn't it?"
 
     # CHOICE
@@ -168,9 +166,8 @@ label s3e1p1:
     aj "My name's AJ. It's nice to meet you."
 
     # solo portrait shot of aj
-    $ s3_character_profile = "AJ"
     window hide
-    show screen s3_character_profile with Pause(3)
+    show screen s3_character_profile("aj") with Pause(3)
     hide screen s3_character_profile with dissolve
 
     "{i}AJ\n
@@ -364,9 +361,8 @@ label s3e1p1:
     bill @ flirt "Alright, beautiful? I'm Bill."
 
     # solo portrait shot of bill
-    $ s3_character_profile = "Bill"
     window hide
-    show screen s3_character_profile with Pause(3)
+    show screen s3_character_profile("bill") with Pause(3)
     hide screen s3_character_profile with dissolve
 
     "{i}Bill\n
@@ -405,9 +401,8 @@ label s3e1p1:
     camilo @ happy "Well, it is now you're here."
 
     # solo portrait shot of camilo
-    $ s3_character_profile = "Camilo"
     window hide
-    show screen s3_character_profile with Pause(3)
+    show screen s3_character_profile("camilo") with Pause(3)
     hide screen s3_character_profile with dissolve
 
     "{i}Camilo\n
@@ -448,9 +443,8 @@ label s3e1p1:
     harry @ flirt "Hey, I'm Harry."
 
     # solo portrait shot of harry
-    $ s3_character_profile = "Harry"
     window hide
-    show screen s3_character_profile with Pause(3)
+    show screen s3_character_profile("harry") with Pause(3)
     hide screen s3_character_profile with dissolve
 
     "{i}Harry\n
@@ -563,9 +557,8 @@ label s3e1p1:
     nicky "I'm Nicky. I'm the lucky guy who's coupled up with Elladine."
 
     # solo portrait shot of nicky
-    $ s3_character_profile = "Nicky"
     window hide
-    show screen s3_character_profile with Pause(3)
+    show screen s3_character_profile("nicky") with Pause(3)
     hide screen s3_character_profile with dissolve
 
     "{i}Nicky\n
@@ -583,9 +576,8 @@ label s3e1p1:
     seb @ happy "Alright? My name's Seb. I'm coupled up with AJ."
 
     # solo portrait shot of seb
-    $ s3_character_profile = "Seb"
     window hide
-    show screen s3_character_profile with Pause(3)
+    show screen s3_character_profile("seb") with Pause(3)
     hide screen s3_character_profile with dissolve
 
     "{i}Seb\n
@@ -1289,9 +1281,8 @@ label s3e1p1_meet_miki:
     miki @ very_happy "Hi everyone! It's so exciting to be here!"
 
     # solo profile shot of miki
-    $ s3_character_profile = "Miki"
     window hide
-    show screen s3_character_profile with Pause(3)
+    show screen s3_character_profile("miki") with Pause(3)
     hide screen s3_character_profile with dissolve
 
     "{i}Miki\n
@@ -1325,9 +1316,8 @@ label s3e1p1_meet_iona:
     iona @ happy "I don't know about the rest of you, but I'm about ready to do something wild."
 
     # solo profile shot of iona
-    $ s3_character_profile = "Iona"
     window hide
-    show screen s3_character_profile with Pause(3)
+    show screen s3_character_profile("iona") with Pause(3)
     hide screen s3_character_profile with dissolve
 
     "{i}Iona\n
@@ -1353,9 +1343,8 @@ label s3e1p1_meet_genevieve:
     genevieve @ happy "How are we all doing?"
 
     # solo profile shot of genevieve
-    $ s3_character_profile = "Genevieve"
     window hide
-    show screen s3_character_profile with Pause(3)
+    show screen s3_character_profile("genevieve") with Pause(3)
     hide screen s3_character_profile with dissolve
 
     "{i}Genevieve\n
@@ -5751,7 +5740,12 @@ label s3e2p1_bean_bags:
     menu:
         thought "Genevieve isn't sure about Harry..."
         "I think he's really cool":
-            genevieve "Yeah, we'll see."
+            if s3_mc.current_partner == "Harry":
+                genevieve "I know, I know."
+                genevieve "I'm sorry, I'm sure that's, like, really annoying to hear coming from me."
+            else:
+                genevieve "Yeah, we'll see."
+
         "He's not my cup of tea":
             genevieve "I think we're on the same wavelength."
         "Good, he's all mine then":
@@ -10354,6 +10348,7 @@ label s3e3p2_lounge:
             bill "You can't see it, but I am proper hot under here after that."
         "Ask Bill for a massage" if s3e3p2_dare_count == 1:
             $ s3e3p2_completed_dare_count += 1
+            $ s3e3p2_masseur = "Bill"
             s3_mc "Bill..."
             bill "Yeah?"
             s3_mc "Mind giving me a massage?"
@@ -10510,6 +10505,7 @@ label s3e3p2_bean_bags:
             aj "Stop! I'm so ticklish."
         "Ask AJ for massage" if s3e3p2_dare_count == 1:
             $ s3e3p2_completed_dare_count += 1
+            $ s3e3p2_masseur = "AJ"
             s3_mc "Hey AJ."
             s3_mc "Reckon you could, like, give me a massage?"
             "She smiles and scootches Seb out of the way a little."
@@ -10664,6 +10660,7 @@ label s3e3p2_pool:
         "Ask Camilo for a massage" if s3e3p2_dare_count == 1:
             $ s3e3p2_completed_dare_count += 1
             $ s3e3p2_interact_camilo = True
+            $ s3e3p2_masseur = "Camilo"
             s3_mc "Speaking of feeling comfy..."
             s3_mc "I could really do with a massage."
             camilo "Say no more."
@@ -10820,6 +10817,7 @@ label s3e3p2_kitchen:
             genevieve "Ah, right."
         "Ask Harry for a massage" if s3e3p2_dare_count == 1:
             $ s3e3p2_completed_dare_count += 1
+            $ s3e3p2_masseur = "Harry"
             "You stretch out your arms and yawn."
             s3_mc "You know what we could also do?"
             harry "What?"
@@ -11983,21 +11981,25 @@ label s3e3p3:
             s3_mc "Maybe you should be getting to know..."
             "Elladine":
                 # FILL (I'm going to put something but it isn't canon lol)
+                $ s3e3p3_get_to_know = "Elladine"
                 s3_mc "I know people see her and Nicky as a solid couple, but I think her could still be turned."
                 seb "I don't know. She's not the kind of girl I'd usually go for."
                 seb "But she is cool. Maybe I'll try talking to her tomorrow."
                 seb "Thanks mate."
             "Miki":
+                $ s3e3p3_get_to_know = "Miki"
                 s3_mc "I know she likes Bill, but I don't think they're serious yet. Her head could def still be turned."
                 seb "Hm,maybe. Miki's one of these well romantic girls. I think I might be a bit too cynical for her."
                 seb "But she is cool. Maybe I'll try talking to her a bit tomorrow."
                 seb "Thanks mate."
             "Iona":
+                $ s3e3p3_get_to_know = "Iona"
                 s3_mc "I know she likes Camilo, but I don't think they're serious yet. Her head could def still be turned."
                 seb "Iona's great, but she's so high-energy. I think I might just end up dragging her down."
                 seb "But she is cool. Maybe I'll try talking to her a bit tomorrow."
                 seb "Thanks mate."
             "Genevieve":
+                $ s3e3p3_get_to_know = "Genevieve"
                 s3_mc "I know she likes Harry, but I don't think they're serious yet. Her head could def still be turned."
                 "He thinks about it seriously for a moment."
                 seb "That's... actually a really good idea."

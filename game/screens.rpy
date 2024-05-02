@@ -1620,51 +1620,12 @@ style slider_slider:
 
     ** Still need to be adjusted and made to look nicer/text be more readable.
 '''
-screen s3_character_profile():
-    image "bgs/edited_sandy_intro.png"
+screen s3_character_profile(name):
+    image "bgs/sand.png"
 
-    if s3_character_profile == "AJ":
-        add "aj" at character_profile_zoom
-        text "New Islander" size 60 color "#fff" align(0.5, 0.65)
-        text "AJ" size 150 color "#fff" align(0.5, 0.8)
-    elif s3_character_profile == "Bill":
-        add "bill" at character_profile_zoom
-        text "Bill" size 150 color "#fff" align(0.5, 0.8)
-    elif s3_character_profile == "Camilo":
-        add "camilo" at character_profile_zoom
-        text "Camilo" size 150 color "#fff" align(0.5, 0.8)
-    elif s3_character_profile == "Ciaran":
-        pass
-    elif s3_character_profile == "Elladine":
-        add "elladine" at character_profile_zoom
-        text "New Islander" size 60 color "#fff" align(0.5, 0.65)
-        text "Elladine" size 150 color "#fff" align(0.5, 0.8)
-    elif s3_character_profile == "Genevieve":
-        add "genevieve" at character_profile_zoom
-        text "Genevieve" size 150 color "#fff" align(0.5, 0.8)
-    elif s3_character_profile == "Harry":
-        add "harry" at character_profile_zoom
-        text "Harry" size 150 color "#fff" align(0.5, 0.8)
-    elif s3_character_profile == "Iona":
-        add "iona" at character_profile_zoom
-        text "Iona" size 150 color "#fff" align(0.5, 0.8)
-    elif s3_character_profile == "Lily":
-        pass
-    elif s3_character_profile == "Miki":
-        add "miki" at character_profile_zoom
-        text "Miki" size 150 color "#fff" align(0.5, 0.8)
-    elif s3_character_profile == "Nicky":
-        add "nicky" at character_profile_zoom
-        text "Nicky" size 100 color "#e5266c" align(0.5, 0.6)
-    elif s3_character_profile == "Rafi":
-        pass
-    elif s3_character_profile == "Seb":
-        add "seb" at character_profile_zoom
-        text "Seb" size 100 color "#e5266c" align(0.5, 0.6)
-    elif s3_character_profile == "Tai":
-        pass
-    elif s3_character_profile == "Yasmin":
-        pass
+    add "[name]" at character_profile_zoom
+    text "New Islander" size 60 color "#fff" align(0.5, 0.65)
+    text "[name!c]" size 150 color "#fff" align(0.5, 0.8)
 
 '''
 Displays the day and part at the beginning of each part.

@@ -136,6 +136,8 @@ default s3e3p2_kiss_bill = False
 default s3e3p2_kiss_camilo = False
 # s3e3p2_kiss_harry (bool)
 default s3e3p2_kiss_harry = False
+# s3e3p2_masseur (str) ["Bill", "AJ", "Harry", "Camilo"]
+default s3e3p2_masseur = ""
 # s3e3p2_dare_count (int)
 default s3e3p2_dare_count = 0
 # s3e3p2_completed_dare_count (int)
@@ -154,9 +156,54 @@ default s3e3p2_ask_question = ""
 ## Episode 3, Part 3
 # s3e3p3_go_alone (bool)
 default s3e3p3_go_alone = False
-# s3e3p3_get_to_know (str) ["Bill", "Camilo", "Harry"]
+# s3e3p3_get_to_know (str) ["Bill", "Camilo", "Harry", "Miki", "Iona", "Genevieve", "Elladine"]
 default s3e3p3_get_to_know = ""
 # s3e3p3_just_cuddle (bool)
 default s3e3p3_just_cuddle = False
 # s3e3p3_roof_sex (bool)
 default s3e3p3_roof_sex = False
+
+################################################################
+## Episode 4
+################################################################
+## Episode 4, Part 1
+# s3e4p1_kiss_or_cuddle (bool)
+default s3e4p1_kiss_or_cuddle = False
+# s3e4p1_harry_incident (bool)
+default s3e4p1_harry_incident = False
+# s3e4p1_invite_gym (str) ["AJ", "Bill", "Camilo", "Harry"]
+default s3e4p1_invite_gym = ""
+# s3e4p1_massage (bool)
+default s3e4p1_massage = False
+
+## Episode 4, Part 2
+# s3e4p2_good_tent (bool)
+default s3e4p2_good_tent = False
+# s3e4p2_give_rock (bool)
+default s3e4p2_give_rock = False
+# s3e4p2_say_dirty (bool)
+default s3e4p2_say_dirty = False
+# s3e4p2_decorate_tent (bool)
+default s3e4p2_decorate_tent = False
+
+## Episode 4, Part 3
+# s3e4p3_wear_shirt (bool)
+default s3e4p3_wear_shirt = False
+# s3e4p3_supper (str) ["Beans", "Marshmallows", "Soup"]
+default s3e4p3_supper = ""
+# s3e4p3_drink (str) ["hot chocolate", "fear", "kombucha"]
+default s3e4p3_drink = ""
+# s3e4p3_stay_up (bool)
+default s3e4p3_stay_up = False
+
+################################################################
+## Episode 5
+################################################################
+
+################################################################
+## Episode 6
+################################################################
+
+
+
+
