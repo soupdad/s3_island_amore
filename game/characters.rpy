@@ -145,7 +145,8 @@ init python:
             self.bisexual = False
             self.diet = ""
             self.like_mc = {"Bill":0, "Camilo":0, "Harry":0, "AJ":0, "Elladine":0, 
-            "Iona":0, "Genevieve":0, "Miki":0, "Nicky":0, "Seb":0}
+            "Iona":0, "Genevieve":0, "Miki":0, "Nicky":0, "Seb":0,
+            "Yasmin":0, "Ciaran":0, "Tai":0}
 
             # maybe remove these?? not sure if they have a point
             self.sweet = 0
@@ -340,6 +341,36 @@ define character.camilo = Character("Camilo", image = "camilo", callback = move_
 default camilo = Npcs("man")
 
 ## Ciaran
+layeredimage ciaran:
+    always:
+        "npcs/ciaran/ciaran-body.png"
+    
+    attribute outfit default:
+        "npcs/ciaran/ciaran-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/ciaran/ciaran-face-neutral.png"
+        attribute angry:
+            "npcs/ciaran/ciaran-face-angry.png"
+        attribute awkward:
+            "npcs/ciaran/ciaran-face-awkward.png"
+        attribute flirt:
+            "npcs/ciaran/ciaran-face-flirt.png"
+        attribute happy:
+            "npcs/ciaran/ciaran-face-happy.png"
+        attribute sad:
+            "npcs/ciaran/ciaran-face-sad.png"
+        attribute serious:
+            "npcs/ciaran/ciaran-face-serious.png"
+        attribute talk:
+            "npcs/ciaran/ciaran-face-talk.png"
+        attribute very_happy:
+            "npcs/ciaran/ciaran-face-very_happy.png"
+
+    attribute hair default:
+        "npcs/ciaran/ciaran-hair-[hair].png"
+
 define character.ciaran = Character("Ciaran", window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default ciaran = Npcs("man")
 
@@ -599,10 +630,73 @@ default seb = Npcs("man")
 
 
 ## Tai
+layeredimage tai:
+    always:
+        "npcs/tai/tai-body.png"
+    
+    attribute outfit default:
+        "npcs/tai/tai-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/tai/tai-face-neutral.png"
+        attribute angry:
+            "npcs/tai/tai-face-angry.png"
+        attribute awkward:
+            "npcs/tai/tai-face-awkward.png"
+        attribute flirt:
+            "npcs/tai/tai-face-flirt.png"
+        attribute happy:
+            "npcs/tai/tai-face-happy.png"
+        attribute sad:
+            "npcs/tai/tai-face-sad.png"
+        attribute serious:
+            "npcs/tai/tai-face-serious.png"
+        attribute talk:
+            "npcs/tai/tai-face-talk.png"
+        attribute very_happy:
+            "npcs/tai/tai-face-very_happy.png"
+
+    attribute hair default:
+        "npcs/tai/tai-hair-[hair].png"
+
 define character.tai = Character("Tai", window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default tai = Npcs("man")
 
 
 ## Yasmin
+layeredimage yasmin:
+    always:
+        "npcs/yasmin/yasmin-body.png"
+    
+    attribute outfit default:
+        "npcs/yasmin/yasmin-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/yasmin/yasmin-face-neutral.png"
+        attribute angry:
+            "npcs/yasmin/yasmin-face-angry.png"
+        attribute awkward:
+            "npcs/yasmin/yasmin-face-awkward.png"
+        attribute flirt:
+            "npcs/yasmin/yasmin-face-flirt.png"
+        attribute happy:
+            "npcs/yasmin/yasmin-face-happy.png"
+        attribute sad:
+            "npcs/yasmin/yasmin-face-sad.png"
+        attribute serious:
+            "npcs/yasmin/yasmin-face-serious.png"
+        attribute talk:
+            "npcs/yasmin/yasmin-face-talk.png"
+        attribute very_happy:
+            "npcs/yasmin/yasmin-face-very_happy.png"
+
+    attribute hair default:
+        "npcs/yasmin/yasmin-hair-[hair].png"
+
+    attribute extra:
+        "npcs/yasmin/yasmin-extras-lamb.png"
+
 define character.yasmin = Character("Yasmin", window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default yasmin = Npcs("woman")

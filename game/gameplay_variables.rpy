@@ -14,6 +14,9 @@ default s3_like_aj = False
 default s3_like_bill = False
 default s3_like_camilo = False
 default s3_like_harry = False
+default s3_like_tai = False
+default s3_like_ciaran = False
+default s3_like_yasmin = False
 default s3_couples = {"AJ":"", "Elladine":"", "Genevieve":"", "Miki":"", "Iona":"", "Bill":"", "Camilo":"", "Harry":"", "Seb":"", "Nicky":""}
 
 default he_she = ""
@@ -162,6 +165,7 @@ default s3e3p3_get_to_know = ""
 default s3e3p3_just_cuddle = False
 # s3e3p3_roof_sex (bool)
 default s3e3p3_roof_sex = False
+# s3e3p3_get_to_know_current_partner (str) ["Miki", "Iona", "Genevieve", "Elladine", "AJ"]
 
 ################################################################
 ## Episode 4
@@ -195,10 +199,22 @@ default s3e4p3_supper = ""
 default s3e4p3_drink = ""
 # s3e4p3_stay_up (bool)
 default s3e4p3_stay_up = False
+# s3e4p3_tent_bits (bool)
+default s3e4p3_tent_bits = False
 
 ################################################################
 ## Episode 5
 ################################################################
+
+## Episode 5, Part 1
+# s3e5p1_rummage_suitcases (bool)
+default s3e5p1_rummage_suitcases = False
+
+## Episode 5, Part 2
+# s3e5p2_committed (bool)
+default s3e5p2_committed = False
+# s3e5p2_options_open (bool)
+default s3e5p2_options_open = False
 
 ################################################################
 ## Episode 6
