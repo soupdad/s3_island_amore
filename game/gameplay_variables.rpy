@@ -3,11 +3,17 @@
 ################################################################
 define config.autosave_on_quit = True
 
+# Coupling Ceremonies:
+# Episode 1 Part 1 == ["Bill", "Camilo", "Harry"]
+# Episode 3 Part 3 == ["Bill", "Camilo", "Harry", "AJ"]
+# Episode 6 Part 3 == ["Yasmin", "Tai", "Ciaran"]
+
 default s3_hints = False
 define s3_3rd_girl_options = {"Bill":"Miki", "Camilo":"Iona", "Harry":"Genevieve", "AJ":"Seb"}
 default s3_3rd_girl = ""
 default s3_character_profile = ""
 
+# lol do i even use this?
 default s3_lis = []
 default s3_fav_li = ""
 default s3_like_aj = False
@@ -215,11 +221,62 @@ default s3e5p1_rummage_suitcases = False
 default s3e5p2_committed = False
 # s3e5p2_options_open (bool)
 default s3e5p2_options_open = False
+# s3e5p2_jump_in_water (bool)
+default s3e5p2_jump_in_water = False
+# s3e5p2_behind_waterfall (bool)
+default s3e5p2_behind_waterfall = False
+# s3e5p2_waterfall_bits (bool)
+default s3e5p2_waterfall_bits = False
+# s3e5p2_confess_attraction_yasmin (bool)
+default s3e5p2_confess_attraction_yasmin = False
+# s3e5p2_confess_attraction_tai (bool)
+default s3e5p2_confess_attraction_tai = False
+# s3e5p2_confess_attraction_ciaran (bool)
+default s3e5p2_confess_attraction_ciaran = False
+
+## Episode 5, Part 3
+# s3e5p3_snog (str) ["Bill", "Camilo", "Harry", "Tai", "Ciaran", "AJ", "Yasmin"]
+default s3e5p3_snog = ""
+# s3e5p3_marry (str) ["Bill", "Camilo", "Harry", "Tai", "Ciaran", "AJ", "Yasmin"]
+default s3e5p3_marry = ""
+# s3e5p3_pie (str) ["Bill", "Camilo", "Harry", "Tai", "Ciaran", "AJ", "Yasmin"]
+default s3e5p3_pie = ""
+# s3e5p3_nudes (bool)
+default s3e5p3_nudes = True
+# s3e5p3_pursue_yasmin (bool)
+default s3e5p3_pursue_yasmin = False
+# s3e5p3_question (str) ["Tai", "AJ", "Seb"]
+default s3e5p3_question = ""
+# s3e5p3_yasmin_help (str) ["Tai", "Ciaran"]
+default s3e5p3_yasmin_help = ""
 
 ################################################################
 ## Episode 6
 ################################################################
+## Episode 6, Part 1
+# s3e6p1_break_up (bool)
+default s3e6p1_break_up = True
+# s3e6p1_walk (bool)
+default s3e6p1_walk = False
+# s3e6p1_walking (bool)
+default s3e6p1_walking = True
 
+## Episode 6, Part 2
+# s3e6p2_task (str) ["Nicky", "Camilo", "Bill", "Harry", "Ciaran Tai", "Seb", "Pool"]
+default s3e6p2_task = ""
+# s3e6p2_agent_name (str) ["Agent Martinez", "Agent Buckethead", "Agent FuryStone", "Agent Serious Face"]
+default s3e6p2_agent_name = ""
+# s3e6p2_switched (str) ["Yasmin", "Miki", "Iona", "Elladine", "Genevieve", "AJ"]
+default s3e6p2_switched = ""
 
-
-
+## Episode 6, Part 3
+# s3e6p3_li (str) ["Yasmin", "Tai", "Ciaran"]
+default s3e6p3_li = ""
+# s3e6p3_good_couple (bool)
+default s3e6p3_good_couple = False
+# s3e6p3_listen (bool)
+default s3e6p3_listen = False
+# s3e6p3_other (str) ["Tai", "Ciaran", "Genevieve", "Miki", "Iona", "Seb"]
+default s3e6p3_other = ""
+# s3e6p3_loyal (bool)
+default s3e6p3_loyal = False

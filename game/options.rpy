@@ -191,7 +191,6 @@ init python:
     build.classify('.gitignore', None)
     build.classify('game/saves', None)
     build.classify('game/cache', None)
-    build.classify('game/e4e5e6.rpy', None)
 
     ## To archive files, classify them as 'archive'.
 

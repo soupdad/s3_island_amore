@@ -371,7 +371,7 @@ layeredimage ciaran:
     attribute hair default:
         "npcs/ciaran/ciaran-hair-[hair].png"
 
-define character.ciaran = Character("Ciaran", window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
+define character.ciaran = Character("Ciaran", image = "ciaran", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default ciaran = Npcs("man")
 
 ## Elladine
@@ -632,6 +632,9 @@ default seb = Npcs("man")
 ## Tai
 layeredimage tai:
     always:
+        "npcs/tai/tai-hair-back.png"
+
+    always:
         "npcs/tai/tai-body.png"
     
     attribute outfit default:
@@ -660,10 +663,10 @@ layeredimage tai:
     attribute hair default:
         "npcs/tai/tai-hair-[hair].png"
 
-define character.tai = Character("Tai", window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
+define character.tai = Character("Tai", image = "tai", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default tai = Npcs("man")
 
-
+default extra = "none"
 ## Yasmin
 layeredimage yasmin:
     always:
@@ -695,8 +698,8 @@ layeredimage yasmin:
     attribute hair default:
         "npcs/yasmin/yasmin-hair-[hair].png"
 
-    attribute extra:
-        "npcs/yasmin/yasmin-extras-lamb.png"
+    attribute extra default:
+        "npcs/yasmin/yasmin-extras-[extra].png"
 
-define character.yasmin = Character("Yasmin", window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
+define character.yasmin = Character("Yasmin", image = "yasmin", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default yasmin = Npcs("woman")

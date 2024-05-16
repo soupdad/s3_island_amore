@@ -63,17 +63,17 @@ label start:
 
     ########################################
     ### For Testing Only: (Comment Out before Building!)
-    # $ s3_mc.current_partner = "Harry"
-    # $ s3_mc.past_partners = ["Harry", "Harry"]
-    # $ s3_mc.bff = "Seb"
-    # $ s3_mc.job = "Athlete"
-    # $ s3_mc.bisexual = True
-    # $ s3_mc.diet = "Vegetarian"
+    $ s3_mc.current_partner = "Harry"
+    $ s3_mc.past_partners = ["Harry", "Harry"]
+    $ s3_mc.bff = "Seb"
+    $ s3_mc.job = "Athlete"
+    $ s3_mc.bisexual = False
+    $ s3_mc.diet = "Vegetarian"
 
     ## For testing if changing partners worked.
     # $ s3_mc.current_partner = "AJ"
     # $ s3_mc.past_partners = ["Harry", "AJ"]
 
-    jump s3e1p1
+    jump s3e5p1
 
     return

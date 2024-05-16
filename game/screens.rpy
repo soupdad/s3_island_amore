@@ -297,7 +297,7 @@ screen navigation():
 
         if main_menu:
 
-            textbutton _("Start") action Start()
+            textbutton _("New") action Start()
 
         else:
 
@@ -1092,7 +1092,7 @@ screen gamepad_help():
         text _("Navigate the interface.")
 
     hbox:
-        label _("Start, Guide")
+        label _("New, Guide")
         text _("Accesses the game menu.")
 
     hbox:
@@ -1623,9 +1623,12 @@ style slider_slider:
 screen s3_character_profile(name):
     image "bgs/sand.png"
 
-    add "[name]" at character_profile_zoom
-    text "New Islander" size 60 color "#fff" align(0.5, 0.65)
-    text "[name!c]" size 150 color "#fff" align(0.5, 0.8)
+    if name == "lamb":
+        pass
+    else:
+        add "[name]" at character_profile_zoom
+        text "New Islander" size 60 color "#fff" align(0.5, 0.65)
+        text "[name!c]" size 150 color "#fff" align(0.5, 0.8)
 
 '''
 Displays the day and part at the beginning of each part.
