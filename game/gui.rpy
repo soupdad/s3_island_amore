@@ -436,10 +436,12 @@ init python:
         gui.label_text_size = 51
 
         ## Adjust the location of the textbox.
-        gui.textbox_height = 360
-        gui.name_xpos = 120
-        gui.dialogue_xpos = 135
-        gui.dialogue_width = 1650
+        gui.textbox_height = 480
+        gui.name_xpos = 380
+        gui.name_ypos = 50
+        gui.dialogue_xpos = 320
+        gui.dialogue_ypos = 175
+        gui.dialogue_width = 1300
 
         ## Change the size and spacing of various things.
         gui.slider_size = 54

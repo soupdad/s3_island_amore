@@ -1100,7 +1100,7 @@ label s3e5p1:
         thought "This is a really good opportunity to learn more about the new Islanders..."
         "Let's have a rummage!":
             $ s3e5p1_rummage_suitcases = True
-            call s3e5p1_rummage_suitcases
+            call s3e5p1_rummage_suitcases from _call_s3e5p1_rummage_suitcases
         "Nope, not interested ":
             if s3_mc.bff == "Elladine":
                 elladine "Aw. OK."
@@ -1819,13 +1819,13 @@ label s3e5p2:
                 aj "Right, yeah. I will."
 
     if s3_mc.current_partner == "Bill":
-        call s3e5p2_partner_bill
+        call s3e5p2_partner_bill from _call_s3e5p2_partner_bill
     elif s3_mc.current_partner == "Camilo":
-        call s3e5p2_partner_camilo
+        call s3e5p2_partner_camilo from _call_s3e5p2_partner_camilo
     elif s3_mc.current_partner == "Harry":
-        call s3e5p2_partner_harry
+        call s3e5p2_partner_harry from _call_s3e5p2_partner_harry
     elif s3_mc.current_partner == "AJ":
-        call s3e5p2_partner_aj
+        call s3e5p2_partner_aj from _call_s3e5p2_partner_aj
 
     "A few cars pull up on the driveway to take the Islanders to their dates."
     "[s3_mc.current_partner] sighs."
@@ -1891,17 +1891,17 @@ label s3e5p2:
     "You settle down on the picnic blanket and wait for your first date."
 
     if s3_mc.bisexual:
-        call s3e5p2_yasmin_date
+        call s3e5p2_yasmin_date from _call_s3e5p2_yasmin_date
         thought "I wonder who's going to be my next date..."
 
-    call s3e5p2_ciaran_date
+    call s3e5p2_ciaran_date from _call_s3e5p2_ciaran_date
 
     "You look over to the waterfall. A text alert goes off."
     s3_mc "Another text..."
     text "[s3_name], your next date will be arriving shortly."
     thought "Oh, wow! I'm busy today!"
 
-    call s3e5p2_tai_date
+    call s3e5p2_tai_date from _call_s3e5p2_tai_date
 
     return
 
@@ -3079,7 +3079,7 @@ label s3e5p2_tai_date:
         "Yeah, let's be adventurous!":
             tai "Sweet."
             $ s3e5p2_behind_waterfall = True
-            call s3e5p2_behind_waterfall
+            call s3e5p2_behind_waterfall from _call_s3e5p2_behind_waterfall
         "Nah, you already did that on another date":
             tai "We never made it back there because he couldn't swim."
             "He smiles."
@@ -4295,7 +4295,7 @@ label s3e5p3:
         thought "Yasmin invited me out to the hot tub..."
         "Let's go hot tubbing!":
             $ s3e5p3_hot_tubbing = True
-            call s3e5p3_hot_tubbing
+            call s3e5p3_hot_tubbing from _call_s3e5p3_hot_tubbing
         "I need to catch up on my sleep":
             s3_mc "Sorry, babes."
             yasmin "No worries. Night!"
@@ -5668,6 +5668,7 @@ label s3e6p1:
         "Actually, no, I don't want to be with you":
             $ s3_mc.dislike(s3_mc.current_partner)
             if s3_mc.current_partner == "Bill":
+                $ s3_like_bill = False
                 bill "Oh. OK."
                 "[s3_mc.current_partner] looks away and bites [his_her] lip."
                 bill "I'm sorry, but, I, um..."
@@ -5677,6 +5678,7 @@ label s3e6p1:
                 pause .3
                 $ renpy.hide("bill")
             elif s3_mc.current_partner == "Camilo":
+                $ s3_like_camilo = False
                 camilo "Oh. OK."
                 "[s3_mc.current_partner] looks away and bites [his_her] lip."
                 camilo "I'm sorry, but, I, um..."
@@ -5686,6 +5688,7 @@ label s3e6p1:
                 pause .3
                 $ renpy.hide("camilo")
             elif s3_mc.current_partner == "Harry":
+                $ s3_like_harry = False
                 harry "Oh. OK."
                 "[s3_mc.current_partner] looks away and bites [his_her] lip."
                 harry "I'm sorry, but, I, um..."
@@ -5695,6 +5698,7 @@ label s3e6p1:
                 pause .3
                 $ renpy.hide("harry")
             elif s3_mc.current_partner == "AJ":
+                $ s3_like_aj = False
                 aj "Oh. OK."
                 "[s3_mc.current_partner] looks away and bites [his_her] lip."
                 aj "I'm sorry, but, I, um..."
@@ -6140,7 +6144,7 @@ label s3e6p1:
         "That sounds like fun, let's go!":
             $ s3e6p1_walk = True
             $ s3_mc.like("Ciaran")
-            call s3e6p1_walk
+            call s3e6p1_walk from _call_s3e6p1_walk
         "Hmm, I'm enjoying lying in the sun":
             ciaran "Aw, OK. No problem."
             ciaran "I'll have fun walking around on my own."
@@ -6234,18 +6238,18 @@ label s3e6p1_walk:
                 s3_mc "The best what?"
                 ciaran "Blaas! They're like a bread roll."
                 ciaran "They're a local delicacy."
-                call s3e6p1_walk_takeaway
+                call s3e6p1_walk_takeaway from _call_s3e6p1_walk_takeaway
             "Where you work":
                 ciaran "I'll take you to the nightclub"
                 ciaran "It's way safer than the bingo hall."
                 ciaran "Some of the older fold get a bit... passionate for the game."
                 ciaran "I remember one proper handbags at dawn type situation..."
                 ciaran "I discovered there's more than one way to take someone down with a zimmer frame that day..."
-                call s3e6p1_walk_work
+                call s3e6p1_walk_work from _call_s3e6p1_walk_work
             "Wherever has the best view":
                 ciaran "Oh, that's an easy one."
                 ciaran "It's a bit of a mission to climb, but you're fit. You'll manage it fine I reckon."
-                call s3e6p1_walk_view
+                call s3e6p1_walk_view from _call_s3e6p1_walk_view
             "The Villa, I'm finished now":
                 ciaran "Fair does."
                 $ s3e6p1_walking = False
@@ -6737,7 +6741,7 @@ label s3e6p2:
     menu:
         thought "Should I switch for a more exciting task?"
         "Yes please!":
-            call s3e6p2_better_task
+            call s3e6p2_better_task from _call_s3e6p2_better_task
         "Nah":
             $ s3e6p2_task = "Pool"
             genevieve "Are you sure you're happy doing the pool one, [s3_name]?"
@@ -6784,19 +6788,19 @@ label s3e6p2:
     "You lead Genevieve, Iona and Yasmin outside."
 
     
-    call s3e6p2_nicky_task
+    call s3e6p2_nicky_task from _call_s3e6p2_nicky_task
 
-    call s3e6p2_harry_task
+    call s3e6p2_harry_task from _call_s3e6p2_harry_task
 
-    call s3e6p2_seb_task
+    call s3e6p2_seb_task from _call_s3e6p2_seb_task
 
-    call s3e6p2_camilo_task
+    call s3e6p2_camilo_task from _call_s3e6p2_camilo_task
 
-    call s3e6p2_ciaran_tai_task
+    call s3e6p2_ciaran_tai_task from _call_s3e6p2_ciaran_tai_task
 
-    call s3e6p2_bill_task
+    call s3e6p2_bill_task from _call_s3e6p2_bill_task
 
-    call s3e6p2_pool_task
+    call s3e6p2_pool_task from _call_s3e6p2_pool_task
 
     thought "Yes! We did it! We finished all our secret tasks!"
     nicky "Text!"
@@ -8023,8 +8027,11 @@ label s3e6p3:
         yasmin "[s3_name]."
         
         $ s3e6p3_li = "Yasmin"
-        call s3e6p3_choice
+        call s3e6p3_choice from _call_s3e6p3_choice
 
+        # ADJUST AFTER REFACTORING
+        $ s3_ex = s3_mc.current_partner
+        $ s3_li = "Yasmin"
         $ s3_mc.current_partner = "Yasmin"
         $ s3_mc.past_partners.append("Yasmin")
 
@@ -8070,8 +8077,11 @@ label s3e6p3:
         tai "[s3_name]."
 
         $ s3e6p3_li = "Tai"
-        call s3e6p3_choice
+        call s3e6p3_choice from _call_s3e6p3_choice_1
 
+        # ADJUST AFTER REFACTORING
+        $ s3_ex = s3_mc.current_partner
+        $ s3_li = "Tai"
         $ s3_mc.current_partner = "Tai"
         $ s3_mc.past_partners.append("Tai")
 
@@ -8140,8 +8150,11 @@ label s3e6p3:
     else:
         ciaran "[s3_name]."
         $ s3e6p3_li = "Ciaran"
-        call s3e6p3_choice
+        call s3e6p3_choice from _call_s3e6p3_choice_2
 
+        # ADJUST AFTER REFACTORING
+        $ s3_ex = s3_mc.current_partner
+        $ s3_li = "Ciaran"
         $ s3_mc.current_partner = "Ciaran"
         $ s3_mc.past_partners.append("Ciaran") 
 
@@ -8362,7 +8375,7 @@ label s3e6p3:
         thought "[s3_mc.current_partner] and [s3_mc.past_partners[1]] are arguing!"
         "Listen in":
             $ s3e6p3_listen = True
-            call s3e6p3_listen
+            call s3e6p3_listen from _call_s3e6p3_listen
         "Don't":
             thought "I'd better just leave them to it."
             "You turn back to the mirror and try to tune the voices out."
@@ -8373,7 +8386,7 @@ label s3e6p3:
                 thought "They're arguing about me!"
                 "Listen in":
                     $ s3e6p3_listen = True
-                    call s3e6p3_listen
+                    call s3e6p3_listen from _call_s3e6p3_listen_1
                 "Don't":
                     "Eventually the argument dies down."
                     thought "I wonder what that was all about."
@@ -8753,7 +8766,7 @@ label s3e6p3:
                     tai "Coming right up."
                 elif s3_mc.current_partner == "Ciaran":
                     ciaran "Coming right up."
-                call s3e6p3_cuddle
+                call s3e6p3_cuddle from _call_s3e6p3_cuddle
             "Don't push your luck":
                 s3_mc "Have a little patience, babe!"
                 if s3_mc.current_partner == "Yasmin":
@@ -8766,6 +8779,7 @@ label s3e6p3:
                     ciaran "Fair enough!"
                     ciaran "Just thought I'd give you the option."
             "A kiss would be lovely":
+                $ s3e6p3_kiss = True
                 s3_mc "I mean, if you want to..."
                 if s3_mc.current_partner == "Yasmin":
                     "She gently traces a finger down your cheek."
@@ -8803,8 +8817,9 @@ label s3e6p3:
                             tai "What a good idea."
                         elif s3_mc.current_partner == "Ciaran":
                             ciaran "What a good idea."
-                        call s3e6p3_cuddle
+                        call s3e6p3_cuddle from _call_s3e6p3_cuddle_1
                     "Let's do some bits":
+                        $ s3e6p3_bits = True
                         $ s3_mc.like(s3_mc.current_partner)
                         s3_mc "[s3_mc.current_partner], I want you. Right now."
                         "Without another word, [s3_mc.current_partner] pulls your body against [his_her]s."
@@ -8823,7 +8838,7 @@ label s3e6p3:
                             "He pays attention to every sound you make and the tiny details that make your back arch with excitement."
                         
                         "When it's over you lie in the dark, your chest heaving, and watch the stars slowly clear from your vision."
-                        call s3e6p3_cuddle
+                        call s3e6p3_cuddle from _call_s3e6p3_cuddle_2
 
                         if s3_mc.current_partner == "Yasmin":
                             yasmin "That, just now..."
@@ -8903,7 +8918,7 @@ label s3e6p3:
     "Happy now?"
     "I'm wasted on you people..."
 
-    #jump s3e7p1
+    jump s3e7p1
     return
 
 label s3e6p3_listen:
@@ -9221,6 +9236,7 @@ label s3e6p3_choice:
         "Hug [s3_mc.current_partner]":
             $ s3_mc.like(s3_mc.current_partner)
             $ s3_mc.dislike(s3e6p3_li)
+            $ s3e6p3_hug_old_li = True
             "You throw your arms around [s3_mc.current_partner], who hugs you back sadly. After a few seconds, you have to pull away."
             s3_mc "I'm sorry, babe."
             "[s3e6p3_li] looks awkwardly at the ground as you take your seat next to [him_her]."

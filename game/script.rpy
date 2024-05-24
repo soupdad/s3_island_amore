@@ -25,6 +25,7 @@ transform npc_center:
     xalign 1.75 yalign 0
     easein 0.2 xalign 0.5 yalign 0
 
+# Moves character from current position into npc_center position.
 transform move_center:
     anchor(0.5, 0)
     easein 0.2 zoom 1.15 xalign 0.5
@@ -63,17 +64,17 @@ label start:
 
     ########################################
     ### For Testing Only: (Comment Out before Building!)
-    $ s3_mc.current_partner = "Harry"
-    $ s3_mc.past_partners = ["Harry", "Harry"]
-    $ s3_mc.bff = "Seb"
-    $ s3_mc.job = "Athlete"
-    $ s3_mc.bisexual = False
-    $ s3_mc.diet = "Vegetarian"
+    # $ s3_mc.current_partner = "Harry"
+    # $ s3_mc.past_partners = ["Harry", "Harry"]
+    # $ s3_mc.bff = "Seb"
+    # $ s3_mc.job = "Athlete"
+    # $ s3_mc.bisexual = False
+    # $ s3_mc.diet = "Vegetarian"
 
     ## For testing if changing partners worked.
     # $ s3_mc.current_partner = "AJ"
     # $ s3_mc.past_partners = ["Harry", "AJ"]
 
-    jump s3e5p1
+    jump s3e1p1
 
     return

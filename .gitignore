@@ -12,13 +12,5 @@ traceback.txt
 errors.txt
 project.json
 # Game Cache Files (add to when .rpy files are created)
-game/characters.rpyc
-game/e1e2.rpyc
-game/e3e4.rpyc
-game/e5e6.rpyc
-game/gameplay_variables.rpyc
-game/gui.rpyc
-game/options.rpyc
-game/screens.rpyc
-game/script.rpyc
-game/e1e2e3.rpy.bak
+game/*.rpyc
+game/*.rpy.bak

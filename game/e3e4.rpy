@@ -782,17 +782,21 @@ label s3e3p1_ending:
             menu:
                 s3_mc "How about..."
                 "French toast":
+                    $ s3e3p1_harry_bfast = "french toast"
                     harry "Sounds good!"
                     harry "I love French toast, but I never knew how to make it."
                 "American pancakes":
+                    $ s3e3p1_harry_bfast = "American pancakes"
                     harry "Sounds good!"
                     harry "I think I made British-style ones once."
                     harry "But I always wanted to know how to make the fluffy ones!"
                 "Poached eggs on toast":
+                    $ s3e3p1_harry_bfast = "poached eggs on toast"
                     harry "I love poached eggs!"
                     harry "They're pretty tricky, though, right?"
                     s3_mc "Don't worry. There's a knack to it."
                 "Vegan American pancakes":
+                    $ s3e3p1_harry_bfast = "vegan American pancakes"
                     harry "Sounds good!"
                     harry "I think I made British-style ones once."
                     harry "But I always wanted to know how to make the fluffy ones!"

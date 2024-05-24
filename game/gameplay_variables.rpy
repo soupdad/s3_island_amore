@@ -129,6 +129,8 @@ default s3e3p1_bet = ""
 default s3e3p1_get_in_pool = False
 # s3e3p1_teach_harry (bool)
 default s3e3p1_teach_harry = False
+# s3e3p1_harry_bfast (str)
+default s3e3p1_harry_bfast = ""
 # s3e3p1_arm_wrestle (bool)
 default s3e3p1_arm_wrestle = False
 
@@ -274,9 +276,50 @@ default s3e6p2_switched = ""
 default s3e6p3_li = ""
 # s3e6p3_good_couple (bool)
 default s3e6p3_good_couple = False
+# s3e6p3_hug_old_li (bool)
+default s3e6p3_hug_old_li = False
 # s3e6p3_listen (bool)
 default s3e6p3_listen = False
 # s3e6p3_other (str) ["Tai", "Ciaran", "Genevieve", "Miki", "Iona", "Seb"]
 default s3e6p3_other = ""
 # s3e6p3_loyal (bool)
 default s3e6p3_loyal = False
+# s3e6p3_kiss (bool)
+default s3e6p3_kiss = False
+# s3e6p3_bits (bool)
+default s3e6p3_bits = False
+
+################################################################
+## Episode 7
+################################################################
+## Episode 7, Part 1
+# s3e7p1_give_towel (bool)
+default s3e7p1_give_towel = False
+# s3e7p1_help_camilo (bool)
+default s3e7p1_help_camilo = False
+# s3e7p1_want_cam (bool)
+default s3e7p1_want_cam = False
+# s3e7p1_fruit (str) ["banana", "strawberries", "cherries"]
+default s3e7p1_fruit = "banana"
+# s3e7p1_saved_lipstick (bool)
+default s3e7p1_saved_lipstick = False
+
+## Episode 7, Part 2
+# s3e7p2_visited (str list) ["lawn", "kitchen", "pool", "beanbags"]
+default s3e7p2_visited = []
+# s3e7p2_bill_talk (bool)
+default s3e7p2_bill_talk = False
+# s3e7p2_like_bill (bool)
+default s3e7p2_like_bill = False
+# s3e7p2_helped_kitchen (bool)
+default s3e7p2_helped_kitchen = False
+# s3e7p2_ciaran_hot (bool)
+default s3e7p2_ciaran_hot = False
+
+## Episode 7, Part 3
+# s3e7p3_dump (str) ["Camilo and Iona", "Bill and Miki"]
+default s3e7p3_dump = ""
+# s3e7p3_cry (bool)
+default s3e7p3_cry = False
+# s3e7p3_help_pack (bool)
+default s3e7p3_help_pack = False

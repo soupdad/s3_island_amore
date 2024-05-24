@@ -60,14 +60,6 @@ init python:
             on_screen = [] 
 
         Current Issues:
-            Expressions(attributes) of islanders don't change from neutral until the second line of dialog.
-                Look into these commands to see if any would help:
-                    config.say_attribute_transition
-                    config.say_attribute_transition_layer
-                    config.say_attribute_transition_callback
-                    https://www.reddit.com/r/RenPy/comments/ostkua/layered_images_with_a_transition_problem/
-                    https://www.renpy.org/doc/html/config.html#var-config.say_attribute_transition
-                    https://www.renpy.org/doc/html/layeredimage.html
             Needs on_screen = [] called after each new scene, not impossible but slightly annoying.
                 Not a needed fix.
      
@@ -92,7 +84,7 @@ init python:
             # If 1 character visible on screen, first character moves to left, second character goes to right.
             elif len(on_screen) == 1:
                 renpy.show(on_screen[0], [move_left])
-                renpy.show(character, [npc_right])
+                renpy.show(character, [npc_right], zorder=5)
             # If 2 characters visible on screen, first character to talk gets moved off screen.
             elif len(on_screen) == 2:
                 leaving_npc = on_screen.pop(0)
@@ -110,10 +102,26 @@ init python:
                     renpy.show(character, [npc_left])
                 elif leaving_npc_bounds[0] > 700:
                     # right
-                    renpy.show(character, [npc_right])
+                    renpy.show(character, [npc_right], zorder=5)
 
             # Adds newest speaker to list of characters visible on screen.
             on_screen.append(character)
+
+    def leaving(leaving):
+        """
+        Moves a specified visible NPC off screen then moves other visible NPC to be in center.
+
+        Args:
+            leaving (str): name of image tag that is leaving the screen.
+        """
+        if renpy.showing(leaving):
+            renpy.show(leaving, [npc_exit])
+            renpy.pause(0.3)
+            renpy.hide(leaving)
+            on_screen.remove(leaving)
+
+            staying = on_screen[0]
+            renpy.show(staying, [move_center])
 
     class MainCharacter:
         '''
@@ -248,20 +256,20 @@ layeredimage aj:
             "npcs/aj/aj-face-neutral.png"
         attribute angry:
             "npcs/aj/aj-face-angry.png"
-        attribute awkward:
-            "npcs/aj/aj-face-awkward.png"
-        attribute flirt:
-            "npcs/aj/aj-face-flirt.png"
-        attribute happy:
-            "npcs/aj/aj-face-happy.png"
+        attribute blush:
+            "npcs/aj/aj-face-blush.png"
+        attribute cheeky:
+            "npcs/aj/aj-face-cheeky.png"
+        attribute smile:
+            "npcs/aj/aj-face-smile.png"
         attribute sad:
             "npcs/aj/aj-face-sad.png"
         attribute serious:
             "npcs/aj/aj-face-serious.png"
-        attribute talk:
-            "npcs/aj/aj-face-talk.png"
-        attribute very_happy:
-            "npcs/aj/aj-face-very_happy.png"
+        attribute surprised:
+            "npcs/aj/aj-face-surprised.png"
+        attribute happy:
+            "npcs/aj/aj-face-happy.png"
 
     attribute hair default:
         "npcs/aj/aj-hair-[hair].png"
@@ -282,20 +290,20 @@ layeredimage bill:
             "npcs/bill/bill-face-neutral.png"
         attribute angry:
             "npcs/bill/bill-face-angry.png"
-        attribute awkward:
-            "npcs/bill/bill-face-awkward.png"
-        attribute flirt:
-            "npcs/bill/bill-face-flirt.png"
-        attribute happy:
-            "npcs/bill/bill-face-happy.png"
+        attribute blush:
+            "npcs/bill/bill-face-blush.png"
+        attribute cheeky:
+            "npcs/bill/bill-face-cheeky.png"
+        attribute smile:
+            "npcs/bill/bill-face-smile.png"
         attribute sad:
             "npcs/bill/bill-face-sad.png"
         attribute serious:
             "npcs/bill/bill-face-serious.png"
-        attribute talk:
-            "npcs/bill/bill-face-talk.png"
-        attribute very_happy:
-            "npcs/bill/bill-face-very_happy.png"
+        attribute surprised:
+            "npcs/bill/bill-face-surprised.png"
+        attribute happy:
+            "npcs/bill/bill-face-happy.png"
 
     group hair auto:
         attribute hair default:
@@ -319,20 +327,20 @@ layeredimage camilo:
             "npcs/camilo/camilo-face-neutral.png"
         attribute angry:
             "npcs/camilo/camilo-face-angry.png"
-        attribute awkward:
-            "npcs/camilo/camilo-face-awkward.png"
-        attribute flirt:
-            "npcs/camilo/camilo-face-flirt.png"
-        attribute happy:
-            "npcs/camilo/camilo-face-happy.png"
+        attribute blush:
+            "npcs/camilo/camilo-face-blush.png"
+        attribute cheeky:
+            "npcs/camilo/camilo-face-cheeky.png"
+        attribute smile:
+            "npcs/camilo/camilo-face-smile.png"
         attribute sad:
             "npcs/camilo/camilo-face-sad.png"
         attribute serious:
             "npcs/camilo/camilo-face-serious.png"
-        attribute talk:
-            "npcs/camilo/camilo-face-talk.png"
-        attribute very_happy:
-            "npcs/camilo/camilo-face-very_happy.png"
+        attribute surprised:
+            "npcs/camilo/camilo-face-surprised.png"
+        attribute happy:
+            "npcs/camilo/camilo-face-happy.png"
 
     attribute hair default:
         "npcs/camilo/camilo-hair-[hair].png"
@@ -353,20 +361,20 @@ layeredimage ciaran:
             "npcs/ciaran/ciaran-face-neutral.png"
         attribute angry:
             "npcs/ciaran/ciaran-face-angry.png"
-        attribute awkward:
-            "npcs/ciaran/ciaran-face-awkward.png"
-        attribute flirt:
-            "npcs/ciaran/ciaran-face-flirt.png"
+        attribute blush:
+            "npcs/ciaran/ciaran-face-blush.png"
+        attribute cheeky:
+            "npcs/ciaran/ciaran-face-cheeky.png"
         attribute happy:
             "npcs/ciaran/ciaran-face-happy.png"
         attribute sad:
             "npcs/ciaran/ciaran-face-sad.png"
         attribute serious:
             "npcs/ciaran/ciaran-face-serious.png"
-        attribute talk:
-            "npcs/ciaran/ciaran-face-talk.png"
-        attribute very_happy:
-            "npcs/ciaran/ciaran-face-very_happy.png"
+        attribute suprised:
+            "npcs/ciaran/ciaran-face-suprised.png"
+        attribute grimace:
+            "npcs/ciaran/ciaran-face-grimace.png"
 
     attribute hair default:
         "npcs/ciaran/ciaran-hair-[hair].png"
@@ -387,20 +395,20 @@ layeredimage elladine:
             "npcs/elladine/elladine-face-neutral.png"
         attribute angry:
             "npcs/elladine/elladine-face-angry.png"
-        attribute awkward:
-            "npcs/elladine/elladine-face-awkward.png"
-        attribute flirt:
-            "npcs/elladine/elladine-face-flirt.png"
+        attribute blush:
+            "npcs/elladine/elladine-face-blush.png"
+        attribute cheeky:
+            "npcs/elladine/elladine-face-cheeky.png"
         attribute happy:
             "npcs/elladine/elladine-face-happy.png"
         attribute sad:
             "npcs/elladine/elladine-face-sad.png"
         attribute serious:
             "npcs/elladine/elladine-face-serious.png"
-        attribute talk:
-            "npcs/elladine/elladine-face-talk.png"
-        attribute very_happy:
-            "npcs/elladine/elladine-face-very_happy.png"
+        attribute surprised:
+            "npcs/elladine/elladine-face-surprised.png"
+        attribute smile:
+            "npcs/elladine/elladine-face-smile.png"
 
     attribute hair default:
         "npcs/elladine/elladine-hair-[hair].png"
@@ -422,20 +430,20 @@ layeredimage genevieve:
             "npcs/genevieve/genevieve-face-neutral.png"
         attribute angry:
             "npcs/genevieve/genevieve-face-angry.png"
-        attribute awkward:
-            "npcs/genevieve/genevieve-face-awkward.png"
-        attribute flirt:
-            "npcs/genevieve/genevieve-face-flirt.png"
+        attribute blush:
+            "npcs/genevieve/genevieve-face-blush.png"
+        attribute cheeky:
+            "npcs/genevieve/genevieve-face-cheeky.png"
         attribute happy:
             "npcs/genevieve/genevieve-face-happy.png"
         attribute sad:
             "npcs/genevieve/genevieve-face-sad.png"
         attribute serious:
             "npcs/genevieve/genevieve-face-serious.png"
-        attribute talk:
-            "npcs/genevieve/genevieve-face-talk.png"
-        attribute very_happy:
-            "npcs/genevieve/genevieve-face-very_happy.png"
+        attribute surprised:
+            "npcs/genevieve/genevieve-face-surprised.png"
+        attribute smile:
+            "npcs/genevieve/genevieve-face-smile.png"
 
     attribute hair default:
         "npcs/genevieve/genevieve-hair-[hair].png"
@@ -457,20 +465,20 @@ layeredimage harry:
             "npcs/harry/harry-face-neutral.png"
         attribute angry:
             "npcs/harry/harry-face-angry.png"
-        attribute awkward:
-            "npcs/harry/harry-face-awkward.png"
-        attribute flirt:
-            "npcs/harry/harry-face-flirt.png"
+        attribute blush:
+            "npcs/harry/harry-face-blush.png"
+        attribute cheeky:
+            "npcs/harry/harry-face-cheeky.png"
         attribute happy:
             "npcs/harry/harry-face-happy.png"
         attribute sad:
             "npcs/harry/harry-face-sad.png"
         attribute serious:
             "npcs/harry/harry-face-serious.png"
-        attribute talk:
-            "npcs/harry/harry-face-talk.png"
-        attribute very_happy:
-            "npcs/harry/harry-face-very_happy.png"
+        attribute surprised:
+            "npcs/harry/harry-face-surprised.png"
+        attribute smile:
+            "npcs/harry/harry-face-smile.png"
 
     attribute hair default:
         "npcs/harry/harry-hair-[hair].png"
@@ -492,20 +500,20 @@ layeredimage iona:
             "npcs/iona/iona-face-neutral.png"
         attribute angry:
             "npcs/iona/iona-face-angry.png"
-        attribute awkward:
-            "npcs/iona/iona-face-awkward.png"
-        attribute flirt:
-            "npcs/iona/iona-face-flirt.png"
+        attribute blush:
+            "npcs/iona/iona-face-blush.png"
+        attribute cheeky:
+            "npcs/iona/iona-face-cheeky.png"
         attribute happy:
             "npcs/iona/iona-face-happy.png"
         attribute sad:
             "npcs/iona/iona-face-sad.png"
         attribute serious:
             "npcs/iona/iona-face-serious.png"
-        attribute talk:
-            "npcs/iona/iona-face-talk.png"
-        attribute very_happy:
-            "npcs/iona/iona-face-very_happy.png"
+        attribute surprised:
+            "npcs/iona/iona-face-surprised.png"
+        attribute sneer:
+            "npcs/iona/iona-face-sneer.png"
 
     attribute hair default:
         "npcs/iona/iona-hair-[hair].png"
@@ -515,6 +523,36 @@ default iona = Npcs("woman")
 
 
 ## Lily
+layeredimage lily:
+    always:
+        "npcs/lily/lily-body.png"
+    
+    attribute outfit default:
+        "npcs/lily/lily-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/lily/lily-face-neutral.png"
+        attribute angry:
+            "npcs/lily/lily-face-angry.png"
+        attribute blush:
+            "npcs/lily/lily-face-blush.png"
+        attribute sneer:
+            "npcs/lily/lily-face-sneer.png"
+        attribute happy:
+            "npcs/lily/lily-face-happy.png"
+        attribute sad:
+            "npcs/lily/lily-face-sad.png"
+        attribute serious:
+            "npcs/lily/lily-face-serious.png"
+        attribute surprised:
+            "npcs/lily/lily-face-surprised.png"
+        attribute smile:
+            "npcs/lily/lily-face-smile.png"
+
+    attribute hair default:
+        "npcs/lily/lily-hair-[hair].png"
+
 define character.lily = Character("Lily", window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default lily = Npcs("woman")
 
@@ -532,20 +570,20 @@ layeredimage miki:
             "npcs/miki/miki-face-neutral.png"
         attribute angry:
             "npcs/miki/miki-face-angry.png"
-        attribute awkward:
-            "npcs/miki/miki-face-awkward.png"
-        attribute flirt:
-            "npcs/miki/miki-face-flirt.png"
+        attribute blush:
+            "npcs/miki/miki-face-blush.png"
+        attribute cheeky:
+            "npcs/miki/miki-face-cheeky.png"
         attribute happy:
             "npcs/miki/miki-face-happy.png"
         attribute sad:
             "npcs/miki/miki-face-sad.png"
         attribute serious:
             "npcs/miki/miki-face-serious.png"
-        attribute talk:
-            "npcs/miki/miki-face-talk.png"
-        attribute very_happy:
-            "npcs/miki/miki-face-very_happy.png"
+        attribute surprised:
+            "npcs/miki/miki-face-surprised.png"
+        attribute smile:
+            "npcs/miki/miki-face-smile.png"
 
     attribute hair default:
         "npcs/miki/miki-hair-[hair].png"
@@ -567,20 +605,20 @@ layeredimage nicky:
             "npcs/nicky/nicky-face-neutral.png"
         attribute angry:
             "npcs/nicky/nicky-face-angry.png"
-        attribute awkward:
-            "npcs/nicky/nicky-face-awkward.png"
-        attribute flirt:
-            "npcs/nicky/nicky-face-flirt.png"
+        attribute blush:
+            "npcs/nicky/nicky-face-blush.png"
+        attribute grimace:
+            "npcs/nicky/nicky-face-grimace.png"
         attribute happy:
             "npcs/nicky/nicky-face-happy.png"
         attribute sad:
             "npcs/nicky/nicky-face-sad.png"
         attribute serious:
             "npcs/nicky/nicky-face-serious.png"
-        attribute talk:
-            "npcs/nicky/nicky-face-talk.png"
-        attribute very_happy:
-            "npcs/nicky/nicky-face-very_happy.png"
+        attribute surprised:
+            "npcs/nicky/nicky-face-surprised.png"
+        attribute smile:
+            "npcs/nicky/nicky-face-smile.png"
 
     attribute hair default:
         "npcs/nicky/nicky-hair-[hair].png"
@@ -590,9 +628,39 @@ default nicky = Npcs("man")
 
 
 ## Rafi
+## Nicky
+layeredimage rafi:
+    always:
+        "npcs/rafi/rafi-body.png"
+    
+    attribute outfit default:
+        "npcs/rafi/rafi-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/rafi/rafi-face-neutral.png"
+        attribute angry:
+            "npcs/rafi/rafi-face-angry.png"
+        attribute blush:
+            "npcs/rafi/rafi-face-blush.png"
+        attribute very_sad:
+            "npcs/rafi/rafi-face-very_sad.png"
+        attribute happy:
+            "npcs/rafi/rafi-face-happy.png"
+        attribute sad:
+            "npcs/rafi/rafi-face-sad.png"
+        attribute serious:
+            "npcs/rafi/rafi-face-serious.png"
+        attribute surprised:
+            "npcs/rafi/rafi-face-surprised.png"
+        attribute smile:
+            "npcs/rafi/rafi-face-smile.png"
+
+    attribute hair default:
+        "npcs/rafi/rafi-hair-[hair].png"
+
 define character.rafi = Character("Rafi", window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default rafi = Npcs("man")
-
 
 ## Seb
 layeredimage seb:
@@ -607,20 +675,20 @@ layeredimage seb:
             "npcs/seb/seb-face-neutral.png"
         attribute angry:
             "npcs/seb/seb-face-angry.png"
-        attribute awkward:
-            "npcs/seb/seb-face-awkward.png"
-        attribute flirt:
-            "npcs/seb/seb-face-flirt.png"
+        attribute blush:
+            "npcs/seb/seb-face-blush.png"
+        attribute cheeky:
+            "npcs/seb/seb-face-cheeky.png"
         attribute happy:
             "npcs/seb/seb-face-happy.png"
         attribute sad:
             "npcs/seb/seb-face-sad.png"
         attribute serious:
             "npcs/seb/seb-face-serious.png"
-        attribute talk:
-            "npcs/seb/seb-face-talk.png"
-        attribute very_happy:
-            "npcs/seb/seb-face-very_happy.png"
+        attribute surprised:
+            "npcs/seb/seb-face-surprised.png"
+        attribute smile:
+            "npcs/seb/seb-face-smile.png"
 
     attribute hair default:
         "npcs/seb/seb-hair-[hair].png"
@@ -645,20 +713,18 @@ layeredimage tai:
             "npcs/tai/tai-face-neutral.png"
         attribute angry:
             "npcs/tai/tai-face-angry.png"
-        attribute awkward:
-            "npcs/tai/tai-face-awkward.png"
-        attribute flirt:
-            "npcs/tai/tai-face-flirt.png"
+        attribute blush:
+            "npcs/tai/tai-face-blush.png"
+        attribute cheeky:
+            "npcs/tai/tai-face-cheeky.png"
         attribute happy:
             "npcs/tai/tai-face-happy.png"
-        attribute sad:
-            "npcs/tai/tai-face-sad.png"
         attribute serious:
             "npcs/tai/tai-face-serious.png"
-        attribute talk:
-            "npcs/tai/tai-face-talk.png"
-        attribute very_happy:
-            "npcs/tai/tai-face-very_happy.png"
+        attribute surprised:
+            "npcs/tai/tai-face-surprised.png"
+        attribute smile:
+            "npcs/tai/tai-face-smile.png"
 
     attribute hair default:
         "npcs/tai/tai-hair-[hair].png"
@@ -680,20 +746,20 @@ layeredimage yasmin:
             "npcs/yasmin/yasmin-face-neutral.png"
         attribute angry:
             "npcs/yasmin/yasmin-face-angry.png"
-        attribute awkward:
-            "npcs/yasmin/yasmin-face-awkward.png"
-        attribute flirt:
-            "npcs/yasmin/yasmin-face-flirt.png"
+        attribute blush:
+            "npcs/yasmin/yasmin-face-blush.png"
+        attribute cheeky:
+            "npcs/yasmin/yasmin-face-cheeky.png"
         attribute happy:
             "npcs/yasmin/yasmin-face-happy.png"
         attribute sad:
             "npcs/yasmin/yasmin-face-sad.png"
         attribute serious:
             "npcs/yasmin/yasmin-face-serious.png"
-        attribute talk:
+        attribute surprised:
             "npcs/yasmin/yasmin-face-talk.png"
-        attribute very_happy:
-            "npcs/yasmin/yasmin-face-very_happy.png"
+        attribute smile:
+            "npcs/yasmin/yasmin-face-smile.png"
 
     attribute hair default:
         "npcs/yasmin/yasmin-hair-[hair].png"
@@ -703,3 +769,82 @@ layeredimage yasmin:
 
 define character.yasmin = Character("Yasmin", image = "yasmin", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default yasmin = Npcs("woman")
+
+## Love Interest
+default s3_li = "Bill"
+default s3_li_lower = s3_li.lower()
+layeredimage s3_li_image:
+    if s3_li == 'Tai':
+            "npcs/tai/tai-hair-back.png"
+    
+    always:
+        "npcs/[s3_li_lower]/[s3_li_lower]-body.png"
+    
+    attribute outfit default:
+        "npcs/[s3_li_lower]/[s3_li_lower]-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/[s3_li_lower]/[s3_li_lower]-face-neutral.png"
+        attribute angry:
+            "npcs/[s3_li_lower]/[s3_li_lower]-face-angry.png"
+        attribute blush:
+            "npcs/[s3_li_lower]/[s3_li_lower]-face-blush.png"
+        attribute cheeky:
+            "npcs/[s3_li_lower]/[s3_li_lower]-face-cheeky.png"
+        attribute happy:
+            "npcs/[s3_li_lower]/[s3_li_lower]-face-happy.png"
+        attribute sad:
+            "npcs/[s3_li_lower]/[s3_li_lower]-face-sad.png"
+        attribute serious:
+            "npcs/[s3_li_lower]/[s3_li_lower]-face-serious.png"
+        attribute surprised:
+            "npcs/[s3_li_lower]/[s3_li_lower]-face-surprised.png"
+        attribute smile:
+            "npcs/[s3_li_lower]/[s3_li_lower]-face-smile.png"
+        attribute grimace:
+            "npcs/[s3_li_lower]/[s3_li_lower]-face-grimace.png"
+        
+    attribute hair default:
+        "npcs/[s3_li_lower]/[s3_li_lower]-hair-[hair].png"
+
+# maybe i will get this working with image attributes but i can't think of how rn
+# image s3_li_image = ConditionSwitch(
+#         "s3_li == 'Bill'", "bill",
+#         "s3_li == 'AJ'", "aj",
+#         "s3_li == 'Camilo'", "camilo",
+#         "s3_li == 'Yasmin'", "yasmin",
+#         "s3_li == 'Tai'", "tai",
+#         "s3_li == 'Ciaran'", "ciaran",
+#         "s3_li == 'Harry'", "harry",
+#         "s3_li == 'Rafi'", "rafi"
+# )
+    
+
+define character.s3_li = Character("s3_li", dynamic = True, image = "s3_li_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
+
+## Ex Love Interest
+default s3_ex = "Bill"
+image s3_ex_image = ConditionSwitch(
+    "s3_ex == 'Bill'", "bill",
+    "s3_ex == 'AJ'", "aj",
+    "s3_ex == 'Camilo'", "camilo",
+    "s3_ex == 'Yasmin'", "yasmin",
+    "s3_ex == 'Tai'", "tai",
+    "s3_ex == 'Ciaran'", "ciaran",
+    "s3_li == 'Harry'", "harry",
+    "s3_ex == 'Rafi'", "rafi"
+)
+
+define character.s3_ex = Character("s3_ex", dynamic = True, image = "s3_ex_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
+
+## BFF
+default s3_bff = "Seb"
+image s3_bff_image = ConditionSwitch(
+    "s3_bff == 'Elladine'", "elladine",
+    "s3_bff == 'Genevieve'", "genevieve",
+    "s3_bff == 'Nicky'", "nicky",
+    "s3_bff == 'Seb'", "seb"
+)
+
+define character.s3_bff = Character("s3_bff", dynamic = True, image = "s3_bff_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))

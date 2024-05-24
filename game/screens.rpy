@@ -1528,7 +1528,7 @@ screen quick_menu():
 
 style window:
     variant "small"
-    background "gui/phone/textbox.png"
+    background "gui/textbox.png"
 
 style radio_button:
     variant "small"
@@ -1613,6 +1613,7 @@ style slider_slider:
 ###############################################
 ## Character Profile Shots
 ##
+
 '''
     Shows profile shot of NPC in center of screen with slow zoom.
 
@@ -1623,12 +1624,12 @@ style slider_slider:
 screen s3_character_profile(name):
     image "bgs/sand.png"
 
-    if name == "lamb":
-        pass
-    else:
-        add "[name]" at character_profile_zoom
-        text "New Islander" size 60 color "#fff" align(0.5, 0.65)
-        text "[name!c]" size 150 color "#fff" align(0.5, 0.8)
+    # if name == "lamb":
+    #     pass
+    # else:
+    add "[name]" at character_profile_zoom
+    text "New Islander" size 60 color "#fff" align(0.5, 0.65)
+    text "[name!c]" size 150 color "#fff" align(0.5, 0.8)
 
 '''
 Displays the day and part at the beginning of each part.
@@ -1765,8 +1766,42 @@ screen s3e3p2_select_who_to_talk_to():
         imagebutton idle "map_icons/genevieve-icon.png" align(0.4, 0.4) action Call("s3e3p2_kitchen") at map_icon
         imagebutton idle "map_icons/harry-icon.png" align(0.45, 0.4) action Call("s3e3p2_kitchen") at map_icon
 
+'''
+    Used in episode 7, part 2.
 
+    User can visually select who they want to talk to first.
 
+    Map icons of selected islanders are removed so they cannot be reselected.
+'''
+screen s3e7p2_select_who_to_talk_to():
+    image "bgs/s3-outside-villa-wide-shot-day.jpg"
 
+    button:
 
+        frame:
+            padding(50, 60)
+            margin(400, 20)
+            align(0.5, 0.0)
+            text "Welcome to the Villa choice screen! Tap the Islanders you want to chat with." size 25 color "#000000" 
+        
+    if "beanbags" not in s3e7p2_visited:
+        # s3e7p2_beanbags Ciaran, Seb and Nicky
+        imagebutton idle "map_icons/ciaran-icon.png" align(0.2, 0.45) action Call("s3e7p2_beanbags") at map_icon
+        imagebutton idle "map_icons/nicky-icon.png" align(0.25, 0.45) action Call("s3e7p2_beanbags") at map_icon
+        imagebutton idle "map_icons/seb-icon.png" align(0.3, 0.45) action Call("s3e7p2_beanbags") at map_icon
+
+    if "lawn" not in s3e7p2_visited:
+        # s3e7p2_lawn Bill, Iona, Tai
+        imagebutton idle "map_icons/bill-icon.png" align(0.6, 0.7) action Call("s3e7p2_lounge") at map_icon
+        imagebutton idle "map_icons/iona-icon.png" align(0.65, 0.7) action Call("s3e7p2_lounge") at map_icon
+        imagebutton idle "map_icons/tai-icon.png" align(0.7, 0.7) action Call("s3e7p2_lounge") at map_icon
+
+    if "pool" not in s3e7p2_visited:
+        # s3e7p2_pool aj
+        imagebutton idle "map_icons/aj-icon.png" align(0.7, 0.8) action Call("s3e7p2_pool") at map_icon
+
+    if "kitchen" not in s3e7p2_visited:
+        # s3e7p2_kitchen genevieve and harry
+        imagebutton idle "map_icons/genevieve-icon.png" align(0.4, 0.4) action Call("s3e7p2_kitchen") at map_icon
+        imagebutton idle "map_icons/harry-icon.png" align(0.45, 0.4) action Call("s3e7p2_kitchen") at map_icon
 
