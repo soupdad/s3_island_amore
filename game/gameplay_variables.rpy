@@ -317,9 +317,34 @@ default s3e7p2_helped_kitchen = False
 default s3e7p2_ciaran_hot = False
 
 ## Episode 7, Part 3
-# s3e7p3_dump (str) ["Camilo and Iona", "Bill and Miki"]
-default s3e7p3_dump = ""
+# s3e7p3_dump_m (str) ["Camilo", "Bill"]
+default s3e7p3_dump_m = ""
+# s3e7p3_dump_f (str) ["Iona", "Miki"]
+default s3e7p3_dump_f = ""
 # s3e7p3_cry (bool)
 default s3e7p3_cry = False
 # s3e7p3_help_pack (bool)
 default s3e7p3_help_pack = False
+# s3e7p3_stayed (str) ["Camilo and Iona", "Bill and Miki"]
+default s3e7p3_stayed = ""
+# s3e7p3_stay_m (str) ["Camilo", "Bill"]
+default s3e7p3_stay_m = ""
+# s3e7p3_stay_f (str) ["Iona", "Miki"]
+default s3e7p3_stay_f = ""
+
+################################################################
+## Episode 8
+################################################################
+## Episode 8, Part 1
+# s3e8p1_aj_chat (bool)
+default s3e8p1_aj_chat = False
+# s3e8p1_keep_distance_aj (bool)
+default s3e8p1_keep_distance_aj = False
+# s3e8p1_nice (bool)
+default s3e8p1_nice = False
+
+
+
+
+
+

@@ -8032,6 +8032,7 @@ label s3e6p3:
         # ADJUST AFTER REFACTORING
         $ s3_ex = s3_mc.current_partner
         $ s3_li = "Yasmin"
+        $ s3_li_lower = s3_li.lower()
         $ s3_mc.current_partner = "Yasmin"
         $ s3_mc.past_partners.append("Yasmin")
 
@@ -8082,6 +8083,7 @@ label s3e6p3:
         # ADJUST AFTER REFACTORING
         $ s3_ex = s3_mc.current_partner
         $ s3_li = "Tai"
+        $ s3_li_lower = s3_li.lower()
         $ s3_mc.current_partner = "Tai"
         $ s3_mc.past_partners.append("Tai")
 
@@ -8155,6 +8157,7 @@ label s3e6p3:
         # ADJUST AFTER REFACTORING
         $ s3_ex = s3_mc.current_partner
         $ s3_li = "Ciaran"
+        $ s3_li_lower = s3_li.lower()
         $ s3_mc.current_partner = "Ciaran"
         $ s3_mc.past_partners.append("Ciaran") 
 

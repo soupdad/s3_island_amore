@@ -48,7 +48,7 @@ label s3e7p2:
     "The next stop is Barbecue Central!"
     "Save me a sausage, [s3_name]!"
 
-    scene s3-lawn-day with dissolve
+    scene s3-lawn-bbq with dissolve
     $ on_screen = []
 
     "Bill and Tai rush straight over to the barbecue. Ciaran hangs back."
@@ -163,7 +163,7 @@ label s3e7p2:
     call screen s3e7p2_select_who_to_talk_to()
 
 label s3e7p2_lawn:
-    scene s3-lawn-day with dissolve
+    scene s3-lawn-bbq with dissolve
     $ on_screen = []
     $ s3e7p2_visited.append("lawn")
 
@@ -933,7 +933,7 @@ label s3e7p2_beanbags:
     return
 
 label s3e7p2_ending:
-    scene s3-lawn-day with dissolve
+    scene s3-lawn-bbq with dissolve
     $ on_screen = []
 
     "Everyone makes their way over to the barbecue."
@@ -1062,6 +1062,8 @@ label s3e7p3:
     scene sand with dissolve
     $ on_screen = []
 
+    show screen day_title(7, 3) with Pause(4)
+    hide screen day_title with dissolve
 
     "Welcome back to Love Island, or whatever..."
     "Earlier, our Islanders sampled Bill and Tai's meat"
@@ -1165,7 +1167,7 @@ label s3e7p3:
         thought "If I get voted off I'll..."
         "Focus on my career":
             $ s3_mc.like("Elladine")
-            s3_mc "I'm proud to be a [s3_mc.job] and this experience has made me realise how much I want to get back to it."
+            s3_mc "I'm proud to be a [s3_mc.job!l] and this experience has made me realise how much I want to get back to it."
             elladine "Good for you, girl!"
         "Cry for days and eat a huge cake":
             $ s3_mc.dislike("Miki")
@@ -1214,7 +1216,7 @@ label s3e7p3:
     "I just don't want to say goodbye to any of my friends! Like Nicky or Bill, or even... [s3_name]!"
     "And yes, they are my friends, even if they don't know I exist."
     "With the amount of time I spend watching them, I'd say we're besties at this point..."
-
+    
     $ pronouns(s3_li)
     "You gather round the firepit in your couples."
     if s3e6p3_loyal:
@@ -1346,6 +1348,7 @@ label s3e7p3:
         s3_mc "The person I want to save the most is..."
         "Camilo":
             s3_li "He's a sweetheart, I can see why."
+            s3_li "That means you'd also be saving Iona."
         "Bill":
             s3_li "The man with many opinions, eh? Interesting choice."
             s3_li "That means you'd also be saving Miki."
@@ -1373,9 +1376,22 @@ label s3e7p3:
     menu:
         thought "I want to dump..."
         "Bill and Miki":
-            $ s3e7p3_dump = "Bill and Miki"
+            $ s3e7p3_dump_m = "Bill"
+            $ s3e7p3_dump_f = "Miki"
+
+            $ s3e7p3_stay_m = "Camilo"
+            $ s3e7p3_stay_f = "Iona"
+            $ s3_other_m = "Camilo"
+            $ s3_other_f = "Iona"
         "Camilo and Iona":
-            $ s3e7p3_dump = "Camilo and Iona"
+            $ s3e7p3_dump_m = "Camilo"
+            $ s3e7p3_dump_f = "Iona"
+
+            $ s3e7p3_stay_m = "Bill"
+            $ s3e7p3_stay_f = "Miki"
+            $ s3_other_m = "Bill"
+            $ s3_other_f = "Miki"
+
 
     s3_li "That's it then. I'll support you all the way."
     s3_li "Do you want me to send the text or do you want to send it?"
@@ -1385,17 +1401,14 @@ label s3e7p3:
         thought "Who should send the text?"
         "I'll do it":
             s3_li "Alright."
-            "You type [s3e7p3_dump]'s name into the phone and hit send."
+            "You type [s3e7p3_dump_m] and [s3e7p3_dump_f]'s name into the phone and hit send."
         "You do it":
             s3_li "Of course, babe."
-            "[s3_li] takes the phone from your hand and types [s3e7p3_dump]'s name into it. [he_she] hits send."
+            "[s3_li] takes the phone from your hand and types [s3e7p3_dump_m] and [s3e7p3_dump_f]'s name into it. [he_she!c] hits send."
         "Let's both do it":
             s3_li "Um, it could be tricky, but OK..."
             "The two of you try to type on the same keypad."
-            if s3e7p3_dump == "Camilo and Iona":
-                "You misspell a bunch of words, including Camilo's name, but eventually you finish the text and hit send."
-            else:
-                "You misspell a bunch of words, including Bill's name, but eventually you finish the text and hit send."
+            "You misspell a bunch of words, including [s3e7p3_dump_m]'s name, but eventually you finish the text and hit send."
 
     "Two blue ticks flash up next to the message."
     s3_li "I guess that's that then."
@@ -1420,10 +1433,16 @@ label s3e7p3:
 
     "You see Elladine and Nicky heading back to the firepit."
     s3_li "Guess the others have made up their minds, too. Let's head back..."
+
+    scene s3-firepit-night with dissolve
+    $ on_screen = []
+
     "You and the rest of the Islanders gather back round the firepit."
     "Bill, Miki, Camilo and Iona are in the same spot as before."
     camilo "Oh, hey, guys. Fancy seeing you here."
     camilo "Hope you have some good news for us..."
+    $ leaving("camilo")
+
     $ pronouns(s3_bff)
     "[s3_bff] stands next to you. [he_she!c] smiles weakly at you before leaning over to whisper in your ear."
     s3_bff "Who did you vote for?"
@@ -1433,7 +1452,7 @@ label s3e7p3:
         thought "[s3_bff] wants to know who I voted for..."
         "Tell the truth":
             s3_mc "I voted for [s3e7p3_dump]."
-            if s3e7p3_dump == "Bill and Miki":
+            if s3e7p3_dump_m == "Bill":
                 if s3_mc.like_mc["Bill"] > 8 or s3_mc.like_mc["Camilo"] > 8:
                     if s3_mc.like_mc["Bill"] > s3_mc.like_mc["Camilo"]:
                         s3_bff "Really? That surprises me. I thought you two were sweet for each other."
@@ -1465,17 +1484,18 @@ label s3e7p3:
             s3_mc "This whole situation is the worst!"
 
     "The Islanders stand round the firepit, nervous and sad glances are thrown around."
-    if s3e7p3_dump == "Camilo and Iona":
+    if s3e7p3_dump_m == "Camilo":
         "Suddenly Camilo's phone goes off."
         camilo "Oh, here we go..."
     else:
         "Suddenly Bill's phone goes off."
         bill "Oh, here we go..."
 
-    text "[s3e7p3_dump], your fellow Islanders have voted you the least compatible couple. As a result you will now be dumped from the Island. Please go and pack your bags and make your way to the Villa entrance. #sorrytoseeyougo #dontforgettowrite"
+    text "[s3e7p3_dump_m] and [s3e7p3_dump_f], your fellow Islanders have voted you the least compatible couple. As a result you will now be dumped from the Island."
+    text "Please go and pack your bags and make your way to the Villa entrance. #sorrytoseeyougo #dontforgettowrite"
     "Stunned silence follows."
 
-    if s3e7p3_dump == "Camilo and Iona":
+    if s3e7p3_dump_m == "Camilo":
         camilo "There it is, then..."
         "Iona starts to cry."
         iona "I wasn't ready to leave..."
@@ -1499,7 +1519,7 @@ label s3e7p3:
             "[s3_li] rubs your back."
             s3_li "It's OK, babe. Let it all out."
 
-    if s3e7p3_dump == "Camilo and Iona":
+    if s3e7p3_dump_m == "Camilo":
         "Eventually the hugging stops. Bill and Miki both let out a sigh of relief."
         iona "Well, I guess we should go and pack our things."
         "Camilo wipes his face with his arms and sniffs."
@@ -1525,1231 +1545,1824 @@ label s3e7p3:
             thought "There's no way I'm doing it."
             "As [s3e7p3_dump] head upstairs to pack, you and the others head outside to wait for them at the entrance."
 
-# label s3e7p3_help_pack:
-# s3_mc "Let me help you guys pack."
-# B/camilo "That's really kind of you, MC. (you get 🥰 with Bill/Camilo and Miki/Iona)"
-# The three of you head to the dressing room.
-# You and Bill/Camilo are helping Miki/Iona pack up her makeup and hair brushes.
-# # CHOICE
-# menu:
-#     thought "So..."
-# -Why do you have so many hair brushes?
-# iona "Hey, I may have shorter hair, but I take care of it, babe."
-# iona "Especially with how much dye goes in it. It gets super brittle. Gotta treat it nice."
-
-# -I can't believe that just happened
-# B/camilo "Yeah, but, like, it did..."
-# M/iona "I guess you lot saw us as too much competition."
-
-# -This really is the end, eh?
-# B/camilo "Don't say that!"
-# M/iona "Yeah, it might be the end of us in here, but we should still meet up on the outside."
-
-# She picks up one of her shirts.
-# (if you started a food fight on day 2):
-# M/iona "Oh, this still has a little bit of the 'sauce surprise' on it from that food fight..."
-# B/camilo "Snap! One of mine had stains all over it, too."
-# B/camilo "Which I blame MC for entirely... (Cam only if you didn't share a shower with him)"
-# s3_mc "But it was so much fun! (if you didn't share a shower with him)"
-# camilo "That was a great night... (if you shared a shower with him)"
-# (if you didn't start a food fight on day 2):
-# M/iona "Oh, this is till damp from jumping in the pool!"
-# B/camilo "Snap! One of mine got all bunched up, too."
-# camilo "That was a great night..."
-# One of Miki's/Iona's lipsticks slips from her fingers and rolls to Bill's/Camilo's foot.
-# M/iona "Agh!"
-# Bill/Camilo chuckles and picks it up.
-# (if you have a high relationship or were coupled with Bill/Camilo):
-# B/camilo "Careful, butter fingers."
-# M/iona "Thanks! This is my favourite lippy."
-# (if you don't have a high relationship):
-# B/camilo "Careful, babe. Don't want to lose your favourite lipstick."
-# M/camilo "Aw, you remembered."
-# She looks down at her lipstick and then at you.
-# M/iona "Actually, babes, I want you to have this."
-# She goes to hand you the lipstick.
-# # CHOICE
-# menu:
-#     thought "Oh..."
-# -But I already have this lipstick
-# -You shouldn't share make-up, though
-# -This is so sweet, babe
-# M/iona "I'm glad you like it. (you get 🥰 with Miki/Iona)"
-# M/iona "It's a good colour for you."
-
-# M/iona "I want you to have it as a little keepsake from me."
-# M/iona "I know we weren't as close in here as you and BFF, but out of everyone, you seem the most solid."
-# M/iona "I think you deserve to get everything you want out of this experience."
-# (if you have a high relationship with Bill/Camilo):
-# She leans in closer to you.
-# M/iona "I know you and Bill/Camilo are kinda into each other."
-# M/iona "I want you to know that I'm going to be off the scene once we're out of here, if you wanna message him once the summer's over or something."
-# M/iona "Of course, that doesn't really help while you're still in here."
-# (if you were coupled with Bill/Camilo and didn't break up):
-# Miki/Iona glances over at Bill/Camilo, who's currently dabbing some of her eyeshadow onto his cheeks.
-# She leans in closer to you.
-# M/iona "I know you and Bill/Camilo still have feelings for each other."
-# M/iona "I'm sorry he won't be here for you to finish the show with..."
-# (if you were coupled with Bill/Camilo and broke up):
-# M/iona "I know it wasn't your choice to split up with Bill/Camilo, but I'm glad you've taken it well."
-# M/iona "Means I get him to myself."
-# (if you don't have a high relationship with Bill/Camilo):
-# M/iona "I can't wait to get out there with him and take on the world together."
-# M/iona "But what about? You're with [s3_li] at the moment."
-# (if MC is interested in [s3_li]):
-# M/iona "You and [s3_li] seem really cute together."
-# (if MC is not interested in [s3_li]):
-# M/iona "It's kinda obvious that you and [s3_li] are just friends."
-# M/iona "At least that's how it seems."
-# M/iona "So, like..."
-# M/iona "Do you want to go all the way to the finale with [him_her]?"
-# # CHOICE
-# menu:
-#     thought "Do I want to end the show with [s3_li]?"
-# -I actually do. He's/She's so sweet
-# M/iona "That's great to hear."
-# (if MC is interested in [s3_li]):
-# M/iona "It looks like you're on the right path to doing it. Just make sure you keep being so cute together."
-# (if MC is not interested in [s3_li]):
-# M/iona "But it's not obvious right now. You need to make yourself available for [him_her]!"
-
-# -I don't think so...
-# (if MC is not interested in [s3_li]):
-# M/iona "Yeah, no shock there."
-# M/iona "Well, you better find yourself someone else soon. You won't be in here forever!"
-
-# -I just want someone else to walk in
-# M/iona "Hmm, I don't think that's very likely."
-# M/iona "If I were you, I'd just find someone you like in here, or could see yourself with, and just go for it!"
-# M/iona "You haven't got much time left..."
-
-# M/iona "Look, I want you to take the lipstick."
-# M/iona "Use it to leave your mark on the right person..."
-# iona "Oh, and make sure to keep the Shiny Demon away from this one."
-# Bill/Camilo walks over to the two of you.
-# B/camilo "All your make-up's packed."
-# M/iona "Oh! Sorry, babe, I got caught up talking to MC."
-# (if you have a high relationship or were coupled with Bill/Camilo):
-# She looks at the two of you.
-# M/iona "I'll leave you two alone for a minute."
-# M/iona "I'll go pack you stuff, seeing as you did mine."
-# (if you don't have a high relationship):
-# She smiles at him.
-# M/iona "Let me return the favour. I'll go and pack up your stuff!"
-# B/camilo "Aww, thanks, babe."
-# She makes her way to the bedroom.
-# Bill/Camilo turns to you.
-# B/camilo "Can't say I expected to be leaving so soon..."
-# (if you have a high relationship or were coupled with Bill/Camilo and didn't break up):
-# B/camilo "Or that we wouldn't get a chance to couple up. (not coupled with Bill/Camilo before)"
-# B/camilo "Or that we wouldn't get another chance to be coupled up...(coupled with Bill/Camilo before)"
-# # CHOICE
-# menu:
-#     thought "Bill/Camilo said that he's going before we could couple up..."
-# -It's a shame we never coupled up (not coupled with Bill/Camilo before)
-# -What are you going to do now?
-# -At least we had our chance at being a couple (coupled with Bill/Camilo before)
-# B/camilo "That's true... (you get 😍 with Bill/Camilo)"
-# B/camilo "Those few days were some of the happiest memories I have from being here..."
-
-# -There's definitely time for one final kiss
-# He looks at you and bites his lips in anticipation.
-# s3_mc "Let me give you something to remember me by. (you get 😏 with Bill/Camilo)"
-# You pull him into an embrace and your lips lock for the last time in the Villa.
-# A bittersweet feeling washes over you as your tongues make contact and move across each other.
-# You wrap your hands around his shoulders and hold him tight, your eyes shut, drawing the moment out.
-# Bill/Camilo sighs as he pulls away from you.
-# B/camilo "I thought this would make it easier."
-# B/camilo "But it's obviously done the exact opposite..."
-
-# -We can always meet up on the outside
-# He smiles.
-# B/camilo "I hope we do."
-# B/camilo "Even if nothing romantic happens, like, I still want to be friends with you."
-
-# (if you don't have a high relationship or were coupled with Bill/Camilo and broke up):
-# B/camilo "But at least it's with Miki/Iona."
-# # CHOICE
-# menu:
-#     thought "Bill's/Camilo's happy that he's leaving with Miki/Iona..."
-# -Do you think you'll last?
-# B/camilo "Well that's a loaded question and a half..."
-# B/camilo "I'd like to think so!"
-# B/camilo "I guess we're definitely attracted to each other physically, that much is clear."
-# B/camilo "Let's see if we can go beyond that."
-
-# -You two make a cute couple
-# bill "I was going for edgy, but I'll take cute. (you get 🥰 with Bill)"
-# camilo "I was going for raunchy, but I'll take cute. (you get 🥰 with Camilo)"
-
-# -What are you going to do now?
-# B/camilo "I guess we're going to see how we do outside of this place, one day at a time."
-# camilo "I know she wants me to see Scotland with her."
-# camilo "It's going to take a lot of effort not to wind her up by doing a really bad Scottish accent constantly while we're there."
-# bill "So I guess part of that will be seeing her boat..."
-# He shakes his head.
-# bill "What have I got myself into?"
-
-# Just then Miki/Iona walks back in.
-# M/iona "That's it, We're all packed."
-# B/camilo "Guess that means it's time to go and say goodbye..."
-# They both turn to you.
-# B/camilo "See you around, MC. It's been a lot of fun."
-# M/iona "Win this thing for us, yeah?"
-# M/iona "Oh, and find love, I suppose..."
-# The three of you make your way outside.
-
-# "Like the awkward couple who leave a party before anyone else, Bill/Camilo and Miki/Iona make their way out of the Villa..."
-# "With every other Islander lined up to say goodbye and applaud them."
-# "Just like how everyone cheers when I leave a room."
-# "That's normal, right?"
-# "Right?"
-# (if you chose to say goodbye):
-# You walk out of the Villa's main doors before Bill/Camilo and Miki/Iona and go stand next to [s3_li].
-# (if you didn't choose to say goodbye):
-# You stand outside the Villa's main doors next to [s3_li], waiting for Bill/Camilo and Miki/Iona to come out.
-# They emerge with their suitcases in tow and everyone cheers.
-# # CHOICE
-# menu:
-#     thought "I'm going to..."
-# -Cheer for them, too
-# You join in with the applause and outcry of support for the couple.
-# Bill/Camilo turns to you and smiles. (you get 🥰 with Bill/Camilo)
-
-# -Remain silent
-# You remain standing impassively while the others around you continue to shout cries of support to the couple.
-# Bill/Camilo turns to you and frowns. (you get 🙁 with Bill/Camilo)
-
-# -Hug [s3_li] for comfort
-# You wrap your arms around Tai's/Ciaran's/Yasmin's waist and squeeze it gently.
-# [he_she] does the same back to you and rests [his_her] head against yours. (you get 🥰 with [s3_li])
-
-# Bill/Camilo and Miki/Iona walk past everyone, waving.
-# You can see the glisten of tears in their eyes.
-# Miki/Iona pauses, glances over at Iona/Miki and speaks to you quietly.
-# M/iona "Please can you do one last thing for me?"
-# s3_mc "Yeah?"
-# M/iona "Make sure Miki's alright. Like, I don't want her to slip into the background."
-# M/iona "Not that I think she will! I mean, she's not the kind of girl you miss."
-# M/iona "But we were close and I don't want her to go all quiet because I'm no longer here..."
-# # CHOICE
-# menu:
-#     thought "I..."
-# -Will make sure she doesn't
-# M/iona "Thanks, babes, I knew you would. That makes me feel better. (you get 🥰 with Miki/Iona)"
-
-# -Need to focus on myself
-# M/iona "Oh.. fair enough. (you get 🙁 with Miki/Iona)"
-# M/iona "Thanks for being honest at least..."
-
-# -Can't make any promises...
-# M/iona "Oh.. fair enough. (you get 🙁 with Miki/Iona)"
-# M/iona "Thanks for being honest at least..."
-
-# She smiles over at Bill/Camilo and goes back to join him.
-# As they pass, you see a paper sign stuck to the back of Bill/Camilo which reads 'Just Married'.
-# The other Islanders start to laugh.
-# B/camilo "What's so funny?"
-# elladine "I think the Shiny Demon has struck again..."
-# M/iona "Oh no... babe, they got you."
-# Bill/Camilo reaches behind himself and pulls the note off. He laughs at it.
-# B/camilo "Alright, as a favour to us dumpees, please tell us, who was the Shiny Demon?"
-# # CHOICE
-# menu:
-#     thought "It's obviously..."
-# -Iona (only available if she wasn't dumped)
-# -Miki (only available if he wasn't dumped)
-# -Bill (only available if he wasn't dumped)
-# bill "It really isn't."
-# bill "I'd have admitted to it by now and taken all the credit..."
-
-# -Camilo (only available if he wasn't dumped)
-# camilo "It really isn't."
-# camilo "I'd have admitted to it by now and taken all the credit..."
-
-# -Tai
-# He shakes his head.
-# s3_mc "How is it not you?"
-
-# Ciaran
-# He shakes his head.
-# s3_mc "How is it not you?"
-
-# -Nicky
-# He shakes his head.
-# s3_mc "How is it not you?"
-
-# -Seb
-# He shakes his head.
-# s3_mc "How is it not you?"
-
-# -Yasmin
-# She shrugs her shoulders.
-# s3_mc "How is it not you?"
-
-# -Elladine
-# She shrugs her shoulders.
-# s3_mc "How is it not you?"
-
-# -Genevieve (no further reactions)
-
-# -Harry
-# harry "It really isn't."
-# harry "I'd have admitted to it by now and taken all the credit..."
-
-# -AJ
-# aj "It really isn't."
-# aj "I'd have admitted to it by now and taken all the credit..."
-
-# A mischievous grin spreads across Genevieve's face. She tents her fingers together and laughs villainously.
-# genevieve "Mwa-hah-hah..."
-# elladine "Genevieve, it was you?"
-# genevieve "It was! I was the Shiny Demon..."
-# B/camilo "What? I'd never have guessed!"
-# M/iona "I honestly thought it was Tai this entire time!"
-# Tai scoffs.
-# tai "OK, I get why you'd think that."
-# tai "And now I'm sad that it wasn't me."
-# genevieve "I got the idea during the camp out and today seemed like the kind of day that needed the mood boost."
-# After the laughter and shock dies down, Bill/Camilo and Miki/Iona look at each other and then turn back to the rest of you.
-# Miki/Iona sighs.
-# M/iona "I'll be honest, when I walked through those doors at the start..."
-# M/iona "I didn't think I'd be walking out of them as the first dumped couple."
-# (if MC has a high relationship or was coupled with Bill/Camilo):
-# M/iona "I may not have found love, but I did find some amazing friends and had some incredible experiences."
-# M/iona "Though, I am glad I won't have to suck another toe for a while..."
-# B/camilo "And yeah, I can't say I was exactly expecting to leave like this either."
-# B/camilo "But I'm just glad that I got to meet such great people. And get close to someone really special."
-# He looks at you with a wide smile.
-# B/camilo "And maybe I'll see that person again once she's out here..."
-# (if MC doesn't have a high relationship with Bill/Camilo):
-# M/iona "But I'm okay with this."
-# She turns to Bill/Camilo.
-# (Miki and Bill):
-# miki "And now I get to know this silly lug better."
-# miki "And all his interesting opinions."
-# bill "Hey... why does that sound sarcastic?"
-# miki "Oh, does it? Oh woah, how unintentional."
-# She winks at him and nudges him in the ribs.
-# bill "Cheeky."
-# (Iona and Camilo):
-# iona "I now get to know this Adonis better. We've already got plans to do a road trip around Scotland."
-# camilo "I've never been before. It's gonna be well good!"
-# camilo "I'll get to see Nessie!"
-# iona "No you won't, babe, I told you, no one sees Nessie. That's the point."
-# B/camilo "And yeah, I can't say I was exactly expecting to leave like this either."
-# B/camilo "But I'm just glad that I got to meet such great people. And get close to someone really special."
-# He looks down at Miki/Iona with a wide smile.
-# B/camilo "And I can't wait to see where we go from this point on..."
-# miki "I guess you'll have to get used to sleeping on a boat..."
-# bill "Mate, we weren't meant to sleep on a boat. That's why we left the sea!"
-# miki "Save it for the taxi ride."
-# iona "I told you! Scotland. Land of the brave. And haggis. Haggis is great."
-
-# B/camilo "Well, this is it, then. Goodbye all!"
-# Some more of the Islanders begin to tear up as the couple make their way to the end of the driveway and out of sight.
-# # CHOICE
-# menu:
-#     thought "That's it then..."
-# -Wave sadly
-# You give the couple one last, slow wave.
-# s3_mc "Damn..."
-
-# -Do a secret fist pump
-# While the others are distracted, you do a little triumphantly fist pump.
-# thought "Still here! Go me!"
-
-# -Take a moment
-# Everything that's happened today seems to hit you at once.
-# You feel both sadness and relief all at once.
-
-# There's silence for a while, then Ciaran's/Tai's/Yasmin's phone pings.
-# elladine "Oh, what now?"
-# M/iona "Please don't be another surprise dumping..."
-# [s3_li] glances at you, then looks down at [his_her] phone.
-# text "Islanders, tomorrow night there will be a recoupling and the GIRLS will choose who they want to couple up with. #Ididnotseethatcoming #getyourgrafton #girlpower"
-# harry "Oh..."
-# The girls look around at one another.
-# There's a moment of silence...
-# s3_mc "This has been a tough dumping..."
-# # CHOICE
-# menu:
-#     thought "How shall I bring up the mood?"
-# -Cheer for Bill/Camilo and Miki/Iona (the couple who stayed)
-# s3_mc "Three cheers for Miki/Iona and Bill/Camilo!"
-# B/camilo "That's well sweet."
-# Though they're quiet at first, the other Islanders soon cheer enthusiastically.
-
-# -A group hug
-# s3_mc "Group hug, everyone!"
-# Everyone comes in for a huge hug.
-
-# -Start a dance
-# s3_mc "Come on, everyone!"
-# s3_mc "Let's celebrate what we have tonight."
-# You start a conga, and though they're quiet at first, the other Islanders soon join in enthusiastically.
-
-# You feel your heart lift, knowing that your friends are around you.
-# thought "I'm so glad I escaped that dumping!"
-# "And so we say goodbye to Bill/Camilo and Miki/Iona."
-# "What will we possibly do without Bill's thoughts on everything?"
-# "Other than have some peace and quiet..."
-# "I don't know how I'll cope without seeing Camilo's cheeks every morning..."
-# "Get your head out of the gutter. I meant face cheeks."
-# "Such perfect bone structure..."
-# "But enough about old news!"
-# "...Coming up!"
-# "The recoupling's all anyone can talk about..."
-# s3_li "You know, the recoupling? Everyone's been talking about it all morning."
-# "And AJ reveals a magic gift."
-# aj "They call me 'Magic Hands'."
-# harry "Oh AJ, don't stop!"
-# "Don't miss it..."
-
-# #########################################################################
-# ## Episode 8, Part 1
-# #########################################################################
-# "Previously on Love Island..."
-# "One couple got dumped from the Island!"
-# M/iona "I wasn't ready to leave..."
-# "And the Islanders learned of tonight's recoupling in a surprise text!"
-# "Talk about shaking things up."
-# "It's like James Bond's martini in here!"
-# "It's the eighth day in the villa, so let's recap who our couples are!"
-# "There's Miki/Iona and Bill/Camilo, who narrowly escaped being dumped last night thanks to MC."
-# "Elladine and Nicky are still going strong."
-# (Yasmin picked MC):
-# "MC got picked by Yasmin, which certainly caused a storm."
-# "Ciaran chose Genevieve, while Tai chose AJ."
-# "And the most unexpected coupling of the night was Harry and Seb!"
-# "Like many healthy relationships, they were each other's last hope."
-# "I really hope they make it..."
-# (Yasmin didn't pick MC):
-# "Genevieve and Harry are coupled up... (MC coupled with Tai/Ciaran)"
-# "As are Yasmin and Seb. (MC coupled with Tai/Ciaran)"
-# "Finally, AJ and Tai(MC coupled with Yasmin/Ciaran)/ Ciaran(MC coupled with Tai) together..."
-# "And [s3_li] snagged MC!"
-# "MC is a hot commodity right now..."
-# "If this was Essex in the winter, she'd be the spray tan!"
-# "This morning, Ciaran/Tai/Yasmin gets serious..."
-# C/T/yasmin "I wanted to have a chat with you in private..."
-# "And Harry gets loud..."
-# harry "Oh AJ, don't stop!"
-# "It's gonna be a bumpy ride."
-
-# The bedroom is empty and peaceful.
-# "And here we have the wild spotted MC, who routinely sleeps while everyone else is still awake..."
-# "Sorry. Too many nature documentaries."
-# "Wake up, MC! This is no time to be asleep. Get up and get grafting!"
-# You feel someone nudge your leg.
-# s3_mc "Five more minutes, mum!"
-# C/T/yasmin "Huh? MC, wake up!"
-# You open your eyes to see Ciaran/Tai/Yasmin standing at the foot of your bed, holding a mug.
-# The others are getting ready in the next room.
-# C/T/yasmin "Rise and shine, sleepyhead. I got you a tea."
-# You sit up. When you grab the mug and take a sip, it's absolutely perfect.
-# # CHOICE
-# menu:
-#     thought "This tea's really good..."
-# -You're a star
-# C/T/yasmin "Aw, glad you like it!"
-# C/T/yasmin "Tea in the morning always helps me start the day right."
-
-# -I miss Bill's/Camilo's/Harry's/AJ's tea...
-# Ciaran's/Tai's/Yasmin's face falls.
-# C/T/yasmin "Oh..."
-# C/T/yasmin "Well, I can always perfect my next brew."
-
-# -I'll get you one next time
-# C/T/yasmin "Aw, that would be amazing."
-# C/T/yasmin "I love a good cuppa in the morning."
-
-# C/T/yasmin "You looked so peaceful there, snoozing away."
-# C/T/yasmin "What were you dreaming about?"
-# # CHOICE
-# menu:
-#     thought "I was dreaming about..."
-# -You
-# C/T/yasmin "Yeah? What were we doing?"
-# C/T/yasmin "Anything fun?"
-# s3_mc "We were in the Villa eating breakfast. Then Godzilla ate you, and I made it my mission to avenge you. Then I woke up."
-# C/T/yasmin "Woah. That's intense!"
-# C/T/yasmin "They say dreams have meanings..."
-# C/T/yasmin "I wonder what Godzilla means in a dream?"
-
-# -Bill/Camilo/Harry/AJ (former partner)
-# C/T/yasmin "Oh..."
-# [he_she] hesitates for a second.
-# C/T/yasmin "What were you up to?"
-# s3_mc "We were in the pool, and Bill/Camilo/Harry/AJ got eaten by a dolphin."
-# s3_mc "Then I rode the dolphin around the pool!"
-# C/T/yasmin "Woah. That's intense!"
-# C/T/yasmin "They say dreams have meanings..."
-# C/T/yasmin "I wonder what dolphins mean in a dream?"
-
-# -Superman
-# s3_mc "He was riding a cloud next to me, playing the violin."
-# s3_mc "He was well good at it. At least Grade 5."
-# C/T/yasmin "Woah. That's intense!"
-# C/T/yasmin "They say dreams have meanings..."
-# C/T/yasmin "I wonder what Superman means in a dream?"
-
-# # CHOICE
-# menu:
-#     thought "What do I think my dream meant?"
-# -I need to eat less cheese before bed
-# -My mind's busy
-# s3_mc "It's not really about the dream. Maybe my brain's just going over the day."
-# C/T/yasmin "That makes sense."
-
-# -I need to eat more cheese before bed
-# s3_mc "I obviously need more cheese."
-# C/T/yasmin "More?!"
-# s3_mc "So I can interpret the dreams better."
-# Ciaran/Tai/Yasmin laughs.
-
-# [he_she] sits down on the bed, squishing your toes under [his_her] butt.
-# C/T/yasmin "So, I wanted to have this chat with you in private before everything kicks off today."
-# s3_mc "Kicks off?"
-# C/T/yasmin "The recoupling! Everyone's been talking about it all morning."
-# T/yasmin "I'm almost looking forward to it."
-# T/yasmin "In a pulling off a plaster kind of way."
-# ciaran "I'm bricking it."
-# C/T/yasmin "How about you?"
-# # CHOICE
-# menu:
-#     thought "Everyone's worried about the recoupling..."
-# -It's scary
-# s3_mc "We're so close to the end now."
-# s3_mc "It's a lot of responsibility!"
-# yasmin "I suppose whatever will happen, will happen."
-# yasmin "But there's still something I want to say to you, MC."
-# C/tai "Yeah, that's actually what I wanted to talk to you about..."
-
-# -I know I'll be fine
-# (MC coupled with Yasmin):
-# s3_mc "It's girls' choice, so we've got nothing to be scared of."
-# s3_mc "We're not going home whatever happens."
-# yasmin "I suppose whatever will happen, will happen."
-# yasmin "But there's still something I want to say to you, MC."
-# (MC coupled with Ciaran/Tai):
-# s3_mc "It's girls' choice, so I've got nothing to be worried about."
-# s3_mc "At least I know I'm not going home."
-# C/tai "I wish I had that luxury."
-# C/tai "That's what I wanted to talk to you about."
-
-# -I'm excited!
-# s3_mc "That means the drama's hotting up."
-# s3_mc "I can't wait."
-# yasmin "I suppose whatever will happen, will happen."
-# yasmin "But there's still something I want to say to you, MC."
-# C/tai "I'm glad you're feeling chill about it."
-# C/tai "That makes me feel a lot better."
-# C/tai "But I did want to talk to you about it..."
-
-# C/T/yasmin "We've only got a few days left now. I picked you because I like you."
-# T/Y/ciaran "And I know you fancy me too.(MC didn't reject Ciaran/Tai/Yasmin previously)"
-# T/Y/ciaran "And I think we make a great couple.(MC rejected Ciaran/Tai/Yasmin previously)"
-# C/T/yasmin "But don't feel pressured to re-couple with me because of that."
-# C/T/yasmin "I nicked you from Bill/Camilo/Harry/AJ. You didn't choose to be with me."
-# yasmin "You have to follow your heart. What's the point of love if you don't?"
-# tai "I think you're a great girl, but I don't want to force something you're not comfortable with."
-# tai "That's not the Tai way."
-# ciaran "And there's plenty more hares in the field!"
-# s3_mc "You mean fish in the sea?"
-# ciaran "Maybe it's just a Waterford expression..."
-# (MC rejected Ciaran/Tai/Yasmin previously):
-# s3_mc "Thanks for considering my feelings."
-# s3_mc "It's nice to know you think about this stuff."
-# C/T/yasmin "No worries."
-# (MC didn't reject Ciaran/Tai/Yasmin previously):
-# s3_mc "What if I want to pick you?"
-# Tai/Yasmin/Ciaran looks you full in the face, his eyes meeting yours.
-# T/C/yasmin "I'd be over the moon."
-# C/T/yasmin "Having said that... it would be nice to know what you're thinking."
-# C/T/yasmin "Just so I'm not surprised tonight."
-# # CHOICE
-# menu:
-#     thought "Ciaran/Tai/Yasmin is wondering who I'm going to pick in the recoupling tonight..."
-# -Of course I'll pick you!
-# s3_mc "I like having you around."
-# C/T/yasmin "Really?"
-# C/T/yasmin "I hoped you'd say that! (you get ❤️ with Ciaran/Tai/Yasmin)"
-
-# -I'll go with you
-# s3_mc "I like having you around."
-# C/T/yasmin "Really?"
-# C/T/yasmin "I hoped you'd say that! (you get ❤️ with Ciaran/Tai/Yasmin)"
-
-# -I'm not picking you
-# C/T/yasmin "Oh... OK. (you get 💔 with Ciaran/Tai/Yasmin)"
-# C/T/yasmin "Thanks for letting me know."
-
-# C/T/yasmin "Sorry to ambush you with all this. You're not even dressed!"
-# C/T/yasmin "I'll give you time to enjoy your cuppa and get ready."
-# s3_mc "Thanks."
-# thought "I should get ready for the day."
-# thought "To the dressing room!"
-
-# You walk into the dressing room and find Miki/Iona plucking her eyebrows.
-# s3_mc "That looks intense."
-# Miki/Iona jumps.
-# M/iona "MC! You made me pull out, like, five!"
-# M/iona "It's gonna take ages to pencil over that..."
-# s3_mc "Sorry! Thought you saw me."
-# Miki/Iona puts down the tweezers, and walks towards you, arms open.
-# # CHOICE
-# menu:
-#     thought "Miki/Iona is going to hug me..."
-# -Let her
-# You wrap your arms around each other in a warm embrace.
-# She pats you on the back, a little awkwardly.
-# After a few moments, she pulls away.
-
-# -High-five her
-# You intercept her hug, high five-ing her right hand.
-# M/iona "That works too."
-
-# -Shake her hand
-# You intercept her hug, catching her right hand and shaking it.
-# She looks at you confused.
-# M/iona "OK..."
-
-# M/iona "I just wanted to say thank you. For saving me and Bill/Camilo last night."
-# s3_mc "Oh..."
-# # CHOICE
-# menu:
-#     thought "Miki/Iona is talking about the dumping last night..."
-# -You're welcome, hun.
-# s3_mc "Of course I saved you, babes!"
-# s3_mc "This place wouldn't be the same without you."
-# M/iona "MC, that's so nice of you. (you get 🥰 with Miki/Iona)"
-
-# -I flipped a coin.
-# s3_mc "I couldn't make that choice."
-# M/iona "I get it. We're all friends. (you get 🙁 with Miki/Iona)"
-# M/iona "It must have been so hard to make that decision."
-# M/iona "I don't know what I would have done if I had to choose between you and Miki/Iona."
-# M/iona "Girl Code doesn't cover this kind of situation!"
-
-# -I did it for Bill/Camilo.
-# s3_mc "I think I still have a chance with him."
-# M/iona "Well... thanks anyway. (you get 🙁 with Miki/Iona)"
-
-# Miki/Iona turns back to the mirror and begins straightening her hair.
-# You grab your make-up bag and sit down beside her.
-# iona "You know, I never saw myself fancying someone like Camilo."
-# iona "But at first, I wasn't sure if our personalities were a good match."
-# iona "But I'm totally loving being coupled up with him."
-# iona "At the rate we're going, I'd definitely want to give it a go on the outside."
-# iona "My family always wanted me to get with a lad who could cook. All I usually eat is spaghetti on toast."
-# iona "With Camilo, I might even end up getting my five-a-day..."
-# She shivers.
-# iona "Feels weird to even think about that."
-# miki "You know I always had the hots for Bill..."
-# miki "But at first, I wasn't sure if our personalities were a good match."
-# miki "The other night he tried to argue with me about cereal bars..."
-# miki "But I'm starting to like that."
-# s3_mc "Arguing about cereal bars?"
-# miki "“It's not a meal. Have cereal or have nothing.”"
-# Miki sighs dreamily.
-# M/iona "So passionate..."
-# M/iona "I'm definitely picking him in the recoupling."
-# (MC was coupled with Bill/Camilo):
-# M/iona "Unless you get there first, I suppose..."
-# M/iona "I guess it's up to the powers that be."
-# miki "It's strange thinking about tonight."
-# iona "I'm well nervous about tonight."
-# s3_mc "That's not like you."
-# iona "suppose it's just the vibe in here."
-# iona "It's quiet, you know?"
-# iona "Like a fusebox right before it takes your eyebrows off."
-# M/iona "Do you know who you're picking? If you don't mind me asking."
-# # CHOICE
-# menu:
-#     thought "Have I made up my mind about the recoupling?"
-# -None of your business
-# s3_mc "Why does everyone keep asking me about this?"
-# M/iona "Sorry, I was just curious."
-# s3_mc "I like to keep that air of mystery."
-
-# -I don't know yet
-# M/iona "Ooh! Waiting till the last second, are we?"
-# s3_mc "I guess I'm hoping I'll know in the moment."
-# M/iona "Let your gut decide! I like it."
-
-# -I've made up my mind
-# M/iona "Good for you!"
-# M/iona "Don't worry, I won't ask. Gotta keep that element of surprise."
-
-# miki "I swear, MC, you would be such a good protagonist."
-
-# (if you helped Miki/Iona and Bill/Camilo pack):
-# M/iona "So, MC..."
-# Miki/Iona looks at you, feigning disinterest.
-# M/iona "Couldn't help but notice you helped Bill/Camilo and Miki/Iona pack last night."
-# s3_mc "Yeah, I thought it would be nice to see them one last time."
-# M/iona "How was Iona/Miki? Was she upset?"
-# # CHOICE
-# menu:
-#     thought "How was Miki/Iona when I helped her pack?"
-# -She was fine
-# M/iona "That's good. She's so strong. I know she'll be OK."
-# iona "I imagine she's got millions more YouTube subscribers waiting for her."
-# miki "At least she won't have to fuss about with wires anymore if she doesn't want to."
-
-# -She was crying
-# M/iona "Oh no! Poor girl."
-# M/iona "I wish I could hug her right now..."
-
-# -She was angry
-# M/iona "No way!"
-
-# M/iona "Did she say anything about me?"
-# # CHOICE
-# menu:
-#     thought "What did Miki/Iona say about Iona/Miki?"
-# -Something mean
-# s3_mc "She said, and I'm quoting..."
-# s3_mc "“She's not the kind of girl you miss.”"
-# M/iona "I can't believe she said that about me!"
-# M/iona "I thought we were friends..."
-# M/iona "Thanks for telling me, MC."
-# M/iona "I guess she was just in it for the cash..."
-# M/iona "I'm gonna head downstairs."
-# M/iona "Gosh, that's really ruined my mood."
-# M/iona "People miss me! People miss me all the time!"
-# M/iona "Do you miss me, MC?"
-# s3_mc "You're right in front of me."
-# M/iona "But like, when I'm in the other room?"
-# # CHOICE
-# menu:
-#     thought "Do I miss Miki/Iona when she's gone?"
-# -I miss you dearly
-# -I like it when you're gone
-# -No, cos you're coming back
-# M/iona "Aw, that's sweet."
-# M/iona "I think."
-# M/iona "Anyway, I'm gonna go. This whole thing has put me in a bad mood."
-# She slurps out of the room.
-
-# -Something nice
-# s3_mc "She asked me to look out for you. You're important to her."
-# M/iona "That's so sweet of her! (you get 🥰 with Miki/Iona)"
-# M/iona "We totally have to grab a coffee after the summer, all three of us."
-# M/iona "I'm gonna head downstairs."
-# She gives you a big smile.
-# M/iona "I'm so happy she thinks I'm a good friend."
-# M/iona "See you later, MC!"
-# She hugs you before running downstairs.
-
-# (if you didn't help Miki/Iona and Bill/Camilo pack):
-# M/iona "Anyway, enough serious talk!"
-# M/iona "I think I'll go for a swim. You never know, I could be going home tonight!"
-# s3_mc "But you just did your hair!"
-# iona "So? I can do it again later. Live in the moment, MC!"
-# She runs out of the room. Moments later you hear a loud splash, and a groan from a presumably sopping Genevieve.
-# miki "OK, when I said swim, I more meant 'dip my big toe in'."
-# miki "The sun is the thing I'll miss the most about this place."
-# miki "It's absolutely absent in Cambridge."
-# miki "See you in a bit!"
-# She switches off her straighteners and leaves.
-
-# thought "That was an intense conversation."
-# thought "Better get dressed."
-# Outfit change to swimwear
-# thought "Lock up your sons and daughters, here I come!"
-# thought "Still looking fresh."
-
-# You walk into the kitchen. Bill/Camilo is making breakfast. AJ is massaging Harry's shoulders.
-# AJ spots you first.
-# aj "I love that look. You always look hot in it."
-# aj "You know you're hot in whatever, MC, but you'd be even hotter in something. I dunno..."
-# aj "Hotter, if you know what I mean."
-# Bill/Camilo grins when he sees you.
-# B/camilo "There she is! My hero!"
-# He wraps you in a big hug. He smells good.
-# Like fresh linen and good decisions. (Bill)
-# Like Georgio Armani. (Camilo)
-# B/camilo "Sit down! I made breakfast as a thank you for saving me and Miki/Iona last night."
-# B/camilo "We both thought you would save Bill/Camilo and Miki/Iona."
-# He exhales with relief.
-# bill "I wanted a serious pint after all that!"
-# camilo "You know what, bruv, I thought I was headed back to Romford."
-# # CHOICE
-# menu:
-#     thought "Bill/Camilo is talking about last night's dumping..."
-# -I couldn't lose Miki/Iona
-# Bill/Camilo nods and smiles at you.
-# B/camilo "You're a good friend, MC. I know Miki/Iona thinks so, too. (you get 🙂 with Bill/Camilo)"
-
-# -You're both my friends
-# Bill/Camilo smiles at you.
-# B/camilo "Thanks for saying that, MC. Miki/Iona and I feel the same way about you. (you get 🙂 with Bill/Camilo)"
-
-# -I did it for you, Bill/Camilo
-# He grins at you. (you get 😍 with Bill/Camilo)
-# B/camilo "I'd do the same for you."
-# B/camilo "Hopefully we can spend more time together now that I'll be staying..."
-
-# B/camilo "Anyway... your breakfast is ready!"
-# B/camilo "By the way, love the new outfit!"
-# bill "Though it's the person inside that really makes it."
-# camilo "You have such a good sense of style, MC."
-# You sit down at the breakfast bar, eyeing up what Bill/Camilo has in his frying pan.
-
-# Bill stayed:
-# It's a perfectly cooked (vegan/vegetarian) omelette, smothered in mushrooms, (dairy-free) cheese, and...
-# Peanut butter?
-# s3_mc "Bill, why is there peanut butter in my otherwise delicious breakfast?"
-# Bill puts down the spatula and looks at you, dead serious.
-# bill "This is how you make an omelette!"
-# bill "No complaints till you've tried it."
-# # CHOICE
-# menu:
-#     thought "Bill's made me an... interesting looking omelette."
-# -Tell him you're not hungry
-# -Eat it with a smile
-# You take a big bite, forcing a smile as you chew.
-# It's...not bad.
-# Actually, it's great.
-# Bill watches, beaming.
-# s3_mc "Bill, this is incredible!"
-# bill "Am I a good cook or what?! (you get 😍 with Bill)"
-
-# -Tell him it looks gross
-# Bill takes the plate from you, rolling his eyes. (you get 🙁 with Bill)
-# bill "Your opinion is incorrect."
-# bill "Forget it. I was just trying to be nice."
-
-# Camilo stayed:
-# He's made your favourite - his famous pancakes!
-# s3_mc "Thanks, Camilo! These look great!"
-# camilo "No problemo! It's the least I can do for you."
-# You down your pancakes eagerly. Camilo watches with satisfaction.
-# s3_mc "Shtop shtarung at muh."
-# camilo "What?"
-# You swallow your mouthful.
-# s3_mc "Stop staring at me!"
-# camilo "Sorry. Nothing more satisfying than a satisfied customer!"
-
-# You're distracted from breakfast as Harry lets out a loud moan.
-# harry "Oh AJ, don't stop!"
-# You clear your throat loudly, stifling giggles.
-# harry "I know you're there, MC. I don't care."
-# harry "Some things are worth moaning for."
-# AJ winks at you from behind Harry.
-# aj "Not the first time I've been told that, babes."
-# aj "I give these to the girls on the team all the time."
-# aj "They call me 'Magic Hands'."
-# aj "Well, one girl does, but that's for different reasons."
-# harry "You're a miracle worker."
-# aj "You're lucky I'm here! You've got terrible form."
-# aj "You're going to end up with rounded shoulders unless you stand straight."
-# She finishes up her massage and pats Harry on the back.
-# aj "You're all done, mate."
-# harry "Aw. Just a minute longer?"
-# aj "Nope. My magic hands are too powerful. The human body can only take so much."
-# aj "Who's next? MC?"
-# # CHOICE
-# menu:
-#     thought "Do I want a Magic Hands massage?"
-# -No
-# aj "Aw, OK."
-# She leans in close, out of earshot of the boys.
-# aj "Babe, while I've got you here, I'd love to go for a chat?"
-# aj "I don't think there's anyone in the living room."
-# thought "A little bit of privacy is just what we need..."
-
-# -Yes
-# s3_mc "Why not?"
-# AJ beams and beckons you over to sit in front of her.
-# Her hands come to your shoulders, fingers firm on your muscles.
-# Warmth spreads through your back as she works out your tension.
-# aj "Is the pressure OK?"
-# s3_mc "It's heavenly."
-# Harry clears his throat.
-# harry "See? It's not just me."
-# s3_mc "I never should have judged you."
-# AJ finishes up and pats you on the back.
-# aj "All done!"
-# s3_mc "But..."
-# aj "Sorry, babe."
-# aj "Unless you wanna go into the living room?"
-# thought "Sounds like she wants to talk about something in private."
-
-# # CHOICE
-# menu:
-#     thought "Do I want to join AJ in the living room?"
-# -Yes (gem choice)
-# s3_mc "Sure, AJ."
-# aj "Great! Let's go."
-
-# -No
-# aj "Are you sure? It won't take long."
-# # CHOICE
-# menu:
-#     thought "Am I sure I don't want to go with AJ?"
-# -Go on then (gem choice)
-# -No thanks 
-# aj "Aw, OK."
-
-# Gem choice:
-# You enter the living room with AJ.
-# aj "Oh good, there's no-one here. All alone."
-# s3_mc "OK, that sounds like the start of a horror movie..."
-# aj "And now I'm going to peel off my mask and chase you screaming through the Villa..."
-# # CHOICE
-# menu:
-#     thought "AJ's trying to spook me..."
-# -But we're friends
-# -There are cameras everywhere
-# aj "Drat. Foiled again."
-
-# -You're the one who'll be running
-# aj "Uh, good luck catching me."
-# aj "I'm lightning fast, baby!"
-
-# -That's kinda hot
-# aj "You like  being scared?"
-# s3_mc "Yep. It gets my heartbeat racing."
-# aj "Well, there are loads of ways I could do that..."
-# MC. You're gonna have to show me.
-
-# She pats the sofa.
-# aj "C'mon."
-# s3_mc "You're still trying to massage me?"
-# aj "Nah, I just had to get you away from everyone else."
-# aj "We never get to be alone out there."
-# aj "Touching you in front of everyone just felt wrong."
-# aj "And too PG..."
-# (MC and AJ weren't coupled before):
-# aj "The stress is just kind of getting to me."
-# aj "And I'm having doubts about Tai."
-# s3_mc "OK, I'll lie down in that case."
-# s3_mc "But face up!"
-# aj "Fine."
-# You lie down on the sofa. AJ perches on the back, looking down at you.
-# aj "Mind if I lie with you?"
-# # CHOICE
-# menu:
-#     thought "Do I mind if she lies with me?"
-# -Keep your distance
-# -Only if you spoon me
-# aj "That can be arranged."
-# She slides down the sofa and snuggles into you.
-# s3_mc "That's more like it."
-
-# -Go for it
-# s3_mc "Be my guest."
-# aj "Oui, oui!"
-# She slides down the sofa and snuggles into you.
-# aj "You know, I like boys. I like their big arms and their jawlines and their stubbly faces."
-# aj "But it's hard being with them."
-# aj "Girls are so easy. I am one, so I know what to say, what to do."
-# aj "I know my way around their bodies better, too."
-# aj "But sometimes with boys, I feel like I have to prove myself to them."
-# aj "Like, cos Tai's a rugby coach, I feel like I can only talk about sport with him."
-# aj "Like, Ciaran's a bouncer. So I feel like I have to act tough around him."
-# AJ sighs, then gives you a flirty grin.
-# aj "Maybe I just have someone else on my mind."
-# aj "Of course, if you pick me tonight, there's nothing to worry about here..."
-# You turn to look at her. AJ is staring at your lips. She leans in slightly.
-# # CHOICE
-# menu:
-#     thought "Do I want to kiss AJ?"
-# -No, cuddle instead
-# -Yes
-# You close the gap between you both and kiss her.
-# AJ giggles into the kiss before climbing on top of you, continuing to kiss you passionately as she straddles your hips.
-# You run your hands up her back, pulling her close, and start to massage her shoulders.
-# aj "What are you doing?"
-# s3_mc "Didn't you bring me in here for a massage?"
-# aj "A ruse so clever, even you believed it..."
-# aj "I'm wasted in sports. Maybe I should mastermind a crime..."
-# She kisses you again, and whispers in your ear.
-
-# aj "You know, it's my birthday tomorrow..."
-# s3_mc "It is?"
-# aj "What are you gonna get me for a present?"
-# # CHOICE
-# menu:
-#     thought "I'm getting you..."
-# -Cuddles
-# -Bits
-# aj "Can I have my present now then?"
-# s3_mc "What a coincidence, I've got it right here..."
-# You pretend to dig into an invisible pocket, fishing something out, then use that hand to push back her hair before kissing her deeply.
-# You feel her smiling into the kiss as she runs her hands over your body, firm and confident.
-# You let her take control, let her move your body with hers in incredible ways.
-# Your eyes meet, and you give each other a content smile.
-# Afterwards, you lay your head on AJ's chest, listening to her heart beat.
-
-# aj "I could just live here forever."
-# aj "In this beautiful Villa with this beautiful girl."
-# s3_mc "Your hockey team might have something to say about it."
-# aj "Just during off-season, then. The Villa must be empty most of the year, when the show's not on."
-# s3_mc "That would be perfect."
-# s3_mc "Then we can always be alone and have moments like this."
-# aj "Sounds like a plan."
-# After a while, AJ gets up. She holds her out for you to take.
-# (MC was not coupled with AJ):
-# AJ sighs and she stretches.
-# aj "I just wish I was in a couple that felt right."
-# # CHOICE
-# menu:
-#     thought "AJ's worried about not being in the right couple..."
-# -Try to chill out
-# -Stick at it
-# -Graft on someone else
-# s3_mc "You're in a Villa filled with beautiful people!"
-# s3_mc "I bet there's someone here who's right for you."
-# s3_mc "That's the whole idea of this summer, right?"
-# AJ beams at you, looking a lot happier.
-# aj "Thanks, hun."
-
-# aj "I knew I'd feel better for talking to you."
-# s3_mc "Any time!"
-# aj "We should head back to the others."
-# aj "Don't want Ciaran/Tai/Yasmin to get suspicious. (depending who picked MC)"
-# # CHOICE
-# menu:
-#     thought "Ciaran/Tai/Yasmin might get suspicious about me and AJ sneaking off..."
-# -You're right
-# s3_mc "Yeah, we should head back."
-# AJ. OK. Let's go.
-
-# -Let [him_her]
-# s3_mc "I don't care if [he_she] sees."
-# aj "You're so naughty."
-# aj "C'mon, though. I want some food."
-
-# AJ gives your hand a squeeze before you both head back to the kitchen.
-# When you return, Bill/Camilo and Harry are still in the kitchen, chatting about the previous night's events.
-
-# Bill/Camilo starts to wash up the pans from breakfast.
-# B/camilo "Feels weird cooking without Camilo/Bill..."
-# B/camilo "He was always such a laugh in the kitchen."
-# s3_mc "I'm gonna miss his pancakes (Camilo got dumped) / his fry ups (Bill got dumped)."
-# AJ smiles at him.
-# aj "I think the right choice was made."
-# aj "I'm glad you're here, Bill/Camilo."
-# Bill/Camilo pretends to wipe a tear.
-# bill "Stop, you're making me weepy..."
-# camilo "Ah, chica..."
-# harry "I don't think that's fair to say, AJ. It was a hard decision."
-# aj "MC agrees with me! Right?"
-# # CHOICE
-# menu:
-#     thought "Do I think it's best that Bill/Camilo stayed?"
-# -I wanted to help Miki/Iona
-# -Bill/Camilo deserves to be here
-# Harry frowns while Bill/Camilo pats you on the shoulder.
-# B/camilo "Thanks, MC."
-
-# -They're both special
-# Harry nods in agreement.
-# s3_mc "Just because we saved Bill/Camilo doesn't mean Camilo/Bill will just be forgotten."
-# aj "That's true."
-
-# s3_mc "But Harry's right, it was a hard decision either way."
-# harry "At least we all got to make it together."
-# AJ nods.
-# aj "We have to stick together now."
-# harry "It's so quiet here now without him."
-# harry "I hate being able to hear my own thoughts."
-# He sips a cappuccino, leaving foam on his nose.
-# He puts the mug down, oblivious.
-# # CHOICE
-# menu:
-#     thought "Harry has foam on his nose..."
-# -Laugh
-# You nudge AJ and point to Harry.
-# She lets out a small laugh.
-# aj "Harry, babes, you've got something on your..."
-# Harry wipes his cheeks.
-# harry "Did I get it?"
-# aj "Uh, yeah, hun. You got it."
-
-# -Lick it off
-# You hop off your seat and approach Harry. You stop in front of him and stare at his nose. He looks at you, baffled.
-# harry "What are you looking at me like that?"
-# You quickly nip forwards and lick the foam off his nose.
-# (MC was not coupled with Harry):
-# Harry yelps and jumps back.
-# harry "What is it with you and licking my face?"
-# harry "You're a strange one, MC."
-# harry "Though, I can't say I didn't enjoy it..."
-# Harry looks shocked, but then smiles, wiping his nose.
-# harry "Any excuse to lick me, eh, MC?"
-# harry "Maybe I should put foam in some other places..."
-# You sit back down.
-
-# The conversation freezes as Miki/Iona comes charging down the stairs, phone in hand.
-# thought "Oh, here we go..."
-# M/iona "I've got a text!"
-# B/camilo "We can hear you! You don't need to shout!"
-# M/iona "It's a challenge!"
-# She comes to a halt at the breakfast bar.
-# text "Howdy, Islanders! It's time to pull on your boots and separate the wheat from the chaff in today's Cowboy Challenge! #rideemcowboy #giddyup"
-# s3_mc "Oh no. We're not going to have to ride a bull, are we?"
-# "Oh my stars! Who told her?!"
-# "Looks like these little doggies have found themselves in a doozy!"
-# "Will they play to the gallery and pony up the win?"
-# "Or will they suck an egg and have their plans come a-cropper?"
-# "Find out next time in the rootinest tootinest reality show in all the West!"
-# "...Who writes this stuff?"
-
-# #########################################################################
-# ## Episode 8, Part 2
-# #########################################################################
-# "Well, howdy partners, and welcome to this here newest episode of Love Island."
-# "The Islanders have had a chance to let off some steam after last night's dumpin'."
-# "Miki/Iona was chomping at the bit to find out what was said between MC and Ion/Miki."
-# M/iona "Did she say anything about me?"
-# (“something nice”):
-# "And MC told her just what she wanted to hear."
-# s3_mc "She asked me to look out for you. You're important to her."
-# M/iona "That's so sweet of her!"
-# (“something mean”):
-# "And MC sure gave her something to think about."
-# s3_mc "She said, and I'm quoting..."
-# s3_mc "'She's not the kind of girl you miss.'"
-# M/iona "I can't believe she said that about me!"
-# "Ol' Magic Hands' AJ treated Harry to a mighty fine massage."
-# harry "Oh, AJ, don't stop!"
-# (Gem choice going with AJ into the living room):
-# "And MC and AJ got personal."
-# aj "We never get to be alone out there."
-# aj "I'm having doubts about Tai(MC not coupled with Tai)/Ciaran(MC coupled with Tai). (MC was not coupled with AJ before)"
-# "There was talk of the recouplin'..."
-# "...and a breakfast that any cowboy'd be happy to cash their chips in for..."
-# "... That one means 'to die for', by the way..."
-# "Though MC certainly didn't take her time to enjoy it. (Camilo stayed)"
-# s3_mc "Shtop shtaring at muh. (Camilo stayed)"
-# "Though we may have to take Bill's word on that one. (Bill stayed)"
-# bill "OK, MC, look. This is how you make an omelette. (Bill stayed)"
-# "Peanut butter, Bill? Really? (Bill stayed)"
-# "Up next, it's the show you've all been waiting for. The main event."
-# "Time for the Islanders to pull on their trotter boxes and don their head cases, it's shootin' time!"
-# "Wait, what the heck's a 'trotter box'?"
-# "They're boots, apparently. Huh. The more you know."
-
-# As you approach the challenge area, you see an inflatable pen set up in the centre of the platform.
-# Inside it is a mechanical bull.
-# On the other side of the ring is the makeshift façade of an Old West saloon.
-# Shooting targets of various sizes are hung upon it.
-# genevieve "Woah, nelly. We've got ourselves a challenge, cow-folk."
-# H/ciaran "Um. Was that a cowgirl voice?"
-# genevieve "You betcha, partner."
-# genevieve "Get it?"
-# Miki/Iona bursts out laughing.
-# harry "Please tell me that's not part of the challenge. (Harry coupled with Genevieve)"
-# ciaran "Ha! Love it. (Ciaran coupled with Genevieve)"
-# B/camilo "Looks like we're in for some Bucking Bronco."
-# aj "Oh, bring it on."
-# aj "Our team hired one of these for an end-of-season party once."
-# aj "Obviously I won. My thighs have never been more sore."
-# T(MC coupled with Ciaran/Yasmin)/C(MC coupled with Tai): Is that a challenge?
-# aj "That wasn't supposed to be dirty..."
-# aj "Easy tiger. (MC was not coupled with AJ)"
-# nicky "Guys it's mine!"
-# nicky "I've just got a message."
-# text "Islanders, it's time to mosey on over and pick an outfit from the boxes. You'll need to look the part today, as we find out who among you is the best at holding on to a rough ride... #thistownaintbigenough #messwiththebull"
-# seb "Oh no..."
-# Choiceseb "This sounds like..."
-# -A chance to show off my skills
-# s3_mc "This is gonna be epic."
-# s3_mc "Not to one-up AJ, but I've got some serious skills on these things."
-# C/T/yasmin "And I bet you look while you're doing it, too."
-
-# -An opportunity for flirting
-# s3_mc "This is gonna be hilarious."
-# s3_mc "I can't wait to lasso my beau."
-# CT/yasmin "I'm looking forward to it myself."
-
-# -A disaster waiting to happen
-# s3_mc "I'm with Seb on this one. There's no way this doesn't end in disaster."
-# C/T/yasmin "Don't stress it, babe. We're gonna do great."
-
-# seb "Well, at least you've got a partner."
-# He gestures to Harry.
-# seb "No offence, mate. I'm just not really into the idea of getting lassoed by you."
-# harry "Hey, don't worry. I'm not too worried about winning this one either."
-# harry "Maybe we can play bad guys? Give the riders a little extra soaking."
-# seb "That sounds more like it. We can be outlaws trying to chase down the sheriff."
-# genevieve "Dag-nabbit, you curmudgeons! You know that ain't part o' this here challenge."
-# harry "Pretty sure cowboy-talk isn't part of the challenge either, Viv."
-# genevieve "What the deuce are you talking 'bout, Harry-boy? Got a pining for a hiding, small fry?"
-# There is a brief pause.
-# M/iona "What does that even mean?"
-# genevieve "Look, I love westerns, OK? Have I really never mentioned that?"
-# ciaran "Not even once, babe. But it's hilarious."
-# text "Harry and Seb - you will be competing together in this challenge as a couple. #roomformore #twocowboysonehorse"
-# Seb groans audibly.
-
-# nicky "Let's get on with it, shall we?"
-# You realise that Nicky has already chosen an outfit from the trunk.
-# elladine "Looking good!"
-# genevieve "Smoking, you might say."
-# nicky "Thanks, guys."
-# nicky "Well, don't just stand there. Come pick an outfit!"
-# The Islanders rush towards the chests of clothes.
-# Choiceseb "Everyone's trying to get to pick their outfit first!"
-# -Barge through them!
-# thought "I'm not about to let them choose before me!"
-# You charge through the stampede, stepping on more than a few toes as you go.
-# s3_mc "Out of the way, slow-pokes!"
-# genevieve "Ow!"
-# s3_mc "Sorry, babes!"
-
-# -Wait your turn 
-# You follow the others over to the chests, poking your head between the other Islanders to get a good view.
-# s3_mc "Leave something for me!"
-
-# You are pushed back to the back as the islanders grab their outfits in a frenzy.
-# harry "Cor, I don't look half bad, do I?"
-# aj "Hey cow-folks. Get a load of this."
-# B/camilo "Ha! This is what I'm talking about."
-# C/T/yasmin "How do I look, MC?"
-# Choiceseb "How does Ciaran/Tai/Yasmin look in [his_her] outfit?"
-# -Like a million bucks
-# C/T/yasmin "Knew I could count on you to have my back. (you get 😍 with Ciaran/Tai/Yasmin)"
-
-# -Maybe if you chose a different hat...
-# C/T/yasmin "Hmm. You think?"
-# Ciaran's/Tai's/Yasmin's brow furrows.
-
-# -More cow than cowboy/cowgirl
-# C/T/yasmin "You don't have to put it like that... (you get 🙁 with Ciaran/Tai/Yasmin)"
-
-# C/T/yasmin "Don't wait around! Get yourself something nice!"
-# You find a number of different cowboy accessories and toys to wear over your swimsuit.
-# Ciaran/Tai/Yasmin watches as you put them on, a grin on [his_her] face.
-# Outfit change to cowboy clothes wearing over swimwear
-# C/T/yasmin "I love it. Like a smoking gun."
-# As soon as you don your outfit, you feel a splash of cold water on your back.
-# bff "Gotcha. (MC's former partner was dumped)"
-# (MC's former partner was not dumped):
-# B/H/Cam/aj "Oops. I was practising hitting the targets."
-# You don't believe Bill/Harry/Camilo/AJ for a second. [he_she] doesn't look very apologetic.
-# s3_mc "Hey! That was cold!"
-# You pick up a water pistol and start firing back.
-# M/iona "Don't waste all the water or you'll not have any left for the challenge!"
-# M/iona "Oh, what do I care! We have a whole pool."
-# M/iona "Oh, that's me."
-# text "Cowgirl, it's time to ride. First you'll need to mount the mechanical bull. Then use the rope to lasso your beau onto the saddle with you. #lassoyourbeau #lotsofknots"
-# M/iona "It looks like Bill/Camilo and I will be up first."
-# M/iona "We've got to try and hold and hit as many targets as possible."
-# B/camilo "Go ahead, I'll be waiting."
-# M/iona "I really did not want to go first, but here we are."
-# elladine "You'll be fine! Once you get up there, instinct will take over."
-# Miki/Iona climbs onto the bull with trepidation. It doesn't look like she's done this before.
-# M/iona "What now?"
-# Suddenly, the bull jerks to life.
-# Miki/Iona grabs the handle in a panic.
-# M/iona "Woah, nelly!"
-# M/iona "Now what?"
+    "Like the awkward couple who leave a party before anyone else, [s3e7p3_dump_m] and [s3e7p3_dump_f] make their way out of the Villa..."
+    "With every other Islander lined up to say goodbye and applaud them."
+    "Just like how everyone cheers when I leave a room."
+    "That's normal, right?"
+    "Right?"
+
+    scene s3-outside-villa-entrance-night with dissolve
+    $ on_screen = []
+
+    if s3e7p3_help_pack:
+        "You walk out of the Villa's main doors before [s3e7p3_dump_m] and [s3e7p3_dump_f] and go stand next to [s3_li]."
+    else:
+        "You stand outside the Villa's main doors next to [s3_li], waiting for [s3e7p3_dump_m] and [s3e7p3_dump_f] to come out."
+        "They emerge with their suitcases in tow and everyone cheers."
+
+    # CHOICE
+    menu:
+        thought "I'm going to..."
+        "Cheer for them, too":
+            "You join in with the applause and outcry of support for the couple."
+            "[s3e7p3_dump_m] turns to you and smiles."
+        "Remain silent":
+            "You remain standing impassively while the others around you continue to shout cries of support to the couple."
+            "[s3e7p3_dump_m] turns to you and frowns."
+        "Hug [s3_li] for comfort":
+            $ s3_mc.like(s3_li)
+            "You wrap your arms around [s3_li]'s waist and squeeze it gently."
+            "[he_she!c] does the same back to you and rests [his_her] head against yours."
+
+    "[s3e7p3_dump_m] and [s3e7p3_dump_f] walk past everyone, waving."
+    "You can see the glisten of tears in their eyes."
+
+    if s3e7p3_dump_f == "Miki":
+        "[s3e7p3_dump_f] pauses, glances over at Iona and speaks to you quietly."
+        miki "Please can you do one last thing for me?"
+        s3_mc "Yeah?"
+        miki "Make sure Iona's alright. Like, I don't want her to slip into the background."
+        miki "Not that I think she will! I mean, she's not the kind of girl you miss."
+        miki "But we were close and I don't want her to go all quiet because I'm no longer here..."
+    else:
+        "[s3e7p3_dump_f] pauses, glances over at Miki and speaks to you quietly."
+        iona "Please can you do one last thing for me?"
+        s3_mc "Yeah?"
+        iona "Make sure Miki's alright. Like, I don't want her to slip into the background."
+        iona "Not that I think she will! I mean, she's not the kind of girl you miss."
+        iona "But we were close and I don't want her to go all quiet because I'm no longer here..."
+
+    # CHOICE
+    menu:
+        thought "I..."
+        "Will make sure she doesn't":
+            $ s3_mc.like(s3e7p3_dump_f)
+            if s3e7p3_dump_f == "Miki":
+                miki "Thanks, babes, I knew you would. That makes me feel better."
+            else:
+                iona "Thanks, babes, I knew you would. That makes me feel better."
+        "Need to focus on myself":
+            $ s3_mc.dislike(s3e7p3_dump_f)
+            if s3e7p3_dump_f == "Miki":
+                miki "Oh.. fair enough."
+                miki "Thanks for being honest at least..."
+            else:
+                iona "Oh.. fair enough."
+                iona "Thanks for being honest at least..."
+        "Can't make any promises...":
+            $ s3_mc.dislike(s3e7p3_dump_f)
+            if s3e7p3_dump_f == "Miki":
+                miki "Oh.. fair enough."
+                miki "Thanks for being honest at least..."
+            else:
+                iona "Oh.. fair enough."
+                iona "Thanks for being honest at least..."
+
+    "She smiles over at [s3e7p3_dump_m] and goes back to join him."
+    "As they pass, you see a paper sign stuck to the back of [s3e7p3_dump_m] which reads 'Just Married'."
+    "The other Islanders start to laugh."
+
+    if s3e7p3_dump_m == "Bill":
+        bill "What's so funny?"
+    else:
+        camilo "What's so funny?"
+
+    elladine "I think the Shiny Demon has struck again..."
+
+    if s3e7p3_dump_f == "Miki":
+        miki "Oh no... babe, they got you."
+    else:
+        iona "Oh no... babe, they got you."
+
+    "[s3e7p3_dump_m] reaches behind himself and pulls the note off. He laughs at it."
+
+    if s3e7p3_dump_m == "Bill":
+        bill "Alright, as a favour to us dumpees, please tell us, who was the Shiny Demon?"
+    else:
+        camilo "Alright, as a favour to us dumpees, please tell us, who was the Shiny Demon?"
+
+    # CHOICE
+    menu:
+        s3_mc "It's obviously..."
+        "Iona" if s3e7p3_dump_f != 'Iona':
+            # NEED TO FILL
+            "EMPTY"
+        "Miki" if s3e7p3_dump_f != 'Miki':
+            # NEED TO FILL
+            "EMPTY"
+        "Bill" if s3e7p3_dump_m != 'Bill':
+            bill "It really isn't."
+            bill "I'd have admitted to it by now and taken all the credit..."
+        "Camilo" if s3e7p3_dump_m != 'Camilo':
+            camilo "It really isn't."
+            camilo "I'd have admitted to it by now and taken all the credit..."
+        "Tai":
+            "He shakes his head."
+            s3_mc "How is it not you?"
+        "Ciaran":
+            "He shakes his head."
+            s3_mc "How is it not you?"
+        "Nicky":
+            "He shakes his head."
+            s3_mc "How is it not you?"
+        "Seb":
+            "He shakes his head."
+            s3_mc "How is it not you?"
+        "Yasmin":
+            "She shrugs her shoulders."
+            s3_mc "How is it not you?"
+        "Elladine":
+            "She shrugs her shoulders."
+            s3_mc "How is it not you?"
+        "Genevieve":
+            pass
+        "Harry":
+            harry "It really isn't."
+            harry "I'd have admitted to it by now and taken all the credit..."
+        "AJ":
+            aj "It really isn't."
+            aj "I'd have admitted to it by now and taken all the credit..."
+
+    "A mischievous grin spreads across Genevieve's face. She tents her fingers together and laughs villainously."
+    genevieve "Mwa-hah-hah..."
+    elladine "Genevieve, it was you?"
+    genevieve "It was! I was the Shiny Demon..."
+
+    if s3e7p3_dump_m == "Bill":
+        bill "What? I'd never have guessed!"
+        miki "I honestly thought it was Tai this entire time!"
+    else:
+        camilo "What? I'd never have guessed!"
+        iona "I honestly thought it was Tai this entire time!"
+
+    "Tai scoffs."
+    tai "OK, I get why you'd think that."
+    tai "And now I'm sad that it wasn't me."
+    genevieve "I got the idea during the camp out and today seemed like the kind of day that needed the mood boost."
+    "After the laughter and shock dies down, [s3e7p3_dump_m] and [s3e7p3_dump_f] look at each other and then turn back to the rest of you."
+    "[s3e7p3_dump_f] sighs."
+
+    if s3e7p3_dump_f == "Miki":
+        miki "I'll be honest, when I walked through those doors at the start..."
+        miki "I didn't think I'd be walking out of them as the first dumped couple."
+    else:
+        iona "I'll be honest, when I walked through those doors at the start..."
+        iona "I didn't think I'd be walking out of them as the first dumped couple."
+
+    if s3e7p3_dump_m == "Bill":
+        if ("Bill" in s3_mc.past_partners and s3_like_bill) or s3_mc.like_mc["Bill"] > 8:
+            miki "I may not have found love, but I did find some amazing friends and had some incredible experiences."
+            miki "Though, I am glad I won't have to suck another toe for a while..."
+            bill "And yeah, I can't say I was exactly expecting to leave like this either."
+            bill "But I'm just glad that I got to meet such great people. And get close to someone really special."
+            "He looks at you with a wide smile."
+            bill "And maybe I'll see that person again once she's out here..."
+        else:
+            miki "But I'm okay with this."
+            "She turns to [s3e7p3_dump_m]."
+            miki "And now I get to know this silly lug better."
+            miki "And all his interesting opinions."
+            bill "Hey... why does that sound sarcastic?"
+            miki "Oh, does it? Oh woah, how unintentional."
+            "She winks at him and nudges him in the ribs."
+            bill "Cheeky."
+            bill "And yeah, I can't say I was exactly expecting to leave like this either."
+            bill "But I'm just glad that I got to meet such great people. And get close to someone really special."
+            "He looks down at [s3e7p3_dump_f] with a wide smile."
+            bill "And I can't wait to see where we go from this point on..."
+            miki "I guess you'll have to get used to sleeping on a boat..."
+            bill "Mate, we weren't meant to sleep on a boat. That's why we left the sea!"
+            miki "Save it for the taxi ride."
+        bill "Well, this is it, then. Goodbye all!"
+    else:
+        if ("Camilo" in s3_mc.past_partners and s3_like_camilo) or s3_mc.like_mc["Camilo"] > 8:
+            iona "I may not have found love, but I did find some amazing friends and had some incredible experiences."
+            iona "Though, I am glad I won't have to suck another toe for a while..."
+            camilo "And yeah, I can't say I was exactly expecting to leave like this either."
+            camilo "But I'm just glad that I got to meet such great people. And get close to someone really special."
+            "He looks at you with a wide smile."
+            camilo "And maybe I'll see that person again once she's out here..."
+        else:
+            iona "But I'm okay with this."
+            "She turns to [s3e7p3_dump_m]."
+            iona "I now get to know this Adonis better. We've already got plans to do a road trip around Scotland."
+            camilo "I've never been before. It's gonna be well good!"
+            camilo "I'll get to see Nessie!"
+            iona "No you won't, babe, I told you, no one sees Nessie. That's the point."
+            camilo "And yeah, I can't say I was exactly expecting to leave like this either."
+            camilo "But I'm just glad that I got to meet such great people. And get close to someone really special."
+            "He looks down at [s3e7p3_dump_f] with a wide smile."
+            camilo "And I can't wait to see where we go from this point on..."
+            iona "I told you! Scotland. Land of the brave. And haggis. Haggis is great."
+        camilo "Well, this is it, then. Goodbye all!"
+
+    "Some more of the Islanders begin to tear up as the couple make their way to the end of the driveway and out of sight."
+
+    # CHOICE
+    menu:
+        thought "That's it then..."
+        "Wave sadly":
+            "You give the couple one last, slow wave."
+            s3_mc "Damn..."
+        "Do a secret fist pump":
+            "While the others are distracted, you do a little triumphantly fist pump."
+            thought "Still here! Go me!"
+        "Take a moment":
+            "Everything that's happened today seems to hit you at once."
+            "You feel both sadness and relief all at once."
+
+    "There's silence for a while, then [s3_li]'s phone pings."
+    elladine "Oh, what now?"
+
+    if s3e7p3_dump_f == "Miki":
+        iona "Please don't be another surprise dumping..."
+    else:
+        miki "Please don't be another surprise dumping..."
+
+    "[s3_li] glances at you, then looks down at [his_her] phone."
+    text "Islanders, tomorrow night there will be a recoupling and the GIRLS will choose who they want to couple up with. #Ididnotseethatcoming #getyourgrafton #girlpower"
+    harry "Oh..."
+    "The girls look around at one another."
+    "There's a moment of silence..."
+    s3_mc "This has been a tough dumping..."
+
+    if s3e7p3_dump_f == "Miki":
+        $ s3e7p3_stayed = "Camilo and Iona"
+    else:
+        $ s3e7p3_stayed = "Bill and Miki"
+
+    # CHOICE
+    menu:
+        thought "How shall I bring up the mood?"
+        "Cheer for [s3e7p3_stayed]":
+            s3_mc "Three cheers for [s3e7p3_stayed]!"
+            if s3e7p3_stayed == "Bill and Miki":
+                bill "That's well sweet."
+            else:
+                camilo "That's well sweet."
+            "Though they're quiet at first, the other Islanders soon cheer enthusiastically."
+        "A group hug":
+            s3_mc "Group hug, everyone!"
+            "Everyone comes in for a huge hug."
+        "Start a dance":
+            s3_mc "Come on, everyone!"
+            s3_mc "Let's celebrate what we have tonight."
+            "You start a conga, and though they're quiet at first, the other Islanders soon join in enthusiastically."
+
+    "You feel your heart lift, knowing that your friends are around you."
+    thought "I'm so glad I escaped that dumping!"
+    "And so we say goodbye to [s3e7p3_dump_m] and [s3e7p3_dump_f]."
+
+    if s3e7p3_dump_m == "Bill":
+        "What will we possibly do without Bill's thoughts on everything?"
+        "Other than have some peace and quiet..."
+    else:
+        "I don't know how I'll cope without seeing Camilo's cheeks every morning..."
+        "Get your head out of the gutter. I meant face cheeks."
+        "Such perfect bone structure..."
+
+    "But enough about old news!"
+
+    scene sand with dissolve
+    $ on_screen = []
+
+    "...Coming up!"
+    "The recoupling's all anyone can talk about..."
+    s3_li "You know, the recoupling? Everyone's been talking about it all morning."
+    "And AJ reveals a magic gift."
+    aj "They call me 'Magic Hands'."
+    harry "Oh AJ, don't stop!"
+    "Don't miss it..."
+
+    jump s3e8p1
+    return
+
+label s3e7p3_help_pack:
+    s3_mc "Let me help you guys pack."
+
+    if s3e7p3_dump_m == "Bill":
+        bill "That's really kind of you, [s3_name]."
+    else:
+        camilo "That's really kind of you, [s3_name]."
+    
+    scene s3-dressing-room with dissolve
+    $ on_screen = []
+
+    "The three of you head to the dressing room."
+    "You and [s3e7p3_dump_m] are helping [s3e7p3_dump_f] pack up her makeup and hair brushes."
+
+    # CHOICE
+    menu:
+        s3_mc "So..."
+        "Why do you have so many hair brushes?" if s3e7p3_dump_f == 'Iona':
+            iona "Hey, I may have shorter hair, but I take care of it, babe."
+            iona "Especially with how much dye goes in it. It gets super brittle. Gotta treat it nice."
+        "I can't believe that just happened":
+            if s3e7p3_dump_m == "Bill":
+                bill "Yeah, but, like, it did..."
+                miki "I guess you lot saw us as too much competition."
+            else:
+                camilo "Yeah, but, like, it did..."
+                iona "I guess you lot saw us as too much competition."
+        "This really is the end, eh?":
+            if s3e7p3_dump_m == "Bill":
+                bill "Don't say that!"
+                miki "Yeah, it might be the end of us in here, but we should still meet up on the outside."
+            else:
+                camilo "Don't say that!"
+                iona "Yeah, it might be the end of us in here, but we should still meet up on the outside."
+
+    "She picks up one of her shirts."
+
+    if s3e2p3_food_fight:
+        if s3e7p3_dump_m == "Bill":
+            miki "Oh, this still has a little bit of the 'sauce surprise' on it from that food fight..."
+            bill "Snap! One of mine had stains all over it, too."
+            bill "Which I blame [s3_name] for entirely..."
+            s3_mc "But it was so much fun!"
+        else:
+            iona "Oh, this still has a little bit of the 'sauce surprise' on it from that food fight..."
+            camilo "Snap! One of mine had stains all over it, too."
+            if s3e2p3_clean_off_with_cam == False:
+                camilo "Which I blame [s3_name] for entirely..."
+                s3_mc "But it was so much fun!"
+    else:
+        if s3e7p3_dump_m == "Bill":
+            miki "Oh, this is still damp from jumping in the pool!"
+            bill "Snap! One of mine got all bunched up, too."
+        else:
+            iona "Oh, this is still damp from jumping in the pool!"
+            camilo "Snap! One of mine got all bunched up, too."
+
+    if s3e2p3_clean_off_with_cam:
+        camilo "That was a great night..."
+
+    "One of [s3e7p3_dump_f]'s lipsticks slips from her fingers and rolls to [s3e7p3_dump_m]'s foot."
+
+    if s3e7p3_dump_f == "Miki":
+        miki "Agh!"
+    else:
+        iona "Agh!"
+
+    "[s3e7p3_dump_m] chuckles and picks it up."
+
+    if s3e7p3_dump_m == "Bill":
+        if ("Bill" in s3_mc.past_partners and s3_like_bill) or s3_mc.like_mc["Bill"] > 8:
+            bill "Careful, butter fingers."
+            miki "Thanks! This is my favourite lippy."
+        else:
+            bill "Careful, babe. Don't want to lose your favourite lipstick."
+            miki "Aw, you remembered."
+    else:
+        if ("Camilo" in s3_mc.past_partners and s3_like_camilo) or s3_mc.like_mc["Camilo"] > 8:
+            camilo "Careful, butter fingers."
+            iona "Thanks! This is my favourite lippy."
+        else:
+            camilo "Careful, babe. Don't want to lose your favourite lipstick."
+            iona "Aw, you remembered."
+
+    "She looks down at her lipstick and then at you."
+    if s3e7p3_dump_f == "Miki":
+        $ leaving("bill")
+        miki "Actually, babes, I want you to have this."
+    else:
+        $ leaving("camilo")
+        iona "Actually, babes, I want you to have this."
+    "She goes to hand you the lipstick."
+
+    # CHOICE
+    menu:
+        s3_mc "Oh..."
+        "But I already have this lipstick":
+            # NEED TO FILL
+            "EMPTY"
+        "You shouldn't share make-up, though":
+            # NEED TO FILL
+            "EMPTY"
+        "This is so sweet, babe":
+            if s3e7p3_dump_f == "Miki":
+                $ s3_mc.like("Miki")
+                miki "I'm glad you like it."
+                miki "It's a good colour for you."
+            else:
+                $ s3_mc.like("Iona")
+                iona "I'm glad you like it."
+                iona "It's a good colour for you."
+
+    if s3e7p3_dump_f == "Miki":
+        miki "I want you to have it as a little keepsake from me."
+        miki "I know we weren't as close in here as you and [s3_mc.bff], but out of everyone, you seem the most solid."
+        miki "I think you deserve to get everything you want out of this experience."
+    else:
+        iona "I want you to have it as a little keepsake from me."
+        iona "I know we weren't as close in here as you and [s3_mc.bff], but out of everyone, you seem the most solid."
+        iona "I think you deserve to get everything you want out of this experience."
+
+    if s3e7p3_dump_f == "Miki":
+        if s3_mc.past_partners[1] == "Bill" and s3e6p1_break_up == False:
+            "[s3e7p3_dump_f] glances over at [s3e7p3_dump_m], who's currently dabbing some of her eyeshadow onto his cheeks."
+            "She leans in closer to you."
+            miki "I know you and [s3e7p3_dump_m] still have feelings for each other."
+            miki "I'm sorry he won't be here for you to finish the show with..."
+        elif s3_mc.past_partners[1] == "Bill" and s3e6p1_break_up:
+            miki "I know it wasn't your choice to split up with [s3e7p3_dump_m], but I'm glad you've taken it well."
+            miki "Means I get him to myself."
+        elif ("Bill" in s3_mc.past_partners and s3_like_bill) or s3_mc.like_mc["Bill"] > 8:
+            "She leans in closer to you."
+            miki "I know you and [s3e7p3_dump_m] are kinda into each other."
+            miki "I want you to know that I'm going to be off the scene once we're out of here, if you wanna message him once the summer's over or something."
+            miki "Of course, that doesn't really help while you're still in here."
+        else:
+            miki "I can't wait to get out there with him and take on the world together."
+            miki "But what about? You're with [s3_li] at the moment."
+    else:
+        if s3_mc.past_partners[1] == "Camilo" and s3e6p1_break_up == False:
+            "[s3e7p3_dump_f] glances over at [s3e7p3_dump_m], who's currently dabbing some of her eyeshadow onto his cheeks."
+            "She leans in closer to you."
+            iona "I know you and [s3e7p3_dump_m] still have feelings for each other."
+            iona "I'm sorry he won't be here for you to finish the show with..."
+        elif s3_mc.past_partners[1] == "Camilo" and s3e6p1_break_up:
+            iona "I know it wasn't your choice to split up with [s3e7p3_dump_m], but I'm glad you've taken it well."
+            iona "Means I get him to myself."
+        elif ("Camilo" in s3_mc.past_partners and s3_like_camilo) or s3_mc.like_mc["Camilo"] > 8:
+            "She leans in closer to you."
+            iona "I know you and [s3e7p3_dump_m] are kinda into each other."
+            iona "I want you to know that I'm going to be off the scene once we're out of here, if you wanna message him once the summer's over or something."
+            iona "Of course, that doesn't really help while you're still in here."
+        else:
+            iona "I can't wait to get out there with him and take on the world together."
+            iona "But what about? You're with [s3_li] at the moment."
+
+    if s3e7p3_dump_f == "Miki":
+        if s3e6p3_loyal == False or (s3_like_ciaran and s3_li == "Ciaran") or (s3_like_tai and s3_li == "Tai") or (s3_like_yasmin and s3_li == "Yasmin"):
+            miki "You and [s3_li] seem really cute together."
+        else:
+            miki "It's kinda obvious that you and [s3_li] are just friends."
+            miki "At least that's how it seems."
+            miki "So, like..."
+        miki "Do you want to go all the way to the finale with [him_her]?"
+    else:
+        if s3e6p3_loyal == False or (s3_like_ciaran and s3_li == "Ciaran") or (s3_like_tai and s3_li == "Tai") or (s3_like_yasmin and s3_li == "Yasmin"):
+            iona "You and [s3_li] seem really cute together."
+        else:
+            iona "It's kinda obvious that you and [s3_li] are just friends."
+            iona "At least that's how it seems."
+            iona "So, like..."
+        iona "Do you want to go all the way to the finale with [him_her]?"
+
+    # CHOICE
+    menu:
+        thought "Do I want to end the show with [s3_li]?"
+        "I actually do. [he_she!c]'s so sweet":
+            if s3e7p3_dump_f == "Miki":
+                miki "That's great to hear."
+                if s3e6p3_loyal == False or (s3_like_ciaran and s3_li == "Ciaran") or (s3_like_tai and s3_li == "Tai") or (s3_like_yasmin and s3_li == "Yasmin"):
+                    miki "It looks like you're on the right path to doing it. Just make sure you keep being so cute together."
+                else:
+                    miki "But it's not obvious right now. You need to make yourself available for [him_her]!"
+            else:
+                iona "That's great to hear."
+                if s3e6p3_loyal == False or (s3_like_ciaran and s3_li == "Ciaran") or (s3_like_tai and s3_li == "Tai") or (s3_like_yasmin and s3_li == "Yasmin"):
+                    iona "It looks like you're on the right path to doing it. Just make sure you keep being so cute together."
+                else:
+                    iona "But it's not obvious right now. You need to make yourself available for [him_her]!"
+            if s3_li == "Ciaran":
+                $ s3_like_ciaran = True
+            elif s3_li == "Tai":
+                $ s3_like_tai = True
+            elif s3_li == "Yasmin":
+                $ s3_like_yasmin = True
+        "I don't think so...":
+            if s3e6p3_loyal or (s3_like_ciaran == False and s3_li == "Ciaran") or (s3_like_tai == False and s3_li == "Tai") or (s3_like_yasmin == False and s3_li == "Yasmin"):
+                if s3e7p3_dump_f == "Miki":
+                    miki "Yeah, no shock there."
+                else:
+                    iona "Yeah, no shock there."
+            if s3e7p3_dump_f == "Miki":
+                miki "Well, you better find yourself someone else soon. You won't be in here forever!"
+            else:
+                iona "Well, you better find yourself someone else soon. You won't be in here forever!"
+        "I just want someone else to walk in":
+            if s3e7p3_dump_f == "Miki":
+                miki "Hmm, I don't think that's very likely."
+                miki "If I were you, I'd just find someone you like in here, or could see yourself with, and just go for it!"
+                miki "You haven't got much time left..."
+            else:
+                iona "Hmm, I don't think that's very likely."
+                iona "If I were you, I'd just find someone you like in here, or could see yourself with, and just go for it!"
+                iona "You haven't got much time left..."
+
+    if s3e7p3_dump_f == "Miki":
+        miki "Look, I want you to take the lipstick."
+        miki "Use it to leave your mark on the right person..."
+        "[s3e7p3_dump_m] walks over to the two of you."
+        bill "All your make-up's packed."
+        miki "Oh! Sorry, babe, I got caught up talking to [s3_name]."
+    else:
+        iona "Look, I want you to take the lipstick."
+        iona "Use it to leave your mark on the right person..."
+        iona "Oh, and make sure to keep the Shiny Demon away from this one."
+        "[s3e7p3_dump_m] walks over to the two of you."
+        camilo "All your make-up's packed."
+        iona "Oh! Sorry, babe, I got caught up talking to [s3_name]."
+
+    if s3e7p3_dump_m == "Bill":
+        if ("Bill" in s3_mc.past_partners and s3_like_bill) or s3_mc.like_mc["Bill"] > 8:
+            "She looks at the two of you."
+            miki "I'll leave you two alone for a minute."
+            miki "I'll go pack you stuff, seeing as you did mine."
+        else:
+            "She smiles at him."
+            miki "Let me return the favour. I'll go and pack up your stuff!"
+            bill "Aww, thanks, babe."
+            "She makes her way to the bedroom."
+    else:
+        if ("Camilo" in s3_mc.past_partners and s3_like_camilo) or s3_mc.like_mc["Camilo"] > 8:
+            "She looks at the two of you."
+            iona "I'll leave you two alone for a minute."
+            iona "I'll go pack you stuff, seeing as you did mine."
+        else:
+            "She smiles at him."
+            iona "Let me return the favour. I'll go and pack up your stuff!"
+            camilo "Aww, thanks, babe."
+            "She makes her way to the bedroom."
+
+    if s3e7p3_dump_f == "Miki":
+        $ leaving("miki")
+    else:
+        $ leaving("iona")
+
+    "[s3e7p3_dump_m] turns to you."
+
+    if s3e7p3_dump_m == "Bill":
+        bill "Can't say I expected to be leaving so soon..."
+        if (s3_mc.past_partners[1] == "Bill" and s3e6p1_break_up == False) or s3_mc.like_mc["Bill"] > 8:
+            if "Bill" in s3_mc.past_partners:
+                bill "Or that we wouldn't get another chance to be coupled up..."
+            else:
+                bill "Or that we wouldn't get a chance to couple up."
+    else:
+        camilo "Can't say I expected to be leaving so soon..."
+        if (s3_mc.past_partners[1] == "Camilo" and s3e6p1_break_up == False) or s3_mc.like_mc["Camilo"] > 8:
+            if "Camilo" in s3_mc.past_partners:
+                camilo "Or that we wouldn't get another chance to be coupled up..."
+            else:
+                camilo "Or that we wouldn't get a chance to couple up."
+
+
+    if (s3_mc.past_partners[1] == s3e7p3_dump_m and s3e6p1_break_up == False) or s3_mc.like_mc[s3e7p3_dump_m] > 8:
+        # CHOICE
+        menu:
+            thought "[s3e7p3_dump_m] said that he's going before we could couple up..."
+            "It's a shame we never coupled up" if s3e7p3_dump_m not in s3_mc.past_partners:
+                # NEED TO FILL
+                "EMPTY"
+            "What are you going to do now?":
+                # NEED TO FILL
+                "EMPTY"
+            "At least we had our chance at being a couple" if s3e7p3_dump_m in s3_mc.past_partners:
+                if s3e7p3_dump_m == "Bill":
+                    bill "That's true..."
+                    bill "Those few days were some of the happiest memories I have from being here..."
+                else:
+                    camilo "That's true..."
+                    camilo "Those few days were some of the happiest memories I have from being here..."
+            "There's definitely time for one final kiss":
+                "He looks at you and bites his lips in anticipation."
+                s3_mc "Let me give you something to remember me by."
+                "You pull him into an embrace and your lips lock for the last time in the Villa."
+                "A bittersweet feeling washes over you as your tongues make contact and move across each other."
+                "You wrap your hands around his shoulders and hold him tight, your eyes shut, drawing the moment out."
+                "[s3e7p3_dump_m] sighs as he pulls away from you."
+                if s3e7p3_dump_m == "Bill":
+                    bill "I thought this would make it easier."
+                    bill "But it's obviously done the exact opposite..."
+                else:
+                    camilo "I thought this would make it easier."
+                    camilo "But it's obviously done the exact opposite..."
+            "We can always meet up on the outside":
+                "He smiles."
+                if s3e7p3_dump_m == "Bill":
+                    bill "I hope we do."
+                    bill "Even if nothing romantic happens, like, I still want to be friends with you."
+                else:
+                    camilo "I hope we do."
+                    camilo "Even if nothing romantic happens, like, I still want to be friends with you."
+    else:
+        if s3e7p3_dump_m == "Bill":
+            bill "But at least it's with [s3e7p3_dump_f]."
+        else:
+            camilo "But at least it's with [s3e7p3_dump_f]."
+
+        # CHOICE
+        menu:
+            thought "[s3e7p3_dump_m]'s happy that he's leaving with [s3e7p3_dump_f]..."
+            "Do you think you'll last?":
+                if s3e7p3_dump_m == "Bill":
+                    bill "Well that's a loaded question and a half..."
+                    bill "I'd like to think so!"
+                    bill "I guess we're definitely attracted to each other physically, that much is clear."
+                    bill "Let's see if we can go beyond that."
+                else:
+                    camilo "Well that's a loaded question and a half..."
+                    camilo "I'd like to think so!"
+                    camilo "I guess we're definitely attracted to each other physically, that much is clear."
+                    camilo "Let's see if we can go beyond that."
+            "You two make a cute couple":
+                if s3e7p3_dump_m == "Bill":
+                    bill "I was going for edgy, but I'll take cute."
+                else:
+                    camilo "I was going for raunchy, but I'll take cute."
+            "What are you going to do now?":
+                if s3e7p3_dump_m == "Bill":
+                    bill "I guess we're going to see how we do outside of this place, one day at a time."
+                    bill "So I guess part of that will be seeing her boat..."
+                    "He shakes his head."
+                    bill "What have I got myself into?"
+                else:
+                    camilo "I guess we're going to see how we do outside of this place, one day at a time."
+                    camilo "I know she wants me to see Scotland with her."
+                    camilo "It's going to take a lot of effort not to wind her up by doing a really bad Scottish accent constantly while we're there."
+    
+    "Just then [s3e7p3_dump_f] walks back in."
+    if s3e7p3_dump_m == "Bill":
+        miki "That's it, We're all packed."
+        bill "Guess that means it's time to go and say goodbye..."
+        "They both turn to you."
+        bill "See you around, [s3_name]. It's been a lot of fun."
+        miki "Win this thing for us, yeah?"
+        miki "Oh, and find love, I suppose..."
+    else:
+        iona "That's it, We're all packed."
+        camilo "Guess that means it's time to go and say goodbye..."
+        "They both turn to you."
+        camilo "See you around, [s3_name]. It's been a lot of fun."
+        iona "Win this thing for us, yeah?"
+        iona "Oh, and find love, I suppose..."
+    "The three of you make your way outside."
+
+    return
+
+#########################################################################
+## Episode 8, Part 1
+#########################################################################
+label s3e8p1:
+    scene sand with dissolve
+    $ on_screen = []
+
+    show screen day_title(8, 1) with Pause(4)
+    hide screen day_title with dissolve
+
+    "Previously on Love Island..."
+    "One couple got dumped from the Island!"
+
+    if s3e7p3_dump_f == "Miki":
+        miki "I wasn't ready to leave..."
+    else:
+        iona "I wasn't ready to leave..."
+
+    "And the Islanders learned of tonight's recoupling in a surprise text!"
+    "Talk about shaking things up."
+    "It's like James Bond's martini in here!"
+    "It's the eighth day in the villa, so let's recap who our couples are!"
+    "There's [s3e7p3_dump_f] and [s3e7p3_dump_m], who narrowly escaped being dumped last night thanks to [s3_name]."
+    "Elladine and Nicky are still going strong."
+
+    if s3_li == "Yasmin":
+        "[s3_name] got picked by Yasmin, which certainly caused a storm."
+        "Ciaran chose Genevieve, while Tai chose AJ."
+        "And the most unexpected coupling of the night was Harry and Seb!"
+        "Like many healthy relationships, they were each other's last hope."
+        "I really hope they make it..."
+    else:
+        "Genevieve and Harry are coupled up..."
+        "As are Yasmin and Seb."
+        if s3_li == "Tai":
+            "Finally, AJ and Ciaran together..."
+        else:
+            "Finally, AJ and Tai together..."
+        "And [s3_li] snagged [s3_name]!"
+        "[s3_name] is a hot commodity right now..."
+        "If this was Essex in the winter, she'd be the spray tan!"
+
+    "This morning, [s3_li] gets serious..."
+    s3_li "I wanted to have a chat with you in private..."
+    $ leaving("s3_li")
+    "And Harry gets loud..."
+    harry "Oh AJ, don't stop!"
+    $ leaving("harry")
+    "It's gonna be a bumpy ride."
+
+    scene s3-bedroom-day with dissolve
+    $ on_screen = []
+
+    "The bedroom is empty and peaceful."
+    "And here we have the wild spotted [s3_name], who routinely sleeps while everyone else is still awake..."
+    "Sorry. Too many nature documentaries."
+    "Wake up, [s3_name]! This is no time to be asleep. Get up and get grafting!"
+    "You feel someone nudge your leg."
+    s3_mc "Five more minutes, mum!"
+    s3_li "Huh? [s3_name], wake up!"
+    "You open your eyes to see [s3_li] standing at the foot of your bed, holding a mug."
+    "The others are getting ready in the next room."
+    s3_li "Rise and shine, sleepyhead. I got you a tea."
+    "You sit up. When you grab the mug and take a sip, it's absolutely perfect."
+
+    # CHOICE
+    menu:
+        thought "This tea's really good..."
+        "You're a star":
+            $ s3_mc.like(s3_li)
+            s3_li "Aw, glad you like it!"
+            s3_li "Tea in the morning always helps me start the day right."
+        "I miss [s3_mc.past_partners[1]]'s tea...":
+            $ s3_mc.dislike(s3_li)
+            $ s3_mc.like(s3_mc.past_partners[1])
+            "[s3_li]'s face falls."
+            s3_li "Oh..."
+            s3_li "Well, I can always perfect my next brew."
+        "I'll get you one next time":
+            $ s3_mc.like(s3_li)
+            s3_li "Aw, that would be amazing."
+            s3_li "I love a good cuppa in the morning."
+
+    s3_li "You looked so peaceful there, snoozing away."
+    s3_li "What were you dreaming about?"
+
+    # CHOICE
+    menu:
+        thought "I was dreaming about..."
+        "You":
+            $ s3_mc.like(s3_li)
+            s3_li "Yeah? What were we doing?"
+            s3_li "Anything fun?"
+            s3_mc "We were in the Villa eating breakfast. Then Godzilla ate you, and I made it my mission to avenge you. Then I woke up."
+            s3_li "Woah. That's intense!"
+            s3_li "They say dreams have meanings..."
+            s3_li "I wonder what Godzilla means in a dream?"
+        "[s3_mc.past_partners[1]]":
+            $ s3_mc.dislike(s3_li)
+            $ s3_mc.like(s3_mc.past_partners[1])
+            s3_li "Oh..."
+            "[he_she!c] hesitates for a second."
+            s3_li "What were you up to?"
+            s3_mc "We were in the pool, and [s3_mc.past_partners[1]] got eaten by a dolphin."
+            s3_mc "Then I rode the dolphin around the pool!"
+            s3_li "Woah. That's intense!"
+            s3_li "They say dreams have meanings..."
+            s3_li "I wonder what dolphins mean in a dream?"
+        "Superman":
+            s3_mc "He was riding a cloud next to me, playing the violin."
+            s3_mc "He was well good at it. At least Grade 5."
+            s3_li "Woah. That's intense!"
+            s3_li "They say dreams have meanings..."
+            s3_li "I wonder what Superman means in a dream?"
+
+    # CHOICE
+    menu:
+        thought "What do I think my dream meant?"
+        "I need to eat less cheese before bed":
+            # NEED TO FILL
+            "EMPTY"
+        "My mind's busy":
+            s3_mc "It's not really about the dream. Maybe my brain's just going over the day."
+            s3_li "That makes sense."
+        "I need to eat more cheese before bed":
+            s3_mc "I obviously need more cheese."
+            s3_li "More?!"
+            s3_mc "So I can interpret the dreams better."
+            "[s3_li] laughs."
+
+    "[he_she!c] sits down on the bed, squishing your toes under [his_her] butt."
+    s3_li "So, I wanted to have this chat with you in private before everything kicks off today."
+    s3_mc "Kicks off?"
+    s3_li "The recoupling! Everyone's been talking about it all morning."
+
+    if s3_li != "Ciaran":
+        s3_li "I'm almost looking forward to it."
+        s3_li "In a pulling off a plaster kind of way."
+    else:
+        s3_li "I'm bricking it."
+        
+    s3_li "How about you?"
+
+    # CHOICE
+    menu:
+        thought "Everyone's worried about the recoupling..."
+        "It's scary":
+            s3_mc "We're so close to the end now."
+            s3_mc "It's a lot of responsibility!"
+            if s3_li == "Yasmin":
+                s3_li "I suppose whatever will happen, will happen."
+                s3_li "But there's still something I want to say to you, [s3_name]."
+            else:
+                s3_li "Yeah, that's actually what I wanted to talk to you about..."
+        "I know I'll be fine":
+            if s3_li == "Yasmin":
+                s3_mc "It's girls' choice, so we've got nothing to be scared of."
+                s3_mc "We're not going home whatever happens."
+                s3_li "I suppose whatever will happen, will happen."
+                s3_li "But there's still something I want to say to you, [s3_name]."
+            else:
+                s3_mc "It's girls' choice, so I've got nothing to be worried about."
+                s3_mc "At least I know I'm not going home."
+                s3_li "I wish I had that luxury."
+                s3_li "That's what I wanted to talk to you about."
+        "I'm excited!":
+            s3_mc "That means the drama's hotting up."
+            s3_mc "I can't wait."
+            if s3_li == "Yasmin":
+                s3_li "I suppose whatever will happen, will happen."
+                s3_li "But there's still something I want to say to you, [s3_name]."
+            else:
+                s3_li "I'm glad you're feeling chill about it."
+                s3_li "That makes me feel a lot better."
+                s3_li "But I did want to talk to you about it..."
+
+    s3_li "We've only got a few days left now. I picked you because I like you."
+
+    if s3e6p3_loyal:
+        s3_li "And I think we make a great couple."
+    else:
+        s3_li "And I know you fancy me too."
+
+    s3_li "But don't feel pressured to re-couple with me because of that."
+    s3_li "I nicked you from [s3_mc.past_partners[1]]. You didn't choose to be with me."
+
+    if s3_li == "Yasmin":
+        s3_li "You have to follow your heart. What's the point of love if you don't?"
+    elif s3_li == "Tai":
+        s3_li "I think you're a great girl, but I don't want to force something you're not comfortable with."
+        s3_li "That's not the Tai way."
+    elif s3_li == "Ciaran":
+        s3_li "And there's plenty more hares in the field!"
+        s3_mc "You mean fish in the sea?"
+        s3_li "Maybe it's just a Waterford expression..."
+
+    if s3e6p3_loyal:
+        s3_mc "Thanks for considering my feelings."
+        s3_mc "It's nice to know you think about this stuff."
+        s3_li "No worries."
+    else:
+        s3_mc "What if I want to pick you?"
+        "[s3_li] looks you full in the face, his eyes meeting yours."
+        s3_li "I'd be over the moon."
+
+    s3_li "Having said that... it would be nice to know what you're thinking."
+    s3_li "Just so I'm not surprised tonight."
+
+    # CHOICE
+    menu:
+        thought "[s3_li] is wondering who I'm going to pick in the recoupling tonight..."
+        "Of course I'll pick you!":
+            $ s3_mc.like(s3_li)
+            s3_mc "I like having you around."
+            s3_li "Really?"
+            s3_li "I hoped you'd say that!"
+        "I'll go with you":
+            $ s3_mc.like(s3_li)
+            s3_mc "I like having you around."
+            s3_li "Really?"
+            s3_li "I hoped you'd say that!"
+        "I'm not picking you":
+            $ s3_mc.dislike(s3_li)
+            s3_li "Oh... OK."
+            s3_li "Thanks for letting me know."
+
+    s3_li "Sorry to ambush you with all this. You're not even dressed!"
+    s3_li "I'll give you time to enjoy your cuppa and get ready."
+    s3_mc "Thanks."
+    thought "I should get ready for the day."
+    thought "To the dressing room!"
+
+    scene s3_dressing-room with dissolve
+    $ on_screen = []
+
+    "You walk into the dressing room and find [s3e7p3_stay_f] plucking her eyebrows."
+    s3_mc "That looks intense."
+    "[s3e7p3_stay_f] jumps."
+
+    if s3e7p3_stay_f == "Miki":
+        miki "[s3_name]! You made me pull out, like, five!"
+        miki "It's gonna take ages to pencil over that..."
+    else:
+        iona "[s3_name]! You made me pull out, like, five!"
+        iona "It's gonna take ages to pencil over that..."
+
+    s3_mc "Sorry! Thought you saw me."
+    "[s3e7p3_stay_f] puts down the tweezers, and walks towards you, arms open."
+
+    # CHOICE
+    menu:
+        thought "[s3e7p3_stay_f] is going to hug me..."
+        "Let her":
+            "You wrap your arms around each other in a warm embrace."
+            "She pats you on the back, a little awkwardly."
+            "After a few moments, she pulls away."
+        "High-five her":
+            "You intercept her hug, high five-ing her right hand."
+            if s3e7p3_stay_f == "Miki":
+                miki "That works too."
+            else:
+                iona "That works too."
+        "Shake her hand":
+            "You intercept her hug, catching her right hand and shaking it."
+            "She looks at you confused."
+            if s3e7p3_stay_f == "Miki":
+                miki "OK..."
+            else:
+                iona "OK..."
+
+    if s3e7p3_stay_f == "Miki":
+        miki "I just wanted to say thank you. For saving me and [s3e7p3_stay_m] last night."
+    else:
+        iona "I just wanted to say thank you. For saving me and [s3e7p3_stay_m] last night."
+    
+    s3_mc "Oh..."
+
+    # CHOICE
+    menu:
+        thought "[s3e7p3_stay_f] is talking about the dumping last night..."
+        "You're welcome, hun.":
+            $ s3_mc.like(s3e7p3_stay_f)
+            s3_mc "Of course I saved you, babes!"
+            s3_mc "This place wouldn't be the same without you."
+            if s3e7p3_stay_f == "Miki":
+                iona "[s3_name], that's so nice of you."
+        "I flipped a coin.":
+            $ s3_mc.dislike(s3e7p3_stay_f)
+            s3_mc "I couldn't make that choice."
+            if s3e7p3_stay_f == "Miki":
+                miki "I get it. We're all friends."
+                miki "It must have been so hard to make that decision."
+                miki "I don't know what I would have done if I had to choose between you and [s3e7p3_dump_f]."
+                miki "Girl Code doesn't cover this kind of situation!"
+            else:
+                iona "I get it. We're all friends."
+                iona "It must have been so hard to make that decision."
+                iona "I don't know what I would have done if I had to choose between you and [s3e7p3_dump_f]."
+                iona "Girl Code doesn't cover this kind of situation!"
+        "I did it for [s3e7p3_stay_m].":
+            $ s3_mc.dislike(s3e7p3_stay_f)
+            s3_mc "I think I still have a chance with him."
+            if s3e7p3_stay_f == "Miki":
+                miki "Well... thanks anyway."
+            else:
+                iona "Well... thanks anyway."
+
+    "[s3e7p3_stay_f] turns back to the mirror and begins straightening her hair."
+    "You grab your make-up bag and sit down beside her."
+
+    if s3e7p3_stay_f == "Iona":
+        iona "You know, I never saw myself fancying someone like Camilo."
+        iona "But at first, I wasn't sure if our personalities were a good match."
+        iona "But I'm totally loving being coupled up with him."
+        iona "At the rate we're going, I'd definitely want to give it a go on the outside."
+        iona "My family always wanted me to get with a lad who could cook. All I usually eat is spaghetti on toast."
+        iona "With Camilo, I might even end up getting my five-a-day..."
+        "She shivers."
+        iona "Feels weird to even think about that."
+        iona "I'm definitely picking him in the recoupling."
+    else:
+        miki "You know I always had the hots for Bill..."
+        miki "But at first, I wasn't sure if our personalities were a good match."
+        miki "The other night he tried to argue with me about cereal bars..."
+        miki "But I'm starting to like that."
+        s3_mc "Arguing about cereal bars?"
+        miki "“It's not a meal. Have cereal or have nothing.”"
+        "Miki sighs dreamily."
+        miki "So passionate..."
+        miki "I'm definitely picking him in the recoupling."
+
+
+    if s3e7p3_stay_f == "Miki":
+        if ("Bill" in s3_mc.past_partners and s3_like_bill) or s3_mc.like_mc["Bill"] > 8:
+            iona "Unless you get there first, I suppose..."
+            iona "I guess it's up to the powers that be."
+        miki "It's strange thinking about tonight."
+        miki "Do you know who you're picking? If you don't mind me asking."
+
+    else:
+        if ("Camilo" in s3_mc.past_partners and s3_like_camilo) or s3_mc.like_mc["Camilo"] > 8:
+            iona "Unless you get there first, I suppose..."
+            iona "I guess it's up to the powers that be."
+        iona "I'm well nervous about tonight."
+        s3_mc "That's not like you."
+        iona "suppose it's just the vibe in here."
+        iona "It's quiet, you know?"
+        iona "Like a fusebox right before it takes your eyebrows off."
+        iona "Do you know who you're picking? If you don't mind me asking."
+
+    # CHOICE
+    menu:
+        thought "Have I made up my mind about the recoupling?"
+        "None of your business":
+            s3_mc "Why does everyone keep asking me about this?"
+            if s3e7p3_stay_f == "Miki":
+                miki "Sorry, I was just curious."
+            else:
+                iona "Sorry, I was just curious."
+            s3_mc "I like to keep that air of mystery."
+        "I don't know yet":
+            if s3e7p3_stay_f == "Miki":
+                miki "Ooh! Waiting till the last second, are we?"
+                s3_mc "I guess I'm hoping I'll know in the moment."
+                miki "Let your gut decide! I like it."
+            else:
+                iona "Ooh! Waiting till the last second, are we?"
+                s3_mc "I guess I'm hoping I'll know in the moment."
+                iona "Let your gut decide! I like it."
+        "I've made up my mind":
+            if s3e7p3_stay_f == "Miki":
+                miki "Good for you!"
+                miki "Don't worry, I won't ask. Gotta keep that element of surprise."
+            else:
+                iona "Good for you!"
+                iona "Don't worry, I won't ask. Gotta keep that element of surprise."
+
+    if s3e7p3_stay_f == "Miki":
+        miki "I swear, [s3_name], you would be such a good protagonist."
+
+    if s3e7p3_help_pack:
+        if s3e7p3_stay_f == "Miki":
+            miki "So, [s3_name]..."
+            "[s3e7p3_stay_f] looks at you, feigning disinterest."
+            miki "Couldn't help but notice you helped [s3e7p3_dump_m] and [s3e7p3_dump_f] pack last night."
+            s3_mc "Yeah, I thought it would be nice to see them one last time."
+            miki "How was [s3e7p3_dump_f]? Was she upset?"
+        else:
+            iona "So, [s3_name]..."
+            "[s3e7p3_stay_f] looks at you, feigning disinterest."
+            iona "Couldn't help but notice you helped [s3e7p3_dump_m] and [s3e7p3_dump_f] pack last night."
+            s3_mc "Yeah, I thought it would be nice to see them one last time."
+            iona "How was [s3e7p3_dump_f]? Was she upset?"
+
+        # CHOICE
+        menu:
+            thought "How was [s3e7p3_dump_f] when I helped her pack?"
+            "She was fine":
+                if s3e7p3_stay_f == "Miki":
+                    miki "That's good. She's so strong. I know she'll be OK."
+                    miki "At least she won't have to fuss about with wires anymore if she doesn't want to."
+                else:
+                    iona "That's good. She's so strong. I know she'll be OK."
+                    iona "I imagine she's got millions more YouTube subscribers waiting for her."
+            "She was crying":
+                if s3e7p3_stay_f == "Miki":
+                    miki "Oh no! Poor girl."
+                    miki "I wish I could hug her right now..."
+                else:
+                    iona "Oh no! Poor girl."
+                    iona "I wish I could hug her right now..."
+            "She was angry":
+                if s3e7p3_stay_f == "Miki":
+                    miki "No way!"
+                else:
+                    iona "No way!"
+
+        if s3e7p3_stay_f == "Miki":
+            iona "Did she say anything about me?"
+
+        # CHOICE
+        menu:
+            thought "What did [s3e7p3_dump_f] say about [s3e7p3_stay_f]?"
+            "Something mean":
+                s3_mc "She said, and I'm quoting..."
+                s3_mc "'She's not the kind of girl you miss.'"
+                if s3e7p3_stay_f == "Miki":
+                    miki "I can't believe she said that about me!"
+                    miki "I thought we were friends..."
+                    miki "Thanks for telling me, [s3_name]."
+                    miki "I guess she was just in it for the cash..."
+                    miki "I'm gonna head downstairs."
+                    miki "Gosh, that's really ruined my mood."
+                    miki "People miss me! People miss me all the time!"
+                    miki "Do you miss me, [s3_name]?"
+                    s3_mc "You're right in front of me."
+                    miki "But like, when I'm in the other room?"
+                else:
+                    iona "I can't believe she said that about me!"
+                    iona "I thought we were friends..."
+                    iona "Thanks for telling me, [s3_name]."
+                    iona "I guess she was just in it for the cash..."
+                    iona "I'm gonna head downstairs."
+                    iona "Gosh, that's really ruined my mood."
+                    iona "People miss me! People miss me all the time!"
+                    iona "Do you miss me, [s3_name]?"
+                    s3_mc "You're right in front of me."
+                    iona "But like, when I'm in the other room?"
+                # SUB-CHOICE
+                menu:
+                    thought "Do I miss [s3e7p3_stay_f] when she's gone?"
+                    "I miss you dearly":
+                        # NEED TO FILL
+                        "EMPTY"
+                    "I like it when you're gone":
+                        # NEED TO FILL
+                        "EMPTY"
+                    "No, cos you're coming back":
+                        if s3e7p3_stay_f == "Miki":
+                            iona "Aw, that's sweet."
+                            iona "I think."
+                if s3e7p3_stay_f == "Miki":
+                    miki "Anyway, I'm gonna go. This whole thing has put me in a bad mood."
+                else:
+                    iona "Anyway, I'm gonna go. This whole thing has put me in a bad mood."
+                "She slurps out of the room."
+            "Something nice":
+                $ s3e8p1_nice = True
+                s3_mc "She asked me to look out for you. You're important to her."
+                if s3e7p3_stay_f == "Miki":
+                    miki "That's so sweet of her!"
+                    miki "We totally have to grab a coffee after the summer, all three of us."
+                    miki "I'm gonna head downstairs."
+                    "She gives you a big smile."
+                    miki "I'm so happy she thinks I'm a good friend."
+                    miki "See you later, [s3_name]!"
+                else:
+                    iona "That's so sweet of her!"
+                    iona "We totally have to grab a coffee after the summer, all three of us."
+                    iona "I'm gonna head downstairs."
+                    "She gives you a big smile."
+                    iona "I'm so happy she thinks I'm a good friend."
+                    iona "See you later, [s3_name]!"
+                "She hugs you before running downstairs."
+                
+        if s3e7p3_stay_f == "Miki":
+            $ leaving("miki")
+        else:
+            $ leaving("iona")
+    else:
+        if s3e7p3_stay_f == "Miki":
+            miki "Anyway, enough serious talk!"
+            miki "I think I'll go for a swim. You never know, I could be going home tonight!"
+        else:
+            iona "Anyway, enough serious talk!"
+            iona "I think I'll go for a swim. You never know, I could be going home tonight!"
+
+        s3_mc "But you just did your hair!"
+
+        if s3e7p3_stay_f == "Miki":
+            miki "OK, when I said swim, I more meant 'dip my big toe in'."
+            miki "The sun is the thing I'll miss the most about this place."
+            miki "It's absolutely absent in Cambridge."
+            miki "See you in a bit!"
+            "She switches off her straighteners and leaves."
+        else:
+            iona "So? I can do it again later. Live in the moment, [s3_name]!"
+            "She runs out of the room. Moments later you hear a loud splash, and a groan from a presumably sopping Genevieve."
+
+        if s3e7p3_stay_f == "Miki":
+            $ leaving("miki")
+        else:
+            $ leaving("iona")
+
+    thought "That was an intense conversation."
+    thought "Better get dressed."
+
+    # ADD once MC images are in game
+    # Outfit change to swimwear
+    "You throw on your favourite bathing suit."
+    # thought "Lock up your sons and daughters, here I come!"
+
+    thought "Still looking fresh."
+
+    scene s3-kitchen-day with dissolve
+    $ on_screen = []
+
+    "You walk into the kitchen. [s3e7p3_stay_m] is making breakfast. AJ is massaging Harry's shoulders."
+    "AJ spots you first."
+    aj "I love that look. You always look hot in it."
+
+    # ADD BACK once MC images in game
+    # aj "You know you're hot in whatever, [s3_name], but you'd be even hotter in something. I dunno..."
+    # aj "Hotter, if you know what I mean."
+
+    "[s3e7p3_stay_m] grins when he sees you."
+    s3_other_m "There she is! My hero!"
+    "He wraps you in a big hug. He smells good."
+
+    if s3e7p3_stay_m == "Bill":
+        "Like fresh linen and good decisions."
+    else:
+        "Like Georgio Armani."
+
+    s3_other_m "Sit down! I made breakfast as a thank you for saving me and [s3e7p3_stay_f] last night."
+    s3_other_m "We both thought you would save [s3e7p3_stay_m] and [s3e7p3_stay_f]."
+    "He exhales with relief."
+
+    if s3e7p3_stay_m == "Bill":
+        s3_other_m "I wanted a serious pint after all that!"
+    else:
+        s3_other_m "You know what, bruv, I thought I was headed back to Romford."
+
+    # CHOICE
+    menu:
+        thought "[s3e7p3_stay_m] is talking about last night's dumping..."
+        "I couldn't lose [s3e7p3_stay_f]":
+            "[s3e7p3_stay_m] nods and smiles at you."
+            s3_other_m "You're a good friend, [s3_name]. I know [s3e7p3_stay_f] thinks so, too."
+        "You're both my friends":
+            "[s3e7p3_stay_m] smiles at you."
+            s3_other_m "Thanks for saying that, [s3_name]. [s3e7p3_stay_f] and I feel the same way about you."
+        "I did it for you, [s3e7p3_stay_m]":
+            $ s3_mc.like(s3e7p3_stay_m)
+            "He grins at you."
+            s3_other_m "I'd do the same for you."
+            s3_other_m "Hopefully we can spend more time together now that I'll be staying..."
+
+    s3_other_m "Anyway... your breakfast is ready!"
+    s3_other_m "By the way, love the outfit!"
+
+    # ADD BACK ONCE MC images in game
+    # s3_other_m "By the way, love the new outfit!"
+
+    if s3e7p3_stay_m == "Bill":
+        s3_other_m "Though it's the person inside that really makes it."
+    else:
+        s3_other_m "You have such a good sense of style, [s3_name]."
+
+    "You sit down at the breakfast bar, eyeing up what [s3e7p3_stay_m] has in his frying pan."
+
+    if s3e7p3_stay_m == "Bill":
+        if s3_mc.diet == "Vegan":
+            "It's a perfectly cooked vegan omelette, smothered in mushrooms, dairy-free cheese, and..."
+        elif s3_mc.diet == "Vegetarian":
+            "It's a perfectly cooked vegetarian omelette, smothered in mushrooms, cheese, and..."
+        else:
+            "It's a perfectly cooked omelette, smothered in mushrooms, cheese, and..."
+
+        "Peanut butter?"
+        s3_mc "Bill, why is there peanut butter in my otherwise delicious breakfast?"
+        "Bill puts down the spatula and looks at you, dead serious."
+        s3_other_m "This is how you make an omelette!"
+        s3_other_m "No complaints till you've tried it."
+
+        # CHOICE
+        menu:
+            thought "Bill's made me an... interesting looking omelette."
+            "Tell him you're not hungry":
+                # NEED TO FILL
+                "EMPTY"
+            "Eat it with a smile":
+                $ s3_mc.like("Bill")
+                "You take a big bite, forcing a smile as you chew."
+                "It's...not bad."
+                "Actually, it's great."
+                "Bill watches, beaming."
+                s3_mc "Bill, this is incredible!"
+                s3_other_m "Am I a good cook or what?!"
+            "Tell him it looks gross":
+                $ s3_mc.dislike("Bill")
+                "Bill takes the plate from you, rolling his eyes."
+                s3_other_m "Your opinion is incorrect."
+                s3_other_m "Forget it. I was just trying to be nice."
+    else:
+        "He's made your favourite - his famous pancakes!"
+        s3_mc "Thanks, Camilo! These look great!"
+        s3_other_m "No problemo! It's the least I can do for you."
+        "You down your pancakes eagerly. Camilo watches with satisfaction."
+        s3_mc "Shtop shtarung at muh."
+        s3_other_m "What?"
+        "You swallow your mouthful."
+        s3_mc "Stop staring at me!"
+        s3_other_m "Sorry. Nothing more satisfying than a satisfied customer!"
+
+    "You're distracted from breakfast as Harry lets out a loud moan."
+    harry "Oh AJ, don't stop!"
+    "You clear your throat loudly, stifling giggles."
+    harry "I know you're there, [s3_name]. I don't care."
+    harry "Some things are worth moaning for."
+    "AJ winks at you from behind Harry."
+    aj "Not the first time I've been told that, babes."
+    aj "I give these to the girls on the team all the time."
+    aj "They call me 'Magic Hands'."
+    aj "Well, one girl does, but that's for different reasons."
+    harry "You're a miracle worker."
+    aj "You're lucky I'm here! You've got terrible form."
+    aj "You're going to end up with rounded shoulders unless you stand straight."
+    "She finishes up her massage and pats Harry on the back."
+    aj "You're all done, mate."
+    harry "Aw. Just a minute longer?"
+    aj "Nope. My magic hands are too powerful. The human body can only take so much."
+    aj "Who's next? [s3_name]?"
+
+    # CHOICE
+    menu:
+        thought "Do I want a Magic Hands massage?"
+        "No":
+            aj "Aw, OK."
+            "She leans in close, out of earshot of the boys."
+            aj "Babe, while I've got you here, I'd love to go for a chat?"
+            aj "I don't think there's anyone in the living room."
+            thought "A little bit of privacy is just what we need..."
+        "Yes":
+            s3_mc "Why not?"
+            "AJ beams and beckons you over to sit in front of her."
+            "Her hands come to your shoulders, fingers firm on your muscles."
+            "Warmth spreads through your back as she works out your tension."
+            aj "Is the pressure OK?"
+            s3_mc "It's heavenly."
+            "Harry clears his throat."
+            harry "See? It's not just me."
+            s3_mc "I never should have judged you."
+            "AJ finishes up and pats you on the back."
+            aj "All done!"
+            s3_mc "But..."
+            aj "Sorry, babe."
+            aj "Unless you wanna go into the living room?"
+            thought "Sounds like she wants to talk about something in private."
+
+    # CHOICE
+    menu:
+        thought "Do I want to join AJ in the living room?"
+        "Yes":
+            s3_mc "Sure, AJ."
+            aj "Great! Let's go."
+            $ s3e8p1_aj_chat = True
+            call s3e8p1_aj_chat
+        "No thanks ":
+            aj "Aw, OK."
+
+    "[s3e7p3_stay_m] starts to wash up the pans from breakfast."
+    s3_other_m "Feels weird cooking without [s3e7p3_dump_m]..."
+    s3_other_m "He was always such a laugh in the kitchen."
+
+    if s3e7p3_dump_m == "Bill":
+        s3_mc "I'm gonna miss his fry ups."
+    else:
+        s3_mc "I'm gonna miss his pancakes."
+
+    "AJ smiles at him."
+    aj "I think the right choice was made."
+    aj "I'm glad you're here, [s3e7p3_stay_m]."
+    "[s3e7p3_stay_m] pretends to wipe a tear."
+
+    if s3e7p3_stay_m == "Bill":
+        s3_other_m "Stop, you're making me weepy..."
+    else:
+        s3_other_m "Ah, chica..."
+
+    harry "I don't think that's fair to say, AJ. It was a hard decision."
+    aj "[s3_name] agrees with me! Right?"
+
+    # CHOICE
+    menu:
+        thought "Do I think it's best that [s3e7p3_stay_m] stayed?"
+        "I wanted to help [s3e7p3_stay_f]":
+            # NEED TO FILL
+            "EMPTY"
+        "[s3e7p3_stay_m] deserves to be here":
+            "Harry frowns while [s3e7p3_stay_m] pats you on the shoulder."
+            s3_other_m "Thanks, [s3_name]."
+        "They're both special":
+            "Harry nods in agreement."
+            s3_mc "Just because we saved [s3e7p3_stay_m] doesn't mean [s3e7p3_dump_m] will just be forgotten."
+            aj "That's true."
+
+    s3_mc "But Harry's right, it was a hard decision either way."
+    harry "At least we all got to make it together."
+    "AJ nods."
+    aj "We have to stick together now."
+    harry "It's so quiet here now without him."
+    harry "I hate being able to hear my own thoughts."
+    "He sips a cappuccino, leaving foam on his nose."
+    "He puts the mug down, oblivious."
+
+    # CHOICE
+    menu:
+        thought "Harry has foam on his nose..."
+        "Laugh":
+            "You nudge AJ and point to Harry."
+            "She lets out a small laugh."
+            aj "Harry, babes, you've got something on your..."
+            "Harry wipes his cheeks."
+            harry "Did I get it?"
+            aj "Uh, yeah, hun. You got it."
+        "Lick it off":
+            "You hop off your seat and approach Harry. You stop in front of him and stare at his nose. He looks at you, baffled."
+            harry "What are you looking at me like that?"
+            "You quickly nip forwards and lick the foam off his nose."
+            if s3_mc.past_partners[1] == "Harry":
+                "Harry looks shocked, but then smiles, wiping his nose."
+                harry "Any excuse to lick me, eh, [s3_name]?"
+                harry "Maybe I should put foam in some other places..."
+            else:
+                "Harry yelps and jumps back."
+                harry "What is it with you and licking my face?"
+                harry "You're a strange one, [s3_name]."
+                harry "Though, I can't say I didn't enjoy it..."
+            "You sit back down."
+
+    "The conversation freezes as [s3e7p3_stay_f] comes charging down the stairs, phone in hand."
+    thought "Oh, here we go..."
+    s3_other_f "I've got a text!"
+    s3_other_m "We can hear you! You don't need to shout!"
+    s3_other_f "It's a challenge!"
+    "She comes to a halt at the breakfast bar."
+    text "Howdy, Islanders! It's time to pull on your boots and separate the wheat from the chaff in today's Cowboy Challenge! #rideemcowboy #giddyup"
+    s3_mc "Oh no. We're not going to have to ride a bull, are we?"
+    
+    scene sand with dissolve
+    $ on_screen = []
+
+    "Oh my stars! Who told her?!"
+    "Looks like these little doggies have found themselves in a doozy!"
+    "Will they play to the gallery and pony up the win?"
+    "Or will they suck an egg and have their plans come a-cropper?"
+    "Find out next time in the rootinest tootinest reality show in all the West!"
+    "...Who writes this stuff?"
+
+    jump s3e8p2
+    return
+
+label s3e8p1_aj_chat:
+    scene s3-lounge with dissolve
+    $ on_screen = []
+
+    "You enter the living room with AJ."
+    aj "Oh good, there's no-one here. All alone."
+    s3_mc "OK, that sounds like the start of a horror movie..."
+    aj "And now I'm going to peel off my mask and chase you screaming through the Villa..."
+
+    # CHOICE
+    menu:
+        thought "AJ's trying to spook me..."
+        "But we're friends":
+            # NEED TO FILL
+            "EMPTY"
+        "There are cameras everywhere":
+            aj "Drat. Foiled again."
+        "You're the one who'll be running":
+            aj "Uh, good luck catching me."
+            aj "I'm lightning fast, baby!"
+        "That's kinda hot" if s3_mc.bisexual:
+            aj "You like  being scared?"
+            s3_mc "Yep. It gets my heartbeat racing."
+            aj "Well, there are loads of ways I could do that..."
+            "[s3_name]. You're gonna have to show me."
+
+    "She pats the sofa."
+    aj "C'mon."
+    s3_mc "You're still trying to massage me?"
+    aj "Nah, I just had to get you away from everyone else."
+
+    if s3_like_aj or "AJ" in s3_mc.past_partners:
+        aj "We never get to be alone out there."
+        aj "Touching you in front of everyone just felt wrong."
+        aj "And too PG..."
+
+    if "AJ" not in s3_mc.past_partners:
+        aj "The stress is just kind of getting to me."
+        if s3_li != "Tai":
+            aj "And I'm having doubts about Tai."
+        else:
+            aj "And I'm having doubts about Ciaran."
+
+    s3_mc "OK, I'll lie down in that case."
+    s3_mc "But face up!"
+    aj "Fine."
+    "You lie down on the sofa. AJ perches on the back, looking down at you."
+
+    if s3_like_aj or "AJ" in s3_mc.past_partners:
+        aj "Mind if I lie with you?"
+
+        # CHOICE
+        menu:
+            thought "Do I mind if she lies with me?"
+            "Keep your distance":
+                # NEED TO FILL
+                "EMPTY"
+                $ s3e8p1_keep_distance_aj = True
+            "Only if you spoon me":
+                aj "That can be arranged."
+                "She slides down the sofa and snuggles into you."
+                s3_mc "That's more like it."
+            "Go for it":
+                s3_mc "Be my guest."
+                aj "Oui, oui!"
+                "She slides down the sofa and snuggles into you."
+
+                if "AJ" not in s3_mc.past_partners:
+                    aj "You know, I like boys. I like their big arms and their jawlines and their stubbly faces."
+                    aj "But it's hard being with them."
+                    aj "Girls are so easy. I am one, so I know what to say, what to do."
+                    aj "I know my way around their bodies better, too."
+                    aj "But sometimes with boys, I feel like I have to prove myself to them."
+                    aj "Like, cos Tai's a rugby coach, I feel like I can only talk about sport with him."
+                    aj "Like, Ciaran's a bouncer. So I feel like I have to act tough around him."
+
+                "AJ sighs, then gives you a flirty grin."
+                aj "Maybe I just have someone else on my mind."
+                aj "Of course, if you pick me tonight, there's nothing to worry about here..."
+                "You turn to look at her. AJ is staring at your lips. She leans in slightly."
+                # SUB-CHOICE
+                menu:
+                    thought "Do I want to kiss AJ?"
+                    "No, cuddle instead":
+                        # NEED TO FILL
+                        "EMPTY"
+                    "Yes":
+                        "You close the gap between you both and kiss her."
+                        "AJ giggles into the kiss before climbing on top of you, continuing to kiss you passionately as she straddles your hips."
+                        "You run your hands up her back, pulling her close, and start to massage her shoulders."
+                        aj "What are you doing?"
+                        s3_mc "Didn't you bring me in here for a massage?"
+                        aj "A ruse so clever, even you believed it..."
+                        aj "I'm wasted in sports. Maybe I should mastermind a crime..."
+                        "She kisses you again, and whispers in your ear."
+
+        if s3e8p1_keep_distance_aj == False:
+            aj "You know, it's my birthday tomorrow..."
+            s3_mc "It is?"
+            aj "What are you gonna get me for a present?"
+            # CHOICE
+            menu:
+                thought "I'm getting you..."
+                "Cuddles":
+                    # NEED TO FILL
+                    "EMPTY"
+                "Bits":
+                    aj "Can I have my present now then?"
+                    s3_mc "What a coincidence, I've got it right here..."
+                    "You pretend to dig into an invisible pocket, fishing something out, then use that hand to push back her hair before kissing her deeply."
+                    "You feel her smiling into the kiss as she runs her hands over your body, firm and confident."
+                    "You let her take control, let her move your body with hers in incredible ways."
+                    "Your eyes meet, and you give each other a content smile."
+                    "Afterwards, you lay your head on AJ's chest, listening to her heart beat."
+
+        aj "I could just live here forever."
+        aj "In this beautiful Villa with this beautiful girl."
+        s3_mc "Your hockey team might have something to say about it."
+        aj "Just during off-season, then. The Villa must be empty most of the year, when the show's not on."
+        s3_mc "That would be perfect."
+        s3_mc "Then we can always be alone and have moments like this."
+        aj "Sounds like a plan."
+        "After a while, AJ gets up. She holds her out for you to take."
+    else:
+        "AJ sighs and she stretches."
+        aj "I just wish I was in a couple that felt right."
+
+        # CHOICE
+        menu:
+            thought "AJ's worried about not being in the right couple..."
+            "Try to chill out":
+                # NEED TO FILL
+                "EMPTY"
+            "Stick at it":
+                # NEED TO FILL
+                "EMPTY"
+            "Graft on someone else":
+                s3_mc "You're in a Villa filled with beautiful people!"
+                s3_mc "I bet there's someone here who's right for you."
+                s3_mc "That's the whole idea of this summer, right?"
+                "AJ beams at you, looking a lot happier."
+                aj "Thanks, hun."
+                aj "I knew I'd feel better for talking to you."
+                s3_mc "Any time!"
+
+    aj "We should head back to the others."
+
+    if s3_like_aj or "AJ" in s3_mc.past_partners:
+        aj "Don't want [s3_li] to get suspicious."
+        $ pronouns(s3_li)
+        # CHOICE
+        menu:
+            thought "[s3_li] might get suspicious about me and AJ sneaking off..."
+            "You're right":
+                s3_mc "Yeah, we should head back."
+                aj "OK. Let's go."
+            "Let [him_her]":
+                s3_mc "I don't care if [he_she] sees."
+                aj "You're so naughty."
+                aj "C'mon, though. I want some food."
+
+    "AJ gives your hand a squeeze before you both head back to the kitchen."
+
+    scene s3-kitchen-day with dissolve
+    $ on_screen = []
+
+    "When you return, [s3e7p3_stay_m] and Harry are still in the kitchen, chatting about the previous night's events."
+
+    return
+
+#########################################################################
+## Episode 8, Part 2
+#########################################################################
+label s3e8p2:
+    scene sand with dissolve
+    $ on_screen = []
+
+    show screen day_title(8, 2) with Pause(4)
+    hide screen day_title with dissolve
+
+    "Well, howdy partners, and welcome to this here newest episode of Love Island."
+    "The Islanders have had a chance to let off some steam after last night's dumpin'."
+
+    if s3e7p3_help_pack:
+        "[s3e7p3_stay_f] was chomping at the bit to find out what was said between [s3_name] and [s3e7p3_dump_f]."
+        s3_other_f "Did she say anything about me?"
+
+        if s3e8p1_nice:
+            "And [s3_name] told her just what she wanted to hear."
+            s3_mc "She asked me to look out for you. You're important to her."
+            s3_other_f "That's so sweet of her!"
+        else:
+            "And [s3_name] sure gave her something to think about."
+            s3_mc "She said, and I'm quoting..."
+            s3_mc "'She's not the kind of girl you miss.'"
+            s3_other_f "I can't believe she said that about me!"
+        $ leaving('s3_other_f')
+        
+    "Ol' Magic Hands' AJ treated Harry to a mighty fine massage."
+    harry "Oh, AJ, don't stop!"
+    $ leaving('harry')
+
+    if s3e8p1_aj_chat:
+        "And [s3_name] and AJ got personal."
+        if 'AJ' in s3_mc.past_partners:
+            aj "We never get to be alone out there."
+        else:
+            if s3_li == "Tai":
+                aj "I'm having doubts about Ciaran."
+            else:
+                aj "I'm having doubts about Tai."
+        $ leaving('aj')
+
+    "There was talk of the recouplin'..."
+    "...and a breakfast that any cowboy'd be happy to cash their chips in for..."
+    "... That one means 'to die for', by the way..."
+
+    if s3e7p3_stay_m == "Camilo":
+        "Though [s3_name] certainly didn't take her time to enjoy it."
+        s3_mc "Shtop shtaring at muh."
+    else:
+        "Though we may have to take Bill's word on that one."
+        bill "OK, [s3_name], look. This is how you make an omelette."
+        $ leaving('bill')
+        "Peanut butter, Bill? Really?"
+
+    "Up next, it's the show you've all been waiting for. The main event."
+    "Time for the Islanders to pull on their trotter boxes and don their head cases, it's shootin' time!"
+    "Wait, what the heck's a 'trotter box'?"
+    "They're boots, apparently. Huh. The more you know."
+
+    "As you approach the challenge area, you see an inflatable pen set up in the centre of the platform."
+    "Inside it is a mechanical bull."
+    "On the other side of the ring is the makeshift façade of an Old West saloon."
+    "Shooting targets of various sizes are hung upon it."
+    genevieve "Woah, nelly. We've got ourselves a challenge, cow-folk."
+
+    if s3_li == "Ciaran" or s3_li == "Tai":
+        harry "Um. Was that a cowgirl voice?"
+    else:
+        ciaran "Um. Was that a cowgirl voice?"
+
+    genevieve "You betcha, partner."
+    genevieve "Get it?"
+    "[s3e7p3_stay_f] bursts out laughing."
+
+    if s3_li == "Ciaran" or s3_li == "Tai":
+        harry "Please tell me that's not part of the challenge."
+    else:
+        ciaran "Ha! Love it."
+    
+    s3_other_m "Looks like we're in for some Bucking Bronco."
+    aj "Oh, bring it on."
+    aj "Our team hired one of these for an end-of-season party once."
+    aj "Obviously I won. My thighs have never been more sore."
+
+    if s3_li == "Tai":
+        ciaran "Is that a challenge?"
+    else:
+        tai "Is that a challenge?"
+
+    if "AJ" in s3_mc.past_partners:
+        aj "That wasn't supposed to be dirty..."
+    else:
+        aj "Easy tiger."
+        
+    nicky "Guys it's mine!"
+    nicky "I've just got a message."
+    text "Islanders, it's time to mosey on over and pick an outfit from the boxes. You'll need to look the part today, as we find out who among you is the best at holding on to a rough ride... #thistownaintbigenough #messwiththebull"
+    seb "Oh no..."
+
+    # CHOICE
+    menu:
+        thought "This sounds like..."
+        "A chance to show off my skills":
+            s3_mc "This is gonna be epic."
+            s3_mc "Not to one-up AJ, but I've got some serious skills on these things."
+            s3_li "And I bet you look while you're doing it, too."
+        "An opportunity for flirting":
+            s3_mc "This is gonna be hilarious."
+            s3_mc "I can't wait to lasso my beau."
+            s3_li "I'm looking forward to it myself."
+        "A disaster waiting to happen":
+            s3_mc "I'm with Seb on this one. There's no way this doesn't end in disaster."
+            s3_li "Don't stress it, babe. We're gonna do great."
+
+    if s3_li == "Yasmin":
+        seb "Well, at least you've got a partner."
+        "He gestures to Harry."
+        seb "No offence, mate. I'm just not really into the idea of getting lassoed by you."
+        harry "Hey, don't worry. I'm not too worried about winning this one either."
+        harry "Maybe we can play bad guys? Give the riders a little extra soaking."
+        seb "That sounds more like it. We can be outlaws trying to chase down the sheriff."
+        genevieve "Dag-nabbit, you curmudgeons! You know that ain't part o' this here challenge."
+        harry "Pretty sure cowboy-talk isn't part of the challenge either, Viv."
+        genevieve "What the deuce are you talking 'bout, Harry-boy? Got a pining for a hiding, small fry?"
+        "There is a brief pause."
+        s3_other_f "What does that even mean?"
+        genevieve "Look, I love westerns, OK? Have I really never mentioned that?"
+        ciaran "Not even once, babe. But it's hilarious."
+        text "Harry and Seb - you will be competing together in this challenge as a couple. #roomformore #twocowboysonehorse"
+        "Seb groans audibly."
+
+    nicky "Let's get on with it, shall we?"
+    "You realise that Nicky has already chosen an outfit from the trunk."
+    elladine "Looking good!"
+    genevieve "Smoking, you might say."
+    nicky "Thanks, guys."
+    nicky "Well, don't just stand there. Come pick an outfit!"
+    "The Islanders rush towards the chests of clothes."
+
+    #CHOICE
+    menu:
+        thought "Everyone's trying to get to pick their outfit first!"
+        "Barge through them!":
+            thought "I'm not about to let them choose before me!"
+            "You charge through the stampede, stepping on more than a few toes as you go."
+            s3_mc "Out of the way, slow-pokes!"
+            genevieve "Ow!"
+            s3_mc "Sorry, babes!"
+        "Wait your turn ":
+            "You follow the others over to the chests, poking your head between the other Islanders to get a good view."
+            s3_mc "Leave something for me!"
+
+    "You are pushed back to the back as the islanders grab their outfits in a frenzy."
+    harry "Cor, I don't look half bad, do I?"
+    aj "Hey cow-folks. Get a load of this."
+    s3_other_m "Ha! This is what I'm talking about."
+    s3_li "How do I look, [s3_name]?"
+
+    $ pronouns(s3_li)
+    if s3_li == "Yasmin":
+        $ cow_type = 'cowgirl'
+    else:
+        $ cow_type = 'cowboy'
+
+    # CHOICE
+    menu:
+        thought "How does [s3_li] look in [his_her] outfit?"
+        "Like a million bucks":
+            $ s3_mc.like(s3_li)
+            s3_li "Knew I could count on you to have my back."
+        "Maybe if you chose a different hat...":
+            s3_li "Hmm. You think?"
+            "[s3_li]'s brow furrows."
+        "More cow than [cow_type]":
+            $ s3_mc.dislike(s3_li)
+            s3_li "You don't have to put it like that..."
+
+    s3_li "Don't wait around! Get yourself something nice!"
+    "You find a number of different cowboy accessories and toys to wear over your swimsuit."
+    "[s3_li] watches as you put them on, a grin on [his_her] face."
+    "Outfit change to cowboy clothes wearing over swimwear"
+    s3_li "I love it. Like a smoking gun."
+    "As soon as you don your outfit, you feel a splash of cold water on your back."
+
+    if s3_mc.past_partners[1] == s3e7p3_dump_m:
+        bff "Gotcha."
+    else:
+        if s3_mc.past_partners[1] == "Bill":
+            bill "Oops. I was practising hitting the targets."
+        elif s3_mc.past_partners[1] == "Camilo":
+            camilo "Oops. I was practising hitting the targets."
+        elif s3_mc.past_partners[1] == "Harry":
+            harry "Oops. I was practising hitting the targets."
+        elif s3_mc.past_partners[1] == "AJ":
+            aj "Oops. I was practising hitting the targets."
+        "You don't believe [s3_mc.past_partners[1]] for a second. [he_she] doesn't look very apologetic."
+
+    s3_mc "Hey! That was cold!"
+    "You pick up a water pistol and start firing back."
+    s3_other_f "Don't waste all the water or you'll not have any left for the challenge!"
+    s3_other_f "Oh, what do I care! We have a whole pool."
+    s3_other_f "Oh, that's me."
+    text "Cowgirl, it's time to ride. First you'll need to mount the mechanical bull. Then use the rope to lasso your beau onto the saddle with you. #lassoyourbeau #lotsofknots"
+    s3_other_f "It looks like Bill/Camilo and I will be up first."
+    s3_other_f "We've got to try and hold and hit as many targets as possible."
+    s3_other_m "Go ahead, I'll be waiting."
+    s3_other_f "I really did not want to go first, but here we are."
+    elladine "You'll be fine! Once you get up there, instinct will take over."
+    "[s3e7p3_stay_f] climbs onto the bull with trepidation. It doesn't look like she's done this before."
+    s3_other_f "What now?"
+    "Suddenly, the bull jerks to life."
+    "[s3e7p3_stay_f] grabs the handle in a panic."
+    s3_other_f "Woah, nelly!"
+    s3_other_f "Now what?"
+
 # Choiceseb "Should I give her some advice?"
 # -Give her some words if encouragement
 # s3_mc "You got this, girl!"

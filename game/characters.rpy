@@ -109,19 +109,64 @@ init python:
 
     def leaving(leaving):
         """
-        Moves a specified visible NPC off screen then moves other visible NPC to be in center.
+        Moves a specified visible NPC off screen, if more than one person was visible 
+        when function was ran then it moves other visible NPC to be in center.
 
         Args:
             leaving (str): name of image tag that is leaving the screen.
         """
+        leaving = leaving.lower()
+
         if renpy.showing(leaving):
             renpy.show(leaving, [npc_exit])
-            renpy.pause(0.3)
+            renpy.pause(0.4)
             renpy.hide(leaving)
             on_screen.remove(leaving)
-
+        
+        if len(on_screen) > 0: 
             staying = on_screen[0]
             renpy.show(staying, [move_center])
+    
+    def add_npc(name, face="neutral"):
+        """
+        Manually adds an NPC to the screen.
+        """
+        name = name.lower()
+
+        if renpy.showing(name):
+            return
+        
+        face = face.lower()
+        # renpy.show(name + " " + face, [npc_center])
+
+        # If no characters visible on screen, first character goes in center.
+        if len(on_screen) == 0:
+            renpy.show(name + " " + face, [npc_center])
+        # If 1 character visible on screen, first character moves to left, second character goes to right.
+        elif len(on_screen) == 1:
+            renpy.show(on_screen[0], [move_left])
+            renpy.show(name + " " + face, [npc_right], zorder=5)
+        # If 2 characters visible on screen, first character to talk gets moved off screen.
+        elif len(on_screen) == 2:
+            leaving_npc = on_screen.pop(0)
+            # Finds if leaving character is on right or left side.
+            leaving_npc_bounds = renpy.get_image_bounds(str(leaving_npc))
+
+            renpy.show(leaving_npc, [npc_exit])
+            renpy.pause(0.3)
+            renpy.hide(leaving_npc)
+            
+            # If the leaving character was on left then newest speaker goes to left spot.
+            # If the leaving character was on right then newest speaker goes to right spot.
+            if leaving_npc_bounds[0] < 500:
+                # left
+                renpy.show(name + " " + face, [npc_left])
+            elif leaving_npc_bounds[0] > 700:
+                # right
+                renpy.show(name + " " + face, [npc_right], zorder=5)
+        
+        on_screen.append(name)
+
 
     class MainCharacter:
         '''
@@ -770,7 +815,9 @@ layeredimage yasmin:
 define character.yasmin = Character("Yasmin", image = "yasmin", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default yasmin = Npcs("woman")
 
+################################################################################
 ## Love Interest
+##
 default s3_li = "Bill"
 default s3_li_lower = s3_li.lower()
 layeredimage s3_li_image:
@@ -823,28 +870,164 @@ layeredimage s3_li_image:
 
 define character.s3_li = Character("s3_li", dynamic = True, image = "s3_li_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 
+################################################################################
 ## Ex Love Interest
+##
 default s3_ex = "Bill"
-image s3_ex_image = ConditionSwitch(
-    "s3_ex == 'Bill'", "bill",
-    "s3_ex == 'AJ'", "aj",
-    "s3_ex == 'Camilo'", "camilo",
-    "s3_ex == 'Yasmin'", "yasmin",
-    "s3_ex == 'Tai'", "tai",
-    "s3_ex == 'Ciaran'", "ciaran",
-    "s3_li == 'Harry'", "harry",
-    "s3_ex == 'Rafi'", "rafi"
-)
+default s3_ex_lower = s3_ex.lower()
+layeredimage s3_ex_image:
+    if s3_ex == 'Tai':
+            "npcs/tai/tai-hair-back.png"
+    
+    always:
+        "npcs/[s3_ex_lower]/[s3_ex_lower]-body.png"
+    
+    attribute outfit default:
+        "npcs/[s3_ex_lower]/[s3_ex_lower]-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-neutral.png"
+        attribute angry:
+            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-angry.png"
+        attribute blush:
+            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-blush.png"
+        attribute cheeky:
+            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-cheeky.png"
+        attribute happy:
+            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-happy.png"
+        attribute sad:
+            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-sad.png"
+        attribute serious:
+            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-serious.png"
+        attribute surprised:
+            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-surprised.png"
+        attribute smile:
+            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-smile.png"
+        attribute grimace:
+            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-grimace.png"
+        
+    attribute hair default:
+        "npcs/[s3_ex_lower]/[s3_ex_lower]-hair-[hair].png"
 
 define character.s3_ex = Character("s3_ex", dynamic = True, image = "s3_ex_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 
+################################################################################
 ## BFF
+##
 default s3_bff = "Seb"
-image s3_bff_image = ConditionSwitch(
-    "s3_bff == 'Elladine'", "elladine",
-    "s3_bff == 'Genevieve'", "genevieve",
-    "s3_bff == 'Nicky'", "nicky",
-    "s3_bff == 'Seb'", "seb"
-)
+default s3_bff_lower = s3_bff.lower()
+layeredimage s3_bff_image:
+    always:
+        "npcs/[s3_bff_lower]/[s3_bff_lower]-body.png"
+    
+    attribute outfit default:
+        "npcs/[s3_bff_lower]/[s3_bff_lower]-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-neutral.png"
+        attribute angry:
+            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-angry.png"
+        attribute blush:
+            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-blush.png"
+        attribute cheeky:
+            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-cheeky.png"
+        attribute happy:
+            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-happy.png"
+        attribute sad:
+            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-sad.png"
+        attribute serious:
+            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-serious.png"
+        attribute surprised:
+            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-surprised.png"
+        attribute smile:
+            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-smile.png"
+        attribute grimace:
+            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-grimace.png"
+        
+    attribute hair default:
+        "npcs/[s3_bff_lower]/[s3_bff_lower]-hair-[hair].png"
 
 define character.s3_bff = Character("s3_bff", dynamic = True, image = "s3_bff_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
+
+################################################################################
+## Other M - For the men, when you have something like this or that person got dumped, etc.
+##
+default s3_other_m = "Bill"
+default s3_other_m_lower = s3_other_m.lower()
+layeredimage s3_other_m_image:
+    if s3_other_m == 'Tai':
+            "npcs/tai/tai-hair-back.png"
+    
+    always:
+        "npcs/[s3_other_m_lower]/[s3_other_m_lower]-body.png"
+    
+    attribute outfit default:
+        "npcs/[s3_other_m_lower]/[s3_other_m_lower]-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-neutral.png"
+        attribute angry:
+            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-angry.png"
+        attribute blush:
+            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-blush.png"
+        attribute cheeky:
+            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-cheeky.png"
+        attribute happy:
+            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-happy.png"
+        attribute sad:
+            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-sad.png"
+        attribute serious:
+            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-serious.png"
+        attribute surprised:
+            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-surprised.png"
+        attribute smile:
+            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-smile.png"
+        attribute grimace:
+            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-grimace.png"
+        
+    attribute hair default:
+        "npcs/[s3_other_m_lower]/[s3_other_m_lower]-hair-[hair].png"
+
+define character.s3_other_m = Character("s3_other_m", dynamic = True, image = "s3_other_m_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
+
+################################################################################
+## Other F - For the women, when you have something like this or that person got dumped, etc.
+##
+default s3_other_f = "Miki"
+default s3_other_f_lower = s3_other_f.lower()
+layeredimage s3_other_f_image:
+    always:
+        "npcs/[s3_other_f_lower]/[s3_other_f_lower]-body.png"
+    
+    attribute outfit default:
+        "npcs/[s3_other_f_lower]/[s3_other_f_lower]-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-neutral.png"
+        attribute angry:
+            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-angry.png"
+        attribute blush:
+            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-blush.png"
+        attribute cheeky:
+            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-cheeky.png"
+        attribute happy:
+            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-happy.png"
+        attribute sad:
+            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-sad.png"
+        attribute serious:
+            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-serious.png"
+        attribute surprised:
+            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-surprised.png"
+        attribute smile:
+            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-smile.png"
+        attribute grimace:
+            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-grimace.png"
+        
+    attribute hair default:
+        "npcs/[s3_other_f_lower]/[s3_other_f_lower]-hair-[hair].png"
+
+define character.s3_other_f = Character("s3_other_f", dynamic = True, image = "s3_other_f_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
