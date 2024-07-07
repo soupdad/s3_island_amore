@@ -3328,7 +3328,7 @@ label s3e8p2:
     s3_li "Don't wait around! Get yourself something nice!"
     "You find a number of different cowboy accessories and toys to wear over your swimsuit."
     "[s3_li] watches as you put them on, a grin on [his_her] face."
-    "Outfit change to cowboy clothes wearing over swimwear"
+    # "Outfit change to cowboy clothes wearing over swimwear"
     s3_li "I love it. Like a smoking gun."
     "As soon as you don your outfit, you feel a splash of cold water on your back."
 
@@ -3363,292 +3363,354 @@ label s3e8p2:
     s3_other_f "Woah, nelly!"
     s3_other_f "Now what?"
 
-# Choiceseb "Should I give her some advice?"
-# -Give her some words if encouragement
-# s3_mc "You got this, girl!"
-# s3_mc "Holster your pistol so you can use the lasso!"
-# AJ. And use your strongest arm to hold on!
-# M/iona "I'm trying! Woah! This is so hard!"
+    # CHOICE
+    menu:
+        thought "Should I give her some advice?"
+        "Give her some words of encouragement":
+            s3_mc "You got this, girl!"
+            s3_mc "Holster your pistol so you can use the lasso!"
+            aj "And use your strongest arm to hold on!"
+            s3_other_f "I'm trying! Woah! This is so hard!"
+        "Shout and whoop loudly":
+            "You whoop and holler loudly like a cowgirl. The other Islanders join in."
+            elladine "Go on, [s3e7p3_stay_f]!"
+            nicky "I believe!"
+        "Say something snarky":
+            s3_mc "Don't hurt yourself too much when you fall off, [s3e7p3_stay_f]."
+            s3_other_f "Hey! (you get 🙁 with [s3e7p3_stay_f])"
+            "The other Islanders seem to ignore your comment."
+            elladine "Go on, [s3e7p3_stay_f]!"
+            nicky "I believe!"
+        "Stay quiet":
+            pass
 
-# -Shout and whoop loudly
-# You whoop and holler loudly like a cowgirl. The other Islanders join in.
-# elladine "Go on, Miki/Iona!"
-# nicky "I believe!"
+    "[s3e7p3_stay_f] struggles for a while, but it's not long before she finds her balance."
+    "Shakily, she starts to spin the lasso above her head, staring at [s3e7p3_stay_m] as she does."
+    s3_other_f "You ready, babe?"
+    s3_other_m "You bet your boots, honey."
+    "[s3e7p3_stay_f] does her best to throw the lasso at [s3e7p3_stay_m], but it falls to the ground several metres short."
+    s3_other_m "Almost!"
+    "The bull seems to pick up speed, throwing [s3e7p3_stay_f] around like a ragdoll."
+    s3_other_f "Aaah!"
+    "She steadies herself for long enough to reel the lasso back in, and then goes for another shot."
+    "It misses again."
+    s3_other_m "Woah, cowgirl, looks like you got me!"
+    "He throws himself into the pen and puts the rope around himself as if he had been lassoed."
+    seb "Hey... that's cheating!"
+    seb "Isn't it?"
+    genevieve "Nah! Just let 'em have it. Else we'll be here all day."
+    aj "Now you gotta reel him in!"
+    "[s3e7p3_stay_f] weakly tugs at the lasso as [s3e7p3_stay_m] comically pretends to struggle."
+    "Once he's close enough, he pulls himself onto the moving bull, with a little effort."
+    "He straddles the bull behind her, as she falls back into his arms for support."
+    s3_other_f "My hero."
+    s3_other_m "Heads up, we've still gotta hit the targets!"
+    "[s3e7p3_stay_f] and [s3e7p3_stay_m] whip out their water pistols and begin spraying wildly at the targets."
+    "The water goes everywhere. Very little of it hits the targets, but [s3e7p3_stay_f] and [s3e7p3_stay_m] don't seem to mind much."
+    s3_other_m "I don't think I've hit a single one."
+    "Suddenly, [s3e7p3_stay_m] turns his pistol on [s3e7p3_stay_f], squirting her neck. She squeals."
+    s3_other_f "[s3e7p3_stay_m]! Stop!"
+    "He points the pistol towards the other Islanders instead."
+    s3_other_m "This here's a hold-up. Now give me all your valuables, you darn city-slickers."
+    genevieve "Not on your life, you scoundrel!"
+    "[s3e7p3_stay_m] starts to spray the other Islanders with the last of his water. [s3e7p3_stay_f] joins in."
 
-# -Say something snarky
-# MC. Don't hurt yourself too much when you fall off, Miki/Iona.
-# M/iona "Hey! (you get 🙁 with Miki/Iona)"
-# The other Islanders seem to ignore your comment.
-# elladine "Go on, Miki/Iona!"
-# nicky "I believe!"
+    # CHOICE
+    menu:
+        thought "Hey! They're just shooting at us now!"
+        "Shoot back!":
+            "You lift up your water pistol and return fire."
+            s3_mc "Take that, you pair of no-good outlaws!"
+        "Dive for cover!":
+            "You dive to the ground and cover your head in your hands."
+            s3_mc "Take cover!"
+            "Despite trying to get out of the way, you feel a spray of cold water on the side of your face."
+            s3_other_m "Can't hide from me!"
+        "Play dead":
+            "You clutch your heart and fall to the ground, as if dead."
+            s3_mc "Tell my ma and pa... tell them... I love them..."
+            if s3_mc.bff == "Elladine":
+                elladine "[s3_name]! But she was so young!"
+            elif s3_mc.bff == "Genevieve":
+                genevieve "[s3_name]! But she was so young!"
+            elif s3_mc.bff == "Nicky":
+                nicky "[s3_name]! But she was so young!"
+            elif s3_mc.bff == "Seb":
+                seb "[s3_name]! But she was so young!"
 
-# -Stay quiet (no further reactions)
+    "Suddenly, the bull rears up especially high, and [s3e7p3_stay_m] and [s3e7p3_stay_f] come tumbling off the back."
+    "They lie together for a few moments in a tangle of arms and legs, still giggling."
+    bill "Honestly? Love a good Western. Absolutely classic genre."
+    camilo "Mate. Who knew that could be so much fun?"
+    "You feel your phone vibrate."
+    text "[s3_name] and [s3_li], you're up next. Let's see your moves."
+    s3_mc "My turn!"
 
-# Miki/Iona struggles for a while, but it's not long before she finds her balance.
-# Shakily, she starts to spin the lasso above her head, staring at Bill/Camilo as she does.
-# M/iona "You ready, babe?"
-# B/camilo "You bet your boots, honey."
-# Miki/Iona does her best to throw the lasso at Bill/Camilo, but it falls to the ground several metres short.
-# B/camilo "Almost!"
-# The bull seems to pick up speed, throwing Miki/Iona around like a ragdoll.
-# M/iona "Aaah!"
-# She steadies herself for long enough to reel the lasso back in, and then goes for another shot.
-# It misses again.
-# B/camilo "Woah, cowgirl, looks like you got me!"
-# He throws himself into the pen and puts the rope around himself as if he had been lassoed.
-# seb "Hey... that's cheating!"
-# seb "Isn't it?"
-# genevieve "Nah! Just let 'em have it. Else we'll be here all day."
-# aj "Now you gotta reel him in!"
-# Miki/Iona weakly tugs at the lasso as Bill/Camilo comically pretends to struggle.
-# Once he's close enough, he pulls himself onto the moving bull, with a little effort.
-# He straddles the bull behind her, as she falls back into his arms for support.
-# M/iona "My hero."
-# B/camilo "Heads up, we've still gotta hit the targets!"
-# Miki/Iona and Bill/Camilo whip out their water pistols and begin spraying wildly at the targets.
-# The water goes everywhere. Very little of it hits the targets, but Miki/Iona and Bill/Camilo don't seem to mind much.
-# B/camilo "I don't think I've hit a single one."
-# Suddenly, Bill/Camilo turns his pistol on Miki/Iona, squirting her neck. She squeals.
-# M/iona "Bill/Camilo! Stop!"
-# He points the pistol towards the other Islanders instead.
-# B/camilo "This here's a hold-up. Now give me all your valuables, you darn city-slickers."
-# genevieve "Not on your life, you scoundrel!"
-# Bill/Camilo starts to spray the other Islanders with the last of his water. Miki/Iona joins in.
-# Choiceseb "Hey! They're just shooting at us now!"
-# -Shoot back!
-# You lift up your water pistol and return fire.
-# s3_mc "Take that, you pair of no-good outlaws!"
+    if s3_mc.bff == "Elladine":
+        elladine "You got this, [s3_name]!"
+    elif s3_mc.bff == "Genevieve":
+        genevieve "You got this, [s3_name]!"
+    elif s3_mc.bff == "Nicky":
+        nicky "You got this, [s3_name]!"
+    elif s3_mc.bff == "Seb":
+        seb "You got this, [s3_name]!"
 
-# -Dive for cover!
-# You dive to the ground and cover your head in your hands.
-# s3_mc "Take cover!"
-# Despite trying to get out of the way, you feel a spray of cold water on the side of your face.
-# B/camilo "Can't hide from me!"
+    "You make your way to the inflatable bullpen, where [s3e7p3_stay_f] and [s3e7p3_stay_m] are still recovering from their fall."
+    
+    if ("Bill" in s3_mc.past_partners and s3_like_bill) or s3_mc.like_mc["Bill"] > 8:
+        thought "They seem to really enjoy themselves. Is Bill having second thoughts about me?"
+    elif ("Camilo" in s3_mc.past_partners and s3_like_camilo) or s3_mc.like_mc["Camilo"] > 8:
+        thought "They seem to really enjoy themselves. Is Camilo having second thoughts about me?"
+    else:
+        thought "I had my doubts about them at first, but [s3e7p3_stay_m] and [s3e7p3_stay_f] do make a cute couple."
+    
+    s3_other_m "That was fun. I almost want to do it again just for a laugh."
+    s3_other_f "We did awfully, hun."
+    s3_other_f "Not that it matters."
 
-# -Play dead
-# You clutch your heart and fall to the ground, as if dead.
-# s3_mc "Tell my ma and pa... tell them... I love them..."
-# bff "MC! But she was so young!"
+    # CHOICE
+    menu:
+        thought "[s3e7p3_stay_f] and [s3e7p3_stay_m] didn't do all that well. How am I feeling about my chances?"
+        "There is no way I don't bottle this...":
+            # NEED TO FILL
+            "EMPTY"
+        "Everyone knows who the real cowgirl in this town is":
+            s3_mc "It's [s3_name]."
+            "You strike a dramatic pose."
+            s3_mc "I came to this town to ride bulls and tame boys/hotties (appears instead of boys)."
+            s3_mc "Or was it the other way round?"
+            s3_mc "Either way, you need to get out of my pen!"
+            s3_other_f "We're going, we're going."
+            s3_other_m "Yeah. Hold your horses."
+            s3_mc "Oh, ha ha."
+        "You guys shot your load too early":
+            s3_mc "Riding the bull, it's all about stamina, you see."
+            s3_other_m "Listen, I could teach you all a thing or two about stamina."
+            s3_other_f "Is that a promise?"
+            if s3s7p3_stay_m == "Bill":
+                s3_other_m "Ha! Babe, if there's one thing you know about me, it's that I never say something ig I don't mean it."
+            else:
+                s3_other_m "For you, chica, it can be."
+            s3_mc "Excuse me, lovebirds, but I do need to get on the bull, you know."
 
-# Suddenly, the bull rears up especially high, and Bil/Camilo and Miki/Iona come tumbling off the back.
-# They lie together for a few moments in a tangle of arms and legs, still giggling.
-# bill "Honestly? Love a good Western. Absolutely classic genre."
-# camilo "Mate. Who knew that could be so much fun?"
-# You feel your phone vibrate.
-# text "MC and Ciaran/Tai/Yasmin, you're up next. Let's see your moves."
-# s3_mc "My turn!"
-# bff "You got this, MC!"
-# You make your way to the inflatable bullpen, where Miki/Iona and Bill/Camilo are still recovering from their fall.
-# thought "They seem to really enjoy themselves. Is Bill having second thoughts about me?"
-# thought "They seem to really enjoy themselves. Is Camilo having second thoughts about me?"
-# thought "I had my doubts about them at first, but Bill/Camilo and Miki/Iona do make a cute couple. (not interested in Camilo/Bill)"
-# B/camilo "That was fun. I almost want to do it again just for a laugh."
-# M/iona "We did awfully, hun."
-# M/iona "Not that it matters."
-# Choiceseb "Miki/Iona and Bill/Camilo didn't do all that well. How am I feeling about my chances?"
-# -There is no way I don't bottle this...
-# -Everyone knows who the real cowgirl in this town is
-# s3_mc "It's MC."
-# You strike a dramatic pose.
-# s3_mc "I came to this town to ride bulls and tame boys/hotties (appears instead of boys)."
-# s3_mc "Or was it the other way round?"
-# s3_mc "Either way, you need to get out of my pen!"
-# M/iona "We're going, we're going."
-# B/camilo "Yeah. Hold your horses."
-# s3_mc "Oh, ha ha."
+    thought "Right, time to get on with it then."
+    "Once [s3e7p3_stay_m] and [s3e7p3_stay_f] have moved out of the way, you holster your water pistol, grab the lasso and clamber onto the bull."
+    "No sooner have you placed your butt in the saddle do you feel the mechanical bull begin to rock."
+    s3_mc "Woah!"
+    s3_bff "Go on, [s3_name]!"
+    s3_li "Hold on, babe!"
+    "You hold on for dear life as the machine bucks and throws you around. With the lasso in one hand, you get ready to throw..."
+    thought "The challenge is to lasso my partner to get them on the bull with me..."
+    thought "Not that I have to follow the rules..."
 
-# -You guys shot your load too early
-# s3_mc "Riding the bull, it's all about stamina, you see."
-# B/camilo "Listen, I could teach you all a thing or two about stamina."
-# M/iona "Is that a promise?"
-# bill "Ha! Babe, if there's one thing you know about me, it's that I never say something ig I don't mean it."
-# camilo "For you, chica, it can be."
-# s3_mc "Excuse me, lovebirds, but I do need to get on the bull, you know."
+    # CHOICE
+    menu:
+        thought "What should I do?"
+        "Aim for [s3_li]":
+            "You spin the lasso and throw it with all your strength in the direction of [s3_li]."
+            "[he_she!c]'s ready for you, and in a flash, jumps towards it, catching [him_her]self in your knot."
+            "A cheer goes up in the crowd of Islanders."
+            nicky "Nice shot!"
+            harry "Proper well done."
+            s3_li "Got me on your first try, eh? I reckon that's a sign."
+            s3_mc "Come 'ere, suga'."
+            "You tug lightly on the rope - holding onto the bull takes a lot of your strength - and [s3_li] offers no resistance."
+            "[he_she!c] climbs into the pen, and then onto the back of the bull. You feel [his_her] breath on your neck."
+        "Am for [s3_ex] instead":
+            thought "I know who my beau really ought to be..."
+            "You spin up the lasso and throw it with all your strength in the direction of [s3_ex]."
+            s3_ex "The challenge was to lasso your partner, [s3_name]."
+            s3_ex "Not that I'm complaining."
+            s3_mc "I know what the challenge was."
+            s3_ex "As much as I'd love to be up there with you, babe..."
+            s3_ex "Maybe another time?"
+            elladine "Sorry, [s3_name], but the challenge is the challenge."
+            elladine "You can't choose for this one."
+            "You catch a glimpse of [s3_li] frowning uncomfortably."
+            s3_ex "Go ahead, [s3_li]. I won't get in the way this time."
+            "[s3_ex] gives you a reassuring wink as [s3_li] comes over and climbs on the bull behind you."
+            "You feel his breath on your neck."
+        "Do some tricks with the lasso":
+            thought "Honestly, I doubt I'll be able to lasso anyone from here..."
+            thought "Maybe I could put on a different kind of show?"
+            "You start to swing the lasso above your head like you've seen in the movies."
+            "Getting a rhythm for the motion, you start to spin it side-to-side as well, and then pass it from your right to your left."
+            aj "OK, that's pretty impressive."
+            nicky "You can say that again."
+            seb "You are supposed to actually throw it, though. Just saying."
+            elladine "Looks like she's having her own fun."
+            "Just then, the bull jerks unpredictably, and you feel yourself thrown sideways. You're losing your balance..."
+            s3_mc "Uh-oh!"
+            "[s3_li] comes rushing to your aid, clambering into the bullpen and pushing you back into the saddle."
+            s3_mc "Phew. Thanks, babe."
+            s3_li "Any time."
+            "[he_she!c] gives you a smirk, before climbing onto the back of the with you. You feel [his_her] breath on your neck."
 
-# thought "Right, time to get on with it then."
-# Once Bill/Camilo and Miki/Iona have moved out of the way, you holster your water pistol, grab the lasso and clamber onto the bull.
-# No sooner have you placed your butt in the saddle do you feel the mechanical bull begin to rock.
-# s3_mc "Woah!"
-# bff "Go on, MC!"
-# C/T/yasmin "Hold on, babe!"
-# You hold on for dear life as the machine bucks and throws you around. With the lasso in one hand, you get ready to throw...
-# thought "The challenge is to lasso my partner to get them on the bull with me..."
-# thought "Not that I have to follow the rules..."
-# Choiceseb "What should I do?"
-# -Aim for Ciaran/Tai/Yasmin
-# You spin the lasso and throw it with all your strength in the direction of Ciaran/Tai/Yasmin.
-# He's/She's ready for you, and in a flash, jumps towards it, catching himself/herself in your knot.
-# A cheer goes up in the crowd of Islanders.
-# nicky "Nice shot!"
-# harry "Proper well done."
-# C/T/yasmin "Got me on your first try, eh? I reckon that's a sign."
-# s3_mc "Come 'ere, suga'."
-# You tug lightly on the rope - holding onto the bull takes a lot of your strength - and Ciaran/Tai/Yasmin offers no resistance.
-# [he_she] climbs into the pen, and then onto the back of the bull. You feel [his_her] breath on your neck.
+    s3_li "Hey, hot stuff."
+    "[his_her] hands run up your waist. The bull bucks and spins, and you find yourself thrown into [his_her] chest more than once."
 
-# -Am for Bill/Camilo/Harry/AJ instead
-# thought "I know who my beau really ought to be..."
-# You spin up the lasso and throw it with all your strength in the direction of Bill/Harry/Camilo/AJ.
-# B/H/Cam/aj "The challenge was to lasso your partner, MC. (you get 😲 with Bill/Harry/Camilo/AJ)"
-# B/H/Cam/aj "Not that I'm complaining."
-# s3_mc "I know what the challenge was."
-# B/H/Cam/aj "As much as I'd love to be up there with you, babe..."
-# B/H/Cam/aj "Maybe another time?"
-# elladine "Sorry, MC, but the challenge is the challenge."
-# elladine "You can't choose for this one."
-# You catch a glimpse of Ciaran/Tai/Yasmin frowning uncomfortably.
-# B/H/Cam/aj "Go ahead, Ciaran/Tai/Yasmin. I won't get in the way this time."
-# Bill/Harry/Camilo/AJ gives you a reassuring wink as Ciaran/Tai/Yasmin comes over and climbs on the bull behind you.
-# You feel his breath on your neck.
+    # CHOICE
+    menu:
+        thought "[s3_li] almost cradling me in [his_her] arms..."
+        "Ask [him_her] not to touch you":
+            "You awkwardly disentangle yourself from [s3_li]'s embrace."
+            s3_mc "Sorry, honey. I'm just not there yet."
+            s3_li "Alright. My bad."
+        "Allow [him_her] to hold you by the waist":
+            "You melt into [s3_li]'s arms. They're strong, toned, and glistening from the sweat that's starting to form."
+            s3_li "Comfy?"
+            s3_mc "Very."
+            if s3_li == "Tai":
+                tai "Choice."
+                s3_mc "Huh?"
+                tai "Ha, sorry. Kiwi slang. Means 'awesome'."
+                s3_mc "Choice."
+                "Tai smiles."
+            elif s3_li == "Ciaran":
+                ciaran "Grand."
+            elif s3_li == "Yasmin":
+                yasmin "Sweet."
+        "Direct [him_her] to hold onto your shoulders":
+            "You bring back one of your hands to take hold of [s3_li]'s."
+            "You place [his_her] hands on your shoulder. [he_she!c] understands, and does the same with [his_her] other hand."
+            s3_li "That better?"
+            s3_mc "Mhmm."
+            if s3_li == "Tai":
+                tai "Choice."
+                s3_mc "Huh?"
+                tai "Ha, sorry. Kiwi slang. Means 'awesome'."
+                s3_mc "Choice."
+                "Tai smiles."
+            elif s3_li == "Ciaran":
+                ciaran "Grand."
+            elif s3_li == "Yasmin":
+                yasmin "Sweet."
 
-# -Do some tricks with the lasso
-# thought "Honestly, I doubt I'll be able to lasso anyone from here..."
-# thought "Maybe I could put on a different kind of show?"
-# You start to swing the lasso above your head like you've seen in the movies.
-# Getting a rhythm for the motion, you start to spin it side-to-side as well, and then pass it from your right to your left.
-# aj "OK, that's pretty impressive."
-# nicky "You can say that again."
-# seb "You are supposed to actually throw it, though. Just saying."
-# elladine "Looks like she's having her own fun."
-# Just then, the bull jerks unpredictably, and you feel yourself thrown sideways. You're losing your balance...
-# s3_mc "Uh-oh!"
-# Tai/Ciaran/Yasmin comes rushing to your aid, clambering into the bullpen and pushing you back into the saddle.
-# s3_mc "Phew. Thanks, babe."
-# C/T/yasmin "Any time."
-# [he_she] gives you a smirk, before climbing onto the back of the with you. You feel [his_her] breath on your neck.
+    s3_li "Don't forget about the targets, though, eh?"
+    s3_mc "Oh, shoot!"
+    s3_li "That's the idea."
+    "The bull is still throwing you around. It takes a lot of effort to hold on."
+    s3_mc "This is harder than it looks!"
+    "You raise the water pistol to the targets and take a few shots."
+    "You manage to hit a few targets, but the constant movement of the machine beneath you makes it hard to get much done."
 
-# C/T/yasmin "Hey, hot stuff."
-# [his_her] hands run up your waist. The bull bucks and spins, and you find yourself thrown into [his_her] chest more than once.
-# Choiceseb "Ciaran/Tai/Yasmin almost cradling me in [his_her] arms..."
-# -Ask [him_her] not to touch you
-# You awkwardly disentangle yourself from Ciaran's/Tai's/Yasmin's embrace.
-# s3_mc "Sorry, honey. I'm just not there yet."
-# C/T/yasmin "Alright. My bad."
+    # CHOICE
+    menu:
+        thought "This isn't working very well..."
+        "Start firing at the other Islanders":
+            # NEED TO FILL
+            "EMPTY"
+        "Give up and shoot at [s3_li] instead":
+            s3_mc "This is going nowhere..."
+            "Without warning, you twist around and aim your water pistol at [s3_li]."
+            s3_li "Huh?"
+            "You shoot water in [his_her] face."
+            s3_li "Hey!"
+            s3_mc "Too slow on the draw, babe!"
+            "The bull throws you both to one side before [s3_li] can retaliate. You're both barely holding on."
+            s3_other_f "Ooh, looks like there's division in the ranks!"
+        "Concentrate on the shooting while [s3_li] keeps you steady":
+            s3_mc "Hold me still! I need to aim properly!"
+            s3_li "I've got you!"
+            "You feel [s3_li] against your back. The rocking of the bull pushes you into [him_her] again and again."
+            if s3_li == "Tai" or s3_li == "Ciaran":
+                "His chest is smooth and chiselled. You can feel the shape of his abs and pecs against you as you melt into his arms."
+            elif s3_li == "Yasmin":
+                "Her chest is soft and warm. You think you can almost feel her frantic heartbeat as you melt into her arms."
+            "In this position, you're able to aim with both hands, and you hit a lot more of the targets."
+            nicky "Nice one, you two!"
+            elladine "Great technique!"
 
-# -Allow [him_her] to hold you by the waist
-# You melt into Ciaran's/Tai's/Yasmin's arms. They're strong, toned, and glistening from the sweat that's starting to form.
-# C/T/yasmin "Comfy?"
-# s3_mc "Very."
-# ciaran "Grand."
-# tai "Choice."
-# s3_mc "Huh?"
-# tai "Ha, sorry. Kiwi slang. Means 'awesome'."
-# s3_mc "Choice."
-# Tai smiles.
-# yasmin "Sweet."
+    "The bull is getting faster, and it's getting harder and harder to stay put."
+    "You notice that [s3_li] is also having trouble."
+    "[he_she!c]'s holding on with both hands, barely able to keep a grasp on the pistol."
 
-# -Direct [him_her] to hold onto your shoulders
-# You bring back one of your hands to take hold of Ciaran's/Tai's/Yasmin's.
-# You place [his_her] hands on your shoulder. [he_she] understands, and does the same with [his_her] other hand.
-# C/T/yasmin "That better?"
-# s3_mc "Mhmm."
-# ciaran "Grand."
-# tai "Choice."
-# s3_mc "Huh?"
-# tai "Ha, sorry. Kiwi slang. Means 'awesome'."
-# s3_mc "Choice."
-# Tai smiles.
-# yasmin "Sweet."
+    # CHOICE
+    menu:
+        thought "[s3_li]'s having a bit of trouble..."
+        "Moan at [him_her]":
+            # NEED TO FILL
+            "EMPTY"
+        "Help [him_her]":
+            s3_mc "I've got you."
+            "You cling to [s3_li]  as best as you can, trying to prevent [him_her] from falling off the back of the bull."
+            "You manage to hold [him_her] for a little while longer, but soon [his_her] weight is pulling you off with [him_her]."
+            seb "I can't watch."
+            elladine "How is she still holding on?"
+            "With one last fierce movement, you're thrown to the ground, not far from [s3_li]."
+        "Grab [his_her] pistol and go for glory.":
+            $ s3e8p2_glory = True
+            s3_mc "Sorry babe, but right now, you're as useful as a ten gallon hat with holes in.."
+            "You grab the pistol from [s3_li]'s hand."
+            s3_li "Huh?"
+            "While [s3_li] is distracted, a particularly violent swing sends [him_her] flying from the saddle."
+            s3_mc "Long live the queen, baby."
+            "The bull goes wild beneath you. You know you don't have long left."
+            "Using only your thighs to hold you in place, you start firing at the targets, a pistol in each hand."
+            s3_other_f "Woah!"
+            s3_bff "Atta girl!"
+            "You hit a number of targets. You also miss a lot, but you know it's all for show anyway."
+            s3_li "Have you done this before?!"
+            "You realise that your pistols have both run out of water, and let out one more whooping shout..."
+            "...before the bull finally sends you flying."
+            "You crash into the soft air-cushioned plastic to raucous applause."
 
-# C/T/yasmin "Don't forget about the targets, though, eh?"
-# s3_mc "Oh, shoot!"
-# C/T/yasmin "That's the idea."
-# The bull is still throwing you around. It takes a lot of effort to hold on.
-# s3_mc "This is harder than it looks!"
-# You raise the water pistol to the targets and take a few shots.
-# You manage to hit a few targets, but the constant movement of the machine beneath you makes it hard to get much done.
-# Choiceseb "This isn't working very well..."
-# -Start firing at the other Islanders
-# -Give up and shoot at Ciaran/Tai/Yasmin instead
-# s3_mc "This is going nowhere..."
-# Without warning, you twist around and aim your water pistol at Ciaran/Tai/Yasmin.
-# C/T/yasmin "Huh?"
-# You shoot water in [his_her] face.
-# C/T/yasmin "Hey!"
-# s3_mc "Too slow on the draw, babe!"
-# The bull throws you both to one side before Ciaran/Tai/Yasmin can retaliate. You're both barely holding on.
-# M/iona "Ooh, looks like there's division in the ranks!"
+    nicky "That's gonna be a tough act to follow."
+    harry "No kidding!"
 
-# -Concentrate on the shooting while Ciaran/Tai/Yasmin keeps you steady
-# s3_mc "Hold me still! I need to aim properly!"
-# C/T/yasmin "I've got you!"
-# You feel Ciaran/Tai/Yasmin against your back. The rocking of the bull pushes you into [him_her] again and again.
-# His chest is smooth and chiselled. You can feel the shape of his abs and pecs against you as you melt into his arms. (Tai/Ciaran)
-# Her chest is soft and warm. You think you can almost feel her frantic heartbeat as you melt into her arms.
-# In this position, you're able to aim with both hands, and you hit a lot more of the targets.
-# nicky "Nice one, you two!"
-# elladine "Great technique!"
+    if s3e7p3_stay_m == "Bill":
+        bill "Nice going guys. You really put on a show."
+    else:
+        camilo "Nice going guys. You really put on a show."
 
-# The bull is getting faster, and it's getting harder and harder to stay put.
-# You notice that Ciaran/Tai/Yasmin is also having trouble.
-# He's/She's holding on with both hands, barely able to keep a grasp on the pistol.
-# Choiceseb "Ciaran's/Tai's/Yasmin's having a bit of trouble..."
-# -Moan at [him_her]
-# -Help [him_her]
-# s3_mc "I've got you."
-# You cling to Ciaran/Tai/Yasmin  as best as you can, trying to prevent [him_her] from falling off the back of the bull.
-# You manage to hold [him_her] for a little while longer, but soon [his_her] weight is pulling you off with [him_her].
-# seb "I can't watch."
-# elladine "How is she still holding on?"
-# With one last fierce movement, you're thrown to the ground, not far from Ciaran/Tai/Yasmin.
+    if s3_mc.past_partners[1] == "Bill":
+        bill "Especially [s3_name]."
+    elif s3_mc.past_partners[1] == "Camilo":
+        camilo "Especially [s3_name]."
+    elif s3_mc.past_partners[1] == "Harry":
+        harry "Now that's what I call fresh mozzarella."
+    elif s3_mc.past_partners[1] == "AJ":
+        aj "I think that was one of the hottest things I've ever seen."
+    
+    s3_li "Can't say I disagree with that."
 
-# -Grab [his_her] pistol and go for glory.
-# s3_mc "Sorry babe, but right now, you're as useful as a ten gallon hat with holes in.."
-# You grab the pistol from Ciaran's/Tai's/Yasmin's hand.
-# C/T/yasmin "Huh?"
-# While Ciaran/Tai/Yasmin is distracted, a particularly violent swing sends [him_her] flying from the saddle.
-# s3_mc "Long live the queen, baby."
-# The bill goes wild beneath you. You know you don't have long left.
-# Using only your thighs to hold you in place, you start firing at the targets, a pistol in each hand.
-# M/iona "Woah!"
-# bff "Atta girl!"
-# You hit a number of targets. You also miss a lot, but you know it's all for show anyway.
-# C/T/yasmin "Have you done this before?!"
-# You realise that your pistols have both run out of water, and let out one more whooping shout...
-# ...before the bull finally sends you flying.
-# You crash into the soft air-cushioned plastic to raucous applause.
+    if s3e8p2_glory:
+        s3_other_f "And when you took [his_her] pistol and just started riding with no hands..."
+        s3_other_f "Wow!"
+        s3_li "You can say that again. (you get 😍 with [s3_li])"
 
-# nicky "That's gonna be a tough act to follow."
-# harry "No kidding!"
-# B/camilo "Nice going guys. You really put on a show."
-# bill "Especially MC."
-# harry "Now that's what I call fresh mozzarella."
-# camilo "Especially MC."
-# aj "I think that was one of the hottest things I've ever seen."
-# C/T/yasmin "Can't say I disagree with that."
-# (if you chose “Grab [his_her] pistol and go for glory”):
-# M/iona "And when you took [his_her] pistol and just started riding with no hands..."
-# M/iona "Wow!"
-# C/T/yasmin "You can say that again. (you get 😍 with Ciaran/Tai/Yasmin)"
-# Ciaran/Tai/Yasmin is still sitting in the pen with you, a wide grin on [his_her] face.
-# Choices:
-# -Crawl over for a kiss
-# s3_mc "Come here, cowboy/cowgirl."
-# Ciaran's/Tai's/Yasmin's grin widens.
-# You cup your hand around [his_her] face.
-# You catch a whiff of sandalwood, tinged with musk.
-# You catch a whiff of something minty on his breath.
-# You catch a whiff of lavender and coconut oil.
-# C/T/yasmin "What's that thing that cowboys say? I'm really starting to 'cotton' to you."
-# s3_mc "People say that?"
-# C/T/yasmin "Yeah. Apparently it's a really old phrase that started hundreds of years ago... in England. I think... I dunno but it got to America so..."
-# s3_mc "Just kiss me, Ciaran/Tai/Yasmin."
-# You draw [his_her] lips to yours. They're soft and gentle.
-# You straddle [him_her] as [he_she] sits back against the edge of the inflatable pen. You feel [his_her] lips curl into a smile.
-# For a few short moments you forget the challenge and the other islanders, and explore Ciaran/Tai/Yasmin.
-# A cold squirt of water jerks you back to reality.
-# genevieve "Sorry babe, it's my turn!"
+    "[s3_li] is still sitting in the pen with you, a wide grin on [his_her] face."
 
-# -Help [him_her] stand
-# You stand up and outstretch your hand for Ciaran/Tai/Yasmin. [he_she] takes it with a smile.
-# C/T/yasmin "You were pretty good on that bull."
-# s3_mc "I aim to please."
+    # CHOICE
+    menu:
+        "Crawl over for a kiss":
+            s3_mc "Come here, [cow_type]."
+            "[s3_li]'s grin widens."
+            "You cup your hand around [his_her] face."
+            if s3_li == "Tai":
+                "You catch a whiff of sandalwood, tinged with musk."
+            elif s3_li == "Ciaran":
+                "You catch a whiff of something minty on his breath."
+            elif s3_li == "Yasmin":
+                "You catch a whiff of lavender and coconut oil."
+            s3_li "What's that thing that cowboys say? I'm really starting to 'cotton' to you."
+            s3_mc "People say that?"
+            s3_li "Yeah. Apparently it's a really old phrase that started hundreds of years ago... in England. I think... I dunno but it got to America so..."
+            s3_mc "Just kiss me, [s3_li]."
+            "You draw [his_her] lips to yours. They're soft and gentle."
+            "You straddle [him_her] as [he_she] sits back against the edge of the inflatable pen. You feel [his_her] lips curl into a smile."
+            "For a few short moments you forget the challenge and the other islanders, and explore [s3_li]."
+            "A cold squirt of water jerks you back to reality."
+            genevieve "Sorry babe, it's my turn!"
+        "Help [him_her] stand":
+            "You stand up and outstretch your hand for [s3_li]. [he_she!c] takes it with a smile."
+            s3_li "You were pretty good on that bull."
+            s3_mc "I aim to please."
+        "Leave the pen":
+            "You stand and wipe yourself down, before climbing out of the pen, leaving [s3_li] to follow you."
 
-# -Leave the pen
-# You stand and wipe yourself down, before climbing out of the pen, leaving Ciaran/Tai/Yasmin to follow you.
-
-# Genevieve and Ciaran are up next, followed by Harry and Seb.
-# They argue about who should be lassoing who, and don't do very well.
+# "Genevieve and Ciaran are up next, followed by Harry and Seb."
+# "They argue about who should be lassoing who, and don't do very well."
 # seb "You shoot worse than my cat."
 # harry "I think I'd rather have your cat as my partner. At least she wouldn't moan as much as you."
 # Genevieve and Harry are up next, followed by Yasmin and Seb.
@@ -3682,7 +3744,9 @@ label s3e8p2:
 # nicky "Thanks guys. But it was really nothing."
 # aj "You've done it before, haven't you?"
 # nicky "Would you believe me if I said I haven't?"
-# Choiceseb "Nicky says he's never ridden one of these bulls before... (no further reactions)"
+# # CHOICE
+# menu:
+#     thought "Nicky says he's never ridden one of these bulls before... (no further reactions)"
 # -I don't believe you
 # -That was really good for a first time
 
@@ -3715,16 +3779,20 @@ label s3e8p2:
 # B/camilo "That settles it, then. Nicky is the sheriff."
 # B/camilo "Unless MC wants to have another go?"
 # M/iona "That's not really fair, is it?"
-# C/T/yasmin "I don't see why not. It's clear I was just holding her back anyway."
-# C/T/yasmin "I bet she could beat Nicky's time."
+# s3_li "I don't see why not. It's clear I was just holding her back anyway."
+# s3_li "I bet she could beat Nicky's time."
 # nicky "Wanna give it a go, MC?"
 # thought "They're right. I could definitely beat Nicky's time if I went again - I was so close before."
-# thought "And what's a better way to impress Ciaran/Tai/Yasmin? I could really have some fun with that..."
-# Choiceseb "Shall I have another go?"
+# thought "And what's a better way to impress [s3_li]? I could really have some fun with that..."
+# # CHOICE
+# menu:
+#     thought "Shall I have another go?"
 # -You're on, Nicky! (gem choice)
 # -I doubt I could beat him
 # Y/bff "Don't be silly! You were a natural on that thing."
-# Choiceseb "Am I sure I don't want to have another go? I won't get another chance to be 'Sheriff of the Villa'."
+# # CHOICE
+# menu:
+#     thought "Am I sure I don't want to have another go? I won't get another chance to be 'Sheriff of the Villa'."
 # -I'll show him what I'm made of. (gem choice)
 # -Nicky will make the better sheriff.
 # nicky "You really think so?"

@@ -343,7 +343,9 @@ default s3e8p1_keep_distance_aj = False
 # s3e8p1_nice (bool)
 default s3e8p1_nice = False
 
-
+## Episode 8, Part 2
+# s3e8p2_glory (bool)
+default s3e8p2_glory = False
 
 
 

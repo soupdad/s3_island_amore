@@ -1611,9 +1611,117 @@ style slider_slider:
 ################################################################################
 
 ###############################################
-## Character Profile Shots
+## MC Customizer
 ##
 
+screen cust_body():
+    image "bgs/sand.png"
+    add "s3_mc_image" zoom(1.5) align(0.6, 0)
+    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Confirm("Is this how you want to look?", Jump("s3e1p1")) at hover_zoom
+
+    text "Skin Colour" size 60 color "#ffffff" align(0.5, 0.06)
+    imagebutton idle "customizer-icons/arrow-left.png" align(0.3, 0.1) action Show("cust_hair"), Hide("cust_body") at hover_zoom
+    imagebutton idle "customizer-icons/arrow-right.png" align(0.7, 0.1) action Show("cust_eyes"), Hide("cust_body") at hover_zoom
+
+
+    imagebutton idle "customizer-icons/body-light.png" align(0.35, 0.8) action Function(customize_colors, part="body", color="light") at hover_zoom
+    imagebutton idle "customizer-icons/body-tan.png" align(0.45, 0.8) action Function(customize_colors, part="body", color="tan") at hover_zoom
+    imagebutton idle "customizer-icons/body-mid.png" align(0.55, 0.8) action Function(customize_colors, part="body", color="mid") at hover_zoom
+    imagebutton idle "customizer-icons/body-dark.png" align(0.65, 0.8) action Function(customize_colors, part="body", color="dark") at hover_zoom
+
+screen cust_eyes():
+    image "bgs/sand.png"
+    add "s3_mc_image" zoom(1.5) align(0.6, 0)
+    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Confirm("Is this how you want to look?", Jump("s3e1p1")) at hover_zoom
+
+    text "Eyebrows & Eyes" size 60 color "#ffffff" align(0.5, 0.06)
+    imagebutton idle "customizer-icons/arrow-left.png" align(0.3, 0.1) action Show("cust_body"), Hide("cust_eyes") at hover_zoom
+    imagebutton idle "customizer-icons/arrow-right.png" align(0.7, 0.1) action Show("cust_nose_mouth"), Hide("cust_eyes") at hover_zoom
+
+    imagebutton idle "customizer-icons/arrow-left.png" align(0.3, 0.3) action Function(customize_character, part = "eye_brow", direction = "left") at hover_zoom
+    imagebutton idle "customizer-icons/arrow-right.png" align(0.7, 0.3) action Function(customize_character, part = "eye_brow", direction = "right") at hover_zoom
+    imagebutton idle "customizer-icons/arrow-left.png" align(0.3, 0.5) action Function(customize_character, part = "eye", direction = "left") at hover_zoom
+    imagebutton idle "customizer-icons/arrow-right.png" align(0.7, 0.5) action Function(customize_character, part = "eye", direction = "right") at hover_zoom
+
+    imagebutton idle "customizer-icons/eyes-blue.png" align(0.3, 0.8) action Function(customize_colors, part="eyes", color="blue") at hover_zoom
+    imagebutton idle "customizer-icons/eyes-green.png" align(0.4, 0.8) action Function(customize_colors, part="eyes", color="green") at hover_zoom
+    imagebutton idle "customizer-icons/eyes-hazel.png" align(0.5, 0.8) action Function(customize_colors, part="eyes", color="hazel") at hover_zoom
+    imagebutton idle "customizer-icons/eyes-brown.png" align(0.6, 0.8) action Function(customize_colors, part="eyes", color="brown") at hover_zoom
+    imagebutton idle "customizer-icons/eyes-dark.png" align(0.7, 0.8) action Function(customize_colors, part="eyes", color="dark") at hover_zoom
+
+screen cust_nose_mouth():
+    image "bgs/sand.png"
+    add "s3_mc_image" zoom(1.5) align(0.6, 0)
+    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Confirm("Is this how you want to look?", Jump("s3e1p1")) at hover_zoom
+
+    text "Nose & Mouth" size 60 color "#ffffff" align(0.5, 0.06)
+    imagebutton idle "customizer-icons/arrow-left.png" align(0.3, 0.1) action Show("cust_eyes"), Hide("cust_nose_mouth") at hover_zoom
+    imagebutton idle "customizer-icons/arrow-right.png" align(0.7, 0.1) action Show("cust_hair"), Hide("cust_nose_mouth") at hover_zoom
+
+
+    imagebutton idle "customizer-icons/arrow-left.png" align(0.3, 0.4) action Function(customize_character, part = "nose", direction = "left") at hover_zoom
+    imagebutton idle "customizer-icons/arrow-right.png" align(0.7, 0.4) action Function(customize_character, part = "nose", direction = "right") at hover_zoom
+    imagebutton idle "customizer-icons/arrow-left.png" align(0.3, 0.6) action Function(customize_character, part = "mouth", direction = "left") at hover_zoom
+    imagebutton idle "customizer-icons/arrow-right.png" align(0.7, 0.6) action Function(customize_character, part = "mouth", direction = "right") at hover_zoom
+
+    imagebutton idle "customizer-icons/mouth-pink.png" align(0.45, 0.8) action Function(customize_colors, part="mouth", color="pink") at hover_zoom
+    imagebutton idle "customizer-icons/mouth-brown.png" align(0.55, 0.8) action Function(customize_colors, part="mouth", color="brown") at hover_zoom
+
+screen cust_hair():
+    image "bgs/sand.png"
+    add "s3_mc_image" zoom(1.5) align(0.6, 0)
+    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Confirm("Is this how you want to look?", Jump("s3e1p1")) at hover_zoom
+
+    text "Hair" size 60 color "#ffffff" align(0.5, 0.06)
+    imagebutton idle "customizer-icons/arrow-left.png" align(0.3, 0.1) action Show("cust_nose_mouth"), Hide("cust_hair") at hover_zoom
+    imagebutton idle "customizer-icons/arrow-right.png" align(0.7, 0.1) action Show("cust_body"), Hide("cust_hair") at hover_zoom
+
+
+    imagebutton idle "customizer-icons/arrow-left.png" align(0.3, 0.4) action Function(customize_character, part="hair", direction="left") at hover_zoom
+    imagebutton idle "customizer-icons/arrow-right.png" align(0.7, 0.4) action Function(customize_character, part="hair", direction="right") at hover_zoom
+
+    imagebutton idle "customizer-icons/hair-blonde.png" align(0.35, 0.8) action Function(customize_colors, part="hair", color="blonde") at hover_zoom
+    imagebutton idle "customizer-icons/hair-brunette.png" align(0.45, 0.8) action Function(customize_colors, part="hair", color="brunette") at hover_zoom
+    imagebutton idle "customizer-icons/hair-red.png" align(0.55, 0.8) action Function(customize_colors, part="hair", color="red") at hover_zoom
+    imagebutton idle "customizer-icons/hair-dark.png" align(0.65, 0.8) action Function(customize_colors, part="hair", color="dark") at hover_zoom
+        
+
+screen character_customizer():
+    image "bgs/sand.png"
+
+    add "s3_mc_image" zoom(1.5) align(0.5, 0)
+
+    #default varisomething = "hair"
+
+    imagebutton idle "customizer-icons/body-light.png" align(0.5, 0.5) action Show("cust_eyes") at hover_zoom
+    #imagebutton idle "customizer-icons/body-dark.png" align(0.5, 0.5) action ScreenVariableInputValue("varisomething") at hover_zoom
+
+
+    # look up Confirm()
+    # SetScreenVariable()
+    # ScreenVariableInputValue()
+
+    text "[category]" size 25 color "#000000" align(0.5, 0.1) outlines[(absolute(2), "#ffffff", 0, 0)]
+    imagebutton idle "customizer-icons/arrow-left.png" align(0.4, 0.1) action Function(customize_character, part = "category", direction = "left") at hover_zoom
+    imagebutton idle "customizer-icons/arrow-right.png" align(0.6, 0.1) action Function(customize_character, part = "category", direction = "right") at hover_zoom
+
+    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Jump("cust_confirm") at hover_zoom
+
+    use cust_hair(varisomething)
+
+    # if category == "body":
+    #     use cust_body
+    # elif category == "eyes":
+    #     use cust_eyes
+    # elif category == "nose_mouth":
+    #     use cust_nose_mouth
+    # elif category == "hair":
+    #     use cust_hair
+        
+
+###############################################
+## Character Profile Shots
+##
 '''
     Shows profile shot of NPC in center of screen with slow zoom.
 
@@ -1647,7 +1755,7 @@ screen day_title(day, part):
                 align(0.5, 0.5)
                 textalign 0.5
                 bold True
-    
+
 
 ###############################################
 ## Episode Specific

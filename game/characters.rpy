@@ -167,7 +167,6 @@ init python:
         
         on_screen.append(name)
 
-
     class MainCharacter:
         '''
         A character that is controlled by the user.
@@ -272,8 +271,80 @@ define text = Character(window_background = Image("bg_text_message.png", xalign=
 ####################################################################
 ## MC
 ####################################################################
+define categories = ["body", "eyes", "nose_mouth", "hair"]
+default category = categories[1]
+
+define bodies = ["light", "tan", "mid", "dark"]
+default body = bodies[2]
+
+define eye_brows = ["1", "2", "3"]
+default eye_brow = eye_brows[0]
+
+define eyes = ["1", "2", "3"]
+default eye = eyes[0]
+
+define eye_colors = ["blue", "green", "hazel", "brown", "dark"]
+default eye_color = eye_colors[0]
+
+define noses = ["1", "2", "3"]
+default nose = noses[0]
+
+define mouths = ["1", "2", "3"]
+default mouth = mouths[0]
+
+define mouth_colors = ["pink", "brown"]
+default mouth_color = "pink"
+default mouth_color_other = "brown"
+
+define hairs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+default hair = hairs[0]
+
+define hair_colors = ["blonde", "red", "brunette", "dark"]
+default hair_color = hair_colors[0]
+
+define swim = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+define evening = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+define pjs = ["1", "2", "3", "4", "5"]
+
+default s3_mc_outfit_type = "swim_bikini"
+default s3_mc_outfit = swim[0]
+
+layeredimage s3_mc_image:
+    always:
+        "mc/hair_back/LI3_player_hair_hairstyle[hair]_[hair_color]_hair-back.png"
+        
+    always:
+        "mc/body/LI3_player_body_body_[body]_body.png"
+        
+    always:
+        "mc/face/face_bg/LI3_player_body_head_[body]_head.png"
+                
+    always:
+        "mc/face/eye_socket/LI3_player_body_head_[body]_neutral-angry-flirty_eye-shade.png"
+                
+    always:
+        "mc/face/eyebrows/LI3_player_brows_brows[eye_brow]_white_neutral_brow.png"
+                
+    always:
+        "mc/face/eyes/LI3_player_eyes_eyes[eye]_[eye_color]_neutral_eyes.png"
+                
+    always:
+        "mc/face/nose/LI3_player_nose_nose[nose]_[body]_neutral_nose.png"
+                
+    always:
+        "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color_other]_neutral_mouth.png"
+                
+    always:
+        "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color]_neutral_mouth.png"
+
+    always:
+        "mc/clothes/LI3_player_[s3_mc_outfit_type][s3_mc_outfit]_layer1.png"
+
+    always:
+        "mc/hair/LI3_player_hair_hairstyle[hair]_[hair_color]_hair-front.png"
+
 default s3_name = "Filler"
-define character.s3_mc = Character("s3_name", dynamic = True, window_background = Image("mc_dialog.png", xalign=0.5, yalign=1.0))
+define character.s3_mc = Character("s3_name", dynamic = True, image = "s3_mc_image", window_background = Image("mc_dialog.png", xalign=0.5, yalign=1.0))
 default s3_mc = MainCharacter()
 define thought = Character("s3_name", dynamic = True, what_italic = True, window_background = Image("mc_dialog.png", xalign=0.5, yalign=1.0))
 
@@ -283,7 +354,7 @@ define thought = Character("s3_name", dynamic = True, what_italic = True, window
 # These variables change all NPC's outfits and hair.
 # Outfits are titled - swim, evening, and pjs
 default outfit = "swim"
-default hair = "hair"
+default npc_hair = "hair"
 
 # For E3P2 - Bill's Bucket Head
 default bucket = "normal"
@@ -317,7 +388,7 @@ layeredimage aj:
             "npcs/aj/aj-face-happy.png"
 
     attribute hair default:
-        "npcs/aj/aj-hair-[hair].png"
+        "npcs/aj/aj-hair-[npc_hair].png"
 
 define character.aj = Character("AJ", image = "aj", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default aj = Npcs("woman")
@@ -352,7 +423,7 @@ layeredimage bill:
 
     group hair auto:
         attribute hair default:
-            "npcs/bill/bill-hair-[hair].png"
+            "npcs/bill/bill-hair-[npc_hair].png"
         attribute bucket:
             "npcs/bill/bill-hair-bucket_[bucket].png"
 
@@ -388,7 +459,7 @@ layeredimage camilo:
             "npcs/camilo/camilo-face-happy.png"
 
     attribute hair default:
-        "npcs/camilo/camilo-hair-[hair].png"
+        "npcs/camilo/camilo-hair-[npc_hair].png"
 
 define character.camilo = Character("Camilo", image = "camilo", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default camilo = Npcs("man")
@@ -422,7 +493,7 @@ layeredimage ciaran:
             "npcs/ciaran/ciaran-face-grimace.png"
 
     attribute hair default:
-        "npcs/ciaran/ciaran-hair-[hair].png"
+        "npcs/ciaran/ciaran-hair-[npc_hair].png"
 
 define character.ciaran = Character("Ciaran", image = "ciaran", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default ciaran = Npcs("man")
@@ -456,7 +527,7 @@ layeredimage elladine:
             "npcs/elladine/elladine-face-smile.png"
 
     attribute hair default:
-        "npcs/elladine/elladine-hair-[hair].png"
+        "npcs/elladine/elladine-hair-[npc_hair].png"
 
 define character.elladine = Character("Elladine", image = "elladine", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default elladine = Npcs("woman")
@@ -491,7 +562,7 @@ layeredimage genevieve:
             "npcs/genevieve/genevieve-face-smile.png"
 
     attribute hair default:
-        "npcs/genevieve/genevieve-hair-[hair].png"
+        "npcs/genevieve/genevieve-hair-[npc_hair].png"
 
 define character.genevieve = Character("Genevieve", image = "genevieve", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default genevieve = Npcs("woman")
@@ -526,7 +597,7 @@ layeredimage harry:
             "npcs/harry/harry-face-smile.png"
 
     attribute hair default:
-        "npcs/harry/harry-hair-[hair].png"
+        "npcs/harry/harry-hair-[npc_hair].png"
 
 define character.harry = Character("Harry", image = "harry", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default harry = Npcs("man")
@@ -561,7 +632,7 @@ layeredimage iona:
             "npcs/iona/iona-face-sneer.png"
 
     attribute hair default:
-        "npcs/iona/iona-hair-[hair].png"
+        "npcs/iona/iona-hair-[npc_hair].png"
 
 define character.iona = Character("Iona", image = "iona", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default iona = Npcs("woman")
@@ -596,7 +667,7 @@ layeredimage lily:
             "npcs/lily/lily-face-smile.png"
 
     attribute hair default:
-        "npcs/lily/lily-hair-[hair].png"
+        "npcs/lily/lily-hair-[npc_hair].png"
 
 define character.lily = Character("Lily", window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default lily = Npcs("woman")
@@ -631,7 +702,7 @@ layeredimage miki:
             "npcs/miki/miki-face-smile.png"
 
     attribute hair default:
-        "npcs/miki/miki-hair-[hair].png"
+        "npcs/miki/miki-hair-[npc_hair].png"
 
 define character.miki = Character("Miki", image = "miki", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default miki = Npcs("woman")
@@ -666,7 +737,7 @@ layeredimage nicky:
             "npcs/nicky/nicky-face-smile.png"
 
     attribute hair default:
-        "npcs/nicky/nicky-hair-[hair].png"
+        "npcs/nicky/nicky-hair-[npc_hair].png"
 
 define character.nicky = Character("Nicky", image = "nicky", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default nicky = Npcs("man")
@@ -702,7 +773,7 @@ layeredimage rafi:
             "npcs/rafi/rafi-face-smile.png"
 
     attribute hair default:
-        "npcs/rafi/rafi-hair-[hair].png"
+        "npcs/rafi/rafi-hair-[npc_hair].png"
 
 define character.rafi = Character("Rafi", window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default rafi = Npcs("man")
@@ -736,7 +807,7 @@ layeredimage seb:
             "npcs/seb/seb-face-smile.png"
 
     attribute hair default:
-        "npcs/seb/seb-hair-[hair].png"
+        "npcs/seb/seb-hair-[npc_hair].png"
 
 define character.seb = Character("Seb", image = "seb", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default seb = Npcs("man")
@@ -772,7 +843,7 @@ layeredimage tai:
             "npcs/tai/tai-face-smile.png"
 
     attribute hair default:
-        "npcs/tai/tai-hair-[hair].png"
+        "npcs/tai/tai-hair-[npc_hair].png"
 
 define character.tai = Character("Tai", image = "tai", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 default tai = Npcs("man")
@@ -807,7 +878,7 @@ layeredimage yasmin:
             "npcs/yasmin/yasmin-face-smile.png"
 
     attribute hair default:
-        "npcs/yasmin/yasmin-hair-[hair].png"
+        "npcs/yasmin/yasmin-hair-[npc_hair].png"
 
     attribute extra default:
         "npcs/yasmin/yasmin-extras-[extra].png"
@@ -853,7 +924,7 @@ layeredimage s3_li_image:
             "npcs/[s3_li_lower]/[s3_li_lower]-face-grimace.png"
         
     attribute hair default:
-        "npcs/[s3_li_lower]/[s3_li_lower]-hair-[hair].png"
+        "npcs/[s3_li_lower]/[s3_li_lower]-hair-[npc_hair].png"
 
 # maybe i will get this working with image attributes but i can't think of how rn
 # image s3_li_image = ConditionSwitch(
@@ -908,7 +979,7 @@ layeredimage s3_ex_image:
             "npcs/[s3_ex_lower]/[s3_ex_lower]-face-grimace.png"
         
     attribute hair default:
-        "npcs/[s3_ex_lower]/[s3_ex_lower]-hair-[hair].png"
+        "npcs/[s3_ex_lower]/[s3_ex_lower]-hair-[npc_hair].png"
 
 define character.s3_ex = Character("s3_ex", dynamic = True, image = "s3_ex_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 
@@ -947,7 +1018,7 @@ layeredimage s3_bff_image:
             "npcs/[s3_bff_lower]/[s3_bff_lower]-face-grimace.png"
         
     attribute hair default:
-        "npcs/[s3_bff_lower]/[s3_bff_lower]-hair-[hair].png"
+        "npcs/[s3_bff_lower]/[s3_bff_lower]-hair-[npc_hair].png"
 
 define character.s3_bff = Character("s3_bff", dynamic = True, image = "s3_bff_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 
@@ -989,7 +1060,7 @@ layeredimage s3_other_m_image:
             "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-grimace.png"
         
     attribute hair default:
-        "npcs/[s3_other_m_lower]/[s3_other_m_lower]-hair-[hair].png"
+        "npcs/[s3_other_m_lower]/[s3_other_m_lower]-hair-[npc_hair].png"
 
 define character.s3_other_m = Character("s3_other_m", dynamic = True, image = "s3_other_m_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 
@@ -1028,6 +1099,6 @@ layeredimage s3_other_f_image:
             "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-grimace.png"
         
     attribute hair default:
-        "npcs/[s3_other_f_lower]/[s3_other_f_lower]-hair-[hair].png"
+        "npcs/[s3_other_f_lower]/[s3_other_f_lower]-hair-[npc_hair].png"
 
 define character.s3_other_f = Character("s3_other_f", dynamic = True, image = "s3_other_f_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))

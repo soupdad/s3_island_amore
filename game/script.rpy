@@ -56,6 +56,15 @@ transform title:
     anchor(0.5, 0.5)
     linear 4 zoom 1.1
 
+## MC Customizer Icons
+transform hover_zoom:
+    zoom 0.5
+    anchor(0.5, 0.5)
+    on hover:
+        zoom 0.55
+    on idle:
+        zoom 0.5
+
 ################################################################
 ## Game Start
 ## Decides what happens when user selects "Start" on Main Menu.
@@ -76,6 +85,26 @@ label start:
     # $ s3_mc.current_partner = "AJ"
     # $ s3_mc.past_partners = ["Harry", "AJ"]
 
-    jump s3e7p3
+    menu:
+        "Want to start a new game at Day 1 or play with the character customizer?"
+        "Start New Game":
+            jump s3e1p1
+        "Character Customizer":
+            call screen cust_hair
+
+    return
+
+label cust_confirm:
+    # Show character middle of screen
+    menu:
+        "Is this how I want to look?"
+        "Yes, let's go!":
+            # is there a way to automate where this one jumps to 
+            # without hard coding each time??
+
+            # also save customized character
+            pass
+        "No, I want to change.":
+            call screen character_customizer
 
     return

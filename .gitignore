@@ -11,6 +11,9 @@ log.txt
 traceback.txt
 errors.txt
 project.json
-# Game Cache Files (add to when .rpy files are created)
+android.json
+android.keystore
+bundle.keystore
+
 game/*.rpyc
 game/*.rpy.bak
