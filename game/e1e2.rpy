@@ -49,6 +49,20 @@ label s3e1p1:
         # Defines name and maybe clothes and appearance if we get the images
     # Uncomment below once actually initializing, and change s3_name in characters.rpy to "You"
 
+    $ randomize_style("look")
+    $ randomize_style("clothes", "swim")
+
+    window hide
+    call screen cust_body()
+
+    "And now for your outfit."
+
+
+    window hide
+    call screen cust_outfit("swim")
+
+    show s3_mc at npc_center
+
     $ bad_name = True
 
     while bad_name:

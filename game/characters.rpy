@@ -271,9 +271,6 @@ define text = Character(window_background = Image("bg_text_message.png", xalign=
 ####################################################################
 ## MC
 ####################################################################
-define categories = ["body", "eyes", "nose_mouth", "hair"]
-default category = categories[1]
-
 define bodies = ["light", "tan", "mid", "dark"]
 default body = bodies[2]
 

@@ -89,8 +89,22 @@ label start:
         "Want to start a new game at Day 1 or play with the character customizer?"
         "Start New Game":
             jump s3e1p1
-        "Character Customizer":
-            call screen cust_hair
+        "Character Look Customizer":
+            $ randomize_style("look")
+            call screen cust_body
+        "Character Outfit Customizer":
+            menu:
+                "What's the style?"
+                "Bathing Suits":
+                    $ randomize_style("clothes", "swim")
+                    call screen cust_outfit("swim")
+                "Evening Wear":
+                    $ randomize_style("clothes", "evening")
+                    call screen cust_outfit("evening")
+                "Pjs":
+                    $ randomize_style("clothes", "pjs")
+                    call screen cust_outfit("pjs")
+
 
     return
 
