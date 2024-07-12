@@ -1618,8 +1618,9 @@ style slider_slider:
 screen cust_body():
     image "bgs/sand.png"
     add "s3_mc_image" zoom(1.5) align(0.6, 0)
-    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Confirm("Is this how you want to look?", Hide("cust_body")) at hover_zoom
-    imagebutton idle "customizer-icons/done.png" align(0.1, 0.5) action Confirm("Are you sure you want to randomize your look?", Function(randomize_style, part="look")) at hover_zoom
+    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Jump("cust_confirm") at hover_zoom
+    # Randomize Button (just don't have the image for it to show it is a randomize button, and am too lazy to do it rn lol)
+    # imagebutton idle "customizer-icons/done.png" align(0.1, 0.5) action Confirm("Are you sure you want to randomize your look?", Function(randomize_style, part="look")) at hover_zoom
 
     text "Skin Colour" size 60 color "#ffffff" align(0.5, 0.06)
     imagebutton idle "customizer-icons/arrow-left.png" align(0.3, 0.1) action Show("cust_hair"), Hide("cust_body") at hover_zoom
@@ -1634,8 +1635,9 @@ screen cust_body():
 screen cust_eyes():
     image "bgs/sand.png"
     add "s3_mc_image" zoom(1.5) align(0.6, 0)
-    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Confirm("Is this how you want to look?", Hide("cust_eyes")) at hover_zoom
-    imagebutton idle "customizer-icons/done.png" align(0.1, 0.5) action Confirm("Are you sure you want to randomize your look?", Function(randomize_style, part="look")) at hover_zoom
+    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Jump("cust_confirm") at hover_zoom
+    # Randomize Button (just don't have the image for it to show it is a randomize button, and am too lazy to do it rn lol)
+    # imagebutton idle "customizer-icons/done.png" align(0.1, 0.5) action Confirm("Are you sure you want to randomize your look?", Function(randomize_style, part="look")) at hover_zoom
 
     text "Eyebrows & Eyes" size 60 color "#ffffff" align(0.5, 0.06)
     imagebutton idle "customizer-icons/arrow-left.png" align(0.3, 0.1) action Show("cust_body"), Hide("cust_eyes") at hover_zoom
@@ -1655,8 +1657,9 @@ screen cust_eyes():
 screen cust_nose_mouth():
     image "bgs/sand.png"
     add "s3_mc_image" zoom(1.5) align(0.6, 0)
-    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Confirm("Is this how you want to look?", Hide("cust_nose_mouth")) at hover_zoom
-    imagebutton idle "customizer-icons/done.png" align(0.1, 0.5) action Confirm("Are you sure you want to randomize your look?", Function(randomize_style, part="look")) at hover_zoom
+    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Jump("cust_confirm") at hover_zoom
+    # Randomize Button (just don't have the image for it to show it is a randomize button, and am too lazy to do it rn lol)
+    # imagebutton idle "customizer-icons/done.png" align(0.1, 0.5) action Confirm("Are you sure you want to randomize your look?", Function(randomize_style, part="look")) at hover_zoom
 
     text "Nose & Mouth" size 60 color "#ffffff" align(0.5, 0.06)
     imagebutton idle "customizer-icons/arrow-left.png" align(0.3, 0.1) action Show("cust_eyes"), Hide("cust_nose_mouth") at hover_zoom
@@ -1674,8 +1677,9 @@ screen cust_nose_mouth():
 screen cust_hair():
     image "bgs/sand.png"
     add "s3_mc_image" zoom(1.5) align(0.6, 0)
-    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Confirm("Is this how you want to look?", Hide("cust_hair")) at hover_zoom
-    imagebutton idle "customizer-icons/done.png" align(0.1, 0.5) action Confirm("Are you sure you want to randomize your look?", Function(randomize_style, part="look")) at hover_zoom
+    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Jump("cust_confirm") at hover_zoom
+    # Randomize Button (just don't have the image for it to show it is a randomize button, and am too lazy to do it rn lol)
+    # imagebutton idle "customizer-icons/done.png" align(0.1, 0.5) action Confirm("Are you sure you want to randomize your look?", Function(randomize_style, part="look")) at hover_zoom
 
     text "Hair" size 60 color "#ffffff" align(0.5, 0.06)
     imagebutton idle "customizer-icons/arrow-left.png" align(0.3, 0.1) action Show("cust_nose_mouth"), Hide("cust_hair") at hover_zoom
@@ -1694,8 +1698,9 @@ screen cust_hair():
 screen cust_outfit(style):
     image "bgs/sand.png"
     add "s3_mc_image" zoom(.75) align(0.5, 0.8)
-    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Confirm("Is this how you want to look?", Hide("cust_outfit")) at hover_zoom
-    imagebutton idle "customizer-icons/done.png" align(0.1, 0.5) action Confirm("Are you sure you want to randomize your outfit?", Function(randomize_style, part="clothes", style=style)) at hover_zoom
+    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Jump("cust_confirm_outfit") at hover_zoom
+    # Randomize Button (just don't have the image for it to show it is a randomize button, and am too lazy to do it rn lol)
+    # imagebutton idle "customizer-icons/done.png" align(0.1, 0.5) action Confirm("Are you sure you want to randomize your outfit?", Function(randomize_style, part="clothes", style=style)) at hover_zoom
 
     imagebutton idle "customizer-icons/arrow-left.png" align(0.3, 0.5) action Function(customize_clothes, style=style, direction="left") at hover_zoom
     imagebutton idle "customizer-icons/arrow-right.png" align(0.7, 0.5) action Function(customize_clothes, style=style, direction="right") at hover_zoom

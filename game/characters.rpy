@@ -4,17 +4,6 @@
 init python:
     on_screen = []
 
-    def npc_exit(name):
-        '''
-        Manually removes NPC from being visible on screen.
-
-        Currently doesn't work.
-        '''
-        renpy.show(name, [npc_exit])
-        renpy.pause(0.3)
-        renpy.hide(name)
-        on_screen.remove(name)
-
     def pronouns(name):
         '''
         Saves the correct pronouns to generic variables depending on the NPC.
@@ -84,6 +73,7 @@ init python:
             # If 1 character visible on screen, first character moves to left, second character goes to right.
             elif len(on_screen) == 1:
                 renpy.show(on_screen[0], [move_left])
+                renpy.show("s3_mc_image", [mc_move_left])
                 renpy.show(character, [npc_right], zorder=5)
             # If 2 characters visible on screen, first character to talk gets moved off screen.
             elif len(on_screen) == 2:
@@ -97,10 +87,10 @@ init python:
                 
                 # If the leaving character was on left then newest speaker goes to left spot.
                 # If the leaving character was on right then newest speaker goes to right spot.
-                if leaving_npc_bounds[0] < 500:
+                if leaving_npc_bounds[0] < 600:
                     # left
                     renpy.show(character, [npc_left])
-                elif leaving_npc_bounds[0] > 700:
+                elif leaving_npc_bounds[0] > 800:
                     # right
                     renpy.show(character, [npc_right], zorder=5)
 
@@ -126,8 +116,9 @@ init python:
         if len(on_screen) > 0: 
             staying = on_screen[0]
             renpy.show(staying, [move_center])
+            renpy.show("s3_mc_image", [mc_move_center])
     
-    def add_npc(name, face="neutral"):
+    def entering(name, face="neutral"):
         """
         Manually adds an NPC to the screen.
         """
@@ -305,6 +296,8 @@ define pjs = ["1", "2", "3", "4", "5"]
 
 default s3_mc_outfit_type = "swim_bikini"
 default s3_mc_outfit = swim[0]
+
+default 
 
 layeredimage s3_mc_image:
     always:

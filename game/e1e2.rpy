@@ -1,3 +1,11 @@
+label customize_character:
+    call screen cust_body()
+    return
+
+label customize_outfit:
+    call screen cust_outfit(outfit)
+    return
+
 #########################################################################
 ## Episode 1, Part 1
 #########################################################################
@@ -49,19 +57,22 @@ label s3e1p1:
         # Defines name and maybe clothes and appearance if we get the images
     # Uncomment below once actually initializing, and change s3_name in characters.rpy to "You"
 
+    $ outfit = "swim"
     $ randomize_style("look")
-    $ randomize_style("clothes", "swim")
+    $ randomize_style("clothes", outfit)
 
-    window hide
-    call screen cust_body()
+
+    call customize_character
 
     "And now for your outfit."
 
+    call customize_outfit
 
-    window hide
-    call screen cust_outfit("swim")
+    # call screen cust_body()
 
-    show s3_mc at npc_center
+    # call screen cust_outfit("swim")
+
+    # show s3_mc at npc_center
 
     $ bad_name = True
 
@@ -79,6 +90,8 @@ label s3e1p1:
                     "Ok, we are merciful."
 
     scene s3-outside-villa-entrance with dissolve
+    $ on_screen = []
+    show s3_mc_image at mc_left
 
     "Your heel click on the driveway as you stride up to the Villa."
 
@@ -168,6 +181,7 @@ label s3e1p1:
 
     scene s3-bedroom-day with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
 
     "Elladine leads you into the bedroom, where another girl is waiting."
     "Her jaw drops when you walk in."
@@ -261,10 +275,7 @@ label s3e1p1:
 
     "AJ races out of the bedroom. Her heels clack all the way to the lawn."
 
-    show aj at npc_exit
-    pause 0.3
-    $ renpy.hide("aj")
-    $ on_screen.remove("aj")
+    $ leaving("aj")
     
     elladine "She's got a lot of energy, hasn't she?"
     elladine @ blush "I guess it's hard not to be excited when you know you're picking first."
@@ -357,6 +368,7 @@ label s3e1p1:
 
     scene s3-lawn-day with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
 
     "You step out into the brilliant sunshine."
     "Waiting on the lawn are three boys, standing in a line."
@@ -838,6 +850,7 @@ label s3e1p1:
 
     scene s3-lawn-day with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
 
     "Chattering and laughing, the Islanders head towards the challenge platform."
     "Before you can follow, [s3_li] quietly takes you to one side."
@@ -991,6 +1004,7 @@ label s3e1p1:
             
     scene sand with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
 
     "It's only day 1, and [s3_name] is already turning heads all over the Villa!"
     # IF STATEMENT
@@ -1119,6 +1133,7 @@ label s3e1p1_meet_genevieve:
 label s3e1p2:
     scene sand with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
 
     show screen day_title(1, 2) with Pause(4)
     hide screen day_title with dissolve
@@ -1187,6 +1202,7 @@ label s3e1p2:
 
     scene s3-platform-excess-baggage with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
 
     "You and [s3_li] make your way over to the platform where the other Islanders have already gathered."
 
@@ -2678,6 +2694,7 @@ label s3e1p2:
 
     scene s3-poolside-day with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
 
     "You and the other Islanders are lounging by the pool."
     # IF STATEMENT
@@ -2925,6 +2942,7 @@ label s3e1p2:
 label s3e1p2_talk_to_new_girl:
     scene s3-platform-excess-baggage with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
 
     thought "Yeah, I'll call her over for a chat."
     s3_mc "Hey [s3_3rd_girl]."
@@ -2940,6 +2958,7 @@ label s3e1p2_talk_to_new_girl:
         
         scene s3-roof-day with dissolve
         $ on_screen = []
+        show s3_mc_image at mc_left
 
         "You and [s3_3rd_girl] sit beside each other on the roof."
         miki smile "Thanks for this."
@@ -3021,6 +3040,7 @@ label s3e1p2_talk_to_new_girl:
 
         scene s3-roof-day with dissolve
         $ on_screen = []
+        show s3_mc_image at mc_left
 
         "You and [s3_3rd_girl] sit beside each other on the roof."
         iona happy "Thanks for this."
@@ -3106,6 +3126,7 @@ label s3e1p2_talk_to_new_girl:
 
         scene s3-roof-day with dissolve
         $ on_screen = []
+        show s3_mc_image at mc_left
 
         "You and [s3_3rd_girl] sit beside each other on the roof."
         genevieve smile "Thanks for this."
@@ -3237,6 +3258,8 @@ label s3e1p3:
 
     scene s3-dressing-room with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
+    show s3_mc_image at mc_left
 
     "The dressing room is a flurry of activity as the girls ready themselves for [s3_3rd_girl]'s decision."
     # IF STATEMENT
@@ -3292,14 +3315,15 @@ label s3e1p3:
     # change all npcs to evening wear
 
     $ outfit = "evening"
+    call customize_outfit
 
+    # Need to implement NPC favourite outfits to use this. 
     # IF STATEMENT
-    # Only makes sense with MC images
     # if s3_current_outfit in s3_npc_preferred_outfits["Elladine"]:
-    #     thought "Oh yeah, this is going to blow some minds."
-    #     "Elladine looks over to you. Her eyes go wide."
-    #     elladine "Damn! [s3_name], you're a real heart-stealer in that!"
-    #     s3_mc "That's the idea."
+    thought "Oh yeah, this is going to blow some minds."
+    "Elladine looks over to you. Her eyes go wide."
+    elladine "Damn! [s3_name], you're a real heart-stealer in that!"
+    s3_mc "That's the idea."
     # else:
     #     s3_mc "Or, I could just wear this I guess..."
     #     elladine "Not going to push the boat out a bit? You must be confident."
@@ -3358,6 +3382,7 @@ label s3e1p3:
 
     scene s3-firepit-night with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
 
     "[s3_3rd_girl] stands in front of the Islanders sat around the firepit."
 
@@ -3559,7 +3584,7 @@ label s3e1p3:
 
     # CHOICE
     menu:
-        thought "Bill's getting up to leave..."
+        thought "[s3_li]'s getting up to leave..."
         "Squeeze his hand":
             $ s3_mc.like(s3_li)
             if s3_li == "Bill":
@@ -3670,6 +3695,7 @@ label s3e1p3:
         "Walk over to [s3_3rd_girl]":
             scene s3-lawn-night with dissolve
             $ on_screen = []
+            show s3_mc_image at mc_left
 
             if s3_li == "Bill":
                 "You make your way over to [s3_3rd_girl] along with Nicky, Genevieve and Iona."
@@ -3706,6 +3732,7 @@ label s3e1p3:
         "Stay where you are":
             scene s3-firepit-night
             $ on_screen = []
+            show s3_mc_image at mc_left
             "You stay back while everyone around you gets up and goes off in their own little groups."
             "The flames of the fire flicker and twirl. You soon find yourself lost in thought."
             # CHOICE
@@ -3731,6 +3758,7 @@ label s3e1p3:
         "Walk away from the others":
             scene s3-sun-loungers-night with dissolve
             $ on_screen = []
+            show s3_mc_image at mc_left
             "You get up, leaving the rest of the Islanders to form their own little groups."
             "The night is surprisingly chilly. You rub your arms for some warmth."
             "The sound of laughter drifts over from the other Islanders."
@@ -3756,6 +3784,7 @@ label s3e1p3:
         s3_mc "Sure...let's talk."
         scene s3-poolside-night with dissolve
         $ on_screen = []
+        show s3_mc_image at mc_left
         miki smile "Thanks."
         miki neutral "I want you to know that it wasn't anything personal. I mean, obviously, I've only just met you."
         if s3e1p2_talk_to_new_girl:
@@ -3774,6 +3803,7 @@ label s3e1p3:
         s3_mc "Sure...let's talk."
         scene s3-poolside-night with dissolve
         $ on_screen = []
+        show s3_mc_image at mc_left
         iona happy "Thanks."
         iona neutral "I want you to know that it wasn't anything personal. I mean, obviously, I've only just met you."
         if s3e1p2_talk_to_new_girl:
@@ -3792,6 +3822,7 @@ label s3e1p3:
         s3_mc "Sure...let's talk."
         scene s3-poolside-night with dissolve
         $ on_screen = []
+        show s3_mc_image at mc_left
         genevieve smile "Thanks."
         genevieve neutral "I want you to know that it wasn't anything personal. I mean, obviously, I've only just met you."
         if s3e1p2_talk_to_new_girl:
@@ -3883,6 +3914,7 @@ label s3e1p3:
 
     scene s3-firepit-night with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
     "Seb, Nicky, Elladine and Genevieve are sat around the firepit chatting"
     thought "I could do with someone to talk to."
 
@@ -3927,17 +3959,18 @@ label s3e1p3:
         call s3e1p3_prank from _call_s3e1p3_prank
 
     # Uncomment if MC imgs are added to game.
-    # scene s3-dressing-room with dissolve
-    # $ on_screen = []
+    scene s3-dressing-room with dissolve
+    $ on_screen = []
 
-    # thought "Right, first night in the Villa and I'm single. It's worth going all out tonight."
-    # thought "I want the others to see who they're dealing with..."
+    thought "Right, first night in the Villa and I'm single. It's worth going all out tonight."
+    thought "I want the others to see who they're dealing with..."
 
-    # # MC outfit change to sleepwear
+    # MC outfit change to sleepwear
 
-    # $ outfit = "pjs"
+    $ outfit = "pjs"
+    call customize_outfit
 
-    # thought "This outfit is beyond cute."
+    thought "This outfit is beyond cute."
 
     scene s3-bathroom with dissolve
     $ on_screen = []
@@ -4135,7 +4168,6 @@ label s3e1p3:
     "Next time on Island Amore..."
     "Seb says something appalling at breakfast..."
 
-    show seb at npc_center
     seb "I really want some black pudding."
     $ leaving("seb")
 
@@ -4937,36 +4969,29 @@ label s3e1p3_prank:
         iona @ surprised "Woah! Hey, guys, look at the moon."
         miki "It looks massive."
         elladine neutral "Come out onto the terrace with me. Let's get a proper look."
-        show elladine at npc_exit
-        pause(0.3)
-        $ renpy.hide("elladine")
+        $ leaving("elladine")
     elif s3_mc.bff == "Genevieve":
         genevieve cheeky "Or maybe a ghost got her..."
         "She wiggles her fingers dramatically."
         iona @ surprised "Woah! Hey, guys, look at the moon."
         miki "It looks massive."
         genevieve smile "Come out onto the terrace with me. Let's get a proper look."
-        show genevieve at npc_exit
-        pause(0.3)
-        $ renpy.hide("genevieve")
+        $ leaving("genevieve")
     elif s3_mc.bff == "Nicky":
         nicky smile "Or maybe a ghost got her..."
         "He wiggles his fingers dramatically."
         iona @ surprised "Woah! Hey, guys, look at the moon."
         miki "It looks massive."
         nicky "Come out onto the terrace with me. Let's get a proper look."
-        show nicky at npc_exit
-        pause(0.3)
-        $ renpy.hide("nicky")
+        $ leaving("nicky")
     elif s3_mc.bff == "Seb":
         seb cheeky "Or maybe a ghost got her..."
         "He wiggles his fingers dramatically."
         iona @ surprised "Woah! Hey, guys, look at the moon."
         miki "It looks massive."
         seb smile "Come out onto the terrace with me. Let's get a proper look."
-        show seb at npc_exit
-        pause(0.3)
-        $ renpy.hide("seb")
+        $ leaving("seb")
+    $ leaving("miki")
     "You hear the others leave."
 
     # IF STATEMENT
@@ -5234,6 +5259,16 @@ label s3e2p1:
     "Something soft hits your head and wakes you up with a jolt."
     thought "Huh?"
     "You sit up and wipe your eyes, still bleary from the night's sleep."
+
+    if s3_bff == "Elladine":
+        $ add_npc("elladine")
+    elif s3_bff == "Genevieve":
+        $ add_npc("genevieve")
+    elif s3_bff == "Nicky":
+        $ add_npc("nicky")
+    elif s3_bff == "Seb":
+        $ add_npc("seb")
+
     "[s3_mc.bff] laughs."
     harry smile "Morning, sunshine."
     s3_mc "Who did that?"
@@ -5346,16 +5381,18 @@ label s3e2p1:
     $ outfit = "swim"
 
     # Add back dialogue when and if MC images are added to game
-    # thought "I'd better dress to impress."
-    # thought "What should I wear?"
+    thought "I'd better dress to impress."
+    thought "What should I wear?"
+
+    call customize_outfit
 
     # MC outfit change to swimwear
     # Change all NPC outfit to swimwear
 
     # thought "I don't think this has lost its charm just yet."
     # thought "Now I'm ready for the day!"
-    # thought "Wow. I'm looking like a snack!"
-    # thought "Now I'm ready for the day!"
+    thought "Wow. I'm looking like a snack!"
+    thought "Now I'm ready for the day!"
     # thought "This will do. (free outfit)"
 
     thought "Who should I talk to?"
@@ -6395,10 +6432,10 @@ label s3e2p2:
     # CHOICE
     menu:
         thought "Am I a threat to the couples?"
-        "-Yeah, I'm a red alert":
+        "Yeah, I'm a red alert":
             s3_mc "Wee-oo! Wee-oo!"
             s3_mc "You hear that?"
-            s3_mc "That's the MC alert siren."
+            s3_mc "That's the [s3_name] alert siren."
             s3_mc "It means I'm here, I'm dangerous, and I can't be stopped."
             "Elladine snorts with laughter."
             iona "Oh my gosh."
@@ -6492,6 +6529,11 @@ label s3e2p2:
         elif s3_li == "Harry":
             aj "Oh, I thought you were going to say Harry."
 
+    thought "I better get dressed for my dates!"
+    
+    $ outfit = "evening"
+    call customize_outfit
+
     elladine "Come on, then! We've been standing here chatting long enough."
     elladine "Let's go and meet our dates!"
 
@@ -6499,6 +6541,7 @@ label s3e2p2:
     # FIRST DATE
     scene s3-beach-date with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
 
     $ outfit = "evening"
 
@@ -6514,8 +6557,8 @@ label s3e2p2:
         bill "You look amazing. I mean, you always do."
         bill "But especially so today."
         # Add back when adding in MC images with alternative outfit choices
-        # bill "You look amazing. That outfit is really something else."
-        # bill "I mean, obviously. You don't need me to tell you that. I just..."
+        bill "You look amazing. That outfit is really something else."
+        bill "I mean, obviously. You don't need me to tell you that. I just..."
         # bill "You look amazing. Even when you're not trying."
         # bill "Not that I'm saying you don't put effort in!"
         # bill "Just that, what you're wearing it's not like... you know..."
@@ -6526,8 +6569,8 @@ label s3e2p2:
         camilo "You look amazing. I mean, you always do."
         camilo "But especially so today."
         # Add back when adding in MC images with alternative outfit choices
-        # camilo "You look amazing. That outfit is really something else."
-        # camilo "I mean, obviously. You don't need me to tell you that. I just..."
+        camilo "You look amazing. That outfit is really something else."
+        camilo "I mean, obviously. You don't need me to tell you that. I just..."
         # camilo "You look amazing. Even when you're not trying."
         # camilo "Not that I'm saying you don't put effort in!"
         # camilo "Just that, what you're wearing it's not like... you know..."
@@ -6538,8 +6581,8 @@ label s3e2p2:
         harry "You look amazing. I mean, you always do."
         harry "But especially so today."
         # Add back when adding in MC images with alternative outfit choices
-        # harry "You look amazing. That outfit is really something else."
-        # harry "I mean, obviously. You don't need me to tell you that. I just..."
+        harry "You look amazing. That outfit is really something else."
+        harry "I mean, obviously. You don't need me to tell you that. I just..."
         # harry "You look amazing. Even when you're not trying."
         # harry "Not that I'm saying you don't put effort in!"
         # harry "Just that, what you're wearing it's not like... you know..."
@@ -6733,9 +6776,9 @@ label s3e2p2:
             call s3e2p2_harry_date from _call_s3e2p2_harry_date_2
 
     scene s3-lawn-day with dissolve
-    $ on_screen = ["camilo"]
+    show s3_mc_image at mc_left
 
-    show camilo at npc_center
+    $ entering("camilo")
 
     if s3e2p2_only_two_dates:
         "When you arrive back at the Villa, you find the lawn deserted."
@@ -6754,6 +6797,7 @@ label s3e2p2:
 
     scene s3-gym-day with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
 
     "The only person around is AJ, doing pull-ups in the gym."
     aj "Hey, [s3_name]! Welcome back!"
@@ -6884,6 +6928,7 @@ label s3e2p2:
 
     scene s3-lawn-day with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
 
     nicky "Hey, [s3_name]! You're back!"
     elladine "How were your three dates, babes?"
@@ -6902,13 +6947,13 @@ label s3e2p2:
             "I needed a break from dating":
                 s3_mc "It's really tiring. I just wanted to come back here and chill out a bit."
                 elladine "Fair enough."
-            "I didn't want to upset Miki" if s3e2p2_third_date == "Bill":
+            "I didn't want to upset Miki" if s3e2p2_third_date == 'Bill':
                 $ s3_mc.like("Miki")
                 "Miki smiles gratefully at you."
-            "I didn't want to upset Iona" if s3e2p2_third_date == "Camilo":
+            "I didn't want to upset Iona" if s3e2p2_third_date == 'Camilo':
                 $ s3_mc.like("Iona")
                 "Iona smiles gratefully at you."
-            "I didn't want to upset Genevieve" if s3e2p2_third_date == "Harry":
+            "I didn't want to upset Genevieve" if s3e2p2_third_date == 'Harry':
                 $ s3_mc.like("Genevieve")
                 "Genevieve smiles gratefully at you."
 
@@ -7037,6 +7082,7 @@ label s3e2p2:
 
     scene sand with dissolve
     $ on_screen = []
+    $ outfit = "evening"
 
     "Coming up..."
     "The boys make dinner..."
@@ -7603,6 +7649,7 @@ label s3e2p2_harry_date:
 label s3e2p3:
     scene sand with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
 
     show screen day_title(2, 3) with Pause(4)
     hide screen day_title with dissolve
@@ -7636,6 +7683,7 @@ label s3e2p3:
 
     scene s3-dressing-room with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
 
     "You and the other girls are getting ready for dinner."
     elladine "I wonder what they're cooking up for us?"
@@ -7708,19 +7756,21 @@ label s3e2p3:
     miki "Come on then, let's go see what they've made."
 
     ## Add back in once MC images are added and has clothes to change into
-    # elladine "[s3_name] isn't even dressed yet, though."
-    # "Miki grins at you and rolls her eyes."
-    # miki "Babe, come on."
-    # thought "Hmm, time to make myself fabulous."
+    elladine "[s3_name] isn't even dressed yet, though."
+    "Miki grins at you and rolls her eyes."
+    miki "Babe, come on."
+    thought "Hmm, time to make myself fabulous."
 
     # MC outfit change to evening wear
     # Change all NPCs to evening wear
+    $ outfit = "evening"
+    call customize_outfit
 
-    # thought "Woah, who's that gorgeous woman staring at me?"
-    # thought "Oh, it's my reflection."
-    # "You wink at yourself."
-    # genevieve "I'd never pull that look off so well, [s3_name]."
-    # s3_mc "Thanks babe!"
+    thought "Woah, who's that gorgeous woman staring at me?"
+    thought "Oh, it's my reflection."
+    "You wink at yourself."
+    genevieve "I'd never pull that look off so well, [s3_name]."
+    s3_mc "Thanks babe!"
     # thought "It's a chill evening tonight. No need to play all my cards at once."
     # genevieve "Ooh, [s3_name]. I never got to say before how much I love that on you."
     # s3_mc "Thanks babe!"
@@ -7733,6 +7783,7 @@ label s3e2p3:
 
     scene s3-kitchen-night with dissolve
     $ on_screen = []
+    show s3_mc_image at mc_left
 
     "You enter the kitchen. The walls are splattered with strings of spaghetti, the odd mushroom, and various sauces."
     "The sink is overflowing with dirty dishes and discarded cooking utensils."
