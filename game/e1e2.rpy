@@ -127,14 +127,16 @@ label s3e1p1:
         s3_mc "I'm [s3_name]"
         "It's nice to meet you too":
             $ s3_mc.like("Elladine")
-            s3_mc happy "I think we're the first ones here!"
+            # s3_mc happy "I think we're the first ones here!"
+            s3_mc "I think we're the first ones here!"
             elladine "Amazing. This is one of those moments you remember forever, isn't it?"
             s3_mc "I think so!"
             elladine @ smile "I know we will."
 
         "Wow, I love your outfit":
             $ s3_mc.like("Elladine")
-            s3_mc happy "It's stunning!"
+            s3_mc "It's stunning!"
+            # s3_mc happy "It's stunning!"
             elladine smile "Babes, I was about to say the same to you!"
             elladine @ surprised "Seriously. You've already set the bar super high."
             elladine "The boys are going to freak when they see us."
@@ -142,7 +144,8 @@ label s3e1p1:
         "Warning, I'm here to win":
             $ s3e1p1_warning_here_to_win = True
             $ s3_mc.dislike("Elladine")
-            s3_mc serious "Before we go getting too friendly, you need to know one thing about me."
+            # s3_mc serious "Before we go getting too friendly, you need to know one thing about me."
+            s3_mc "Before we go getting too friendly, you need to know one thing about me."
             show elladine serious
             s3_mc "I'm here to find love, and I don't care how many toes I have to tread on to get it."
             s3_mc "So if you're tempted to cross me at some point while we're here..."
@@ -157,7 +160,8 @@ label s3e1p1:
     menu:
         thought "How am I feeling?"
         "So nervous":
-            s3_mc blush "I've never done anything like this before. It's a bit scary."
+            # s3_mc blush "I've never done anything like this before. It's a bit scary."
+            s3_mc "I've never done anything like this before. It's a bit scary."
             elladine surprised "At least we're all in the same boat!"
 
         "Just excited":
@@ -166,16 +170,21 @@ label s3e1p1:
         "Kinda hungry":
             $ s3e1p1_feeling_hungry = True
             elladine blush "You mean, like...hungry for love, or..?"
-            s3_mc neutral "Nope. Just hungry."
+            # s3_mc neutral "Nope. Just hungry."
+            s3_mc "Nope. Just hungry."
             elladine "Sounds like you need a snack."
             elladine smile "I hope there are some snacks lined up for us outside!"
-            s3_mc sad "Why would there be snacks outside?"
+            # s3_mc sad "Why would there be snacks outside?"
+            # elladine @ surprised "I mean like hot guys when you see someone hot and you say 'he's a snack'."
+            # s3_mc neutral "That's not what I meant, though. I'm just hungry."
+            s3_mc "Why would there be snacks outside?"
             elladine @ surprised "I mean like hot guys when you see someone hot and you say 'he's a snack'."
-            s3_mc neutral "That's not what I meant, though. I'm just hungry."
+            s3_mc "That's not what I meant, though. I'm just hungry."
             s3_mc "I wish I had a banana or something."
             "Elladine looks like she's about to make another joke, but then decides against it."
 
-    s3_mc neutral "Are there any other girls here yet?"
+    # s3_mc neutral "Are there any other girls here yet?"
+    s3_mc "Are there any other girls here yet?"
     elladine neutral"Only one. We've been waiting in the bedroom."
     elladine @ smile "Come on. I'll introduce you."
 
@@ -202,7 +211,8 @@ label s3e1p1:
     -Professional hockey player\n
     -Knows how to handle a stick{/i}"
 
-    s3_mc @ smile "I'm [s3_name]"
+    # s3_mc @ smile "I'm [s3_name]"
+    s3_mc "I'm [s3_name]"
     if s3e1p1_warning_here_to_win == True:
         elladine @ sad "She, um.. she definitely means business."
     else:
@@ -216,12 +226,14 @@ label s3e1p1:
         thought "AJ's here to have fun, not to get into drama..."
         "Me too! Let's keep it chill and friendly":
             $ s3_mc.like("AJ")
-            s3_mc smile "Trust me, we're gonna have a great time."
+            # s3_mc smile "Trust me, we're gonna have a great time."
+            s3_mc "Trust me, we're gonna have a great time."
             s3_mc "You're my girls now, and I don't let my girls turn on each other."
             aj @ smile "Yes! I'm so glad you said that."
 
         "But there's no fun without drama":
-            s3_mc cheeky "It's so exciting when someone does something totally shocking, and you just know the fallout is gonna be huge."
+            # s3_mc cheeky "It's so exciting when someone does something totally shocking, and you just know the fallout is gonna be huge."
+            s3_mc "It's so exciting when someone does something totally shocking, and you just know the fallout is gonna be huge."
             s3_mc "I can't wait to stir up some trouble around here."
             aj @ serious "Fair play! I guess we just have different priorities."
             aj "Friendship is really important to me."
@@ -229,7 +241,8 @@ label s3e1p1:
         "I don't care, as long as I get what I want":
             $ s3_mc.dislike("AJ")
             s3_mc "I don't set out to create drama. But I will if I have to."
-            s3_mc @ serious "At the end of the day, it's not called Friend Island."
+            # s3_mc @ serious "At the end of the day, it's not called Friend Island."
+            s3_mc "At the end of the day, it's not called Friend Island."
             aj @ serious "Fair play! I guess we just have different priorities."
             aj "Friendship is really important to me."
 
@@ -259,7 +272,8 @@ label s3e1p1:
 
 
     "Suddenly, you hear a beeping noise."
-    s3_mc @ surprised "What was that?"
+    # s3_mc @ surprised "What was that?"
+    s3_mc "What was that?"
     elladine @ surprised "It sounded like a text..."
     "AJ checks her phone and gasps."
     aj @ surprised "Oh, it's me!"
@@ -279,7 +293,8 @@ label s3e1p1:
     
     elladine "She's got a lot of energy, hasn't she?"
     elladine @ blush "I guess it's hard not to be excited when you know you're picking first."
-    s3_mc neutral "I wonder what the boys will be like?"
+    # s3_mc neutral "I wonder what the boys will be like?"
+    s3_mc "I wonder what the boys will be like?"
     elladine smile "I want a guy who's been around the block a bit, you know?"
     elladine smile "Someone who knows what he's about and takes it seriously."
     elladine neutral "What about you? What's your type?"
@@ -288,7 +303,8 @@ label s3e1p1:
     menu:
         thought "My type is..."
         "Funny and cute":
-            s3_mc smile "I just want a boy to make me smile."
+            # s3_mc smile "I just want a boy to make me smile."
+            s3_mc "I just want a boy to make me smile."
             elladine "Aw, I hope you find him, babes."
 
         "Smart and mature":
@@ -296,7 +312,8 @@ label s3e1p1:
             elladine "Aw, I hope you find him, babes."
 
         "Whatever, as long as they're hot":
-            s3_mc cheeky "Personality will never be as important as looks for me."
+            # s3_mc cheeky "Personality will never be as important as looks for me."
+            s3_mc "Personality will never be as important as looks for me."
             elladine "Ha, lucky for you!"
 
     elladine "We won't have much time to chat before we choose, so we'll mostly be going off looks."
@@ -309,8 +326,10 @@ label s3e1p1:
     menu:
         thought "Am I going to need the condoms?"
         "I'm not planning to have sex in here":
-            s3_mc neutral "Don't get me wrong, I love having sex...but not on TV!"
-            s3_mc blush "I don't want all my family and friends to see me!"
+            # s3_mc neutral "Don't get me wrong, I love having sex...but not on TV!"
+            # s3_mc blush "I don't want all my family and friends to see me!"
+            s3_mc "Don't get me wrong, I love having sex...but not on TV!"
+            s3_mc "I don't want all my family and friends to see me!"
             elladine @ blush "Good point."
 
         "I'll take one now, just in case":
@@ -347,11 +366,11 @@ label s3e1p1:
     menu:
         thought "These beds are really comfy..."
         "Perfect for snuggling":
-						show s3_mc_image smile
+            # show s3_mc_image smile
             thought "I can't wait till find someone to cuddle up to."
         
         "Perfect for doing bits":
-						show s3_mc_image cheeky
+            # show s3_mc_image cheeky
             thought "I'm gonna have so much fun, the whole Villa will shake."
         
         "Maybe I'll take a nap...":
@@ -362,7 +381,7 @@ label s3e1p1:
             "You drift off for a few minutes, but then..."
 
     "Your phone beeps."
-		show s3_mc_image surprised
+    # show s3_mc_image surprised
     thought "Wait, is it my turn already?"
 
     text "[s3_name], come down to the lawn and couple up! The boys are waiting..."
@@ -404,34 +423,34 @@ label s3e1p1:
     menu:
         thought "Bill says I'm a bit of him..."
         "Smile politely":
-						show s3_mc_image smile
+            # show s3_mc_image smile
             "You smile at Bill, trying not to give too much away."
             "I'm definitely in there."
         
         "Wink at him":
             $ s3_mc.like("Bill")
-						show s3_mc_image cheeky
+            # show s3_mc_image cheeky
             show bill smile
             "You shoot a wink in Bill's direction and his face lights up."
         
         "Roll your eyes":
             $ s3_mc.dislike("Bill")
             show bill sad
-						show s3_mc_image serious
+            # show s3_mc_image serious
             "You roll your eyes at Bill and his face falls."
 
     show bill at npc_exit
     pause 0.3
     $ renpy.hide("bill")
 
-		show s3_mc_image neutral
+    # show s3_mc_image neutral
     "You look down the line to the next boy."
 
 # worked on phone til here (hope the indentation is ok)
 
     show camilo at npc_center
     camilo @ blush "Hola chica. Welcome to the Villa. Amazing, isn't it?"
-    s3_mc " Is it?"
+    s3_mc "Is it?"
     camilo smile "Well, it is now you're here."
 
     # solo portrait shot of camilo

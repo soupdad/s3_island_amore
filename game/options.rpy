@@ -192,9 +192,20 @@ init python:
     build.classify('game/saves', None)
     build.classify('game/cache', None)
     build.classify('game/working_on.rpy', None)
+    build.classify('game/e7e8.rpy', None)
 
     build.classify('game/images/npcs/s3_faces_horizontal.png', None)
     build.classify('game/images/npcs/s3_faces_vertical.png', None)
+
+    # Android Files and Extras (Adjust as needed)
+    build.classify('android-downloading.jpg', None)
+    build.classify('android-icon_background.png', None)
+    build.classify('android-icon_foreground.png', None)
+    build.classify('android-presplash.jpg', None)
+    build.classify('android.json', None)
+    build.classify('android.keystore', None)
+    build.classify('bundle.keystore', None)
+    build.classify('project.json', None)
 
     ## To archive files, classify them as 'archive'.
 

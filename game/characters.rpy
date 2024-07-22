@@ -4,6 +4,17 @@
 init python:
     on_screen = []
 
+    def new_scene():
+        '''
+        To be ran after new scene is established to reset the characters and keep flow.
+        '''
+        global on_screen
+
+        on_screen = []
+        renpy.show(character, [npc_center])
+
+
+
     def pronouns(name):
         '''
         Saves the correct pronouns to generic variables depending on the NPC.
@@ -297,8 +308,6 @@ define pjs = ["1", "2", "3", "4", "5"]
 default s3_mc_outfit_type = "swim_bikini"
 default s3_mc_outfit = swim[0]
 
-default 
-
 layeredimage s3_mc_image:
     always:
         "mc/hair_back/LI3_player_hair_hairstyle[hair]_[hair_color]_hair-back.png"
@@ -308,6 +317,26 @@ layeredimage s3_mc_image:
         
     always:
         "mc/face/face_bg/LI3_player_body_head_[body]_head.png"
+
+    # group face auto:
+    #     attribute neutral default:
+    #         "npcs/aj/aj-face-neutral.png"
+    #     attribute angry:
+    #         "npcs/aj/aj-face-angry.png"
+    #     attribute blush:
+    #         "npcs/aj/aj-face-blush.png"
+    #     attribute cheeky:
+    #         "npcs/aj/aj-face-cheeky.png"
+    #     attribute smile:
+    #         "npcs/aj/aj-face-smile.png"
+    #     attribute sad:
+    #         "npcs/aj/aj-face-sad.png"
+    #     attribute serious:
+    #         "npcs/aj/aj-face-serious.png"
+    #     attribute surprised:
+    #         "npcs/aj/aj-face-surprised.png"
+    #     attribute happy:
+    #         "npcs/aj/aj-face-happy.png"
                 
     always:
         "mc/face/eye_socket/LI3_player_body_head_[body]_neutral-angry-flirty_eye-shade.png"
