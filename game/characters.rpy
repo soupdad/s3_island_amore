@@ -11,9 +11,7 @@ init python:
         global on_screen
 
         on_screen = []
-        renpy.show(character, [npc_center])
-
-
+        renpy.show("s3_mc_image", [mc_left])
 
     def pronouns(name):
         '''
@@ -308,53 +306,112 @@ define pjs = ["1", "2", "3", "4", "5"]
 default s3_mc_outfit_type = "swim_bikini"
 default s3_mc_outfit = swim[0]
 
+default s3_mc_past_outfits = []
+
 layeredimage s3_mc_image:
     always:
         "mc/hair_back/LI3_player_hair_hairstyle[hair]_[hair_color]_hair-back.png"
         
     always:
         "mc/body/LI3_player_body_body_[body]_body.png"
-        
-    always:
-        "mc/face/face_bg/LI3_player_body_head_[body]_head.png"
 
-    # group face auto:
-    #     attribute neutral default:
-    #         "npcs/aj/aj-face-neutral.png"
-    #     attribute angry:
-    #         "npcs/aj/aj-face-angry.png"
-    #     attribute blush:
-    #         "npcs/aj/aj-face-blush.png"
-    #     attribute cheeky:
-    #         "npcs/aj/aj-face-cheeky.png"
-    #     attribute smile:
-    #         "npcs/aj/aj-face-smile.png"
-    #     attribute sad:
-    #         "npcs/aj/aj-face-sad.png"
-    #     attribute serious:
-    #         "npcs/aj/aj-face-serious.png"
-    #     attribute surprised:
-    #         "npcs/aj/aj-face-surprised.png"
-    #     attribute happy:
-    #         "npcs/aj/aj-face-happy.png"
-                
-    always:
-        "mc/face/eye_socket/LI3_player_body_head_[body]_neutral-angry-flirty_eye-shade.png"
-                
-    always:
-        "mc/face/eyebrows/LI3_player_brows_brows[eye_brow]_white_neutral_brow.png"
-                
-    always:
-        "mc/face/eyes/LI3_player_eyes_eyes[eye]_[eye_color]_neutral_eyes.png"
-                
-    always:
-        "mc/face/nose/LI3_player_nose_nose[nose]_[body]_neutral_nose.png"
-                
-    always:
-        "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color_other]_neutral_mouth.png"
-                
-    always:
-        "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color]_neutral_mouth.png"
+    group face auto:
+        attribute neutral default:
+            "mc/face/face_bg/LI3_player_body_head_[body]_head.png"
+        attribute angry:
+            "mc/face/face_bg/LI3_player_body_head_[body]_head.png"
+        attribute cheeky:
+            "mc/face/face_bg/LI3_player_body_head_[body]_head.png"
+        attribute sad:
+            "mc/face/face_bg/LI3_player_body_head_[body]_head.png"
+        attribute surprised:
+            "mc/face/face_bg/LI3_player_body_head_[body]_surprised_chin.png"
+        attribute happy:
+            "mc/face/face_bg/LI3_player_body_head_[body]_head.png"
+
+    group eye_socket auto:
+        attribute neutral default:
+            "mc/face/eye_socket/LI3_player_body_head_[body]_neutral-angry-flirty_eye-shade.png"
+        attribute angry:
+            "mc/face/eye_socket/LI3_player_body_head_[body]_neutral-angry-flirty_eye-shade.png"
+        attribute cheeky:
+            "mc/face/eye_socket/LI3_player_body_head_[body]_neutral-angry-flirty_eye-shade.png"
+        attribute sad:
+            "mc/face/eye_socket/LI3_player_body_head_[body]_happy-sad_eye-shade.png"
+        attribute surprised:
+            "mc/face/eye_socket/LI3_player_body_head_[body]_surprised_eye-shade.png"
+        attribute happy:
+            "mc/face/eye_socket/LI3_player_body_head_[body]_happy-sad_eye-shade.png"
+
+    group eyebrows auto:
+        attribute neutral default:
+            "mc/face/eyebrows/LI3_player_brows_brows[eye_brow]_white_neutral_brow.png"
+        attribute angry:
+            "mc/face/eyebrows/LI3_player_brows_brows[eye_brow]_white_angry_brow.png"
+        attribute cheeky:
+            "mc/face/eyebrows/LI3_player_brows_brows[eye_brow]_white_flirty_brow.png"
+        attribute sad:
+            "mc/face/eyebrows/LI3_player_brows_brows[eye_brow]_white_sad_brow.png"
+        attribute surprised:
+            "mc/face/eyebrows/LI3_player_brows_brows[eye_brow]_white_surprised_brow.png"
+        attribute happy:
+            "mc/face/eyebrows/LI3_player_brows_brows[eye_brow]_white_happy_brow.png"
+
+    group eyes auto:
+        attribute neutral default:
+            "mc/face/eyes/LI3_player_eyes_eyes[eye]_[eye_color]_neutral_eyes.png"
+        attribute angry:
+            "mc/face/eyes/LI3_player_eyes_eyes[eye]_[eye_color]_angry_eyes.png"
+        attribute cheeky:
+            "mc/face/eyes/LI3_player_eyes_eyes[eye]_[eye_color]_flirty_eyes.png"
+        attribute sad:
+            "mc/face/eyes/LI3_player_eyes_eyes[eye]_[eye_color]_sad_eyes.png"
+        attribute surprised:
+            "mc/face/eyes/LI3_player_eyes_eyes[eye]_[eye_color]_surprised_eyes.png"
+        attribute happy:
+            "mc/face/eyes/LI3_player_eyes_eyes[eye]_[eye_color]_happy_eyes.png"
+
+    group nose auto:
+        attribute neutral default:
+            "mc/face/nose/LI3_player_nose_nose[nose]_[body]_neutral_nose.png"
+        attribute angry:
+            "mc/face/nose/LI3_player_nose_nose[nose]_[body]_angry_nose.png"
+        attribute cheeky:
+            "mc/face/nose/LI3_player_nose_nose[nose]_[body]_neutral_nose.png"
+        attribute sad:
+            "mc/face/nose/LI3_player_nose_nose[nose]_[body]_neutral_nose.png"
+        attribute surprised:
+            "mc/face/nose/LI3_player_nose_nose[nose]_[body]_neutral_nose.png"
+        attribute happy:
+            "mc/face/nose/LI3_player_nose_nose[nose]_[body]_neutral_nose.png"
+    
+    group other_mouth auto:
+        attribute neutral default:
+            "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color_other]_neutral_mouth.png"
+        attribute angry:
+            "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color_other]_angry_mouth.png"
+        attribute cheeky:
+            "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color_other]_flirty_mouth.png"
+        attribute sad:
+            "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color_other]_sad_mouth.png"
+        attribute surprised:
+            "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color_other]_surprised_mouth.png"
+        attribute happy:
+            "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color_other]_happy_mouth.png"
+
+    group mouth auto:
+        attribute neutral default:
+            "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color]_neutral_mouth.png"
+        attribute angry:
+            "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color]_angry_mouth.png"
+        attribute cheeky:
+            "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color]_flirty_mouth.png"
+        attribute sad:
+            "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color]_sad_mouth.png"
+        attribute surprised:
+            "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color]_surprised_mouth.png"
+        attribute happy:
+            "mc/face/mouth/LI3_player_mouth_mouth[mouth]_[mouth_color]_happy_mouth.png"
 
     always:
         "mc/clothes/LI3_player_[s3_mc_outfit_type][s3_mc_outfit]_layer1.png"

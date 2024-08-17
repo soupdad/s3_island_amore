@@ -296,7 +296,7 @@ label s3e7p2_lawn:
         thought "Should I pretend to check out the weird smell with Bill?"
         "Yeah, sure":
             $ s3e7p2_bill_talk = True
-            call s3e7p2_bill_talk
+            call s3e7p2_bill_talk from _call_s3e7p2_bill_talk
         "Um... no you're alright":
             s3_mc "What are you going on about?"
             "He winks at you and whispers."
@@ -1539,7 +1539,7 @@ label s3e7p3:
         thought "Should I offer to help pack their bags, so we can spend a little more time together?"
         "Yes, I want to hang out with them one last time":
             $ s3e7p3_help_pack = True
-            call s3e7p3_help_pack
+            call s3e7p3_help_pack from _call_s3e7p3_help_pack
         "Nah, I hate packing suitcases...":
             thought "I really, really hate packing bags"
             thought "There's no way I'm doing it."
@@ -2435,7 +2435,7 @@ label s3e8p1:
     thought "I should get ready for the day."
     thought "To the dressing room!"
 
-    scene s3_dressing-room with dissolve
+    scene s3-dressing-room with dissolve
     $ on_screen = []
 
     "You walk into the dressing room and find [s3e7p3_stay_f] plucking her eyebrows."
@@ -2880,7 +2880,7 @@ label s3e8p1:
             s3_mc "Sure, AJ."
             aj "Great! Let's go."
             $ s3e8p1_aj_chat = True
-            call s3e8p1_aj_chat
+            call s3e8p1_aj_chat from _call_s3e8p1_aj_chat
         "No thanks ":
             aj "Aw, OK."
 

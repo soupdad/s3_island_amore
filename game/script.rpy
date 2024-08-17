@@ -124,49 +124,56 @@ label start:
     # $ s3_mc.current_partner = "AJ"
     # $ s3_mc.past_partners = ["Harry", "AJ"]
 
-    menu:
-        "Want to start a new game at Day 1 or play with the character customizer?"
-        "Start New Game":
-            jump s3e1p1
-        "Character Look Customizer":
-            $ randomize_style("look")
-            call screen cust_body
-        "Character Outfit Customizer":
-            $ randomize_style("look")
-            menu:
-                "What's the style?"
-                "Bathing Suits":
-                    $ randomize_style("clothes", "swim")
-                    call screen cust_outfit("swim")
-                "Evening Wear":
-                    $ randomize_style("clothes", "evening")
-                    call screen cust_outfit("evening")
-                "Pjs":
-                    $ randomize_style("clothes", "pjs")
-                    call screen cust_outfit("pjs")
+    jump s3e1p1
 
+    # menu:
+    #     "Want to start a new game at Day 1 or play with the character customizer?"
+    #     "Start New Game":
+    #         $ randomize_style("look")
+    #         $ randomize_style("clothes", "swim")
+    #         jump s3e1p1
+    #     "Character Look Customizer":
+    #         $ randomize_style("look")
+    #         call screen cust_body
+    #     "Character Outfit Customizer":
+    #         $ randomize_style("look")
+    #         menu:
+    #             "What's the style?"
+    #             "Bathing Suits":
+    #                 $ randomize_style("clothes", "swim")
+    #                 call screen cust_outfit("swim")
+    #             "Evening Wear":
+    #                 $ randomize_style("clothes", "evening")
+    #                 call screen cust_outfit("evening")
+    #             "Pjs":
+    #                 $ randomize_style("clothes", "pjs")
+    #                 call screen cust_outfit("pjs")
 
     return
 
 label cust_confirm:
     # Show character middle of screen
-    show s3_mc_image at mc_center
+    if s3_show_character:
+        show s3_mc_image at mc_center
+
     menu:
         "Is this how I want to look?"
         "Yes, let's go!":
-            pass
+            $ s3_show_cust_icons = True
         "No, I want to change.":
-            call screen cust_body()
+            call customize_character from _call_customize_character_1
 
     return
 
 label cust_confirm_outfit:
-    show s3_mc_image at mc_center
+    if s3_show_character:
+        show s3_mc_image at mc_center
+
     menu:
         "Is this how I want to look?"
         "Yes, let's go!":
-            pass
+            $ s3_show_cust_icons = True
         "No, I want to change.":
-            call customize_outfit
+            call customize_outfit from _call_customize_outfit_12
 
     return

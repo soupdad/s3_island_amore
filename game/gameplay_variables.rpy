@@ -9,6 +9,8 @@ define config.autosave_on_quit = True
 # Episode 6 Part 3 == ["Yasmin", "Tai", "Ciaran"]
 
 default s3_hints = False
+default s3_show_cust_icons = True
+default s3_show_character = False
 define s3_3rd_girl_options = {"Bill":"Miki", "Camilo":"Iona", "Harry":"Genevieve", "AJ":"Seb"}
 default s3_3rd_girl = ""
 default s3_character_profile = ""

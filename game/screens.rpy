@@ -257,6 +257,12 @@ screen quick_menu():
             textbutton _("Q.Save") action QuickSave()
             textbutton _("Q.Load") action QuickLoad()
             textbutton _("Prefs") action ShowMenu('preferences')
+        
+        if s3_show_cust_icons:
+            imagebutton idle "customizer-icons/change_look_icon.png" align(0.94, 0.78) action Call("customize_character") at hover_zoom
+            imagebutton idle "customizer-icons/change_clothes_icon.png" align(0.94, 0.9) action Call("customize_outfit") at hover_zoom
+
+
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -1618,7 +1624,7 @@ style slider_slider:
 screen cust_body():
     image "bgs/sand.png"
     add "s3_mc_image" zoom(1.5) align(0.6, 0)
-    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Jump("cust_confirm") at hover_zoom
+    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action [ToggleScreen("cust_body"), Jump("cust_confirm")] at hover_zoom
     # Randomize Button (just don't have the image for it to show it is a randomize button, and am too lazy to do it rn lol)
     # imagebutton idle "customizer-icons/done.png" align(0.1, 0.5) action Confirm("Are you sure you want to randomize your look?", Function(randomize_style, part="look")) at hover_zoom
 
@@ -1635,7 +1641,7 @@ screen cust_body():
 screen cust_eyes():
     image "bgs/sand.png"
     add "s3_mc_image" zoom(1.5) align(0.6, 0)
-    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Jump("cust_confirm") at hover_zoom
+    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action [ToggleScreen("cust_eyes"), Jump("cust_confirm")] at hover_zoom
     # Randomize Button (just don't have the image for it to show it is a randomize button, and am too lazy to do it rn lol)
     # imagebutton idle "customizer-icons/done.png" align(0.1, 0.5) action Confirm("Are you sure you want to randomize your look?", Function(randomize_style, part="look")) at hover_zoom
 
@@ -1657,7 +1663,7 @@ screen cust_eyes():
 screen cust_nose_mouth():
     image "bgs/sand.png"
     add "s3_mc_image" zoom(1.5) align(0.6, 0)
-    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Jump("cust_confirm") at hover_zoom
+    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action [ToggleScreen("cust_nose_mouth"), Jump("cust_confirm")] at hover_zoom
     # Randomize Button (just don't have the image for it to show it is a randomize button, and am too lazy to do it rn lol)
     # imagebutton idle "customizer-icons/done.png" align(0.1, 0.5) action Confirm("Are you sure you want to randomize your look?", Function(randomize_style, part="look")) at hover_zoom
 
@@ -1677,7 +1683,7 @@ screen cust_nose_mouth():
 screen cust_hair():
     image "bgs/sand.png"
     add "s3_mc_image" zoom(1.5) align(0.6, 0)
-    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Jump("cust_confirm") at hover_zoom
+    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action [ToggleScreen("cust_hair"), Jump("cust_confirm")] at hover_zoom
     # Randomize Button (just don't have the image for it to show it is a randomize button, and am too lazy to do it rn lol)
     # imagebutton idle "customizer-icons/done.png" align(0.1, 0.5) action Confirm("Are you sure you want to randomize your look?", Function(randomize_style, part="look")) at hover_zoom
 
@@ -1698,7 +1704,7 @@ screen cust_hair():
 screen cust_outfit(style):
     image "bgs/sand.png"
     add "s3_mc_image" zoom(.75) align(0.5, 0.8)
-    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action Jump("cust_confirm_outfit") at hover_zoom
+    imagebutton idle "customizer-icons/done.png" align(0.9, 0.8) action [ToggleScreen("cust_outfit"), Jump("cust_confirm_outfit")] at hover_zoom
     # Randomize Button (just don't have the image for it to show it is a randomize button, and am too lazy to do it rn lol)
     # imagebutton idle "customizer-icons/done.png" align(0.1, 0.5) action Confirm("Are you sure you want to randomize your outfit?", Function(randomize_style, part="clothes", style=style)) at hover_zoom
 
@@ -1780,24 +1786,24 @@ screen s3e2p1_select_who_to_talk_to():
         
     if "Bean Bags" not in s3e2p1_visited:
         # elladine and genevieve at s3e2p1_bean_bags
-        imagebutton idle "map_icons/elladine-icon.png" align(0.2, 0.45) action Call("s3e2p1_bean_bags") at map_icon
-        imagebutton idle "map_icons/genevieve-icon.png" align(0.25, 0.45) action Call("s3e2p1_bean_bags") at map_icon
+        imagebutton idle "map_icons/elladine-icon.png" align(0.2, 0.45) action [ToggleScreen("s3e2p1_select_who_to_talk_to"), Jump("s3e2p1_bean_bags")] at map_icon
+        imagebutton idle "map_icons/genevieve-icon.png" align(0.25, 0.45) action [ToggleScreen("s3e2p1_select_who_to_talk_to"), Jump("s3e2p1_bean_bags")] at map_icon
 
     if "Sun Loungers" not in s3e2p1_visited:
         # miki and iona at s3e2p1_sun_loungers
-        imagebutton idle "map_icons/miki-icon.png" align(0.25, 0.8) action Call("s3e2p1_sun_loungers") at map_icon
-        imagebutton idle "map_icons/iona-icon.png" align(0.3, 0.8) action Call("s3e2p1_sun_loungers") at map_icon
+        imagebutton idle "map_icons/miki-icon.png" align(0.25, 0.8) action [ToggleScreen("s3e2p1_select_who_to_talk_to"), Jump("s3e2p1_sun_loungers")] at map_icon
+        imagebutton idle "map_icons/iona-icon.png" align(0.3, 0.8) action [ToggleScreen("s3e2p1_select_who_to_talk_to"), Jump("s3e2p1_sun_loungers")] at map_icon
 
     if "Pool" not in s3e2p1_visited:
         # harry camilo and aj at s3e2p1_pool
-        imagebutton idle "map_icons/harry-icon.png" align(0.65, 0.8) action Call("s3e2p1_pool") at map_icon
-        imagebutton idle "map_icons/camilo-icon.png" align(0.7, 0.8) action Call("s3e2p1_pool") at map_icon
-        imagebutton idle "map_icons/aj-icon.png" align(0.75, 0.8) action Call("s3e2p1_pool") at map_icon
+        imagebutton idle "map_icons/harry-icon.png" align(0.65, 0.8) action [ToggleScreen("s3e2p1_select_who_to_talk_to"), Jump("s3e2p1_pool")] at map_icon
+        imagebutton idle "map_icons/camilo-icon.png" align(0.7, 0.8) action [ToggleScreen("s3e2p1_select_who_to_talk_to"), Jump("s3e2p1_pool")] at map_icon
+        imagebutton idle "map_icons/aj-icon.png" align(0.75, 0.8) action [ToggleScreen("s3e2p1_select_who_to_talk_to"), Jump("s3e2p1_pool")] at map_icon
 
     if "Kitchen" not in s3e2p1_visited:
         # seb and bill at s3e2p1_kitchen
-        imagebutton idle "map_icons/seb-icon.png" align(0.4, 0.4) action Call("s3e2p1_kitchen") at map_icon
-        imagebutton idle "map_icons/bill-icon.png" align(0.45, 0.4) action Call("s3e2p1_kitchen") at map_icon
+        imagebutton idle "map_icons/seb-icon.png" align(0.4, 0.4) action [ToggleScreen("s3e2p1_select_who_to_talk_to"), Jump("s3e2p1_kitchen")] at map_icon
+        imagebutton idle "map_icons/bill-icon.png" align(0.45, 0.4) action [ToggleScreen("s3e2p1_select_who_to_talk_to"), Jump("s3e2p1_kitchen")] at map_icon
 
 '''
     Used in episode 3, part 1.
@@ -1819,19 +1825,19 @@ screen s3e3p1_select_who_to_talk_to():
 
     if "Bean Bags" not in s3e3p1_visited:
         # bill and camilo at beanbags (s3e3p1_bean_bags)
-        imagebutton idle "map_icons/bill-icon.png" align(0.2, 0.45) action Call("s3e3p1_bean_bags") at map_icon
-        imagebutton idle "map_icons/camilo-icon.png" align(0.25, 0.45) action Call("s3e3p1_bean_bags") at map_icon
+        imagebutton idle "map_icons/bill-icon.png" align(0.2, 0.45) action [ToggleScreen("s3e3p1_select_who_to_talk_to"), Jump("s3e3p1_bean_bags")] at map_icon
+        imagebutton idle "map_icons/camilo-icon.png" align(0.25, 0.45) action [ToggleScreen("s3e3p1_select_who_to_talk_to"), Jump("s3e3p1_bean_bags")] at map_icon
 
     if "Gym" not in s3e3p1_visited:
         # AJ and Genevieve at the gym (s3e3p1_gym)
-        imagebutton idle "map_icons/aj-icon.png" align(0.8, 0.7) action Call("s3e3p1_gym") at map_icon
-        imagebutton idle "map_icons/genevieve-icon.png" align(0.85, 0.7) action Call("s3e3p1_gym") at map_icon
+        imagebutton idle "map_icons/aj-icon.png" align(0.8, 0.7) action [ToggleScreen("s3e3p1_select_who_to_talk_to"), Jump("s3e3p1_gym")] at map_icon
+        imagebutton idle "map_icons/genevieve-icon.png" align(0.85, 0.7) action [ToggleScreen("s3e3p1_select_who_to_talk_to"), Jump("s3e3p1_gym")] at map_icon
 
     if "Pool" not in s3e3p1_visited:
         # iona and miki and harry at pool (s3e3p1_pool)
-        imagebutton idle "map_icons/harry-icon.png" align(0.65, 0.8) action Call("s3e3p1_pool") at map_icon
-        imagebutton idle "map_icons/iona-icon.png" align(0.7, 0.8) action Call("s3e3p1_pool") at map_icon
-        imagebutton idle "map_icons/miki-icon.png" align(0.75, 0.8) action Call("s3e3p1_pool") at map_icon
+        imagebutton idle "map_icons/harry-icon.png" align(0.65, 0.8) action [ToggleScreen("s3e3p1_select_who_to_talk_to"), Jump("s3e3p1_pool")] at map_icon
+        imagebutton idle "map_icons/iona-icon.png" align(0.7, 0.8) action [ToggleScreen("s3e3p1_select_who_to_talk_to"), Jump("s3e3p1_pool")] at map_icon
+        imagebutton idle "map_icons/miki-icon.png" align(0.75, 0.8) action [ToggleScreen("s3e3p1_select_who_to_talk_to"), Jump("s3e3p1_pool")] at map_icon
 
 '''
     Used in episode 3, part 2.
@@ -1853,22 +1859,22 @@ screen s3e3p2_select_who_to_talk_to():
         
     if "Bean Bags" not in s3e3p2_visited:
         # s3e3p2_bean_bags aj and seb
-        imagebutton idle "map_icons/aj-icon.png" align(0.2, 0.45) action Call("s3e3p2_bean_bags") at map_icon
-        imagebutton idle "map_icons/seb-icon.png" align(0.25, 0.45) action Call("s3e3p2_bean_bags") at map_icon
+        imagebutton idle "map_icons/aj-icon.png" align(0.2, 0.45) action [ToggleScreen("s3e3p2_select_who_to_talk_to"), Jump("s3e3p2_bean_bags")] at map_icon
+        imagebutton idle "map_icons/seb-icon.png" align(0.25, 0.45) action [ToggleScreen("s3e3p2_select_who_to_talk_to"), Jump("s3e3p2_bean_bags")] at map_icon
 
     if "Lounge" not in s3e3p2_visited:
         # s3e3p2_lounge bill
-        imagebutton idle "map_icons/bill-icon.png" align(0.6, 0.4) action Call("s3e3p2_lounge") at map_icon
+        imagebutton idle "map_icons/bill-icon.png" align(0.6, 0.4) action [ToggleScreen("s3e3p2_select_who_to_talk_to"), Jump("s3e3p2_lounge")] at map_icon
 
     if "Pool" not in s3e3p2_visited:
         # s3e3p2_pool camilo and nicky
-        imagebutton idle "map_icons/nicky-icon.png" align(0.65, 0.8) action Call("s3e3p2_pool") at map_icon
-        imagebutton idle "map_icons/camilo-icon.png" align(0.7, 0.8) action Call("s3e3p2_pool") at map_icon
+        imagebutton idle "map_icons/nicky-icon.png" align(0.65, 0.8) action [ToggleScreen("s3e3p2_select_who_to_talk_to"), Jump("s3e3p2_pool")] at map_icon
+        imagebutton idle "map_icons/camilo-icon.png" align(0.7, 0.8) action [ToggleScreen("s3e3p2_select_who_to_talk_to"), Jump("s3e3p2_pool")] at map_icon
 
     if "Kitchen" not in s3e3p2_visited:
         # s3e3p2_kitchen genevieve and harry
-        imagebutton idle "map_icons/genevieve-icon.png" align(0.4, 0.4) action Call("s3e3p2_kitchen") at map_icon
-        imagebutton idle "map_icons/harry-icon.png" align(0.45, 0.4) action Call("s3e3p2_kitchen") at map_icon
+        imagebutton idle "map_icons/genevieve-icon.png" align(0.4, 0.4) action [ToggleScreen("s3e3p2_select_who_to_talk_to"), Jump("s3e3p2_kitchen")] at map_icon
+        imagebutton idle "map_icons/harry-icon.png" align(0.45, 0.4) action [ToggleScreen("s3e3p2_select_who_to_talk_to"), Jump("s3e3p2_kitchen")] at map_icon
 
 '''
     Used in episode 7, part 2.
@@ -1890,22 +1896,22 @@ screen s3e7p2_select_who_to_talk_to():
         
     if "beanbags" not in s3e7p2_visited:
         # s3e7p2_beanbags Ciaran, Seb and Nicky
-        imagebutton idle "map_icons/ciaran-icon.png" align(0.2, 0.45) action Call("s3e7p2_beanbags") at map_icon
-        imagebutton idle "map_icons/nicky-icon.png" align(0.25, 0.45) action Call("s3e7p2_beanbags") at map_icon
-        imagebutton idle "map_icons/seb-icon.png" align(0.3, 0.45) action Call("s3e7p2_beanbags") at map_icon
+        imagebutton idle "map_icons/ciaran-icon.png" align(0.2, 0.45) action [ToggleScreen("s3e7p2_select_who_to_talk_to"), ("s3e7p2_beanbags")] at map_icon
+        imagebutton idle "map_icons/nicky-icon.png" align(0.25, 0.45) action [ToggleScreen("s3e7p2_select_who_to_talk_to"), ("s3e7p2_beanbags")] at map_icon
+        imagebutton idle "map_icons/seb-icon.png" align(0.3, 0.45) action [ToggleScreen("s3e7p2_select_who_to_talk_to"), ("s3e7p2_beanbags")] at map_icon
 
     if "lawn" not in s3e7p2_visited:
         # s3e7p2_lawn Bill, Iona, Tai
-        imagebutton idle "map_icons/bill-icon.png" align(0.6, 0.7) action Call("s3e7p2_lounge") at map_icon
-        imagebutton idle "map_icons/iona-icon.png" align(0.65, 0.7) action Call("s3e7p2_lounge") at map_icon
-        imagebutton idle "map_icons/tai-icon.png" align(0.7, 0.7) action Call("s3e7p2_lounge") at map_icon
+        imagebutton idle "map_icons/bill-icon.png" align(0.6, 0.7) action [ToggleScreen("s3e7p2_select_who_to_talk_to"), ("s3e7p2_lounge")] at map_icon
+        imagebutton idle "map_icons/iona-icon.png" align(0.65, 0.7) action [ToggleScreen("s3e7p2_select_who_to_talk_to"), ("s3e7p2_lounge")] at map_icon
+        imagebutton idle "map_icons/tai-icon.png" align(0.7, 0.7) action [ToggleScreen("s3e7p2_select_who_to_talk_to"), ("s3e7p2_lounge")] at map_icon
 
     if "pool" not in s3e7p2_visited:
         # s3e7p2_pool aj
-        imagebutton idle "map_icons/aj-icon.png" align(0.7, 0.8) action Call("s3e7p2_pool") at map_icon
+        imagebutton idle "map_icons/aj-icon.png" align(0.7, 0.8) action [ToggleScreen("s3e7p2_select_who_to_talk_to"), ("s3e7p2_pool")] at map_icon
 
     if "kitchen" not in s3e7p2_visited:
         # s3e7p2_kitchen genevieve and harry
-        imagebutton idle "map_icons/genevieve-icon.png" align(0.4, 0.4) action Call("s3e7p2_kitchen") at map_icon
-        imagebutton idle "map_icons/harry-icon.png" align(0.45, 0.4) action Call("s3e7p2_kitchen") at map_icon
+        imagebutton idle "map_icons/genevieve-icon.png" align(0.4, 0.4) action [ToggleScreen("s3e7p2_select_who_to_talk_to"), ("s3e7p2_kitchen")] at map_icon
+        imagebutton idle "map_icons/harry-icon.png" align(0.45, 0.4) action [ToggleScreen("s3e7p2_select_who_to_talk_to"), ("s3e7p2_kitchen")] at map_icon
 

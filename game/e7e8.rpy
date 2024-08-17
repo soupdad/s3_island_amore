@@ -380,7 +380,7 @@ label s3e7p1:
         "Help Camilo in the kitchen (gem choice)":
             $ s3_mc.like("Camilo")
             $ s3e7p1_help_camilo = True
-            call s3e7p1_help_camilo
+            call s3e7p1_help_camilo from _call_s3e7p1_help_camilo
         "Leave him to cook alone":
             s3_mc "I'd rather be waited on hand and foot!"
             camilo "Aww, you don't want to give me a hand?"

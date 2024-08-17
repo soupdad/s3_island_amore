@@ -13,35 +13,24 @@ label s3e3p1:
     "Last night, the boys cooked dinner..."
     "...well, 'cooked' might be an overstatement."
     nicky "I guess-timated."
-    show nicky at npc_exit
-    pause 0.3
-    $ renpy.hide("nicky")
-    $ on_screen = []
+    $ leaving("nicky")
 
     "Come to think of it, 'dinner' might be generous as well..."
     elladine "How's this a fruit salad? It's just watermelon."
-    show elladine at npc_exit
-    pause 0.3
-    $ renpy.hide("elladine")
-    $ on_screen = []
+    $ leaving("elladine")
 
     if s3e2p3_food_fight:
         "Though in the end, most of it ended up on the Islanders..."
 
     "But fear not, Camilo's steaming empanadas saved the day!"
     aj "This is better than sex."
-    show aj at npc_exit
-    pause 0.3
-    $ renpy.hide("aj")
-    $ on_screen = []
+    $ leaving("aj")
 
     "Look out for a surge in empanada-making courses this summer."
     "Coming up!"
     "Elladine shoots for the stars!"
     elladine "Then he took me out to the balcony..."
-    show elladine at npc_exit
-    pause 0.3
-    $ renpy.hide("elladine")
+    $ leaving("elladine")
 
     "Wish I had a balcony."
     "...or a window, for that matter."
@@ -50,7 +39,7 @@ label s3e3p1:
     "Thanks for asking."
 
     scene s3-bedroom-day with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "The lights are on in the bedroom as you awake."
     "You stretch out across the bed."
@@ -82,23 +71,25 @@ label s3e3p1:
             thought "I can't afford to waste a single moment."
             thought "Time to get cracking!"
 
-    $ outfit = "swim"
-
     # ADD BACK ONE MC HAS IMAGES
-    # thought "Hmm, let's see. What should I wear?"
-    # # MC outfit change to swimwear
-    # thought "What out, everyone. Here I come!"
+    thought "Hmm, let's see. What should I wear?"
+    # MC outfit change to swimwear
+    
+    $ outfit = "swim"
+    call customize_outfit from _call_customize_outfit_6
+
+    thought "Watch out everyone. Here I come!"
     # thought "This outfit already has a proven track record of turning heads."
     # s3_mc "It's perf."
     # thought "I guess I'll have to rely on my sparkling personality."
 
     scene s3-kitchen-day with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "Nicky, Seb, Genevieve and Elladine are hanging out in the kitchen."
     # ADD BACK ONCE MC HAS IMAGES
-    # elladine "Wow, [s3_name], that outfit really brings out your...everything."
-    elladine "Hi [s3_name]."
+    elladine "Wow, [s3_name], that outfit really brings out your...everything."
+    # elladine "Hi [s3_name]."
     # elladine "Have I told you that I love that outfit?"
     # elladine "Because I do."
     # elladine "I think you could probably wear it every day and get away with it."
@@ -145,7 +136,7 @@ label s3e3p1:
     nicky "He's this singer. He's well cheesy."
     nicky "When's the next recoupling?"
     "Elladine gives him a playful shove."
-    genevieve "Oh, I love him! He's got that song, 'You Eyes and Mine'."
+    genevieve "Oh, I love him! He's got that song, 'Your Eyes and Mine'."
     genevieve "It's really romantic."
     seb "It's pants. I can see why Elladine was embarrassed."
     elladine "Yeah, I don't even fancy him!"
@@ -206,6 +197,7 @@ label s3e3p1:
                     pass         
                     
     jump s3e3p1_ending
+    return
 
     label s3e3p1_dream:
         # SUB-CHOICE
@@ -239,7 +231,7 @@ label s3e3p1:
 # Map Choice "AJ and Genevieve at the gym"
 label s3e3p1_gym:
     scene s3-gym-day
-    $ on_screen = []
+    $ new_scene()
     $ s3e3p1_visited.append("Gym")
 
     "AJ and Genevieve are in the gym. Genevieve has a serious look on her face. AJ is doing a cross-body shoulder stretch."
@@ -415,7 +407,7 @@ label s3e3p1_gym:
 # Map Choice "Bill and Camilo at beanbags (s3e3p1_bean_bags)"
 label s3e3p1_bean_bags:
     scene s3-bean-bags-day with dissolve
-    $ on_screen = []
+    $ new_scene()
     $ s3e3p1_visited.append("Bean Bags")
 
     "Bill and Camilo are in the middle of a heated discussion when you arrive. You plop down on a beanbag between them."
@@ -542,7 +534,7 @@ label s3e3p1_bean_bags:
 # iona and miki at pool (s3e3p1_pool)
 label s3e3p1_pool:
     scene s3-poolside-day with dissolve
-    $ on_screen = []
+    $ new_scene()
     $ s3e3p1_visited.append("Pool")
 
     "Iona and Miki are having a swim. Harry is lounging by the pool."
@@ -715,9 +707,11 @@ label s3e3p1_pool:
         miki "Ooh, me too."
         "The three of you get out of the pool. Miki and Iona head off to the Villa."
 
+    return
+
 label s3e3p1_ending:
     scene s3-kitchen-day with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "You find Genevieve in the kitchen."
     "The air sizzles with the sound and scent of frying onions."
@@ -752,12 +746,8 @@ label s3e3p1_ending:
     genevieve "Either way, keep an eye on it, yeah?"
     harry "Sure thing."
     "Genevieve heads inside."
-    show genevieve at npc_exit
-    pause 0.3
-    $ renpy.hide("genevieve")
-    $ on_screen.remove("genevieve")
-
-    show harry at move_center
+    $ leaving("genevieve")
+    
     "Harry turns to you with a glum look on his face."
     s3_mc "What's up?"
     harry "I didn't want to say it to Viv, but I really hate coriander."
@@ -1056,9 +1046,6 @@ label s3e3p1_ending:
     bill "Hello?"
     "Until next time!"
 
-    scene sand with dissolve
-    $ on_screen = []
-
     jump s3e3p2
 
     return
@@ -1076,18 +1063,12 @@ label s3e3p2:
     "Previously, the Islanders discussed sexy dreams..."
     
     elladine "I don't remember the details."
-    show elladine at npc_exit
-    pause 0.3
-    $ renpy.hide("elladine")
-    $ on_screen = []
+    $ leaving("elladine")
 
     "And [s3_name], Genevieve, and AJ got physical..."
     "In an arm wrestling competition!"
     aj "Wanna try your luck?"
-    show aj at npc_exit
-    pause 0.3
-    $ renpy.hide("aj")
-    $ on_screen = []
+    $ leaving("aj")
 
     "You're on, AJ."
     "I've been single forever."
@@ -1095,17 +1076,11 @@ label s3e3p2:
     "Coming up!"
     "The Islanders get stuck in a game of Truth and Dare."
     camilo "What are you doing down there?"
-    show camilo at npc_exit
-    pause 0.3
-    $ renpy.hide("camilo")
-    $ on_screen = []
+    $ leaving("camilo")
 
     "And Bill is looking a little pail..."
     show bill bucket at npc_center
-    bill "Help me!"
-    show bill at npc_exit
-    pause 0.3
-    $ renpy.hide("bill")
+    $ leaving("bill")
 
     "Sorry Bill, can't help you there."
     "The last time I did a dare..."
@@ -1116,7 +1091,7 @@ label s3e3p2:
     "I wonder if I'll ever escape."
 
     scene s3-sun-loungers-day with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "You shield your eyes from the hot summer sun as the other Islanders hurry over."
     "Nicky is sipping from his water bottle."
@@ -1250,10 +1225,11 @@ label s3e3p2:
         call screen s3e3p2_select_who_to_talk_to
 
     jump s3e3p2_ending
+    return
 
 label s3e3p2_lounge:
     scene s3-lounge as dissolve
-    $ on_screen = []
+    $ new_scene()
     $ s3e3p2_dare_count += 1
     $ s3e3p2_visited.append("Lounge")
 
@@ -1383,7 +1359,7 @@ label s3e3p2_lounge:
     
 label s3e3p2_bean_bags:
     scene s3-bean-bags-day with dissolve
-    $ on_screen = []
+    $ new_scene()
     $ s3e3p2_dare_count += 1
     $ s3e3p2_visited.append("Bean Bags")
 
@@ -1548,7 +1524,7 @@ label s3e3p2_bean_bags:
 
 label s3e3p2_pool:
     scene s3-poolside-day with dissolve
-    $ on_screen = []
+    $ new_scene()
     $ s3e3p2_dare_count += 1
     $ s3e3p2_visited.append("Pool")
 
@@ -1708,7 +1684,7 @@ label s3e3p2_pool:
 
 label s3e3p2_kitchen:
     scene s3-kitchen-day with dissolve
-    $ on_screen = []
+    $ new_scene()
     $ s3e3p2_dare_count += 1
     $ s3e3p2_visited.append("Kitchen")
 
@@ -1887,7 +1863,7 @@ label s3e3p2_ending:
     "You head over to the lawn."
 
     scene s3-lawn-day with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "AJ and Seb are still tied together."
     "She giggles."
@@ -2243,18 +2219,13 @@ label s3e3p2_ending:
 
     "Coming up..."
     aj "Alright, lads! Excited for this?"
-    show aj at npc_exit
-    pause 0.3
-    $ renpy.hide("aj")
+    $ leaving("aj")
 
     "Excited is an understatement."
     "This is a recoupling, people!"
     
-    show elladine at npc_center
     elladine "And the most exciting part of the recoupling is what comes after."
-    show elladine at npc_exit
-    pause 0.3
-    $ renpy.hide("elladine")
+    $ leaving("elladine")
     "Don't worry, Elladine. I'll make sure someone stocks up the fruit bowl."
 
     jump s3e3p3
@@ -2276,11 +2247,9 @@ label s3e3p3:
     "The Islanders played a bit of Truth and Dare, and it all went as smoothly as you'd imagine."
     bill "I was starting to feel dizzy."
     nicky "Don't want to smudge my lippy any more, mate."
-    show bill at npc_exit
-    show nicky at npc_exit
-    pause 0.3
-    $ renpy.hide("bill")
-    $ renpy.hide("nicky")
+    $ leaving("bill")
+    $ leaving("nicky")
+
     "I play Truth and Dare every time I make a cup of tea."
     "The Dare is to put milk in it, even though that bottle's been in there for weeks."
     "The Truth is that I need to make some changes in my life."
@@ -2306,7 +2275,7 @@ label s3e3p3:
     "There's an air of nervous excitement in the dressing room as the girls get ready for the recoupling."
 
     scene s3-dressing-room with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     thought "This recoupling is a big deal."
 
@@ -2364,14 +2333,11 @@ label s3e3p3:
     else:
         elladine "That sounds so nice, babes."
 
-    show genevieve at npc_exit
-    show elladine at npc_exit
-    pause .3
-    $ renpy.hide("genevieve")
-    $ renpy.hide("elladine")
-    $ on_screen = []
+    $ leaving("genevieve")
+    $ leaving("elladine")
     
     $ outfit = "evening"
+    call customize_outfit from _call_customize_outfit_7
 
     "Iona mists herself with one last squirt of strawberry-scented perfume."
     iona "Right, is everyone ready?"
@@ -2380,7 +2346,7 @@ label s3e3p3:
     "The six of you head out of the dressing room and towards the firepit."
 
     scene s3-firepit-night with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     if s3_mc.bff == "Genevieve" or s3_mc.bff == "Elladine":
         "[s3_mc.bff] gives your hand a supportive squeeze as you."
@@ -2732,7 +2698,7 @@ label s3e3p3:
             s3_mc "Fine..."
 
     scene s3-poolside-night with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     if s3e3p3_go_alone:
         $ s3_mc.like(s3e3p3_lonely_one)
@@ -3080,7 +3046,7 @@ label s3e3p3:
                 bill "Yes and no."
                 s3_mc "What does that mean?"
                 bill "I'm always one-hundred-percent genuine with myself and the things I believe in."
-                bill "I don't mind speaking what I think, but also don't give a monkeys if people don't agree."
+                bill "I don't mind speaking what I think, but also don't give a monkeys' ass if people don't agree."
                 bill "They can be wrong if they want to."
                 s3_mc "But I've seen you arguing with people. The other night you and Camilo were debating smoked versus unsmoked bacon until two in the morning."
                 bill "How could he even think unsmoked is better?"
@@ -3520,10 +3486,12 @@ label s3e3p3:
             "Together you head back towards the Villa."
             jump s3e3p3_ending
 
+    return
+
     
 label s3e3p3_roof_sex:
     scene s3-roof-night with dissolve
-    $ on_screen = []
+    $ new_scene()
     $ s3_mc.like_mc[s3_mc.current_partner] += 3
     $ pronouns(s3_mc.current_partner)
     $ s3e3p3_roof_sex = True
@@ -3858,16 +3826,17 @@ label s3e3p3_roof_sex:
     "Together, you go back down the steps into the Villa."
 
     jump s3e3p3_ending
+    return
 
 label s3e3p3_ending:
     scene s3-bedroom-night with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "When you arrive in the bedroom, the other Islanders are already getting into bed."
     thought "Hmm, I should probably get into some comfier clothes..."
 
     scene s3-dressing-room with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     # Add back one MC has images in game
     # "MC outfit change to sleepwear"
@@ -3875,12 +3844,14 @@ label s3e3p3_ending:
     # "You look so great in those." -> if one of current partner fav outfits, else nothing
 
     "You get changed into your pjs."
+    
+    $ outfit = "pjs"
+    call customize_outfit from _call_customize_outfit_8
+    
     thought "That's better."
 
-    $ outfit = "pjs"
-
     scene s3-bedroom-night with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     if s3_mc.current_partner == "Bill":
         bill "Hey, babe."
@@ -3910,23 +3881,13 @@ label s3e3p3_ending:
     "[s3_mc.current_partner] hurries off towards the bathroom."
 
     if s3_mc.current_partner == "Bill":
-        show bill at npc_exit
-        pause .3
-        $ renpy.hide("bill")
+        $ leaving("bill")
     elif s3_mc.current_partner == "Camilo":
-        show camilo at npc_exit
-        pause .3
-        $ renpy.hide("camilo")
+        $ leaving("camilo")
     elif s3_mc.current_partner == "Harry":
-        show harry at npc_exit
-        pause .3
-        $ renpy.hide("harry")
+        $ leaving("harry")
     elif s3_mc.current_partner == "AJ":
-        show aj at npc_exit
-        pause .3
-        $ renpy.hide("aj")
-
-    $ on_screen = []
+        $ leaving("aj")
 
     $ pronouns(s3_mc.bff)
     "[s3_mc.bff] flashes you a sly smile."
@@ -4064,37 +4025,25 @@ label s3e3p3_ending:
 
     if s3_mc.bff == "Elladine":
         elladine "Nothing..."
-        show elladine at npc_exit
-        pause .3
-        $ renpy.hide("elladine")
-        $ on_screen.remove("elladine")
+        $ leaving("elladine")
     elif s3_mc.bff == "Genevieve":
         genevieve "Nothing..."
-        show genevieve at npc_exit
-        pause .3
-        $ renpy.hide("genevieve")
-        $ on_screen.remove("genevieve")
+        $ leaving("genevieve")
     elif s3_mc.bff == "Nicky":
         nicky "Nothing..."
-        show nicky at npc_exit
-        pause .3
-        $ renpy.hide("nicky")
-        $ on_screen.remove("nicky")
+        $ leaving("nicky")
     elif s3_mc.bff == "Seb":
         seb "Nothing..."
-        show seb at npc_exit
-        pause .3
-        $ renpy.hide("seb")
-        $ on_screen.remove("seb")
+        $ leaving("seb")
 
-    if s3_mc.current_partner == "Bill":
-        show bill at move_center
-    elif s3_mc.current_partner == "Camilo":
-        show camilo at move_center
-    elif s3_mc.current_partner == "Harry":
-        show harry at move_center
-    elif s3_mc.current_partner == "AJ":
-        show aj at move_center
+    # if s3_mc.current_partner == "Bill":
+    #     show bill at move_center
+    # elif s3_mc.current_partner == "Camilo":
+    #     show camilo at move_center
+    # elif s3_mc.current_partner == "Harry":
+    #     show harry at move_center
+    # elif s3_mc.current_partner == "AJ":
+    #     show aj at move_center
 
     "[s3_mc.current_partner] cheerfully climbs onto your bed. You settle in next to [him_her]."
 
@@ -4230,6 +4179,7 @@ label s3e3p3_ending:
     "Will [s3_name] and [s3_mc.current_partner]'s relationship be strong enough to survive?"
 
     jump s3e4p1
+    return
 
 #########################################################################
 ## Episode 4, Part 1
@@ -4260,31 +4210,19 @@ label s3e4p1:
     if s3_mc.current_partner == "Bill":
         miki "I really didn't want to cause a scene."
         miki "I don't want you to think I'm in a mood with you or anything. I'm not."
-        show miki at npc_exit
-        pause .3
-        $ renpy.hide("miki")
-        $ on_screen = []
+        $ leaving("miki")
     elif s3_mc.current_partner == "Camilo":
         iona "I really didn't want to cause a scene."
         iona "I don't want you to think I'm in a mood with you or anything. I'm not."
-        show iona at npc_exit
-        pause .3
-        $ renpy.hide("iona")
-        $ on_screen = []
+        $ leaving("iona")
     elif s3_mc.current_partner == "Harry":
         genevieve "I really didn't want to cause a scene."
         genevieve "I don't want you to think I'm in a mood with you or anything. I'm not."
-        show genevieve at npc_exit
-        pause .3
-        $ renpy.hide("genevieve")
-        $ on_screen = []
+        $ leaving("genevieve")
     elif s3_mc.current_partner == "AJ":
         seb "I really didn't want to cause a scene."
         seb "I don't want you to think I'm in a mood with you or anything. I'm not."
-        show aj at npc_exit
-        pause .3
-        $ renpy.hide("aj")
-        $ on_screen = []
+        $ leaving("seb")
 
     "Wait, what? I must have tuned into the wrong channel. It looked like [s3e3p3_lonely_one] was handling it well."
     "Coming up..."
@@ -4292,16 +4230,14 @@ label s3e4p1:
 
     $ outfit = "swim"
     bill "What are you doing, mate?"
-    show bill at npc_exit
-    pause .3
-    $ renpy.hide("bill")
+    $ leaving("bill")
 
     "And there was me thinking it was just going to be a nice relaxing day by the pool."
 
     $ pronouns(s3_mc.current_partner)
 
     scene s3-bedroom-day with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     $ outfit = "pjs"
 
@@ -4679,7 +4615,7 @@ label s3e4p1:
     "You bound off towards the dressing room."
 
     scene s3-dressing-room with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "You quickly check yourself out in the mirror and tousle your hair."
 
@@ -4701,15 +4637,14 @@ label s3e4p1:
     # Add back once MC images are added to the game.
     # MC outfit changes to swimwear
     $ outfit = "swim"
+    call customize_outfit from _call_customize_outfit_9
     # thought "Meh, this will do I guess."
     # thought "It's tea time!"
-
-    "You get changed into your bathing suit."
     thought "Looks good to me!"
     thought "Yup. This is definitely the ticket."
 
     scene s3-kitchen-day with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "You never forget your first."
     "Mine was in a bed and breakfast in Dorset."
@@ -4717,6 +4652,8 @@ label s3e4p1:
     "Gold top milk, two sugar cubes..."
     "What did you lot think I was talking about? Mind in the gutter..."
     "[s3_mc.current_partner] is in the kitchen filling up the kettle."
+
+    $ pronouns(s3_li)
 
     # Add back when MC images are added to the game.
     # "[he_she!c] spies you coming towards [him_her]."
@@ -4729,17 +4666,7 @@ label s3e4p1:
     # elif s3_mc.current_partner == "AJ":
     #     aj "There's my girl. Ready for your tea?"
     # s3_mc "Am I ever."
-    # "[he_she!c] spies you coming towards [him_her]."
-    # if s3_mc.current_partner == "Bill":
-    #     bill "There's my girl, pretty as always."
-    # elif s3_mc.current_partner == "Camilo":
-    #     camilo "There's my girl, pretty as always."
-    # elif s3_mc.current_partner == "Harry":
-    #     harry "There's my girl, pretty as always."
-    # elif s3_mc.current_partner == "AJ":
-    #     aj "There's my girl, pretty as always."
-    # s3_mc "You're so sweet."
-    # s3_mc "And thirsty."
+    
     # if s3_mc.current_partner == "Bill":
     #     bill "Oh really?"
     #     s3_mc "Where's this brew then?"
@@ -4757,23 +4684,35 @@ label s3e4p1:
     #     s3_mc "Where's this brew then?"
     #     aj "Oh, yeah. The tea."
 
-    "[he_she!c] spies you coming towards [him_her] and does a double take."
-
+    "[he_she!c] spies you coming towards [him_her]."
     if s3_mc.current_partner == "Bill":
-        bill "Wow. You are just... wow."
-        bill "I want to make you two cups of tea now."
+        bill "There's my girl, pretty as always."
     elif s3_mc.current_partner == "Camilo":
-        camilo "Wow. You are just... wow."
-        camilo "I want to make you two cups of tea now."
+        camilo "There's my girl, pretty as always."
     elif s3_mc.current_partner == "Harry":
-        harry "Wow. You are just... wow."
-        harry "I want to make you two cups of tea now."
+        harry "There's my girl, pretty as always."
     elif s3_mc.current_partner == "AJ":
-        aj "Wow. You are just... wow."
-        aj "I want to make you two cups of tea now."
-
+        aj "There's my girl, pretty as always."
     s3_mc "You're so sweet."
     s3_mc "And thirsty."
+
+    # "[he_she!c] spies you coming towards [him_her] and does a double take."
+
+    # if s3_mc.current_partner == "Bill":
+    #     bill "Wow. You are just... wow."
+    #     bill "I want to make you two cups of tea now."
+    # elif s3_mc.current_partner == "Camilo":
+    #     camilo "Wow. You are just... wow."
+    #     camilo "I want to make you two cups of tea now."
+    # elif s3_mc.current_partner == "Harry":
+    #     harry "Wow. You are just... wow."
+    #     harry "I want to make you two cups of tea now."
+    # elif s3_mc.current_partner == "AJ":
+    #     aj "Wow. You are just... wow."
+    #     aj "I want to make you two cups of tea now."
+
+    # s3_mc "You're so sweet."
+    # s3_mc "And thirsty."
 
     if s3_mc.current_partner == "Bill":
         bill "Oh really?"
@@ -5067,7 +5006,7 @@ label s3e4p1:
     "[s3_mc.current_partner] smiles at you warmly. You both make your way to the loungers."
 
     scene s3-sun-loungers-day with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "You, [s3_mc.current_partner] and the other Islanders are lounging by the pool. Your empty mug sits by your side. Laughter fills the air."
 
@@ -5171,7 +5110,7 @@ label s3e4p1:
             harry "Everyone needs to stop talking to me."
             
             scene s3-poolside-day with dissolve
-            $ on_screen = []
+            $ new_scene()
 
             "Harry strides towards the pool and dives in."
             s3_mc "Woah!"
@@ -5248,12 +5187,12 @@ label s3e4p1:
 
         "I'd rather go and grab a snack":
             scene s3-kitchen-day with dissolve
-            $ on_screen = []
+            $ new_scene()
 
             "You head to the kitchen and pick out a selection of fruit."
 
             scene s3-poolside-day with dissolve
-            $ on_screen = []
+            $ new_scene()
             "Bearing a huge bowl, you emerge to see the other Islanders splashing around in the pool."
             "Harry seems to have relaxed."
 
@@ -5307,7 +5246,7 @@ label s3e4p1:
         aj "You know it."
 
     scene s3-gym-day with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     thought "Time to work up a sweat!"
     "The breeze caresses your skins as you watch [s3e4p1_invite_gym] straddle the lat pulldown machine."
@@ -5493,6 +5432,7 @@ label s3e4p1:
     "Sounds like it's going to be a right carry on..."
 
     jump s3e4p2
+    return
 
 label s3e4p1_massage:
     s3_mc "You're really tense. Do you want a massage?"
@@ -5701,39 +5641,23 @@ label s3e4p2:
     harry "Normally you need a special training, but I know my way around a car."
     bill "Yeah, all the way round to the passenger side."
 
-    show harry at npc_exit
-    show bill at npc_exit
-    pause .3
-    $ renpy.hide("harry")
-    $ renpy.hide("bill")
-    $ on_screen = []
+    $ leaving("bill")
+    $ leaving("harry")
 
     "And did we have a special guest in the Villa?"
 
     if s3e4p1_invite_gym == "Bill":
         bill "Who was last on this machine? The Rock?"
-        show bill at npc_exit
-        pause .3
-        $ renpy.hide("bill")
-        $ on_screen.remove("bill")
+        $ leaving("bill")
     elif s3e4p1_invite_gym == "Camilo":
         camilo "Who was last on this machine? The Rock?"
-        show camilo at npc_exit
-        pause .3
-        $ renpy.hide("camilo")
-        $ on_screen.remove("camilo")
+        $ leaving("camilo")
     elif s3e4p1_invite_gym == "Harry":
         harry "Who was last on this machine? The Rock?"
-        show harry at npc_exit
-        pause .3
-        $ renpy.hide("harry")
-        $ on_screen.remove("harry")
+        $ leaving("harry")
     elif s3e4p1_invite_gym == "AJ":
         aj "Who was last on this machine? The Rock?"
-        show aj at npc_exit
-        pause .3
-        $ renpy.hide("aj")
-        $ on_screen.remove("aj")
+        $ leaving("aj")
 
     "Sadly not. But I do have a pet rock to keep me company during the long, dark nights here."
     "I call him 'Rocky' in honour of Bill's favourite film franchise."
@@ -5741,33 +5665,22 @@ label s3e4p2:
     "Iona shouts about her job a lot."
 
     iona "I rig pylons!"
-    show iona at npc_exit
-    pause .3
-    $ renpy.hide("iona")
-    $ on_screen.remove("iona")
+    $ leaving("iona")
 
     "And innuendos are abound as our Islanders all pitch in for today's in-tents challenge."
 
     if s3_mc.current_partner == "Bill":
         bill "My rod's so stiff..."
-        show bill at npc_exit
-        pause .3
-        $ renpy.hide("bill")
+        $ leaving("bill")
     elif s3_mc.current_partner == "Camilo":
         camilo "My rod's so stiff..."
-        show camilo at npc_exit
-        pause .3
-        $ renpy.hide("camilo")
+        $ leaving("camilo")
     elif s3_mc.current_partner == "Harry":
         harry "My rod's so stiff..."
-        show harry at npc_exit
-        pause .3
-        $ renpy.hide("harry")
+        $ leaving("harry")
     elif s3_mc.current_partner == "AJ":
         aj "I just can't find the hole!"
-        show aj at npc_exit
-        pause .3
-        $ renpy.hide("aj")
+        $ leaving("aj")
 
     "Strap yourselves in! This is one rollercoaster you don't want to miss."
     "Sun's out, birds are singing, and our Islanders..."
@@ -5775,7 +5688,7 @@ label s3e4p2:
     "I don't know why we even flew them out here. Next time we'll send them to Skegness."
 
     scene s3-lounge with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "You lie sprawled across a sofa, your head resting on [s3_mc.current_partner]'s lap."
     "Iona fans herself with a palm leaf."
@@ -5885,7 +5798,7 @@ label s3e4p2:
     camilo "What're all those bundles on the lawn?"
 
     scene s3-lawn-day with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "In today's challenge, our girls have to help the lads pitch a tent."
     "No, not like that..."
@@ -5945,12 +5858,8 @@ label s3e4p2:
     "Something comes undone, and the poles and small metal rings clatter to the ground."
     nicky "We may now have a problem."
 
-    show nicky at npc_exit
-    show miki at npc_exit
-    pause .3
-    $ renpy.hide("nicky")
-    $ renpy.hide("miki")
-    $ on_screen = []
+    $ leaving("miki")
+    $ leaving("nicky")
 
     "You and [s3_mc.current_partner] look down at your unassembled tent."
 
@@ -6193,12 +6102,8 @@ label s3e4p2:
     "Just a large gust starts to lift their tent."
     elladine "Quick, hurry!"
 
-    show elladine at npc_exit
-    show nicky at npc_exit
-    pause .3
-    $ renpy.hide("nicky")
-    $ renpy.hide("elladine")
-    $ on_screen = []
+    $ leaving("elladine")
+    $ leaving("nicky")
 
     # CHOICE
     menu:
@@ -6288,7 +6193,7 @@ label s3e4p2:
             s3_mc "...you will."
 
     scene s3-lawn-tents-day with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     # CHOICE
     menu:
@@ -6544,6 +6449,7 @@ label s3e4p2:
     "The others go over and hold up her tent while she sets about taping together the pole."
 
     jump s3e4p2_ending
+    return
 
 label s3e4p2_decorate_tent:
     s3_mc "I've got an idea!"
@@ -6585,7 +6491,7 @@ label s3e4p2_decorate_tent:
     "You make your way there."
 
     scene s3-kitchen-day with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "On your way, you spot some fairy lights hanging from the kitchen ceiling."
     thought "They'd give the tent some nice mood lighting..."
@@ -6668,7 +6574,7 @@ label s3e4p2_decorate_tent:
     "You and [s3_mc.bff] take down the fairy lights. [he_she!c] then helps you lug some fluffy pillows and the plush rug from the lounge to your tent."
 
     scene s3-lawn-tents-day with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     $ pronouns(s3_mc.current_partner)
     "You pass [s3_mc.current_partner] who still has [his_her] eyes closed."
@@ -6912,16 +6818,17 @@ label s3e4p2_decorate_tent:
     s3_mc "You'll have to wait and see..."
 
     scene s3-lawn-tents-day with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "You step out of the tent."
     "You emerge from your tent to find the others holding Iona's tent up while she tapes a snapped pole back together."
 
     jump s3e4p2_ending
+    return
 
 label s3e4p2_ending:
     scene s3-lawn-tents-day with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "While the Islanders are busy putting up Iona's tent, [s3_mc.bff] walks over to you."
 
@@ -7515,10 +7422,7 @@ label s3e4p2_ending:
     $ outfit = "evening"
 
     genevieve "Be gone, shiny demon!"
-    show genevieve at npc_exit
-    pause .3
-    $ renpy.hide("genevieve")
-    $ on_screen = []
+    $ leaving("genevieve")
 
     "And will the wind be the only thing shaking the tents?"
     
@@ -7534,6 +7438,7 @@ label s3e4p2_ending:
         aj "How about it then?"
 
     jump s3e4p3
+    return
 
 
 #########################################################################
@@ -7551,17 +7456,11 @@ label s3e4p3:
 
     "Previously, our Islanders put their construction skills to the test..."
     aj "I can't find the hole!"
-    show aj at npc_exit
-    pause .3
-    $ renpy.hide("aj")
-    $ on_screen.remove("aj")
+    $ leaving("aj")
 
     "By pitching some tents in the back garden."
     elladine "Run!"
-    show elladine at npc_exit
-    pause .3
-    $ renpy.hide("elladine")
-    $ on_screen.remove("elladine")
+    $ leaving("elladine")
 
     "You can't run through a campsite, Elladine!"
     "You can only ran."
@@ -7587,7 +7486,7 @@ label s3e4p3:
     "Need I say more?"
 
     scene s3-dressing-room with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     $ outfit = "pjs"
 
@@ -7657,6 +7556,7 @@ label s3e4p3:
     menu:
         thought "[s3_mc.current_partner] wants me to wear his lucky top!"
         "Yeah, I'd love to wear it":
+            # add in images of li's sleep shirt
             $ s3_mc.like(s3_mc.current_partner)
             $ s3e4p3_wear_shirt = True
 
@@ -7721,14 +7621,15 @@ label s3e4p3:
                 s3_mc "I prefer my clothes"
                 aj "Oh, okay, fair enough!"
 
-    # ADD back once MC has images in game
-    # thought "Even if I don't want to wear [his_her] top, I still want to look good for [s3_mc.current_partner]."
-    # thought "This'll be our first night together, after all!"
-    # MC outfit changes to sleepwear
-    # thought "Hmm. Got to leave some things to the imagination, though, right?"
-    # B/H/Cam/aj "Not stressing about what to wear to bed, are you, MC?"
-    # B/H/Cam/aj "You know I think you look hot regardless."
-    # s3_mc "Thanks, babe."
+            # ADD back once MC has images in game
+            thought "Even if I don't want to wear [his_her] top, I still want to look good for [s3_mc.current_partner]."
+            thought "This'll be our first night together, after all!"
+            # MC outfit changes to sleepwear
+            call customize_outfit from _call_customize_outfit_10
+            # thought "Hmm. Got to leave some things to the imagination, though, right?"
+            # B/H/Cam/aj "Not stressing about what to wear to bed, are you, MC?"
+            # B/H/Cam/aj "You know I think you look hot regardless."
+            # s3_mc "Thanks, babe."
 
     if s3_mc.current_partner == "Bill":
         bill "Wow, this is going to be the first time, we, like, properly get to spend the night together..."
@@ -7850,7 +7751,7 @@ label s3e4p3:
     "You both head down to the kitchen."
 
     scene s3-kitchen-night with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "You head downstairs. Elladine and Nicky are also in the kitchen."
 
@@ -8013,7 +7914,7 @@ label s3e4p3:
     elladine "I'm a proper fire starter."
 
     scene s3-firepit-night with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     "You, [s3_mc.current_partner] and Elladine head over to the firepit."
 
@@ -8771,7 +8672,7 @@ label s3e4p3:
         "You and [s3_mc.current_partner] huddle in the tent. It's a bit chilly."
 
     scene s3-inside-tent-standard-night with dissolve
-    $ on_screen = []
+    $ new_scene()
 
     if s3e4p2_decorate_tent:
         if s3_mc.current_partner == "Bill":
@@ -9021,6 +8922,7 @@ label s3e4p3:
             "You both settle down and drift off to sleep."
 
             jump s3e4p3_ending
+    return
 
 label s3e4p3_stay_up:
     s3_mc "We can stay up!"
@@ -9186,12 +9088,8 @@ label s3e4p3_stay_up:
 
     iona "Not all of us."
 
-    show iona at npc_exit
-    show elladine at npc_exit
-    pause .3
-    $ renpy.hide("iona")
-    $ renpy.hide("elladine")
-    $ on_screen = []
+    $ leaving("elladine")
+    $ leaving("iona")
 
     "You roll off [s3_mc.current_partner] and lie back in a fit of laughter."
 
@@ -9261,6 +9159,7 @@ label s3e4p3_stay_up:
         aj "You're always amazing."
 
     jump s3e4p3_ending
+    return
 
 label s3e4p3_stay_up_bill:
     "Bill takes your hands in his and pulls you towards him, so close you can count his eyelashes."
@@ -9647,6 +9546,7 @@ label s3e4p3_ending:
     "Something rattles the sides of your tent, waking you up from your slumber."
 
     scene s3-inside-tent-standard-night with dissolve
+    $ new_scene()
 
     genevieve "Psst."
     genevieve "[s3_name]?"
@@ -9679,9 +9579,7 @@ label s3e4p3_ending:
     genevieve "Anyway."
     genevieve "I'll leave you to your sleep..."
     "Genevieve reluctantly pops her head out of the tent."
-    show genevieve at npc_exit
-    pause .3
-    $ renpy.hide("genevieve")
+    $ leaving("genevieve")
 
     thought "Hmm..."
     thought "I wonder what she heard?"
@@ -9701,12 +9599,11 @@ label s3e4p3_ending:
     "The Islanders are in for a few surprises."
     genevieve "Wait, those weren't there when we went to bed."
     genevieve "Who is in those tents?"
-    show genevieve at npc_exit
-    pause .3
-    $ renpy.hide("genevieve")
+    $ leaving("genevieve")
 
     "Maybe a shiny demon?"
     "They're quite rare, actually."
 
+    jump s3e5p1
+
     return
-    # jump s3e5p1
