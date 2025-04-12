@@ -3709,21 +3709,21 @@ label s3e8p2:
         "Leave the pen":
             "You stand and wipe yourself down, before climbing out of the pen, leaving [s3_li] to follow you."
 
-# "Genevieve and Ciaran are up next, followed by Harry and Seb."
-# "They argue about who should be lassoing who, and don't do very well."
-# seb "You shoot worse than my cat."
-# harry "I think I'd rather have your cat as my partner. At least she wouldn't moan as much as you."
-# Genevieve and Harry are up next, followed by Yasmin and Seb.
-# Genevieve puts on her cowgirl voice again, much to Harry's dismay.
+    "Genevieve and Ciaran are up next, followed by Harry and Seb."
+    "They argue about who should be lassoing who, and don't do very well."
+    seb "You shoot worse than my cat."
+    harry "I think I'd rather have your cat as my partner. At least she wouldn't moan as much as you."
+    "Genevieve and Harry are up next, followed by Yasmin and Seb."
+    "Genevieve puts on her cowgirl voice again, much to Harry's dismay."
 # genevieve "Get a wiggle on, Harry-boy and shoot them targets! Ain't got no time for small fries."
 # harry "Viv, please."
 # genevieve "You got a pining for a hiding or summin'?"
 # M/iona "What does that even mean?"
 # genevieve "Look, I love westerns, OK? Have I really never mentioned that?"
 # harry "No. You didn't."
-# Then it's AJ's and Tai(MC coupled with Ciaran/Yasmin)/Ciaran(MC coupled with Tai), with Nicky and Elladine going last.
-# AJ outlasts Tai, though he seems to try his hardest. She seems to be having a great time even without him.
-# AJ outlasts Ciaran by a long while. She seems to be having the time of her life without him.
+# "Then it's AJ's and Tai(MC coupled with Ciaran/Yasmin)/Ciaran(MC coupled with Tai), with Nicky and Elladine going last."
+# "AJ outlasts Tai, though he seems to try his hardest. She seems to be having a great time even without him."
+# "AJ outlasts Ciaran by a long while. She seems to be having the time of her life without him."
 # nicky "Nice work AJ. At least now I know what my competition's like."
 # aj "I reckon MC's go was more impressive, but thanks! (if you chose “Grab [his_her] pistol and go for glory”)"
 # nicky "Time to see what Ella and I can do. But I'm confident."
