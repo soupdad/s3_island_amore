@@ -3709,92 +3709,128 @@ label s3e8p2:
         "Leave the pen":
             "You stand and wipe yourself down, before climbing out of the pen, leaving [s3_li] to follow you."
 
-    "Genevieve and Ciaran are up next, followed by Harry and Seb."
-    "They argue about who should be lassoing who, and don't do very well."
-    seb "You shoot worse than my cat."
-    harry "I think I'd rather have your cat as my partner. At least she wouldn't moan as much as you."
-    "Genevieve and Harry are up next, followed by Yasmin and Seb."
-    "Genevieve puts on her cowgirl voice again, much to Harry's dismay."
-# genevieve "Get a wiggle on, Harry-boy and shoot them targets! Ain't got no time for small fries."
-# harry "Viv, please."
-# genevieve "You got a pining for a hiding or summin'?"
-# M/iona "What does that even mean?"
-# genevieve "Look, I love westerns, OK? Have I really never mentioned that?"
-# harry "No. You didn't."
-# "Then it's AJ's and Tai(MC coupled with Ciaran/Yasmin)/Ciaran(MC coupled with Tai), with Nicky and Elladine going last."
-# "AJ outlasts Tai, though he seems to try his hardest. She seems to be having a great time even without him."
-# "AJ outlasts Ciaran by a long while. She seems to be having the time of her life without him."
-# nicky "Nice work AJ. At least now I know what my competition's like."
-# aj "I reckon MC's go was more impressive, but thanks! (if you chose “Grab [his_her] pistol and go for glory”)"
-# nicky "Time to see what Ella and I can do. But I'm confident."
-# s3_mc "Good luck!"
-# Elladine gets up on the bull a little unsure of herself, but manages to stay on long enough to wrangle Nicky.
-# Once Nicky is on the machine, he seems to be in his element.
-# The difference between him and Elladine is like night and day.
-# elladine "Woah!"
-# She doesn't last long.
-# But Nicky stays on for longer...
-# ...and longer...
-# ...and longer.
-# No matter how much the bull tries to throw him off, he holds on.
-# nicky "Woohoo!"
-# Eventually, he's tossed from the saddle, but only because he's holding on with one hand while he swings the lasso above his head.
-# B/camilo "Good job, mate."
-# harry "Yeah, I think you've seriously got all of us beat. Definitely the best of the lads."
-# nicky "Thanks guys. But it was really nothing."
-# aj "You've done it before, haven't you?"
-# nicky "Would you believe me if I said I haven't?"
-# # CHOICE
-# menu:
-#     thought "Nicky says he's never ridden one of these bulls before... (no further reactions)"
-# -I don't believe you
-# -That was really good for a first time
+    if s3_li == "Yasmin":
+        "Genevieve and Ciaran are up next, followed by Harry and Seb."
+        "They argue about who should be lassoing who, and don't do very well."
+        seb "You shoot worse than my cat."
+        harry "I think I'd rather have your cat as my partner. At least she wouldn't moan as much as you."
+    else:
+        "Genevieve and Harry are up next, followed by Yasmin and Seb."
+        "Genevieve puts on her cowgirl voice again, much to Harry's dismay."
+        genevieve "Get a wiggle on, Harry-boy and shoot them targets! Ain't got no time for small fries."
+        harry "Viv, please."
+        genevieve "You got a pining for a hiding or summin'?"
+        s3_other_f "What does that even mean?"
+        genevieve "Look, I love westerns, OK? Have I really never mentioned that?"
+        harry "No. You didn't."
 
-# nicky "Well, it's the truth."
-# nicky "I guess I just have a knack for it!"
-# elladine "I'd say more than just a knack, babe. That was breathtaking."
-# nicky "Oh, hello. Another text."
-# text "Nice ridin', Islanders. Now it's time to vote! Whoever you decide was the rootinest tootinest rider will be crowned Sheriff and receive their own official badge! #hailtothesheriff"
-# aj "Ooh, a badge! Does that mean Nicky should get it? He was on there for the longest, right?"
-# B/camilo "I'd say it's between Nicky and MC, for sure."
-# bill "Though I might be a bit biased, there."
-# camilo "Though I might be a bit biased, there."
-# Y/bff "It's gotta be MC."
-# (if you chose “Grab [his_her] pistol and go for glory”):
-# Y/bff " I mean, did you see that display with the pistols? "
-# Y/bff "She stayed on for almost as long as he did, I reckon."
-# (if you didn't choose “Grab [his_her] pistol and go for glory”):
-# s3_mc "Me? I wasn't on there for that long, was I?"
-# Y/bff "Clearly longer than you think."
-# Y/bff "Not to mention the outfit is incredible."
-# Y/bff "But she's also looking incredible in that outfit."
-# aj "Well, I can't decide. I think you were both amazing."
-# M/iona "Let's not overthink it. Nicky stayed on the longest. Let's give it to him."
-# harry "I think he did do pretty well. And he is sorta like our own Villa sheriff already, right?"
-# nicky "What do you mean?"
-# harry "You're like everyone's best mate in here, Nicky. Always sorting out trouble and being there for people."
-# harry "That's what a sheriff's about, right?"
-# Y/bff "I still think it should be MC. What did the text say again?"
-# nicky "'The rootinest-tootinest rider', whatever that means."
-# B/camilo "That settles it, then. Nicky is the sheriff."
-# B/camilo "Unless MC wants to have another go?"
-# M/iona "That's not really fair, is it?"
-# s3_li "I don't see why not. It's clear I was just holding her back anyway."
-# s3_li "I bet she could beat Nicky's time."
-# nicky "Wanna give it a go, MC?"
-# thought "They're right. I could definitely beat Nicky's time if I went again - I was so close before."
-# thought "And what's a better way to impress [s3_li]? I could really have some fun with that..."
-# # CHOICE
+    if s3_li == "Tai":
+        "Then it's AJ's and Ciaran, with Nicky and Elladine going last."
+        "AJ outlasts Ciaran by a long while. She seems to be having the time of her life without him."
+    else:
+        "Then it's AJ's and Tai, with Nicky and Elladine going last."
+        "AJ outlasts Tai, though he seems to try his hardest. She seems to be having a great time even without him."
+
+
+    nicky "Nice work AJ. At least now I know what my competition's like."
+
+    if s3e8p2_glory:
+        aj "I reckon [s3_mc]'s go was more impressive, but thanks! (if you chose “Grab [his_her] pistol and go for glory”)"
+
+    nicky "Time to see what Ella and I can do. But I'm confident."
+    s3_mc "Good luck!"
+    "Elladine gets up on the bull a little unsure of herself, but manages to stay on long enough to wrangle Nicky."
+    "Once Nicky is on the machine, he seems to be in his element."
+    "The difference between him and Elladine is like night and day."
+    elladine "Woah!"
+    "She doesn't last long."
+    "But Nicky stays on for longer..."
+    "...and longer..."
+    "...and longer."
+    "No matter how much the bull tries to throw him off, he holds on."
+    nicky "Woohoo!"
+    "Eventually, he's tossed from the saddle, but only because he's holding on with one hand while he swings the lasso above his head."
+    s3_other_m "Good job, mate."
+    harry "Yeah, I think you've seriously got all of us beat. Definitely the best of the lads."
+    nicky "Thanks guys. But it was really nothing."
+    aj "You've done it before, haven't you?"
+    nicky "Would you believe me if I said I haven't?"
+
+    # CHOICE
+    menu:
+        thought "Nicky says he's never ridden one of these bulls before..."
+        "I don't believe you":
+        "That was really good for a first time":
+
+    nicky "Well, it's the truth."
+    nicky "I guess I just have a knack for it!"
+    elladine "I'd say more than just a knack, babe. That was breathtaking."
+    nicky "Oh, hello. Another text."
+    text "Nice ridin', Islanders. Now it's time to vote! \nWhoever you decide was the rootinest tootinest rider will be crowned Sheriff and receive their own official badge! #hailtothesheriff"
+    aj "Ooh, a badge! Does that mean Nicky should get it? He was on there for the longest, right?"
+    
+    s3_other_m "I'd say it's between Nicky and [s3_mc], for sure."
+
+    # UNSURE IF THIS IS ACCURATE
+    if s3_li == "Bill" or s3_li == "Camilo":
+        s3_other_m "Though I might be a bit biased, there."
+
+    if s3_li == "Yasmin":
+        yasmin "It's gotta be [s3_mc]."
+        if s3e8p2_glory:
+            yasmin "I mean, did you see that display with the pistols? "
+            yasmin "She stayed on for almost as long as he did, I reckon."
+        else:
+            s3_mc "Me? I wasn't on there for that long, was I?"
+            yasmin "Clearly longer than you think."
+        yasmin "Not to mention the outfit is incredible."
+        # Add back if favourite outfits are implimented
+        # yasmin "But she's also looking incredible in that outfit."
+    else:
+        s3_bff "It's gotta be [s3_mc]."
+        if s3e8p2_glory:
+            s3_bff "I mean, did you see that display with the pistols? "
+            s3_bff "She stayed on for almost as long as he did, I reckon."
+        else:
+            s3_mc "Me? I wasn't on there for that long, was I?"
+            s3_bff "Clearly longer than you think."
+        s3_bff "Not to mention the outfit is incredible."
+        # Add back if favourite outfits are implimented
+        # s3_bff "But she's also looking incredible in that outfit."
+
+    aj "Well, I can't decide. I think you were both amazing."
+    s3_other_f "Let's not overthink it. Nicky stayed on the longest. Let's give it to him."
+    harry "I think he did do pretty well. And he is sorta like our own Villa sheriff already, right?"
+    nicky "What do you mean?"
+    harry "You're like everyone's best mate in here, Nicky. Always sorting out trouble and being there for people."
+    harry "That's what a sheriff's about, right?"
+
+    if s3_li == "Yasmin":
+        yasmin "I still think it should be [s3_mc]. What did the text say again?"
+    else:
+        s3_bff "I still think it should be [s3_mc]. What did the text say again?"
+
+    nicky "'The rootinest-tootinest rider', whatever that means."
+    s3_other_m "That settles it, then. Nicky is the sheriff."
+    s3_other_m "Unless [s3_mc] wants to have another go?"
+    s3_other_f "That's not really fair, is it?"
+    s3_li "I don't see why not. It's clear I was just holding her back anyway."
+    s3_li "I bet she could beat Nicky's time."
+    nicky "Wanna give it a go, [s3_mc]?"
+    thought "They're right. I could definitely beat Nicky's time if I went again - I was so close before."
+    thought "And what's a better way to impress [s3_li]? I could really have some fun with that..."
+
+# CHOICE
 # menu:
 #     thought "Shall I have another go?"
-# -You're on, Nicky! (gem choice)
-# -I doubt I could beat him
+# "You're on, Nicky! (gem choice)":
+# "I doubt I could beat him":
 # Y/bff "Don't be silly! You were a natural on that thing."
 # # CHOICE
 # menu:
 #     thought "Am I sure I don't want to have another go? I won't get another chance to be 'Sheriff of the Villa'."
-# -I'll show him what I'm made of. (gem choice)
-# -Nicky will make the better sheriff.
+# "I'll show him what I'm made of. (gem choice)":
+# "Nicky will make the better sheriff.":
 # nicky "You really think so?"
 # B/camilo "Defo."
 # nicky "Alright, then I guess I can't argue about that."
@@ -4027,6 +4063,43 @@ label s3e8p2:
 # "Will everyone get to be with who they want and live happily ever after?"
 # "Who knows? Anything could happen! Otherwise it wouldn't be Love Island."
 # "Until next time, partners!"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # #########################################################################
 # ## Episode 8, Part 3
@@ -5110,6 +5183,45 @@ label s3e8p2:
 # "Kidding!"
 # "'Peace in the Villa...' can't believe you fell for that."
 # "Catch you next time."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # #########################################################################
 # ## Episode 9 Part 1
@@ -6492,7 +6604,35 @@ label s3e8p2:
 # "And it gets hard finding space to fit them all in!"
 # harry "What if the only space available is a cupboard?"
 # "My hut is strictly off limits until I sort out this damp problem."
-# Out Of The Woodwork - Ready or Not Day 9 Part ⅔
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #########################################################################
+# ## Episode 9 Part 2
+# #########################################################################
 
 # "Welcome back to Love Island!"
 # "It's a beautiful day in the Villa..."
@@ -7277,7 +7417,48 @@ label s3e8p2:
 # s3_mc "We could have fun with this."
 # "Cod help us."
 # "Catch you soon on Love Island!"
-# Out Of The Woodwork - Hook a Secret Day 9 Part 3/3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #########################################################################
+# ## Episode 9 Part 3
+# #########################################################################
+
 # "Welcome back!"
 # "Previously on Love Island, the games for AJ's birthday began with Hide and Seek..."
 # "I last played Hide and Seek on a blind date."
@@ -8159,7 +8340,43 @@ label s3e8p2:
 # s3_mc "I need to let Rafi/Lily know how I feel about him!"
 # "But the real question is, how funny have I been today?"
 # "Sorry... I'll stop fishing for compliments."
-# I Spin Your Head Right Round - Someone New Day 10 Part ⅓ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #########################################################################
+# ## Episode 10 Part 1
+# #########################################################################
+
 # "And now we return to the wild, untamed habitat..."
 # "...that is Love Island!"
 # "Yesterday we did some serious fishing for compliments!"
@@ -8959,7 +9176,51 @@ label s3e8p2:
 # "But whose feathers will be ruffled?"
 # "And who will be nudged out of the nest?"
 # "I've been watching a lot of nature documentaries, OK? Don't judge."
-# I Spin Your Head Right Round - A Fork in the Road Day 10 Part ⅔ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #########################################################################
+# ## Episode 10 Part 2
+# #########################################################################
+
 # "Ah, smell that? That's right."
 # "It's the countryside."
 # "A fresh meadow, the salty sea air, and a cool breeze. What could be better for a nice romantic date."
@@ -9671,7 +9932,46 @@ label s3e8p2:
 # "Back to the nineties, that is!"
 # "And who's that mystery guest?"
 # "Find out next time, on Love Island!"
-# I Spin Your Head Right Round - Hips Don't Lie Day 10 Part 3/3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #########################################################################
+# ## Episode 10 Part 3
+# #########################################################################
+
 # "Welcome back to Love Island!"
 # "Previously..."
 # "Our new Islanders wasted no time grafting on the others."
@@ -11147,7 +11447,42 @@ label s3e8p2:
 # "And will breakfast in bed lead to... 'the thing'?"
 # s3_mc "Yes, the thing! Absolutely."
 # "Find out next time, on Love Island."
-# Couples, Karma, Castles - Sexy Sleepy Morning Day 11 Part ⅓ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #########################################################################
+# ## Episode 11 Part 1
+# #########################################################################
+
 # "Welcome back..."
 # "To Love Island!"
 # "I can't believe the Islanders got to meet Tim last night."
@@ -12494,7 +12829,45 @@ label s3e8p2:
 # Liona "I do feel pretty powerful now. Like Godzilla."
 # "I for one welcome our new overlord, LI."
 # "See you then!"
-# Couples, Karma, Castles - Foundations Day 11 Part ⅔  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #########################################################################
+# ## Episode 11 Part 2
+# #########################################################################
+
 # "Welcome back to Love Island!"
 # "This morning MC got cheeky with LI..."
 # s3_mc "We've got the beds to ourselves. Not to mention this gorgeous view."
@@ -13279,7 +13652,54 @@ label s3e8p2:
 # "MC and LI will be over the moon on their special date!"
 # s3_mc "We're just gonna have to go wherever the wind blows us."
 # "Don't miss it!"
-# Couples, Karma, Castles - Lighter Than Air Day 11 Part 3/3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #########################################################################
+# ## Episode 11 Part 3
+# #########################################################################
+
 # "Last time on Love Island..."
 # "It's all got a bit emosh."
 # N(L+N) / E(R+E): It won't be the same in here without you.
@@ -14486,7 +14906,45 @@ label s3e8p2:
 # "Yes, all our Islanders are finally, finally, going to change their outfits."
 # "And if anyone out there is desperate to see MC and LI trying to slow dance together, you're in luck."
 
-# Will You Go To The Prom With Me? - We're going shopping, babe! Day 12 Part ⅓ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #########################################################################
+# ## Episode 12 Part 1
+# #########################################################################
+
 # "And then there were eight."
 # "We're hot off the back of a dumping here on Love Island today, where two couples were just sent home."
 # Y/aj "Bye, everyone! We'll miss you!"
@@ -15229,7 +15687,47 @@ label s3e8p2:
 # "Thank you, MC! Right on cue."
 # "Stick around, because you won't want to miss the speeches."
 # "They won't quite be up to my standard, but we'll clap for them anyway."
-# Will You Go To The Prom With Me? - Speechless Day 12 Part ⅔ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #########################################################################
+# ## Episode 12 Part 2
+# #########################################################################
+
 # "It's a gorgeous afternoon on our favourite Island of Love."
 # "Well, the only Island of Love."
 # "And our even more gorgeous heroes have been hard..."
@@ -15887,7 +16385,45 @@ label s3e8p2:
 # "Or will Seb's shirt stay on?"
 # "Find out in the next episode..."
 # "...of Love Island!"
-# Will You Go To The Prom With Me? - Prom Queen Day 12 Part 3/3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #########################################################################
+# ## Episode 12 Part 3
+# #########################################################################
+
 # "Previously on Love Island..."
 # "Lily(L+N)/Rafi(R+E) and MC have a heart to heart."
 # L(L+N) / R(R+E): I actually wanted a little chat.
@@ -16876,7 +17412,40 @@ label s3e8p2:
 # Chelsea: Hey you lot!
 # "Thank goodness because my back is killing me."
 # "I need proper support!"
-# Finale - Moment of Truth Day 13 Part ⅓ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #########################################################################
+# ## Episode 13 Part 1
+# #########################################################################
+
 # "Welcome to the final day of Love Island!"
 # "Soon all these crazy kids will be out of here, making their way alone in the world..."
 # "What? I'm not crying. You're crying."
@@ -17705,7 +18274,52 @@ label s3e8p2:
 # "And no, it's not a pyramid scheme. It's called multi-level marketing."
 # "Completely different."
 # "Bye for now!"
-# Finale - A Trip Down Memory Lane Day 13 Part ⅔ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #########################################################################
+# ## Episode 13 Part 2
+# #########################################################################
+
 # "Well here we are."
 # "It's been an emotional journey, but MC made it to the very end, with LI by her side."
 # "I know a little something about big achievements myself."
@@ -18545,7 +19159,46 @@ label s3e8p2:
 # "Unlike MC, who just got richer to the tune of a cool fifty thousand smackers."
 # "Next time, we drop in to the most exclusive party of the year. Don't miss it!"
 
-# Finale - After Party! Day 13 Part 3/3 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #########################################################################
+# ## Episode 13 Part 3
+# #########################################################################
+
 # "Previously on Love Island..."
 # "MC and LI won the whole damn game!"
 # "But MC decided that winning wasn't enough.(choosing the money)"
