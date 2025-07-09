@@ -348,6 +348,8 @@ default s3e8p1_nice = False
 ## Episode 8, Part 2
 # s3e8p2_glory (bool)
 default s3e8p2_glory = False
+# s3e8p2_ride_again (bool)
+default s3e8p2_ride_again = False
 
 
 
