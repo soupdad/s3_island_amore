@@ -3875,11 +3875,15 @@ label s3e8p1:
         thought "[s3_li] is wondering who I'm going to pick in the recoupling tonight..."
         "Of course I'll pick you!":
             $ s3_mc.like(s3_li)
+            if s3_li == "Yasmin":
+                $ s3e8p1_hope_recoupling_yasmin = True
             s3_mc "I like having you around."
             s3_li "Really?"
             s3_li "I hoped you'd say that!"
         "I'll go with you":
             $ s3_mc.like(s3_li)
+            if s3_li == "Yasmin":
+                $ s3e8p1_hope_recoupling_yasmin = True
             s3_mc "I like having you around."
             s3_li "Really?"
             s3_li "I hoped you'd say that!"
@@ -5219,7 +5223,9 @@ label s3e8p2:
     menu:
         thought "Nicky says he's never ridden one of these bulls before..."
         "I don't believe you":
+            pass
         "That was really good for a first time":
+            pass
 
     nicky "Well, it's the truth."
     nicky "I guess I just have a knack for it!"
@@ -5474,6 +5480,7 @@ label s3e8p2:
     "Who knows? Anything could happen! Otherwise it wouldn't be Love Island."
     "Until next time, partners!"
 
+    jump s3e8p3
     return
 
 label s3e8p2_ride_again:
@@ -5573,4 +5580,1676 @@ label s3e8p2_ride_again:
     s3_mc "Of course, babes! We'll make a great team."
     s3_mc "As the Sheriff of this here Villa, I do declare Nicky Horne to be my lawful deputy."
 
+    return
+
+# #########################################################################
+# ## Episode 8, Part 3
+# #########################################################################
+label s3e8p3:
+    scene sand with dissolve
+    $ on_screen = []
+
+    show screen day_title(8, 3) with Pause(4)
+    hide screen day_title with dissolve
+    "Well howdy there, partners!"
+    "Hold onto your saddles, 'cos we've got a doozy of an episode for ya!"
+    "I'm all a'tizzy at what's afoot on this here Love Island!"
+    "My god, I can't stop..."
+    "Tonight, it's a girl's choice recoupling!"
+    genevieve surprised "I'm going to shake things up a bit..."
+    $ leaving("genevieve")
+    "And plans come a-cropper..."
+    $ entering("s3_mc_image")
+    s3_mc surprised "This is it. Who am I going to choose?"
+    $ leaving("s3_mc_image")
+    "This one's gonna be a doozy cow-pokes!"
+
+    scene s3-bean-bags-night with dissolve
+    $ new_scene()
+
+    "You're sitting on the beanbags with the girls. There is a nervous tension in the air."
+    "You can see the boys huddled together on the daybeds. They keep glancing over in your direction."
+    "You're drinking cocktails, because the situation calls for it."
+    "Elladine necks hers in one gulp and addresses the group."
+    elladine surprised "Right, girls. We need to coordinate."
+    aj surprised "Huh?"
+    elladine cheeky "Everyone says who they're picking, then we'll know what to expect."
+    elladine neutral "That way there are no surprises."
+    genevieve happy "Surprises are the whole reason I'm here!"
+    genevieve surprised "If we know who everyone's picking, there's no drama."
+    if s3_other_f == "Iona":
+        iona surprised "Chill out Elladine. It'll be fun!"
+        show genevieve neutral
+        iona cheeky "What's life in the Villa without a few surprises?"
+    else:
+        miki surprised "And drama makes everything more exciting!"
+        miki smile "Like, that's the key to going viral."
+        show genevieve neutral
+        miki blush "Sometimes I film myself falling off the barge, just because people love seeing that."
+        miki smile "You gotta do it for the views, girls! Keep the tension levels up."
+        elladine angry "But I don't want the tension to be up!"
+    elladine blush "Sorry. Just worried I guess."
+    genevieve smile "I think we all are, hun. Some of us are just better at hiding it."
+    
+    # CHOICE
+    menu:
+        thought "I should chime in..."
+        "Agree with Elladine":
+            show s3_mc_image surprised
+            $ s3_mc.like("Elladine")
+            show elladine smile
+            s3_mc "I agree with Elladine."
+            s3_mc happy "We should sort it all out now, so we don't step on each other's toes."
+        "Comfort Elladine":
+            s3_mc happy "By the time you close your eyes to sleep tonight, it'll all be over and you'll be cuddled up with Nicky. Think about that."
+            $ s3_mc.like("Elladine")
+            elladine happy "You're right. Thanks, [s3_name]."
+        "Agree with Genevieve":
+            if s3e8p2_ride_again == True:
+                s3_mc happy "As the Sheriff of this here Villa..."
+                s3_mc "Miss Genevieve is correct."
+            else:
+                s3_mc happy "Genevieve is right."
+            s3_mc neutral "Elladine, babe, you got to live in the moment."
+            s3_mc happy "Everything's gonna work out fine."
+            elladine smile "I don't agree but... maybe you're right."
+
+    elladine sad "Unless someone chooses Nicky..."
+    genevieve surprised "I might do that. Just to shake things up."
+    show s3_mc_image surprised
+    elladine surprised "Genevieve! This might be the last recoupling!"
+    show s3_mc_image neutral
+    elladine angry "Whoever we end up with tonight is who we really want."
+    show genevieve sad
+    elladine neutral "And I know you don't want Nicky."
+    if s3e8p1_hope_recoupling_yasmin:
+        $ entering("yasmin")
+        "Yasmin catches your eye and winks at you."
+    if s3_like_aj:
+        $ entering("aj")
+        "AJ nudges you and smiles."
+    if s3_like_aj and s3e8p1_hope_recoupling_yasmin:
+        menu:
+            thought "Both AJ and Yasmin are looking at me..."
+            "Fart":
+                # NEED TO FILL
+                "EMPTY"
+            "Smile at AJ":
+                $ s3_mc.like("AJ")
+                show aj smile
+                "You smile at AJ. She smiles back at you. Yasmin doesn't seem to notice."
+            "Wink at Yasmin":
+                $ s3_mc.like("Yasmin")
+                show yasmin smile
+                "You wink at Yasmin. She smiles at you. AJ doesn't seem to notice."
+    
+    show s3_mc_image surprised
+    show elladine surprised
+    "You all jump at the text tone. Yasmin looks at her phone."
+    text "Islanders, please gather by the fire pit for the recoupling. #putthemup #yellowbellied"
+    "Yasmin calls over to the boys."
+    yasmin surprised "Boys! Firepit!"
+    show s3_mc_image neutral
+    "They don't seem to hear her, still deep in discussion."
+    yasmin sad "[s3_name], get their attention, will you?"
+    show yasmin neutral
+
+    # CHOICE
+    menu:
+        thought "How do I get their attention?"
+        "Command the boys to assemble!":
+            show s3_mc_image surprised
+            "You stand, facing the boys, and bellow at the top of your lungs."
+            s3_mc happy "Boys! Assemble!"
+            "The boys' head turns towards you."
+            "Tai is the first to run over."
+            tai smile "Tai smash!"
+            "He bounds over to the firepit."
+            "Harry sprints behind him."
+            harry happy "Hey! Brute strength is nothing when you're a genius billionaire... like I will be once I pay off my student loan!"
+            "The rest of the boys soon follow."
+            if s3_other_m == "Bill":
+                show s3_mc_image neutral
+                s3_other_m happy "Ready for action."
+            else:
+                show s3_mc_image neutral
+                s3_other_m happy "Are we gonna fight?!"
+            ciaran happy "Where's everyone running to?"
+            "He runs after the rest of the boys blindly, grinning widely."
+        "Say something filthy about a yurt?":
+            "All the boys' heads immediately whip round."
+            s3_mc cheeky "Bits! In a yurt?!"
+            harry surprised "Who did bits on a yacht?"
+            tai cheeky "I think it's about putting bits in their yoghurt."
+            ciaran happy "She said yurt'!"
+            s3_other_m smile "That's not even a word."
+            tai surprised "Yoghurt is a word!"
+            s3_mc happy "Just get over here! It's recoupling time."
+            "The boys walk towards the firepit. Ciaran approaches you."
+            ciaran cheeky "You did say yurt, right? Who was it?"
+            s3_mc "Er... Viv. At a festival."
+            genevieve surprised "How did you know?!"
+        "Burp really loudly":
+            show s3_mc_image cheeky
+            "You stand, flexing your stomach muscles, summoning gas from the deepest pits inside you."
+            elladine surprised "[s3_name], what are you..."
+            "You unleash a monstrous burp."
+            "The girls squeal, but it succeeds in getting the boys' attention."
+            s3_other_m surprised "That was impressive."
+            ciaran cheeky "Why am I turned on?"
+            s3_mc happy "Firepit time!"
+            "They head over, every boy giving you a high-five as they pass."
+
+    "When the boys are all in place, you and the other girls look at each other."
+    s3_other_f surprised "Good luck everyone!"
+    genevieve smile "Yeah girls, good luck."
+    elladine serious "We can do this."
+    aj happy "Let's go!"
+    
+    scene s3-firepit-night with dissolve
+    $ new_scene()
+
+    "You sit down around the firepit with the rest of the girls. The boys line up in front of you."
+
+    $ sorted_li_like = {key: value for key, value in sorted(s3_mc.like_mc.items(), key=lambda item: item[1])}
+    $ s3_fav_li = list(sorted_li_like.keys())[-1]
+
+    if s3_fav_li == "Bill":
+        "Bill catches your eye, and gives you a wink and a smile."
+    elif s3_fav_li == "Harry":
+        "Harry makes a point of giving you a big smile."
+    elif s3_fav_li == "Camilo":
+        "Camilo catches your eye, and gives you a wink and a smile."
+    elif s3_fav_li == "Ciaran":
+        "Ciaran gives you a small wave and a shy smile."
+    elif s3_fav_li == "Tai":
+        "Tai catches your eye, flashes a smile, and blows you a kiss."
+    elif s3_fav_li == "Yasmin":
+        "Yasmin, sitting next to you, gives your hand a reassuring squeeze."
+
+    "You wait for a text."
+    s3_mc surprised "That's my phone!"
+    text "[s3_name], you will be choosing first."
+    if s3e8p1_hope_recoupling_yasmin:
+        yasmin "Perfect!"
+        $ leaving("yasmin")
+    if s3_like_aj:
+        aj surprised "Lucky!"
+        $ leaving("aj")
+    show s3_mc_image neutral
+    "You stand facing the boys."
+    thought "This is it..."
+
+    # CHOICE
+    menu:
+        s3_mc "I want to couple up with this person because..."
+        "I see us having a future together":
+            s3_mc @ sad "And I want to see if I'm right."
+        "They're hot":
+            s3_mc @ cheeky "And so am I, so it makes sense."
+        "They make me laugh":
+            s3_mc @ cheeky "And there's nothing more important than that."
+    
+    # CHOICE
+    menu:
+        s3_mc "They make me feel..."
+        "Fuzzy":
+            s3_mc "My insides get all wibbly whenever I look at them."
+            s3_mc happy "In a good way. Not like when I eat Mexican food."
+        "Horny":
+            s3_mc cheeky "If I had a horn, I would be honking all day."
+        "Safe":
+            s3_mc happy "When I'm in their arms, I don't feel like I'm miles and miles away from the UK. I feel like I'm home."
+            s3_mc sad "Should have brought some crackers for cheese."
+
+    # CHOICE
+    menu:
+        s3_mc cheeky "So the person I want to couple up with is..."
+        "Bill" if s3_other_m == "Bill":
+            show s3_mc_image happy
+            bill happy "Get in!"
+            bill cheeky "[s3_name], you're amazing and I can't wait to get to know you better."
+            if "Bill" in s3_mc.past_partners:
+                bill happy "Thank you for coming back to me."
+            if s3e8p1_hope_recoupling_yasmin:
+                "Yasmin gives you a hurt look."
+                $ s3_mc.dislike("Yasmin")
+            show s3_mc_image neutral
+            $ s3_li = "Bill"
+            $ s3_li_lower = s3_li.lower()
+            $ s3_mc.current_partner = "Bill"
+            $ s3_mc.past_partners.append("Bill")
+            $ s3_mc.like_mc["Bill"] += 5
+        "Camilo" if s3_other_m == "Camilo":
+            show s3_mc_image happy
+            camilo happy "Oh, get in!"
+            camilo "I swear down, you won't regret it, I'm going to treat you so good, chica."
+            if "Camillo" in s3_mc.past_partners:
+                camilo cheeky "Thank you for coming back to me."
+            if s3e8p1_hope_recoupling_yasmin:
+                "Yasmin gives you a hurt look."
+                $ s3_mc.dislike("Yasmin")
+            $ s3_li = "Camilo"
+            $ s3_li_lower = s3_li.lower()
+            $ s3_mc.current_partner = "Camilo"
+            $ s3_mc.past_partners.append("Camilo")
+            $ s3_mc.like_mc["Camilo"] += 5
+        "Tai":
+            if  "Tai" not in s3_mc.past_partners:
+                tai smile "Yes!"
+            else:
+                tai smile "I knew I made the right choice picking you."
+            tai cheeky "You won't regret this, I promise."
+            if s3e8p1_hope_recoupling_yasmin:
+                "Yasmin gives you a hurt look."
+                $ s3_mc.dislike("Yasmin")
+            $ s3_li = "Tai"
+            $ s3_li_lower = s3_li.lower()
+            $ s3_mc.current_partner = "Tai"
+            $ s3_mc.past_partners.append("Tai")
+            $ s3_mc.like_mc["Tai"] += 5
+            show tai smile
+        "Ciaran":
+            if  "Ciaran" not in s3_mc.past_partners:
+                ciaran surprised "Really?"
+            else:
+                ciaran happy "Thanks for sticking with me. I knew I made the right decision choosing you."
+            show s3_mc_image happy
+            ciaran grimace "So all those nice things you just said were about me?"
+            show s3_mc_image sad
+            ciaran happy "Brilliant!"
+            show s3_mc_image happy
+            ciaran cheeky "I can't wait to get to know you better, [s3_name]."
+            if s3e8p1_hope_recoupling_yasmin:
+                "Yasmin gives you a hurt look."
+                $ s3_mc.dislike("Yasmin")
+            show ciaran happy
+            $ s3_li = "Ciaran"
+            $ s3_li_lower = s3_li.lower()
+            $ s3_mc.current_partner = "Ciaran"
+            $ s3_mc.past_partners.append("Ciaran")
+            $ s3_mc.like_mc["Ciaran"] += 5
+        "Harry":
+            harry happy "Oh, thank god."
+            show s3_mc_image surprised
+            harry surprised "I was getting so nervous there, my arse was sweating."
+            if "Harry" in s3_mc.past_partners:
+                harry serious "I've wanted you back ever since you got nicked from me."
+                show s3_mc_image happy
+                harry cheeky "Thanks for coming back to me."
+            else:
+                harry blush "I didn't even think you liked me..."
+            $ s3_mc.like("Harry")
+            harry happy "I think we're gonna be really happy together."
+            show s3_mc_image neutral
+            if s3e8p1_hope_recoupling_yasmin:
+                "Yasmin gives you a hurt look."
+                $ s3_mc.dislike("Yasmin")
+            $ s3_li = "Harry"
+            $ s3_li_lower = s3_li.lower()
+            $ s3_mc.current_partner = "Harry"
+            $ s3_mc.past_partners.append("Harry")
+            $ s3_mc.like_mc["Harry"] += 5
+        "AJ" if s3_mc.bisexual:
+            $ entering("aj","smile")
+            "AJ punches the air."
+            aj surprised "Yes!"
+            show s3_mc_image surprised
+            aj smile "I was going to pick you!"
+            if "AJ" in s3_mc.past_partners:
+                aj cheeky "Thanks for coming back to me, babe."
+                show s3_mc_image happy
+                aj smile "I knew we were meant to be."
+                aj blush "I only wish I'd got to make the romantic speech..."
+            show s3_mc_image happy
+            show aj smile
+            if s3e8p1_hope_recoupling_yasmin:
+                "Yasmin gives you a hurt look."
+                $ s3_mc.dislike("Yasmin")
+            $ s3_li = "AJ"
+            $ s3_li_lower = s3_li.lower()
+            $ s3_mc.current_partner = "AJ"
+            $ s3_mc.past_partners.append("AJ")
+            $ s3_mc.like_mc["AJ"] += 5
+        "Yasmin" if s3_mc.bisexual:
+            yasmin cheeky "Fabulous. I can't wait to see where this goes."
+            if "Yasmin" in s3_mc.past_partners:
+                yasmin surprised "I was pretty confident, but you can never be 100 percent."
+            yasmin cheeky "You make me nervous in ways I don't usually get."
+            yasmin smile "This is just what I hoped for."
+            $ s3_li = "Yasmin"
+            $ s3_li_lower = s3_li.lower()
+            $ s3_mc.current_partner = "Yasmin"
+            $ s3_mc.past_partners.append("Yasmin")
+            $ s3_mc.like_mc["Yasmin"] += 5
+
+    $ pronouns(s3_li)
+    "You and [s3_li] embrace amid applause. [s3_bff] whoops and claps harder than anyone else."
+    "You take [his_her] hand as [s3_li] sits down next to you, squeezing it reassuringly."
+    show s3_mc_image neutral
+    "A silence, and then..."
+    "Elladine springs up, clutching her phone."
+    if s3_li == "Bill":
+        $ leaving("bill")
+    elif s3_li == "Camilo":
+        $ leaving("camilo")
+    elif s3_li == "Tai":
+        $ leaving("tai")
+    elif s3_li == "Ciaran":
+        $ leaving("ciaran")
+    elif s3_li == "Harry":
+        $ leaving("harry")
+    elif s3_li == "AJ":
+        $ leaving("aj")
+    elif s3_li == "Yasmin":
+        $ leaving("yasmin")
+    elladine surprised "My turn!"
+    elladine happy "I want to couple up with this guy because, well, I couldn't imagine coupling up with anyone else!"
+    elladine blush "He always makes me laugh, and I've learned a lot from him."
+    show s3_mc_image happy
+    elladine cheeky "Like, did you guys know that Finland has the most metal bands per capita?"
+    show s3_mc_image neutral
+    elladine happy "Anyway...the guy I want to couple up with is..."
+    show s3_mc_image happy
+    elladine smile "Nicky!"
+    $ entering("nicky","happy")
+    "You and the other Islanders applaud as Nicky steps out of the line-up."
+    if s3e8p2_ride_again:
+        nicky "Elladine, nothing could have made me happier."
+        nicky smile "All the stuff you just said... ditto."
+        elladine smile "Oh, thanks."
+        elladine blush "I guess."
+    else:
+        "He grins, and starts shooting finger guns up in the air."
+        nicky smile "Nothing could make the Sheriff of the Villa happier!"
+        elladine "Hey, I can always change my mind..."
+    "They kiss before sitting next to each other."
+    $ leaving("nicky")
+    $ leaving("elladine")
+    "[s3_other_f]'s phone beeps next. She stands to address the boys."
+    if s3_li != s3_other_m:
+        s3_other_f cheeky "I want to couple up with this boy because I proper like him. "
+        show s3_mc_image neutral
+        s3_other_f surprised "And I wouldn't want to be with anyone else."
+        s3_other_f neutral "So I'd like to couple up with..."
+        show s3_mc_image happy
+        s3_other_f cheeky "[s3_other_m]."
+        $ entering("s3_other_m_image","happy")
+        "[s3_other_m] punches the air a little before sitting down next to [s3_other_f], taking her hand and kissing it."
+        s3_other_m neutral "You make me so happy, [s3_other_f]. Thanks for picking me."
+        $ leaving("s3_other_m_image")
+        $ leaving("s3_other_f_image")
+    else:
+        s3_other_f sad "Well, I'm disappointed."
+        s3_other_f serious "But I'm not one to stand in the way of love..."
+        s3_other_f smile "So, I'd like to couple up with this guy because we're great friends and... I don't want to go home."
+        s3_other_f "The boy I want to couple up with is..."
+        show s3_mc_image happy
+        s3_other_f happy "Harry."
+        $ entering("harry","happy")
+        "Harry smiles and kisses [s3_other_f] on the cheek before sitting next to her."
+        $ leaving("s3_other_f_image")
+        $ leaving("harry")
+    show s3_mc_image neutral
+    if s3_li != "Yasmin":
+        "Yasmin is the next one to receive a text."
+        if s3e8p1_hope_recoupling_yasmin:
+            yasmin sad "Well, I'd hoped to already picked by someone..."
+            yasmin "But since it's my choice now..."
+        if s3_li == "Ciaran" or s3_li == "AJ":
+            yasmin blush "This might surprise some of you, but..."
+            yasmin happy "I actually think me and this guy might be a good fit, and I'm excited to get to know him better."
+            show s3_mc_image happy
+            yasmin cheeky "So I'm picking Harry."
+            "Harry raises his eyebrows in surprise, but then smiles before sitting next to Yasmin."
+            harry cheeky "I'm surprised, but flattered."
+            harry happy "Let's give this a go!"
+            $ leaving("harry")
+            $ leaving("yasmin")
+        else:
+            yasmin "I want to couple up with this boy because we came in together, so we may as well stick that way."
+            yasmin smile "The boy I'd like to couple up with is..."
+            show s3_mc_image happy
+            yasmin cheeky "Ciaran."
+            "Ciaran smiles and gives her an awkward hug before sitting beside her."
+            ciaran happy "Thanks, Yasmin. You're a good friend."
+            $ leaving("ciaran")
+            $ leaving("yasmin")
+    show s3_mc_image neutral
+    "Genevieve's phone goes off next."
+    "She looks at the boys left in front of her and takes a deep breath."
+    genevieve surprised "I'm going to shake things up a bit..."
+    show s3_mc_image surprised
+    genevieve smile "I'm picking this guy because I wanna get to know him better."
+    genevieve neutral "We haven't been coupled up before, but I think we could make a great pair."
+    show s3_mc_image neutral
+    genevieve blush "I haven't run this by him, so I hope it's OK with him. But we've grown close as friends, and I'd like to pursue something more."
+    genevieve smile "And if he treats me anywhere near close to how he treats his cats, I'm golden."
+    genevieve neutral "So I'd like to couple up with..."
+    genevieve smile "Seb."
+    $ entering("seb","smile")
+    "Seb breaks into a huge grin."
+    seb surprised "Woah, Viv. Really?"
+    show s3_mc_image happy
+    "The Islanders whoop and holler as Seb blushes and kisses Genevieve on the cheek."
+    show seb smile
+    "Seb and Genevieve are both smiling nervously as they sit down."
+    if s3_mc.bff == 'Genevieve':
+        $ s3_mc.like('Genevieve')
+        "You give Genevieve a thumbs up. She gives you one back."
+    $ leaving("seb")
+    $ leaving("genevieve")
+    show s3_mc_image neutral
+    if s3_li != "AJ":
+        "AJ is the last to receive a text. "
+        aj surprised "I want to couple up with this person because..."
+        if "AJ" in s3_mc.past_partners:
+            aj sad "Well, to be honest, my first choice is gone."
+            aj serious "But you live and learn, eh?"
+        else:
+            aj sad "I haven't really found someone I connect with romantically in here."
+            aj smile "But I think this lad and I get on pretty well."
+        aj neutral "So the person I'd like to couple up with is..."
+        show s3_mc_image happy
+        if s3_li == "Tai" or s3_li == "Yasmin":
+            aj smile "Harry."
+            harry happy "Yeehaw!"
+            "He gives AJ a high-five."
+        else:
+            aj smile "Tai."
+            tai happy "Looks like this town is big enough for the both of us!"
+            "He embraces AJ in a big hug."
+        show s3_mc_image neutral
+    if s3_li == "Yasmin" or s3_li == "AJ":
+        "Ciaran and Tai look at each other. They are the last boys left in the line-up."
+        $ entering("ciaran")
+        $ entering("tai")
+        "Ciaran looks at his feet."
+        ciaran sad "Well, bud, looks like this is the end of the line for us."
+        show s3_mc_image sad
+        tai surprised "Not so fast..."
+        show s3_mc_image surprised
+        show ciaran grimace
+        tai neutral "Ciaran, we're both single now."
+        tai cheeky "But we don't have to be."
+        show s3_mc_image neutral
+        tai smile "Why don't we give it a go?"
+        if s3_mc.past_partners[2] == "Yasmin":
+            ciaran surprised "Like Harry and Seb?"
+            tai serious "That was a friendship couple..."
+        ciaran grimace "Tai?"
+        tai cheeky "Ciaran, I want this. I want this to happen."
+        tai smile "When I'm around you, all I do is smile."
+        tai blush "Basically, I have a huge crush on you."
+        ciaran neutral "What are you saying, Tai?"
+        show s3_mc_image surprised
+        tai smile "I guess I'm asking, Ciaran, if you want to couple up with me?"
+        "Ciaran flushes red, a smile forming on his lips."
+        ciaran blush "Tai! I..."
+        ciaran cheeky "I'd... I'd..."
+        show s3_mc_image happy
+        tai "Is that a yes?"
+        ciaran happy "It's a yes!"
+        "Tai grins and wraps Ciaran in his arms. Their embrace lasts for a long time. Ciaran's fingers curl into Tai's hair."
+        "The rest of the Islanders explode into applause, Nicky is wolf-whistling and Yasmin is whooping loudly."
+        "Ciaran and Tai sit down next to you and [s3_li]. You reach across and squeeze Ciaran's leg. He gives you a huge smile."
+
+        # CHOICE
+        menu:
+            thought "Ciaran and Tai are coupled up!"
+            "What a nice surprise!":
+                pass
+            "I knew there was something there":
+                pass
+            "I didn't see that coming":
+                pass
+
+        thought "I hope it works out for them!"
+    s3_mc "Is that everyone all coupled up?"
+    nicky happy "Looks like it."
+    genevieve surprised "How are we feeling?"
+    seb cheeky "I'm feeling great."
+    "Viv beams at him. He whispers something in her ear and she nods."
+    show s3_mc_image cheeky
+    genevieve cheeky "I think we're going to go somewhere more private."
+    "Seb pulls her away towards the daybeds, and she giggles."
+    $ leaving("genevieve")
+    $ leaving("seb")
+    show s3_mc_image neutral
+    "Slowly, the rest of the couples disperse."
+    if s3_li == "Yasmin" or s3_li == "AJ":
+        "Tai offers his hand to Ciaran, who takes it. They head towards the Villa, holding hands, already laughing about something."
+    "When you're the last couple at the firepit, [s3_li] turns to you, smiling."
+    s3_li cheeky "Hey."
+    s3_mc happy "Hey."
+    if s3_li == s3_mc.past_partners[0] or s3_li == s3_mc.past_partners[1]:
+        s3_li happy "I'm so happy, I can't stop smiling."
+        show s3_mc_image sad
+        s3_li surprised "When [s3_mc.past_partners[2]] chose you, I felt my heart fall out of my chest."
+        show s3_mc_image cheeky
+        s3_li cheeky "And now you're back where you belong... with me."
+    elif s3_li == s3_mc.past_partners[2]:
+        s3_li surprised "I'm so thrilled that you picked me."
+        show s3_mc_image sad
+        s3_li sad "It was such a risk, splitting you up from [s3_mc.past_partners[1]]..."
+        show s3_mc_image happy
+        if s3_li != "Ciaran":
+            s3_li smile "But it turns out it was the right thing to do, and that makes me so happy."
+        else:
+            s3_li happy "But it turns out it was the right thing to do, and that makes me so happy."
+    else:
+        show s3_mc_image happy
+        s3_li happy "I'm so excited to finally be coupled up with you, I've been wanting this for so long."
+        s3_li cheeky "To get to share a bed with you... feels like a dream come true."
+    s3_li surprised "Look, I've got some stuff I want to say to you, away from everyone else."
+    show s3_mc_image surprised
+    s3_li cheeky "Stuff I've been wanting to say for a while."
+    s3_li serious "Can we go somewhere more private?"
+    # CHOICE
+    menu:
+        thought "Do I want to have a private chat with [s3_li]?"
+        "I'd love to":
+            s3_mc happy "That sounds wonderful."
+            s3_li cheeky "Great! Let's go."
+            $ s3_mc.like(s3_li)
+            call s3e8p3_private_chat from _call_s3e8p3_private_chat
+        "Sorry, I'm too sleepy":
+            s3_mc sad "I'd love to, but I'm knackered."
+            if s3_li != "Tai":
+                s3_li @ sad "Aw, OK. We can just head to bed then."
+            else:
+                s3_li neutral "Aw, OK. We can just head to bed then."
+            "You hold hands and walk back towards the Villa."
+
+
+    scene s3-bedroom-night with dissolve
+    $ new_scene()
+
+    $ entering("s3_li_image")
+    "You enter the bedroom with [s3_li]."
+    "A few other couples are already there."
+    if s3_li == "AJ" or s3_li == "Yasmin":
+        "Tai and Ciaran are spooning, wrapped in a duvet, whispering quietly to each other."
+        "Tai is the little spoon. He's beaming."
+    else:
+        "Genevieve and Seb are sitting up in bed, chatting. A spark is clearly visible between them."
+        "Elladine and Nicky are already asleep in each other's arms."
+    thought "I'd better put my pyjamas on."
+    show s3_mc_image cheeky
+    thought "Maybe I should wear something special to show [s3_li] that I'm into [him_her]..."
+    
+    # Outfit change to sleepwear
+    $ outfit = "pjs"
+    call customize_outfit from _call_customize_outfit_13
+    
+    s3_li happy "Hey, babe. Nice jammies."
+    genevieve happy "So how are you two feeling?"
+    seb cheeky "That's not fair, Viv. [s3_name] isn't coupled up with me, so clearly she's distraught."
+    s3_mc cheeky "You're making him big-headed, Viv."
+    s3_li surprised "Soon, he'll be too powerful."
+    show s3_mc_image neutral
+    seb "Oh, please. This isn't even my final form."
+    "You get into bed with [s3_li]."
+    if s3_li != s3_mc.past_partners[0] and s3_li != s3_mc.past_partners[1] and s3_li != s3_mc.past_partners[2]:
+        s3_li happy "I'm excited to finally share a bed with you!"
+    else:
+        s3_li happy "Feels so good to be getting into bed with you again, babe."
+    genevieve surprised "[s3_name]! I asked how you're feeling."
+    genevieve cheeky "Before I was interrupted..."
+
+    # CHOICE
+    menu:
+        thought "I'm feeling..."
+        "Sad":
+            # NEED TO FILL
+            "EMPTY"
+        "Relieved":
+            s3_mc sad "I'm just happy all that drama's over."
+            s3_li happy "Gosh, me too."
+        "Happy":
+            $ s3_mc.like(s3_li)
+            s3_mc happy "I got who I wanted. I couldn't be happier."
+            s3_li happy "I feel the same."
+    genevieve surprised "Well, I'm ready to pass out. Night, you two."
+    "Viv and Seb curl up together under the blanket."
+    $ leaving("genevieve")
+    show s3_mc_image neutral
+    "You follow suit and get into bed with [s3_li]. [he_she!c] is warm under the duvet. You stick your foot out and stroke [his_her] leg."
+    if s3_li != "Ciaran":
+        s3_li smile "What do you say to a kiss goodnight?"
+    else:
+        s3_li happy "What do you say to a kiss goodnight?"
+    if s3e8p3_bits == True:
+        s3_mc cheeky "A kiss, after what we just did?"
+        s3_li cheeky "Hey, I just can't get enough of you."
+    show s3_mc_image happy
+
+    # CHOICE
+    menu:
+        thought "A kiss goodnight..."
+        "I'm tired":
+            # NEED TO FILL
+            "EMPTY"
+        "Would be great":
+            "[s3_li] smiles and lifts the duvet over the two of you."
+            "[he_she!c] presses [his_her] lips to yours, kissing you slowly, full of emotion and tenderness."
+            if s3_li != "Ciaran":
+                s3_li smile "I'm so happy to be here with you, [s3_name]."
+            else:
+                s3_li smile "I'm so happy to be here with you, [s3_name]."
+            show s3_mc_image happy
+            s3_mc "Me too."
+        "How about a snog?":
+            "[s3_li]'s eyes light up."
+            s3_li "Oh, hell yeah!"
+            "[he_she!c] lifts the duvet over the two of you, before leaning in and kissing you with force."
+            "[his_her!c] tongue glides against your bottom lip as [his_her] hands caress your body, and you let out a small moan."
+            seb surprised "Hey! We can hear you!"
+            "You giggle."
+            $ leaving("seb")
+
+    s3_li "We should go to sleep. It's been a long day."
+    s3_mc sad "No doubt something else big will happen tomorrow."
+    s3_li neutral "I don't want to think about that. I just want to think about how happy I am being here with you."
+    s3_li happy "Let's just stay under this fluffy duvet forever."
+    s3_mc happy "Sounds good to me."
+    thought "This is my opportunity to get some cuddling in..."
+    show s3_mc_image surprised
+
+    # CHOICE
+    menu:
+        thought "What do I want to do?"
+        "No cuddles":
+            # NEED TO FILL
+            "EMPTY"
+        "Be the big spoon":
+            "You wait until [s3_li] looks comfy, and then wrap your arms around [his_her] back."
+            show s3_mc_image happy
+            s3_li surprised "Hey! You're big-spooning me!"
+            if s3_li == "Tai":
+                s3_li smile "I've always wanted to be the little spoon! I feel so safe!"
+            if s3_li == "Yasmin" or s3_li == "AJ":
+                $ s3_mc.like(s3_li)
+                s3_li smile "This is great. I feel so safe."
+            else:
+                $ s3_mc.like(s3_li)
+                s3_li cheeky "I've never had a girl spoon me before. I like it!"
+            show s3_mc_image neutral
+            "You drift off to sleep, holding [s3_li] close."
+        "Be the little spoon":
+            $ s3_mc.like(s3_li)
+            "You pull [s3_li]'s arm around you so [he_she]'s spooning you."
+            show s3_mc_image happy
+            s3_li cheeky "Ah, I love being the big spoon."
+            if s3_li != "Ciaran":
+                s3_li smile "Makes me feel like I can protect you from anything."
+            else:
+                s3_li happy "Makes me feel like I can protect you from anything."
+            "You drift slowly off to sleep, [s3_li]'s arms around you, feeling like you're finally safe."
+    
+    scene sand with dissolve
+    $ on_screen = []
+    $ outfit = "swim"
+
+    "Everyone's coupled up and no-one cried..."
+    "I'd say that's a success, wouldn't you?"
+    "Tomorrow on Love Island..."
+    "It seems there's finally peace in the Villa..."
+    s3_bff surprised "New Islanders?!"
+    $ leaving("s3_bff_image")
+    $ entering("s3_mc_image")
+    s3_mc sad "This is gonna be bad..."
+    $ leaving("s3_mc_image")
+
+    "Kidding!"
+    "'Peace in the Villa...' can't believe you fell for that."
+    "Catch you next time."
+
+    jump s3e9p1
+    return
+
+label s3e8p3_private_chat:
+
+    scene s3-gym-night with dissolve
+    $ new_scene()
+
+    "[s3_li] leads you to the gym."
+    show s3_mc_image happy
+    s3_li surprised "Everywhere else is occupied."
+    s3_li blush "Are you OK hanging out here?"
+
+    # CHOICE
+    menu:
+        thought "Having a romantic moment in the gym..."
+        "It's a bit smelly":
+            show s3_mc_image sad
+            s3_li blush "Yeah, but it'll have to do."
+            s3_li cheeky "Besides, I like the smell."
+            show s3_mc_image cheeky
+            s3_li "Who doesn't love a bit of sweat sometimes?"
+        "It's romantic":
+            show s3_mc_image cheeky
+            s3_li surprised "You think the gym is romantic?"
+            if s3_li == "Tai":
+                s3_mc surprised "No! It's romantic that you want to spend time with me so much, you're willing to do it next to AJ's sweaty towel."
+            else:
+                s3_mc surprised "No! It's romantic that you want to spend time with me so much, you're willing to do it next to Tai's sweaty towel."
+            if s3_li =="Ciaran":
+                s3_li happy "Hey, all good relationships are about compromise."
+            else:
+                s3_li smile "Hey, all good relationships are about compromise."
+        "Wanna lift some weights?":
+            show s3_mc_image cheeky
+            if s3_li == "Tai" or s3_li == "AJ":
+                s3_li happy "Yeah!"
+                "[he_she!c] lifts up a dumb-bell the size of your head and starts doing curls."
+                show s3_mc_image angry
+                "You frown at [him_her]."
+                s3_li surprised "What?"
+                s3_mc "I was kidding..."
+                s3_li cheeky "Oh... I knew that."
+                "[he_she!c] puts down the weights. You can tell [he_she]'s slightly disappointed."
+            else:
+                if s3_li != "Ciaran":
+                    s3_li smile "I'd rather spend time with you."
+                else:
+                    s3_li happy "I'd rather spend time with you."
+        
+    show s3_li_image neutral
+    show s3_mc_image neutral
+    "You lie down with [him_her] on the yoga mats, facing each other under the stars. The breeze is cool, but you don't feel it."
+    s3_li cheeky "You are so beautiful, [s3_name]."
+    if s3_li != s3_mc.past_partners[0] and s3_li != s3_mc.past_partners[1] and s3_li != s3_mc.past_partners[2]:
+        if s3_li != "Tai":
+            s3_li sad "I've missed out on being coupled up with you before."
+        else:
+            s3_li neutral "I've missed out on being coupled up with you before."
+        s3_li serious "Feelings are so hard to get a hold of in here. There is much uncertainty."
+    else:
+        show s3_mc_image sad
+        s3_li sad "When we were coupled up last time, I didn't know how long it would last."
+        s3_li serious "Things are always uncertain here, you know?"
+    show s3_mc_image happy
+    s3_li blush "But it seems like the only thing I can be certain of here... is you."
+
+    if s3_li == "Bill":
+        show s3_li_image happy
+        "Bill smiles at you. He leans in and brushes your hair with his fingertips."
+        "The heavy scent of his now familiar aftershave surrounds you."
+        s3_li smile "Can I kiss you?"
+        show s3_mc_image neutral
+        
+        # CHOICE
+        menu:
+            "Kiss him first":
+                # NEED TO FILL
+                "EMPTY"
+            "Ask him a personal question instead":
+                # NEED TO FILL
+                "EMPTY"
+            "Tell him to go ahead":
+                "You reach up and put your arms around his neck."
+                s3_mc cheeky "Be my guest."
+                show s3_li_image cheeky
+                "He kisses you hard and fast, and for a moment the world melts away, leaving just the two of you."
+                "He kisses your neck, trailing down to your shoulder and across your collarbone, leaving goosebumps on your skin."
+                "He pulls away and grins at you."
+        
+        show s3_li_image neutral
+        show s3_mc_image neutral
+        "Bill scratches his head, winces, and pulls a face."
+        s3_li blush "Shoulder's a bit tight. Old injury. But a great story."
+        s3_mc sad "Ooh, what happened?"
+        s3_li surprised "OK, so I was on a job, right. We were patching up this old barn."
+        s3_li neutral "It was in a right state. All rickety and broken. And it had rained, so the roof was dead slippery."
+        show s3_mc_image surprised
+
+        # CHOICE
+        menu:
+            thought "This sounds like a scene in a horror film..."
+            "I don't want to hear the details":
+                # NEED TO FILL
+                "EMPTY"
+            "I hope this is mega gruesome":
+                # NEED TO FILL
+                "EMPTY"
+            "I had no idea roofing was so dangerous":
+                show s3_mc_image sad
+                s3_li surprised "It can be pretty dangerous business."
+                s3_li neutral "Everyone in the business knows someone who knows someone with a nasty story."
+        
+        s3_li "But this one's not too nasty."
+        s3_li "So anyway. There was also all this rusty farm machinery about."
+        s3_mc surprised "You just said..."
+        s3_li surprised "Just wait."
+        s3_li neutral "So I'm working on the roof of this barn, and suddenly my foot slips and I fall off."
+        s3_mc sad "Oh no!"
+        s3_li happy "Luckily, I landed on a soft patch of grass. Bit bruised, but I was OK."
+        s3_mc neutral "Phew."
+        s3_li surprised "And then I got attacked by an ostrich."
+        s3_mc surprised "Wait, what?"
+        s3_li sad "It was an ostrich farm, and one of them got loose."
+        show s3_mc_image neutral
+
+        # CHOICE
+        menu:
+            thought "Bill got attacked by an ostrich..."
+            "That's the funniest thing I've ever heard":
+                show s3_mc_image happy
+                s3_li surprised "Well, it wasn't at the time."
+                s3_li happy "But after five years of my mates bringing it up down the pub, I started to see the funny side."
+            "I bet it wasn't as funny as it sounds":
+                show s3_mc_image surprised
+                s3_li surprised "Yeah, it was bloody scary at that time."
+                s3_li smile "I can see the funny side now, though."
+            "Ostriches are terrifying":
+                show s3_mc_image surprised
+                s3_li surprised "Yeah, it was bloody scary at that time."
+                s3_li smile "I can see the funny side now, though."
+        
+        show s3_mc_image happy
+        show s3_li_image cheeky
+        "He grins and winks at you. You're quiet for a moment."
+        s3_li neutral "What are you so deep in thought about?"
+        s3_mc cheeky "Wouldn't you like to know?"
+    
+    elif s3_li == "Harry":
+        show s3_mc_image neutral
+        s3_li surprised "Ow!"
+        "He winces and rubs his eye."
+        s3_mc surprised "What's up, babes?"
+        s3_li sad "Something just went in my eye..."
+        s3_li neutral "Could you take a look?"
+        s3_mc neutral "Sure."
+        "You move closer to him. He tilts his head towards you, his big, dark eyes wide."
+        s3_li sad "Can you see anything?"
+        show s3_mc_image sad
+
+        # CHOICE
+        menu:
+            thought "I don't see anything... What should I do?"
+            "Tell him it's extremely serious":
+                # NEED TO FILL
+                "EMPTY"
+            "Flirt":
+                "You put on a serious face."
+                s3_mc neutral "There's something here."
+                s3_li "What is it?"
+                s3_mc cheeky "It's... the cutest guy I've ever seen."
+                s3_li smile "Stop it, [s3_name]! You'll make me go all red."
+                s3_mc happy "I think you're adorable when you blush. I can't see anything in your eye, by the way."
+                s3_li neutral "I think I know what it was, anyway."
+                s3_mc neutral "What was it?"
+                s3_li happy "I was just blinded by how fit you are."
+                s3_mc happy "You're such a melt."
+                "You both laugh."
+            "Kiss him":
+                show s3_mc_image cheeky
+                show s3_li_image smile
+                "You close your eyes and move forward. He comes to meet you and your lips brush softly together."
+                "For a moment, you both lose yourselves in a single perfect moment."
+            
+        "Harry smiles at you."
+        s3_li smile "We're adorable, aren't we?"
+        s3_mc happy "We are the adorablest."
+        s3_li happy "There is no way we won't win this whole thing."
+        show s3_mc_image neutral
+
+        # CHOICE
+        menu:
+            thought "Harry seems pretty convinced we're going to win..."
+            "We've got some stiff competition":
+                # NEED TO FILL
+                "EMPTY"
+            "Of course we will":
+                show s3_mc_image happy
+                "You grin at Harry, and hold your hand up for a high five."
+                "He doesn't leave you hanging."
+            "It'll be OK if we don't, though":
+                s3_mc "Sure, that'd be nice."
+                s3_mc "I won't mind if we don't, though."
+        
+        s3_li angry "I'm actually going to be really annoyed if we don't win."
+        s3_mc surprised "Sure, but, there's more to it than just winning."
+        s3_li serious "I told myself I was gonna focus on finding love, but I can't help it. I just can't shut off my competitive streak."
+        show s3_mc_image neutral
+
+        # CHOICE
+        menu:
+            thought "What is there apart from winning?"
+            "Making friends":
+                # NEED TO FILL
+                "EMPTY"
+            "Nothing. Winning is everything":
+                # NEED TO FILL
+                "EMPTY"
+            "Finding love":
+                "You reach out and touch the back of Harry's hand. He brushes your hand with his fingers and smiles."
+                s3_li surprised "Yeah, I'm not saying that's not a big part of it."
+                s3_li angry "But this is a competition. If I don't win I'll feel like it was a bit of a waste."
+                "He shrugs."
+                s3_li neutral "That's just who I am."
+                s3_mc sad "Thanks..."
+                s3_li surprised "No, that's not what I'm saying! I love being here with you, and I'm so glad I met you."
+                s3_li angry "But a part of me needs to win."
+        
+        s3_li sad "I.. I sort of wish I wasn't like that, though."
+        s3_mc happy "Why don't we just try and enjoy the time that's left and not even think about the final?"
+        s3_li happy "OK, I can try that."
+        "He wraps his arms around you and squeezes."
+    
+    elif s3_li == "Camilo":
+        s3_li smile "I was looking forward to getting you to myself again."
+        s3_li cheeky "You look absolutely stunning, [s3_name]. I really want to kiss you right now."
+
+        # CHOICE
+        menu:
+            thought "Camilo wants to kiss me..."
+            "Make him work for it":
+                # NEED TO FILL
+                "EMPTY"
+            "Get him to tell you a story instead":
+                # NEED TO FILL
+                "EMPTY"
+            "Let him kiss you":
+                s3_mc cheeky "Come and get it."
+                "Camilo envelops you in his arms and kisses you deeply on the mouth."
+                "He runs his hands down your body as his lips trail down your neck and over your collarbones."
+        
+        s3_li happy "You're amazing, you know that?"
+        s3_li smile "I fancy the pants off you, but it's like... you're also a mate."
+        s3_mc happy "I like that."
+        s3_li neutral "And that's kinda new to me. Like, relationships come and go, but friends are there forever."
+        s3_mc sad "Well, not always. People drift apart, or you ghost them or whatever."
+        s3_li surprised "You've ghosted friends before?"
+        show s3_mc_image neutral
+
+        # CHOICE
+        menu:
+            thougth "Have I ever ghosted a friend?"
+            "No, I've never done that myself":
+                # NEED TO FILL
+                "EMPTY"
+            "Yes, loads. No mercy":
+                s3_mc sad "Yeah, hasn't everyone? Some people are just toxic."
+                s3_mc neutral "It's not my responsibility to keep those in my life, you know?"
+                s3_li sad "Yeah."
+            "Sometimes you have to":
+                s3_mc sad "I didn't like it, but sometimes people just turn out to be toxic."
+                s3_mc neutral "I need to protect my peace, you know?"
+                s3_li sad "Yeah."
+        
+        s3_mc "So have you cut people out of your friendship group back home?"
+        s3_li blush "Yes. No. Kinda."
+        s3_li "There was this guy. Er, he might be watching so I'm gonna call him... Bonathan."
+        s3_mc surprised "Is... is his name just Jonathan?"
+        s3_li surprised "Oh bloody-"
+        s3_li blush "Yeah."
+        show s3_mc_image neutral
+        s3_li neutral "He started seeing Kayla, Tall Dave's ex. Serious violation of the bro code, innit."
+        s3_li "Then Monster Munch had a party and invited Jonathan, and Jonathan brought Kayla to the party."
+        s3_mc surprised "Hang on, you have a mate called Monster Munch?"
+        s3_li happy "His real name's Adnan, but nobody uses their real name, do they?"
+        s3_mc cheeky "Jonathan does, apparently."
+        s3_li smile "Nah, his nickname is Greasy Jonno."
+        s3_mc surprised "That's not a very nice nickname!"
+        s3_li surprised "Oh, no. It's 'cause one time he went to Greece."
+        show s3_mc_image neutral
+
+        # CHOICE
+        menu:
+            s3_mc "That nickname is..."
+            "Very silly":
+                # NEED TO FILL
+                "EMPTY"
+            "Like my friend Mushroom Kate":
+                s3_mc happy "Her brother was Mushroom Paul, because he had a haircut like a mushroom. She inherited the title, I guess."
+                s3_mc neutral "She had a normal haircut, though."
+            "Like my friend Lipstick":
+                s3_mc happy "We started calling him that in primary school because he stuck his lips together with glue."
+            
+        s3_li neutral "Anyway, so everyone wanted to cut Greasy Jonno out."
+        s3_li serious "But I knew that him and Kayla, it wasn't like some fling, you get me? They were in love and that."
+        s3_li smile "So I tried to get them to see that. And now Greasy Jonno is mates with everyone again."
+        s3_li happy "I think sometimes you just need to give peeps a time out, innit."
+        s3_mc sad "No chance of that in here..."
+        s3_li neutral "Is there someone you'd wanna cut out in the Villa?"
+
+        # CHOICE
+        menu:
+            "I wouldn't rule it out in future":
+                # NEED TO FILL
+                "EMPTY"
+            "One or two names spring to my mind...":
+                # NEED TO FILL
+                "EMPTY"
+            "No, I think everyone's great":
+                s3_mc happy "Oh, no way. I'm actually surprised at how well I'm getting on with the people in here."
+                s3_li happy "Right? They've been ups and downs but no really bad drama."
+        
+        s3_li smile "I actually think there are a couple of people I'm gonna stay mates with after the show's over. That's like the opposite."
+        s3_mc cheeky "Am I included in that?"
+        "He scoops an arm around your waist and pulls you in."
+        s3_li cheeky "Absolutely."
+
+    elif s3_li == "AJ":
+        "AJ leans her head on your shoulder."
+        s3_li smile "You're so comfy."
+        s3_mc happy "Oh, yeah?"
+        s3_li cheeky "Yeah."
+        s3_li neutral "I love it when a person is, like, proper comfy."
+        s3_li smile "And it looks like I've found that in you."
+        show s3_mc_image neutral
+
+        # CHOICE
+        menu:
+            thought "I should..."
+            "Say I'm not a human pillow":
+                # NEED TO FILL
+                "EMPTY"
+            "Call AJ comfy too":
+                show s3_mc_image happy
+                "AJ smiles and leans in closer towards you."
+            "Kiss her!":
+                show s3_mc_image happy
+                "You tilt her face up towards you. She leans in closer."
+                "Your lips touch."
+                "The world disappears."
+                "You move away."
+                "She starts playing with her hair shyly."
+                $ s3_mc.like(s3_li)
+                s3_li cheeky "OK, so not only have I found my comfy human pillows and my potential soulmate..."
+                s3_li "But I've also found someone that kisses me like..."
+                s3_li smile "That."
+                s3_li blush "Woah."
+                s3_li cheeky "Amazing."
+                "She rests her head on your shoulder."
+                s3_li smile "Today is a good day."
+        
+        s3_li neutral "Do you ever have those feels where you think you're reliving a moment that you're already like, lived?"
+        s3_mc surprised "Like déjà vu?"
+        s3_li surprised "I guess, if that's what it's called!"
+        s3_li serious "Is that French or..."
+        s3_mc happy "Yeah, it means 'already seen'."
+        s3_li happy "That's so cool!"
+        s3_li serious "And, like, profound."
+        s3_li neutral "But, yeah, have you ever had that before?"
+        s3_li smile "When you feel like you've already seen something?"
+        show s3_mc_image neutral
+
+        # CHOICE
+        menu:
+            thought "Do I get déjà vu?"
+            "No, never":
+                # NEED TO FILL
+                "EMPTY"
+            "I'm having it right now":
+                s3_li surprised "Me too! I'm having it right now!"
+            "Yeah, all the time":
+                s3_li surprised "Me too! I'm having it right now!"
+        
+        show s3_mc_image surprised
+        s3_li smile "For real."
+        s3_li neutral "It feels like I've met you before, like, maybe in another life."
+        s3_li smile "You're familiar."
+        show s3_mc_image happy
+        s3_li blush "But it's a good familiar, not like a boring one."
+        show s3_mc_image neutral
+
+        # CHOICE
+        menu:
+            thought "AJ says we've met before..."
+            "So you're a time traveller?":
+                # NEED TO FILL
+                "EMPTY"
+            "I better not be boring you":
+                # NEED TO FILL
+                "EMPTY"
+            "Maybe we're soulmates":
+                show s3_mc_image happy
+                $ s3_mc.like(s3_li)
+                s3_li smile "I think you're right."
+        
+        s3_li neutral "I reckon that's why I feel so comfortable around you."
+        show s3_mc_image neutral
+        s3_li smile "Because we've already done all this before, or we're doing it again."
+        s3_li happy "That doesn't mean I don't think it's new or exciting, but it's a different kind of excitement."
+        s3_li smile "Like we're meant to be together, you get me?"
+
+        # CHOICE
+        menu:
+            thought "AJ thinks we're meant to be together!"
+            "You're so cute when you get complicated":
+                # NEED TO FILL
+                "EMPTY"
+            "Are you saying alternative realities exist?":
+                # NEED TO FILL
+                "EMPTY"
+            "I totally think the same!":
+                s3_mc happy "We're obviously meant to be together."
+                s3_li serious "But, you know what, I don't want fate to choose for me."
+                s3_li sad "Because that feels like it isn't as special or something."
+                s3_li neutral "I want to do the choosing."
+                s3_mc surprised "What do you mean?"
+                s3_li blush "I'm not sure anymore."
+                "She grins and laughs at herself, leaning onto your shoulder again."
+                show s3_mc_image happy
+                s3_li smile "I just know that right here is where I want to be."
+
+    elif s3_li == "Tai":
+        "Tai stretches his arms, rolling his neck slowly and easing out his muscles."
+        "As you shift nearer, he sighs happily. His body is so close to yours."
+
+        # CHOICE
+        menu:
+            thought "Tai looks so hot right now..."
+            "Tickle him":
+                # NEED TO FILL
+                "EMPTY"
+            "Stroke his hair":
+                show s3_mc_image cheeky
+                show s3_li_image cheeky
+                "You reach out and run your fingers through his hair. That familiar sandalwood smell wafts over you."
+                "Tai's eyes half-close and he grins sleepily, looking like an incredibly satisfied cat."
+                $ s3_mc.like(s3_li)
+                s3_li happy "That feels so amazing."
+            "Kiss him":
+                show s3_mc_image cheeky
+                show s3_li_image cheeky
+                "While Tai's still stretching, you lean in and kiss him. He grins against your mouth and wraps his arms around you."
+                "He kisses you back eagerly, then brushes his lips lightly along your jawline."
+                $ s3_mc.like(s3_li)
+                s3_li happy "You feel so amazing."
+        
+        show s3_mc_image neutral
+        "He stretches out his arms again, and his shoulder clicks."
+        s3_li neutral "You see? You can always do with a stretch."
+        s3_li surprised "Speaking of, does any bit of you need TLC?"
+        s3_mc surprised "What did you have in mind?"
+        "Tai draws so close that you can see each of his long eyelashes. He cocks his head cheekily."
+        s3_li smile "A little massage."
+        s3_li "A Tai massage, if you will."
+        s3_mc cheeky "You're so cheesy."
+        s3_li happy "Well, we don't want your muscles getting sore."
+        show s3_mc_image neutral
+
+        # CHOICE
+        menu:
+            thought "Tai's offering me a massage..."
+            "I'm good for now":
+                # NEED TO FILL
+                "EMPTY"
+            "My feet could do with a rub":
+                # NEED TO FILL
+                "EMPTY"
+            "My shoulders are a bit tight":
+                s3_mc sad "I hunched over my phone a bit too long last time the texts came in."
+                s3_mc "My shoulders could do with some attention."
+                show s3_mc_image happy
+                s3_li happy "Happy to help. Always."
+                "Tai starts rubbing your shoulders, lightly at first, his fingers seeking out any spots of tension."
+                show s3_mc_image neutral
+                "Tai's voice is low and soft."
+                s3_li smile "Feeling good?"
+
+                # CHOICE
+                menu:
+                    thought "Tai's wondering if the massage is feeling good..."
+                    "Lighter!":
+                        # NEED TO FILL
+                        "EMPTY"
+                    "That's perfect":
+                        "Tai carries on massaging, his movements focused."
+                    "More pressure!":
+                        s3_mc "I like more force."
+                        s3_li cheeky "You're saying you like it hard?"
+                        s3_li smile "My pleasure."
+                
+                s3_mc cheeky "I could do this for hours."
+                
+            "I'm getting a twinge in my glutes":
+                show s3_mc_image cheeky
+                s3_li cheeky "Ooh, now that sounds like fun."
+                "He winks, then puts on a very serious frown."
+                s3_li happy "The gluteus maximus is very important for supporting your lower back."
+                s3_li cheeky "And in your case, it's also pure flames."
+                "Tai starts rubbing your lower back, lightly at first, his fingers seeking out any spots of tension."
+                "Slowly, his hands drift downwards."
+                "Tai's voice is low and soft."
+                s3_li neutral "Feeling good?"
+                show s3_mc_image neutral
+
+                # CHOICE
+                menu:
+                    thought "Tai's wondering if the massage is feeling good..."
+                    "Lighter!":
+                        # NEED TO FILL
+                        "EMPTY"
+                    "That's perfect":
+                        show s3_mc_image cheeky
+                        "Tai carries on massaging, his movements focused."
+                    "More pressure!":
+                        s3_mc cheeky "I like more force."
+                        s3_li cheeky "You're saying you like it hard?"
+                        s3_li happy "My pleasure."
+                
+                s3_mc cheeky "I could do this for hours."
+                
+        s3_li happy "Well, if you ever want a massage another time, all you need to do is ask."
+        s3_li smile "Or tell me, I don't mind."
+        s3_li "Sometimes being told what to do can be fun."
+        show s3_mc_image surprised
+
+        # CHOICE
+        menu:
+            thought "Tai likes being told what to do!"
+            "I prefer being chill":
+                # NEED TO FILL
+                "EMPTY"
+            "I like taking the lead":
+                show s3_mc_image cheeky
+                s3_li happy "Get the handcuffs out, eh?"
+                s3_li smile "Honestly, I'm good with whatever. "
+            "I'm happy either way":
+                show s3_mc_image happy
+                $ s3_mc.like(s3_li)
+                s3_li smile "Honestly, I'm good with whatever."
+
+        show s3_mc_image neutral    
+        s3_li cheeky "It's the person who matters."
+        "He stretches again, then winces."
+        s3_li surprised "Or I do, but it's with a physio. So it's different."
+        s3_li neutral "But I've got a bit of a crick in my shoulder. If you could give it a rub, that's be amazing."
+
+        # CHOICE
+        menu:
+            thought "Should I give Tai a shoulder massage?"
+            "I don't feel in the mood":
+                # NEED TO FILL
+                "EMPTY"
+            "Maybe I could massage somewhere else":
+                s3_mc cheeky "You know, your calves, or thighs."
+                s3_mc "Or somewhere a little further up."
+                s3_li cheeky "Now that's a plan."
+                s3_li smile "But could you start with my shoulders for now?"
+                s3_mc happy "My hands are at the ready!"
+                "You lay a hand on Tai's shoulder, feeling the strength of his muscles beneath his skin."
+                show s3_li_image neutral
+                show s3_mc_image neutral
+                "As you rub with your thumbs in small circles, you seek out any spots of tension."
+                "Tai makes a deep, satisfied noise in the back of his throat. It almost sounds like a purr."
+                s3_mc happy "Hope you're not falling asleep."
+                s3_li cheeky "No way. I couldn't miss this."
+                s3_li smile "That is amazing."
+                show s3_mc_image neutral
+                thought "Tai's loving his massage."
+                show s3_mc_image cheeky
+
+                # CHOICE
+                menu:
+                    thought "Shall I make it a bit naughty?"
+                    "I'll stay on the shoulders": 
+                        # NEED TO FILL
+                        "EMPTY"
+                    "I'll go for it":
+                        "You whisper in Tai's ear, your breath against his skin."
+                        s3_mc "Would you like my hands anywhere else?"
+                        s3_li cheeky "You know I do."
+                        "Your hands drift down Tai's back, down his shoulder blades, down to his hips."
+                        "His breath shudders as you stroke his skin, and he leans back against you, eager for your touch."
+                        s3_li happy "You... [s3_name]... that's..."
+                        s3_mc "Never thought I'd see you lost for words."
+                        s3_li cheeky "Mmm..."
+            "Let me at those muscles":
+                s3_mc happy "My hands are at the ready!"
+                s3_li smile "Aww, that's so nice."
+                s3_li "Normally, I'm the one doing it."
+                show s3_mc_image neutral
+                "You lay a hand on Tai's shoulder, feeling the strength of his muscles beneath his skin."
+                "As you rub with your thumbs in small circles, you seek out any spots of tension."
+                "Tai makes a deep, satisfied noise in the back of his throat. It almost sounds like a purr."
+                s3_mc cheeky "Hope you're not falling asleep."
+                s3_li cheeky "No way. I couldn't miss this."
+                s3_li smile "That is amazing."
+                thought "Tai's loving his massage."
+
+                # CHOICE
+                menu:
+                    thought "Shall I make it a bit naughty?"
+                    "I'll stay on the shoulders": 
+                        # NEED TO FILL
+                        "EMPTY"
+                    "I'll go for it":
+                        "You whisper in Tai's ear, your breath against his skin."
+                        s3_mc cheeky "Would you like my hands anywhere else?"
+                        s3_li cheeky "You know I do."
+                        "Your hands drift down Tai's back, down his shoulder blades, down to his hips."
+                        "His breath shudders as you stroke his skin, and he leans back against you, eager for your touch."
+                        s3_li blush "You... [s3_name]... that's..."
+                        s3_mc "Never thought I'd see you lost for words."
+                        s3_li "Mmm..."
+    
+    elif s3_li == "Ciaran":
+        s3_li grimace "Woah."
+        s3_mc surprised "You OK?"
+        s3_li sad "Sorry. Just a pang of homesickness."
+        s3_li "Started thinking about my dog."
+        s3_li neutral "I wish I could give her a pet right now."
+        show s3_mc_image neutral
+
+        # CHOICE
+        menu:
+            thought "Ciaran wants to pet his dog."
+            "You can pet me":
+                # NEED TO FILL
+                "EMPTY"
+            "I don't like dogs":
+                # NEED TO FILL
+                "EMPTY"
+            "That's sweet":
+                s3_mc happy "All these people in swimwear, you're thinking about your dog. It's cute."
+                s3_li grimace "It is?"
+                s3_li "I thought it was a bit sappy, but cute works too!"
+        
+        s3_li happy "Captain Kerry and I are best pals, y'know."
+        s3_li neutral "Whoever says dogs don't have personalities are clearly cat people."
+        s3_mc surprised "Captain Kerry?"
+        s3_li grimace "Oh... did I call her that?"
+        s3_li "Forget I said anything. Just a mistake."
+        show s3_mc_image neutral
+
+        # CHOICE
+        menu:
+            thought "Ciaran called his dog Captain..."
+            "Is she your superior?":
+                # NEED TO FILL
+                "EMPTY"
+            "Like Captain America, but for Ireland?":
+                s3_li blush "Uh, sure! That's totally what I meant."
+            "Does she have a ship?":
+                s3_li blush "Um, not, it's not like..."
+                "He trails off."
+        
+        s3_mc angry "Ciaran, what are you hiding?"
+        "Ciaran puffs his cheeks up and blows them out."
+        s3_li sad "OK. You're going to think this is silly."
+        s3_li grimace "Or maybe not... it's a chance I have to take."
+        show s3_mc_image neutral
+        s3_li sad "Being a bouncer is a lot of standing around. And there's only so much social media you can scroll through."
+        s3_li blush "So... I kind of started writing short stories on my Notes app."
+        s3_li "About me. And my dog. Going on adventures."
+        show s3_mc_image surprised
+        
+        # CHOICE
+        menu:
+            s3_mc "Oh, wow. That's..."
+            "So funny":
+                # NEED TO FILL
+                "EMPTY"
+            "So cute!":
+                s3_mc happy "That's adorable."
+                s3_mc "I didn't know you were a writer."
+                s3_li "Oh, I'm not! Definitely not. They've probably got loads of mistakes. I've got rubbish grammar."
+                s3_li cheeky "That's all I've written, really."
+            "Absolutely incredible":
+                s3_mc happy "That's the greatest thing I've ever heard."
+                s3_mc "Hands down."
+                s3_li happy "I'm glad you think so!"
+
+        s3_mc neutral "If she's Captain Kerry, what are you?"
+        s3_li neutral "..."
+        s3_li grimace "Ciaran-man."
+        s3_mc happy "You're the cutest."
+        s3_mc "Can I read one?"
+        s3_li happy "Well, I don't have my phone right now. But you can when we're out of the Villa."
+        s3_li sad "They're not good, though."
+        show s3_mc_image neutral
+
+        # CHOICE
+        menu:
+            thought "Ciaran doesn't think his stories are good."
+            "I'm sure they're good":
+                s3_mc happy "You're a smart guy, and so creative. I'm sure they're great."
+                s3_mc neutral "Even if it's not, it doesn't matter to me."
+            "I don't care":
+                s3_mc happy "Ciaran, I don't care if they're not Shakespeare."
+                s3_mc angry "That guy's overrated anyway. Hasn't put anything out in years."
+        
+        s3_mc happy "I care about you, so I want to read them."
+        s3_li surprised "That means so much to me."
+        s3_li "I've never shared them with anyone, but I'm really excited about sharing them with you."
+        s3_li happy "That's a good sign, right?"
+        s3_mc neutral "Definitely."
+        "He gives you a small smile, and you feel butterflies in your stomach."
+        "The wind catches his hair, blowing it into his face. He pushes it back."
+        "You feel something stir inside you."
+
+        # CHOICE
+        menu:
+            thought "I want to..."
+            "Straddle him":
+                # NEED TO FILL
+                "EMPTY"
+            "Tell him how I feel":
+                # NEED TO FILL
+                "EMPTY"
+            "Kiss him":
+                "His hair falls in his face again, despite his best efforts."
+                s3_li sad "Damn pomade, never holds."
+                s3_mc "Let me get that for you..."
+                "You move forward, running your hand through his hair and keeping it there."
+                s3_li happy "Thanks."
+                s3_mc cheeky "No problem."
+                "You lean forwards and press your lips to his. His teeth clash with yours and neither of you can keep from smiling."
+                "He cups your face with his strong hands, while you run your fingertips across his back."
+                s3_li surprised "That tickles!"
+                s3_mc neutral "In a good way?"
+                s3_li cheeky "Yeah, in a good way."
+        
+        "You smile at each other, and the butterflies continue."
+        
+    elif s3_li == "Yasmin":
+        show s3_mc_image neutral
+        show s3_li_image neutral
+        "It takes a moment to notice that Yasmin's stroking the back of your hand with her thumb again."
+        s3_mc "There you go again."
+        s3_li blush "What do you mean?"
+        "You demonstrate by doing it back to her."
+        "Her skin is soft and smooth, and her hand is small and pretty. Her purple nails catch the light."
+        s3_mc cheeky "This. You keep doing it when we're alone together."
+        s3_li "Oh, that..."
+        s3_li neutral "It's just a way of, like ...letting you know I'm here, if that makes any kind of sense."
+        s3_li cheeky "And I really like to feel how soft your skin is. Is that weird?"
+        show s3_mc_image neutral
+
+        # CHOICE
+        menu:
+            thought "The thing Yasmin does with her thumb..."
+            "It's a bit annoying":
+                # NEED TO FILL
+                "EMPTY"
+            "I'd rather see what you can do with your fingers..":
+                show s3_mc_image cheeky
+                s3_li cheeky "Naughty, [s3_name]."
+                "You pretend to look innocent."
+                s3_mc happy "What? I meant I can't wait to see you play bass!"
+                s3_li smile "Sure, girl, sure."
+            "I like it":
+                s3_mc happy "It's comforting."
+                s3_li smile "I'm glad."
+        
+        show s3_mc_image neutral
+        s3_li cheeky "I guess playing different instruments has got me used to using my hands a lot."
+        s3_li sad "But here there's no strings, no keys, nothing to keep my hands busy..."
+        "She runs her hands lightly down your arms and bites her lip."
+        s3_li smile "Except you, of course."
+        show s3_mc_image surprised
+        
+        # CHOICE
+        menu:
+            thought "Yasmin's got restless hands..."
+            "Move them away":
+                # NEED TO FILL
+                "EMPTY"
+            "Move them to your hair":
+                # NEED TO FILL
+                "EMPTY"
+            "Move them to your waist":
+                show s3_mc_image neutral
+                "You guide her hands down. They settle on your waist before gliding around to your lower back."
+        
+        s3_li smile "Even this close, it feels like I can't get close enough."
+        s3_li cheeky "You're a hell of a girl, [s3_name]."
+        show s3_mc_image cheeky
+
+        # CHOICE
+        menu:
+            thought "Yasmin called me a hell of a girl..."
+            "You hardly even know me yet":
+                # NEED TO FILL
+                "EMPTY"
+            "You're the one who's amazing":
+                show s3_mc_image happy
+                s3_li smile "We make a pretty good pair, then, huh?"
+                s3_mc "I guess we do."
+            "I prefer to think of myself as a little piece of heaven":
+                show s3_mc_image happy
+                s3_li cheeky "Oh, I bet you are."
+    show s3_mc_image happy
+    if s3_li == "Bill" or s3_li == "Harry" or s3_li == "Camilo" or s3_li == "AJ":
+        s3_li cheeky "How would you feel about some reunion bits?"
+    else:
+        s3_li cheeky "How about some celebratory bits?"
+    show s3_mc_image surprised
+
+    # CHOICE
+    menu:
+        thought "Do I want to do bits with [s3_li]?"
+        "I'd rather talk":
+            s3_mc neutral "I'd rather talk. I love hearing what you have to say."
+            if s3_li != "Ciaran":
+                s3_li smile "That sounds great."
+            else:
+                s3_li neutral "That sounds great."
+        "Let's get it on!":
+            $ s3e8p3_bits = True
+            show s3_mc_image cheeky
+            "You look [him_her] in the eyes, smiling. [he_she!c] leans forward and kisses you."
+            "[his_her!c] lips are soft and gentle, but quickly grow urgent as [he_she] pulls you on top of [him_her]."
+
+            # CHOICE
+            menu:
+                thought "Do I want to take this all the way?"
+                "Nah":
+                    # NEED TO FILL
+                    "EMPTY"
+                "Hell yes!":
+                    $ s3_mc.like(s3_li)
+                    "You continue kissing [s3_li], harder and faster, your breathing growing heavier."
+                    if s3_li != "AJ" and s3_li != "Yasmin":
+                        "A line of slick sweat forms between your bodies. [s3_li] reaches into his pocket and pulls out a condom."
+                        s3_mc happy "You're so sexy when you're well prepared."
+                    else:
+                        "A line of slick sweat forms on your skin, as [s3_li]'s hands start to roam your body."
+                    "When you start moving against each other, [s3_li]'s eyes flutter closed as [he_she] twirls [his_her] fingers into your hair."
+                    s3_li "[s3_name]..."
+                    "[he_she!c] pulls your hair slightly, a delicious feeling that forces a soft moan out of you."
+                    "When it's over, you lay next to each other, breathless, staring up at the stars, your fingers interlaced."
+                    s3_li surprised "Well, that was a workout."
+                    s3_mc cheeky "A high intensity one."
+                    s3_li happy "A cardio blast."
+                    s3_mc "Glute-concentrated."
+                    s3_li blush "My inner thighs are burning."
+                    s3_mc happy "Maybe I can give you a sports massage."
+                    s3_li cheeky "I may take you up on that later."
+    show s3_mc_image happy
+    if s3_li != "Ciaran":
+        s3_li smile "This all turned out exactly like I hoped."
+    else:
+        s3_li happy "This all turned out exactly like I hoped."
+
+    if s3_li == "Bill":
+        s3_li surprised "You're like, my dream girl, you know that?"
+        s3_li cheeky "You're strong, beautiful, and you eat with your mouth closed."
+        s3_mc cheeky "Wow, what high standards."
+        s3_li surprised "You'd be surprised. Seriously."
+        show s3_mc_image happy
+        s3_li neutral "But yeah, you're special, alright."
+    elif s3_li == "Harry":
+        s3_li surprised "Have you seen that old movie, 'Hitch'? It's a classic."
+        s3_li "It's that one where Will Smith runs a business as a dating coach, getting geeky dudes together with hot girls."
+        s3_li happy "When I saw that movie, I thought, that looks easy, I could do that."
+        s3_li serious "I legit thought about setting up a similar business."
+        s3_li happy "'Zhong' is a much cooler name for a movie than 'Hitch', don't you think?"
+        s3_li blush "But wow, I do not have the capacity for that."
+        s3_li sad "I find you, a girl I actually like, and my bum starts sweating every time you even look at me."
+        s3_mc happy "That's cute."
+        s3_li surprised "I'm glad you think so. I'm learning a lot about myself with you, [s3_name]."
+    elif s3_li == "Camilo":
+        s3_li smile "Chica, you are so surprising."
+        s3_li sad "I thought for sure you'd stay with [s3_mc.past_partners[2]]."
+        show s3_mc_image happy
+        s3_li cheeky "I guess you couldn't resist this Colombian charm..."
+        s3_li smile "But, yeah. I'm seriously so happy."
+    elif s3_li == "AJ":
+        s3_li surprised "I just wish I'd picked you before you picked me!"
+        show s3_mc_image cheeky
+        s3_li serious "I want you to know how into you I am."
+        s3_mc surprised "Let's do it again then. AJ, you've got a text!"
+        "You mimic the text tone. AJ giggles."
+        s3_li surprised "Ooh, a text? I get to pick first!"
+        show s3_mc_image sad
+        s3_li cheeky "I want to couple up with this girl because she's super cool, hot, and makes me feel all melty inside."
+        show s3_mc_image happy
+        s3_li smile "It's [s3_name]!"
+        s3_mc cheeky "Oh em gee! I can't believe you picked me!"
+    elif s3_li == "Tai":
+        s3_li surprised "It's such a boost to the ego, a beautiful girl choosing you over five other lads."
+        s3_mc neutral "Don't let your head get too big."
+        s3_li neutral "I won't. I'll get a helmet."
+        show s3_mc_image cheeky 
+        s3_li "Although, if we end up in the final, it'll crack."
+        show s3_mc_image sad
+        s3_li "I can't wait to get out of this place with you. Take you on some real dates."
+        s3_mc happy "I can't wait, either."
+    elif s3_li == "Ciaran":
+        show s3_mc_image cheeky
+        s3_li cheeky "I feel so fuzzy, knowing you chose me over the others."
+        s3_li sad "When we were coupled up before, I was the one that picked you, so I could never be sure that you were into me."
+        s3_li grimace "I've been thinking about this for ages, and how much I hoped you'd pick me."
+        show s3_mc_image sad
+        s3_li blush "Sometimes I dream about it..."
+        show s3_mc_image surprised
+        s3_li grimace "Sorry, is that weird?"
+        s3_mc happy "It's cute!"
+        s3_li happy "Oh, good."
+    elif s3_li == "Yasmin":
+        s3_mc cheeky "I can't believe you were nervous."
+        s3_li surprised "Well, you make me feel that way."
+        s3_li blush "I've never thought about someone so much before. I had a dream about you last night."
+        s3_mc surprised "What happened?"
+        s3_li sad "I was watching you use the toilet..."
+        s3_mc angry "Oh. OK?"
+        s3_li smile "But I read in a book once it means I feel intimate with you."
+        s3_mc surprised "How long did the dream last?"
+        s3_li blush "I don't wanna talk about it."
+        s3_mc happy "Play your cards right, your dream could become a reality!"
+    show s3_mc_image happy
+    s3_li neutral "It's getting late. We should head to bed."
+    "[he_she!c] offers you [his_her] hand."
+    show s3_mc_image cheeky
+
+    # CHOICE
+    menu:
+        thought "Do I..."
+        "High five it":
+            # NEED TO FILL
+            "EMPTY"
+        "Take it":
+            show s3_mc_image happy
+            if s3_li != "Ciaran":
+                show s3_li_image smile
+            else:
+                show s3_li_image happy
+            "You lace your fingers between [s3_li]'s. [his_her!c] hand is warm, and you smile at each other before heading towards the Villa."
     return
