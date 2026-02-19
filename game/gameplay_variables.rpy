@@ -344,6 +344,8 @@ default s3e8p1_aj_chat = False
 default s3e8p1_keep_distance_aj = False
 # s3e8p1_nice (bool)
 default s3e8p1_nice = False
+# s3e8p1_hope_recoupling (bool)
+default s3e8p1_hope_recoupling_yasmin = False
 
 ## Episode 8, Part 2
 # s3e8p2_glory (bool)
@@ -351,6 +353,9 @@ default s3e8p2_glory = False
 # s3e8p2_ride_again (bool)
 default s3e8p2_ride_again = False
 
+## Episode 8, Part 3
+# s3e8p3_bits (bool)
+default s3e8p3_bits = False
 
 
 
