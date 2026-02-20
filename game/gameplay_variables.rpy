@@ -357,5 +357,18 @@ default s3e8p2_ride_again = False
 # s3e8p3_bits (bool)
 default s3e8p3_bits = False
 
+################################################################
+## Episode 9
+################################################################
+## Episode 9, Part 1
+# s3e9p1_shower (bool)
+default s3e9p1_shower = False
+# s3e9p1_shower_bits (bool)
+default s3e9p1_shower_bits = False
+# s3e9p1_fate (bool)
+default s3e9p1_fate = False
+# s3e9p1_bottom_of_heart (bool)
+default s3e9p1_bottom_of_heart = False
+
 
 
