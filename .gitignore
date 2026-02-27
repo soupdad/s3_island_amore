@@ -17,3 +17,5 @@ bundle.keystore
 
 game/*.rpyc
 game/*.rpy.bak
+
+game/tl/*

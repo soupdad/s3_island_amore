@@ -4,6 +4,18 @@
 init python:
     on_screen = []
 
+    def change_outfits(clothes):
+        '''
+        NOT COMPLETED - NEED TO SEARCH HOW TO CALL SCREEN IN FUNCTION
+        Changes all NPC clothes and set's up MC to choose their new outfit.
+
+        Variables:
+        clothes (string) - must be equal to "swim", "evening", or "pjs" 
+        '''
+        global outfit
+        outfit = clothes
+        # call customize_outfit from _call_customize_outfit_13
+
     def new_scene():
         '''
         To be ran after new scene is established to reset the characters and keep flow.
@@ -949,7 +961,7 @@ layeredimage yasmin:
         attribute serious:
             "npcs/yasmin/yasmin-face-serious.png"
         attribute surprised:
-            "npcs/yasmin/yasmin-face-talk.png"
+            "npcs/yasmin/yasmin-face-surprised.png"
         attribute smile:
             "npcs/yasmin/yasmin-face-smile.png"
 

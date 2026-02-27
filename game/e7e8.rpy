@@ -5606,6 +5606,7 @@ label s3e8p3:
 
     scene s3-bean-bags-night with dissolve
     $ new_scene()
+    $ outfit = "evening"
 
     "You're sitting on the beanbags with the girls. There is a nervous tension in the air."
     "You can see the boys huddled together on the daybeds. They keep glancing over in your direction."
@@ -5751,6 +5752,7 @@ label s3e8p3:
 
     "You sit down around the firepit with the rest of the girls. The boys line up in front of you."
 
+    # TO DO: This needs to be fixed to not have non-LI NPCs in there
     $ sorted_li_like = {key: value for key, value in sorted(s3_mc.like_mc.items(), key=lambda item: item[1])}
     $ s3_fav_li = list(sorted_li_like.keys())[-1]
 
@@ -6305,7 +6307,7 @@ label s3e8p3:
     "'Peace in the Villa...' can't believe you fell for that."
     "Catch you next time."
 
-    jump s3e9p1
+    # jump s3e9p1
     return
 
 label s3e8p3_private_chat:

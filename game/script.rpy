@@ -120,9 +120,7 @@ label start:
     $ s3_bff_lower = "seb"
     $ s3_3rd_girl = "Miki"
 
-    # $ new_li("Harry")
-
-    # For testing if changing partners worked.
+    ## For testing if changing partners worked.
     # $ s3_mc.current_partner = "AJ"
     # $ s3_mc.past_partners = ["Harry", "AJ"]
 
