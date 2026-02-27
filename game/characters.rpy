@@ -966,54 +966,40 @@ default yasmin = Npcs("woman")
 ## Love Interest
 ##
 default s3_li = "Bill"
-default s3_li_lower = s3_li.lower()
 layeredimage s3_li_image:
     if s3_li == 'Tai':
             "npcs/tai/tai-hair-back.png"
     
     always:
-        "npcs/[s3_li_lower]/[s3_li_lower]-body.png"
+        "npcs/[s3_li.lower()]/[s3_li.lower()]-body.png"
     
     attribute outfit default:
-        "npcs/[s3_li_lower]/[s3_li_lower]-outfit-[outfit].png"
+        "npcs/[s3_li.lower()]/[s3_li.lower()]-outfit-[outfit].png"
 
     group face auto:
         attribute neutral default:
-            "npcs/[s3_li_lower]/[s3_li_lower]-face-neutral.png"
+            "npcs/[s3_li.lower()]/[s3_li.lower()]-face-neutral.png"
         attribute angry:
-            "npcs/[s3_li_lower]/[s3_li_lower]-face-angry.png"
+            "npcs/[s3_li.lower()]/[s3_li.lower()]-face-angry.png"
         attribute blush:
-            "npcs/[s3_li_lower]/[s3_li_lower]-face-blush.png"
+            "npcs/[s3_li.lower()]/[s3_li.lower()]-face-blush.png"
         attribute cheeky:
-            "npcs/[s3_li_lower]/[s3_li_lower]-face-cheeky.png"
+            "npcs/[s3_li.lower()]/[s3_li.lower()]-face-cheeky.png"
         attribute happy:
-            "npcs/[s3_li_lower]/[s3_li_lower]-face-happy.png"
+            "npcs/[s3_li.lower()]/[s3_li.lower()]-face-happy.png"
         attribute sad:
-            "npcs/[s3_li_lower]/[s3_li_lower]-face-sad.png"
+            "npcs/[s3_li.lower()]/[s3_li.lower()]-face-sad.png"
         attribute serious:
-            "npcs/[s3_li_lower]/[s3_li_lower]-face-serious.png"
+            "npcs/[s3_li.lower()]/[s3_li.lower()]-face-serious.png"
         attribute surprised:
-            "npcs/[s3_li_lower]/[s3_li_lower]-face-surprised.png"
+            "npcs/[s3_li.lower()]/[s3_li.lower()]-face-surprised.png"
         attribute smile:
-            "npcs/[s3_li_lower]/[s3_li_lower]-face-smile.png"
+            "npcs/[s3_li.lower()]/[s3_li.lower()]-face-smile.png"
         attribute grimace:
-            "npcs/[s3_li_lower]/[s3_li_lower]-face-grimace.png"
+            "npcs/[s3_li.lower()]/[s3_li.lower()]-face-grimace.png"
         
     attribute hair default:
-        "npcs/[s3_li_lower]/[s3_li_lower]-hair-[npc_hair].png"
-
-# maybe i will get this working with image attributes but i can't think of how rn
-# image s3_li_image = ConditionSwitch(
-#         "s3_li == 'Bill'", "bill",
-#         "s3_li == 'AJ'", "aj",
-#         "s3_li == 'Camilo'", "camilo",
-#         "s3_li == 'Yasmin'", "yasmin",
-#         "s3_li == 'Tai'", "tai",
-#         "s3_li == 'Ciaran'", "ciaran",
-#         "s3_li == 'Harry'", "harry",
-#         "s3_li == 'Rafi'", "rafi"
-# )
-    
+        "npcs/[s3_li.lower()]/[s3_li.lower()]-hair-[npc_hair].png"
 
 define character.s3_li = Character("s3_li", dynamic = True, image = "s3_li_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 
@@ -1021,41 +1007,40 @@ define character.s3_li = Character("s3_li", dynamic = True, image = "s3_li_image
 ## Ex Love Interest
 ##
 default s3_ex = "Bill"
-default s3_ex_lower = s3_ex.lower()
 layeredimage s3_ex_image:
     if s3_ex == 'Tai':
             "npcs/tai/tai-hair-back.png"
     
     always:
-        "npcs/[s3_ex_lower]/[s3_ex_lower]-body.png"
+        "npcs/[s3_ex.lower()]/[s3_ex.lower()]-body.png"
     
     attribute outfit default:
-        "npcs/[s3_ex_lower]/[s3_ex_lower]-outfit-[outfit].png"
+        "npcs/[s3_ex.lower()]/[s3_ex.lower()]-outfit-[outfit].png"
 
     group face auto:
         attribute neutral default:
-            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-neutral.png"
+            "npcs/[s3_ex.lower()]/[s3_ex.lower()]-face-neutral.png"
         attribute angry:
-            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-angry.png"
+            "npcs/[s3_ex.lower()]/[s3_ex.lower()]-face-angry.png"
         attribute blush:
-            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-blush.png"
+            "npcs/[s3_ex.lower()]/[s3_ex.lower()]-face-blush.png"
         attribute cheeky:
-            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-cheeky.png"
+            "npcs/[s3_ex.lower()]/[s3_ex.lower()]-face-cheeky.png"
         attribute happy:
-            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-happy.png"
+            "npcs/[s3_ex.lower()]/[s3_ex.lower()]-face-happy.png"
         attribute sad:
-            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-sad.png"
+            "npcs/[s3_ex.lower()]/[s3_ex.lower()]-face-sad.png"
         attribute serious:
-            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-serious.png"
+            "npcs/[s3_ex.lower()]/[s3_ex.lower()]-face-serious.png"
         attribute surprised:
-            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-surprised.png"
+            "npcs/[s3_ex.lower()]/[s3_ex.lower()]-face-surprised.png"
         attribute smile:
-            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-smile.png"
+            "npcs/[s3_ex.lower()]/[s3_ex.lower()]-face-smile.png"
         attribute grimace:
-            "npcs/[s3_ex_lower]/[s3_ex_lower]-face-grimace.png"
+            "npcs/[s3_ex.lower()]/[s3_ex.lower()]-face-grimace.png"
         
     attribute hair default:
-        "npcs/[s3_ex_lower]/[s3_ex_lower]-hair-[npc_hair].png"
+        "npcs/[s3_ex.lower()]/[s3_ex.lower()]-hair-[npc_hair].png"
 
 define character.s3_ex = Character("s3_ex", dynamic = True, image = "s3_ex_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 
@@ -1063,38 +1048,37 @@ define character.s3_ex = Character("s3_ex", dynamic = True, image = "s3_ex_image
 ## BFF
 ##
 default s3_bff = "Seb"
-default s3_bff_lower = s3_bff.lower()
 layeredimage s3_bff_image:
     always:
-        "npcs/[s3_bff_lower]/[s3_bff_lower]-body.png"
+        "npcs/[s3_bff.lower()]/[s3_bff.lower()]-body.png"
     
     attribute outfit default:
-        "npcs/[s3_bff_lower]/[s3_bff_lower]-outfit-[outfit].png"
+        "npcs/[s3_bff.lower()]/[s3_bff.lower()]-outfit-[outfit].png"
 
     group face auto:
         attribute neutral default:
-            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-neutral.png"
+            "npcs/[s3_bff.lower()]/[s3_bff.lower()]-face-neutral.png"
         attribute angry:
-            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-angry.png"
+            "npcs/[s3_bff.lower()]/[s3_bff.lower()]-face-angry.png"
         attribute blush:
-            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-blush.png"
+            "npcs/[s3_bff.lower()]/[s3_bff.lower()]-face-blush.png"
         attribute cheeky:
-            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-cheeky.png"
+            "npcs/[s3_bff.lower()]/[s3_bff.lower()]-face-cheeky.png"
         attribute happy:
-            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-happy.png"
+            "npcs/[s3_bff.lower()]/[s3_bff.lower()]-face-happy.png"
         attribute sad:
-            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-sad.png"
+            "npcs/[s3_bff.lower()]/[s3_bff.lower()]-face-sad.png"
         attribute serious:
-            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-serious.png"
+            "npcs/[s3_bff.lower()]/[s3_bff.lower()]-face-serious.png"
         attribute surprised:
-            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-surprised.png"
+            "npcs/[s3_bff.lower()]/[s3_bff.lower()]-face-surprised.png"
         attribute smile:
-            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-smile.png"
+            "npcs/[s3_bff.lower()]/[s3_bff.lower()]-face-smile.png"
         attribute grimace:
-            "npcs/[s3_bff_lower]/[s3_bff_lower]-face-grimace.png"
+            "npcs/[s3_bff.lower()]/[s3_bff.lower()]-face-grimace.png"
         
     attribute hair default:
-        "npcs/[s3_bff_lower]/[s3_bff_lower]-hair-[npc_hair].png"
+        "npcs/[s3_bff.lower()]/[s3_bff.lower()]-hair-[npc_hair].png"
 
 define character.s3_bff = Character("s3_bff", dynamic = True, image = "s3_bff_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 
@@ -1102,41 +1086,40 @@ define character.s3_bff = Character("s3_bff", dynamic = True, image = "s3_bff_im
 ## Other M - For the men, when you have something like this or that person got dumped, etc.
 ##
 default s3_other_m = "Bill"
-default s3_other_m_lower = s3_other_m.lower()
 layeredimage s3_other_m_image:
     if s3_other_m == 'Tai':
             "npcs/tai/tai-hair-back.png"
     
     always:
-        "npcs/[s3_other_m_lower]/[s3_other_m_lower]-body.png"
+        "npcs/[s3_other_m.lower()]/[s3_other_m.lower()]-body.png"
     
     attribute outfit default:
-        "npcs/[s3_other_m_lower]/[s3_other_m_lower]-outfit-[outfit].png"
+        "npcs/[s3_other_m.lower()]/[s3_other_m.lower()]-outfit-[outfit].png"
 
     group face auto:
         attribute neutral default:
-            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-neutral.png"
+            "npcs/[s3_other_m.lower()]/[s3_other_m.lower()]-face-neutral.png"
         attribute angry:
-            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-angry.png"
+            "npcs/[s3_other_m.lower()]/[s3_other_m.lower()]-face-angry.png"
         attribute blush:
-            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-blush.png"
+            "npcs/[s3_other_m.lower()]/[s3_other_m.lower()]-face-blush.png"
         attribute cheeky:
-            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-cheeky.png"
+            "npcs/[s3_other_m.lower()]/[s3_other_m.lower()]-face-cheeky.png"
         attribute happy:
-            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-happy.png"
+            "npcs/[s3_other_m.lower()]/[s3_other_m.lower()]-face-happy.png"
         attribute sad:
-            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-sad.png"
+            "npcs/[s3_other_m.lower()]/[s3_other_m.lower()]-face-sad.png"
         attribute serious:
-            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-serious.png"
+            "npcs/[s3_other_m.lower()]/[s3_other_m.lower()]-face-serious.png"
         attribute surprised:
-            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-surprised.png"
+            "npcs/[s3_other_m.lower()]/[s3_other_m.lower()]-face-surprised.png"
         attribute smile:
-            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-smile.png"
+            "npcs/[s3_other_m.lower()]/[s3_other_m.lower()]-face-smile.png"
         attribute grimace:
-            "npcs/[s3_other_m_lower]/[s3_other_m_lower]-face-grimace.png"
+            "npcs/[s3_other_m.lower()]/[s3_other_m.lower()]-face-grimace.png"
         
     attribute hair default:
-        "npcs/[s3_other_m_lower]/[s3_other_m_lower]-hair-[npc_hair].png"
+        "npcs/[s3_other_m.lower()]/[s3_other_m.lower()]-hair-[npc_hair].png"
 
 define character.s3_other_m = Character("s3_other_m", dynamic = True, image = "s3_other_m_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
 
@@ -1144,37 +1127,36 @@ define character.s3_other_m = Character("s3_other_m", dynamic = True, image = "s
 ## Other F - For the women, when you have something like this or that person got dumped, etc.
 ##
 default s3_other_f = "Miki"
-default s3_other_f_lower = s3_other_f.lower()
 layeredimage s3_other_f_image:
     always:
-        "npcs/[s3_other_f_lower]/[s3_other_f_lower]-body.png"
+        "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-body.png"
     
     attribute outfit default:
-        "npcs/[s3_other_f_lower]/[s3_other_f_lower]-outfit-[outfit].png"
+        "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-outfit-[outfit].png"
 
     group face auto:
         attribute neutral default:
-            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-neutral.png"
+            "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-face-neutral.png"
         attribute angry:
-            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-angry.png"
+            "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-face-angry.png"
         attribute blush:
-            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-blush.png"
+            "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-face-blush.png"
         attribute cheeky:
-            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-cheeky.png"
+            "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-face-cheeky.png"
         attribute happy:
-            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-happy.png"
+            "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-face-happy.png"
         attribute sad:
-            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-sad.png"
+            "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-face-sad.png"
         attribute serious:
-            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-serious.png"
+            "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-face-serious.png"
         attribute surprised:
-            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-surprised.png"
+            "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-face-surprised.png"
         attribute smile:
-            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-smile.png"
+            "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-face-smile.png"
         attribute grimace:
-            "npcs/[s3_other_f_lower]/[s3_other_f_lower]-face-grimace.png"
+            "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-face-grimace.png"
         
     attribute hair default:
-        "npcs/[s3_other_f_lower]/[s3_other_f_lower]-hair-[npc_hair].png"
+        "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-hair-[npc_hair].png"
 
 define character.s3_other_f = Character("s3_other_f", dynamic = True, image = "s3_other_f_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))

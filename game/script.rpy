@@ -107,24 +107,26 @@ label start:
 
     ########################################
     ### For Testing Only: (Comment Out before Building!)
-    # $ s3_mc.current_partner = "Harry"
+    $ s3_mc.current_partner = "Harry"
 
-    # $ s3_li = "Bill"
-    # $ s3_mc.past_partners = ["Bill"]
-    # $ s3_mc.bff = "Seb"
-    # $ s3_mc.job = "Athlete"
-    # $ s3_mc.bisexual = False
-    # $ s3_mc.diet = "Vegetarian"
+    $ s3_li = "Harry"
+    $ s3_mc.past_partners = ["Bill, Harry, Tai"]
+    $ s3_mc.bff = "Seb"
+    $ s3_mc.job = "Athlete"
+    $ s3_mc.bisexual = False
+    $ s3_mc.diet = "Vegetarian"
 
-    # $ s3_bff = "Seb"
-    # $ s3_bff_lower = "seb"
-    # $ s3_3rd_girl = "Miki"
+    $ s3_bff = "Seb"
+    $ s3_bff_lower = "seb"
+    $ s3_3rd_girl = "Miki"
 
-    ## For testing if changing partners worked.
+    # $ new_li("Harry")
+
+    # For testing if changing partners worked.
     # $ s3_mc.current_partner = "AJ"
     # $ s3_mc.past_partners = ["Harry", "AJ"]
 
-    jump s3e1p1
+    jump s3e9p1
 
     # menu:
     #     "Want to start a new game at Day 1 or play with the character customizer?"

@@ -295,7 +295,7 @@ label s3e9p1:
                 # NEED TO FILL
                 "EMPTY"
             "A Dolphin":
-                s3_li "Nice. I've almost dared Dolphins in the past."
+                s3_li "Nice. I've almost dated Dolphins in the past."
                 s3_mc "So that's why they don't let you into the aquarium anymore?"
                 "He laughs."
                 s3_li "Seriously though, I do tend to get on well with Dolphin-type people. I like how up-front they are."
@@ -308,7 +308,7 @@ label s3e9p1:
             "A Wolf":
                 s3_li "Cool. Wolves and Bees are meant to get on well, especially when it comes to starting a family and building a home together."
                 "He blushes."
-                s3_li blsuh "I mean, not saying we're definitely there yet or anything, but... you know."
+                s3_li blush "I mean, not saying we're definitely there yet or anything, but... you know."
                 s3_li surprised "But we've got to be careful we don't focus too much on each other and neglect our other relationships."
 
         # CHOICE
@@ -833,6 +833,9 @@ label s3e9p1:
             call s3e9p1_shower from _call_s3e9p1_shower
         "Nah, I'll just go and get changed":
             "You get out of bed and walk over the dressing room."
+
+    scene s3-dressing-room with dissolve
+    $ new_scene()
 
     thought "Hmm..."
     thought "I don't know what today will bring at all."
@@ -1441,15 +1444,15 @@ label s3e9p1:
     menu:
         thought "Raw egg and avocado in a bap..."
         "You've ruined a good bap":
-            tai "I didn't mean to..."
+            tai sad "I didn't mean to..."
             $ s3_mc.dislike("Tai")
         "I wouldn't eat that even if you paid me":
-            tai "Oh..."
+            tai sad "Oh..."
             $ s3_mc.dislike("Tai")
         "Sounds like a good hair mousse":
             s3_other_f "That's actually a really good shout."
             "Tai sighs."
-            tai "Yeah..."
+            tai sad "Yeah..."
             "He pokes at the bap. Green stuff oozes out."
     
     if s3_li != "Yasmin" and s3_li != "AJ":
