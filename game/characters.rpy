@@ -1165,10 +1165,80 @@ layeredimage s3_other_f_image:
             "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-face-surprised.png"
         attribute smile:
             "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-face-smile.png"
-        attribute grimace:
-            "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-face-grimace.png"
         
     attribute hair default:
         "npcs/[s3_other_f.lower()]/[s3_other_f.lower()]-hair-[npc_hair].png"
 
 define character.s3_other_f = Character("s3_other_f", dynamic = True, image = "s3_other_f_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
+
+################################################################################
+## s3_bombshell_li - The bombshell (Ravi or Lily) that tries to steal the person you're currently in a couple away from you.
+##
+default s3_bombshell_li = "Lily"
+layeredimage s3_bombshell_li_image:
+    always:
+        "npcs/[s3_bombshell_li.lower()]/[s3_bombshell_li.lower()]-body.png"
+    
+    attribute outfit default:
+        "npcs/[s3_bombshell_li.lower()]/[s3_bombshell_li.lower()]-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/[s3_bombshell_li.lower()]/[s3_bombshell_li.lower()]-face-neutral.png"
+        attribute angry:
+            "npcs/[s3_bombshell_li.lower()]/[s3_bombshell_li.lower()]-face-angry.png"
+        attribute blush:
+            "npcs/[s3_bombshell_li.lower()]/[s3_bombshell_li.lower()]-face-blush.png"
+        attribute cheeky:
+            "npcs/[s3_bombshell_li.lower()]/[s3_bombshell_li.lower()]-face-cheeky.png"
+        attribute happy:
+            "npcs/[s3_bombshell_li.lower()]/[s3_bombshell_li.lower()]-face-happy.png"
+        attribute sad:
+            "npcs/[s3_bombshell_li.lower()]/[s3_bombshell_li.lower()]-face-sad.png"
+        attribute serious:
+            "npcs/[s3_bombshell_li.lower()]/[s3_bombshell_li.lower()]-face-serious.png"
+        attribute surprised:
+            "npcs/[s3_bombshell_li.lower()]/[s3_bombshell_li.lower()]-face-surprised.png"
+        attribute smile:
+            "npcs/[s3_bombshell_li.lower()]/[s3_bombshell_li.lower()]-face-smile.png"
+        
+    attribute hair default:
+        "npcs/[s3_bombshell_li.lower()]/[s3_bombshell_li.lower()]-hair-[npc_hair].png"
+
+define character.s3_bombshell_li = Character("s3_bombshell_li", dynamic = True, image = "s3_bombshell_li_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
+
+################################################################################
+## s3_bombshell_mc - The bombshell (Ravi or Lily) that tries to steal you away from the person you're currently coupled with.
+##
+default s3_bombshell_mc = "Ravi"
+layeredimage s3_bombshell_mc_image:
+    always:
+        "npcs/[s3_bombshell_mc.lower()]/[s3_bombshell_mc.lower()]-body.png"
+    
+    attribute outfit default:
+        "npcs/[s3_bombshell_mc.lower()]/[s3_bombshell_mc.lower()]-outfit-[outfit].png"
+
+    group face auto:
+        attribute neutral default:
+            "npcs/[s3_bombshell_mc.lower()]/[s3_bombshell_mc.lower()]-face-neutral.png"
+        attribute angry:
+            "npcs/[s3_bombshell_mc.lower()]/[s3_bombshell_mc.lower()]-face-angry.png"
+        attribute blush:
+            "npcs/[s3_bombshell_mc.lower()]/[s3_bombshell_mc.lower()]-face-blush.png"
+        attribute cheeky:
+            "npcs/[s3_bombshell_mc.lower()]/[s3_bombshell_mc.lower()]-face-cheeky.png"
+        attribute happy:
+            "npcs/[s3_bombshell_mc.lower()]/[s3_bombshell_mc.lower()]-face-happy.png"
+        attribute sad:
+            "npcs/[s3_bombshell_mc.lower()]/[s3_bombshell_mc.lower()]-face-sad.png"
+        attribute serious:
+            "npcs/[s3_bombshell_mc.lower()]/[s3_bombshell_mc.lower()]-face-serious.png"
+        attribute surprised:
+            "npcs/[s3_bombshell_mc.lower()]/[s3_bombshell_mc.lower()]-face-surprised.png"
+        attribute smile:
+            "npcs/[s3_bombshell_mc.lower()]/[s3_bombshell_mc.lower()]-face-smile.png"
+        
+    attribute hair default:
+        "npcs/[s3_bombshell_mc.lower()]/[s3_bombshell_mc.lower()]-hair-[npc_hair].png"
+
+define character.s3_bombshell_mc = Character("s3_bombshell_mc", dynamic = True, image = "s3_bombshell_mc_image", callback = move_character, window_background = Image("npc_dialog.png", xalign=0.5, yalign=1.0))
