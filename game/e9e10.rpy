@@ -1705,14 +1705,15 @@ label s3e9p1_shower:
     "[s3_li] winks at you."
     "You head over to the dressing room to get changed."
 
-    label s3e9p1_swim:
+    return
+
+label s3e9p1_swim:
     scene s3-dressing-room with dissolve
     $ new_scene()
-    $ on_screen = []
 
     thought "Hmm..."
-    thought "I don’t know what today will bring at all."
-    thought "I better go out with a fierce look so I’m ready for anything and everything."
+    thought "I don't know what today will bring at all."
+    thought "I better go out with a fierce look so I'm ready for anything and everything."
 
     # Outfit change to swimwear
     $ outfit = "swim"
@@ -1745,11 +1746,11 @@ label s3e9p1_shower:
         s3_mc "Totally."
         s3_li "I love it when you wear that, by the way."
         s3_mc "What, this old thing?"
-        s3_li "Yeah, it’s gorgeous."
+        s3_li "Yeah, it's gorgeous."
         s3_li "You look gorgeous in that, by the way."
         $ s3_mc.like(s3_li) # Gain approval/emoji with LI
         s3_mc "Aw, thanks hun!"
-        s3_li "You look great in anything, obviously. But you’d look even better in nothing, I think."
+        s3_li "You look great in anything, obviously. But you'd look even better in nothing, I think."
 
     "Your stomach rumbles."
     s3_li "Hungry?"
@@ -1773,25 +1774,25 @@ label s3e9p1_shower:
         "Wheatgrass smoothie":
             s3_bff "A what?"
             s3_mc "A wheatgrass smoothie."
-            s3_mc "Don’t you know what a wheatgrass smoothie is?"
+            s3_mc "Don't you know what a wheatgrass smoothie is?"
             s3_mc "They were all the rage last summer."
-            s3_bff "Really? OK, I’ll see if we have any."
+            s3_bff "Really? OK, I'll see if we have any."
             "[s3_bff] crouches down and searches through a cupboard, confusion still etched around [his_her] face."
-            s3_bff "Hmm, I don’t think we have that here."
+            s3_bff "Hmm, I don't think we have that here."
 
     "Ciaran comes over clutching a mug."
     "Ciaran blushes when he sees you."
     ciaran "Hey again."
     s3_mc "Hey."
-    ciaran "Can I get some of that water once it’s boiled, please?"
+    ciaran "Can I get some of that water once it's boiled, please?"
     s3_bff "Sure. What are you after?"
     ciaran "Cuppa tea, please."
-    s3_bff "I’ll bring it over to you."
+    s3_bff "I'll bring it over to you."
     "Ciaran smiles."
     ciaran "Grand."
     "[s3_bff] puts the kettle on to boil."
 
-    elladine "So, babes. What’s your go-to breakfast?"
+    elladine "So, babes. What's your go-to breakfast?"
 
     menu:
         "Elladine wants to know my go-to breakfast..."
@@ -1801,9 +1802,9 @@ label s3e9p1_shower:
             pass
         "Most days I just have a quick snack":
             pass
-        "It’s a fry-up, obvs":
+        "It's a fry-up, obvs":
             elladine "Knew you were my friend for a reason."
-            elladine "Can’t be dealing with anyone who badmouths a full English."
+            elladine "Can't be dealing with anyone who badmouths a full English."
             elladine "And I make the best one around."
             elladine "Important questions time. Do you have the black pudding?"
 
@@ -1813,18 +1814,18 @@ label s3e9p1_shower:
                     pass
                 "Never":
                     pass
-                "Only when I’m feeling adventurous":
+                "Only when I'm feeling adventurous":
                     pass
 
             elladine "Sound. And your opinion on hash browns?"
 
             menu:
                 "Hash browns in a fry-up?"
-                "Hate ‘em":
+                "Hate 'em":
                     pass
-                "Love ‘em, but not in a fry up":
+                "Love 'em, but not in a fry up":
                     pass
-                "Love ‘em":
+                "Love 'em":
                     elladine "Correct choice."
 
     elladine "Alright, what about a drink? Orange juice, tea, or something else?"
@@ -1834,55 +1835,55 @@ label s3e9p1_shower:
         "What drink do I have with my fry-up?"
         "Milk":
             elladine "Not a bad choice."
-            elladine "But it’s not as good as tea. It’s the best thing for early mornings."
+            elladine "But it's not as good as tea. It's the best thing for early mornings."
         "Tea":
             elladine "Ding ding!"
             elladine "Not sure how anyone can drink anything else, to be honest."
         "Orange juice":
             elladine "Not a bad choice."
-            elladine "But it’s not as good as tea. It’s the best thing for early mornings."
+            elladine "But it's not as good as tea. It's the best thing for early mornings."
 
-    elladine "Maybe it’s just in my blood? I like to joke about that sometimes…"
+    elladine "Maybe it's just in my blood? I like to joke about that sometimes…"
     elladine "What thing do Brits and Iranians have most in common?"
-    s3_mc "I don’t know, what?"
+    s3_mc "I don't know, what?"
     elladine "They both love tea way too much."
     s3_mc "I never realised you had such strong opinions on fry-ups."
-    elladine "Yeah, I sound like Bill now, don’t I?"
+    elladine "Yeah, I sound like Bill now, don't I?"
 
-    elladine "Alright, since I’m here grilling you already about your morning routine, how about another question?"
+    elladine "Alright, since I'm here grilling you already about your morning routine, how about another question?"
     s3_mc "Go for it."
     elladine "Morning sex?"
     s3_mc "Woah. That took a turn."
     elladine "Sorry. Guess I have sausage on my brain."
     s3_mc "Was that even a question?"
     elladine "I mean, what do you think of it?"
-    elladine "When you’ve literally just woken up. Is it fun? Or just good in theory?"
-    s3_mc "You’ve never done it?"
-    elladine "Um, no. I just sort of figured… well, there’s all that bad breath, and you’re all sweaty from the night…"
+    elladine "When you've literally just woken up. Is it fun? Or just good in theory?"
+    s3_mc "You've never done it?"
+    elladine "Um, no. I just sort of figured… well, there's all that bad breath, and you're all sweaty from the night…"
     elladine "At least I usually am. First thing I have to do in the morning is shower."
-    elladine "I can’t do anything else until then."
+    elladine "I can't do anything else until then."
     elladine "So… is it good?"
     elladine "Nicky mentioned it, you see, so…"
 
     menu:
         "What do I think of morning sex?"
-        "You’re right, it’s just icky":
-            $ s3_mc.dislike(elladine)
+        "You're right, it's just icky":
+            $ s3_mc.dislike("elladine")
             pass
-        "I’ve never really done it either":
-            s3_mc "Sorry I can’t help you! I’d not really thought about it until now, but I guess I’m just as new to it as you."
+        "I've never really done it either":
+            s3_mc "Sorry I can't help you! I'd not really thought about it until now, but I guess I'm just as new to it as you."
             s3_mc "Guess the only way for us to find out is to try!"
-            elladine "Guess you’re right."
-            elladine "I’ll, uh…"
-            elladine "…I’ll float the idea by him, I suppose."
+            elladine "Guess you're right."
+            elladine "I'll, uh…"
+            elladine "…I'll float the idea by him, I suppose."
         "I love it":
-            s3_mc "Honestly, babe. If Nicky wants to do it, and you’re feeling adventurous, go for it."
-            s3_mc "There’s something so primal and basic about it."
-            s3_mc "And what’s hotter than someone waking up and their first thought being what they could do with you."
+            s3_mc "Honestly, babe. If Nicky wants to do it, and you're feeling adventurous, go for it."
+            s3_mc "There's something so primal and basic about it."
+            s3_mc "And what's hotter than someone waking up and their first thought being what they could do with you."
             elladine "Yeah… when you put it like that."
             "You see a 😳 emoji above Elladine's head."
             $ s3_mc.like(elladine)
-            elladine "I think, well, I’ll talk to Nicky about it."
+            elladine "I think, well, I'll talk to Nicky about it."
 
     elladine "Thanks, hun."
     s3_mc "No problem!"
@@ -1896,19 +1897,19 @@ label s3e9p1_shower:
         "Am I an early bird or night owl?"
         "Early bird":
             s3_mc "Gotta seize the day, early bird catches the worm, and all that jazz."
-            elladine "And there’s more than a few worms to catch in the Villa, right?"
+            elladine "And there's more than a few worms to catch in the Villa, right?"
             s3_mc "Elladine!"
-            elladine "What? It’s true isn’t it?"
-            elladine "Anyway I’m the same."
+            elladine "What? It's true isn't it?"
+            elladine "Anyway I'm the same."
         "Night owl":
-            elladine "Ah. I always think there’s something romantic about that."
+            elladine "Ah. I always think there's something romantic about that."
             elladine "Like, in movies the night owls are all those tortured creative souls who can only work by the moonlight."
-            elladine "As cool as that sounds, I can’t hack it."
+            elladine "As cool as that sounds, I can't hack it."
 
     elladine "I have to be in bed early or I start falling asleep."
     elladine "My friends used to always joke about me falling asleep on the dance floor."
     elladine "I just get lost in the music sometimes!"
-    s3_mc "Just ‘resting your eyes’, right?"
+    s3_mc "Just 'resting your eyes', right?"
     elladine "Exactly."
 
     # Scene shift to Genevieve
@@ -1916,43 +1917,43 @@ label s3e9p1_shower:
     genevieve "You know, I think things are going to be different with Seb."
     genevieve "Compared to my past relationships, that is."
     s3_mc "How so?"
-    genevieve "I’m going to explain it in kind of a weird way, but stick with me…"
-    genevieve "So, I read this book called ‘Creating Your Feminine Breeze’. It’s about how women are always the caregivers and men try to take advantage of that."
+    genevieve "I'm going to explain it in kind of a weird way, but stick with me…"
+    genevieve "So, I read this book called 'Creating Your Feminine Breeze'. It's about how women are always the caregivers and men try to take advantage of that."
     genevieve "Basically women are goddesses, and men are mortals trying to suck out our power for their own gain."
     genevieve "Does that make sense?"
 
     menu:
         "Do I understand what Viv is saying?"
         "No":
-            s3_mc "They’re trying to suck what out of us?!"
+            s3_mc "They're trying to suck what out of us?!"
             genevieve "No! Not physically. Emotionally."
         "Yes":
             s3_mc "Goddesses are naturally generous, and it intimidates mortals."
             genevieve "Exactly!"
-        "I’ve read that book too!":
+        "I've read that book too!":
             s3_mc "It changed my life."
             s3_mc "Goddesses are naturally generous, and it intimidates mortals."
             genevieve "Exactly!"
 
-    genevieve "It’s like, I went out with a guy who told me he was going to be an entrepreneur."
-    genevieve "It impressed me at first, but then I found out that ‘being an entrepreneur’ largely involved him playing Duty Calls."
-    genevieve "I paid that guy’s rent for almost a year. Plus every bill when we went out for dinner so he wouldn’t have to wash dishes."
+    genevieve "It's like, I went out with a guy who told me he was going to be an entrepreneur."
+    genevieve "It impressed me at first, but then I found out that 'being an entrepreneur' largely involved him playing Duty Calls."
+    genevieve "I paid that guy's rent for almost a year. Plus every bill when we went out for dinner so he wouldn't have to wash dishes."
     genevieve "All while getting my PhD."
     genevieve "I dumped him eventually, but not soon enough."
     genevieve "And that book helped me realise that if a mortal wants to be with a goddess, he has to help her shine."
-    s3_mc "Seb’s definitely that guy."
+    s3_mc "Seb's definitely that guy."
     genevieve "I think so too."
-    genevieve "I’m not too proud to admit I’ve been taken advantage of before."
+    genevieve "I'm not too proud to admit I've been taken advantage of before."
 
     menu:
-        "Viv’s been taken advantage of…"
-        "That’s horrible":
+        "Viv's been taken advantage of…"
+        "That's horrible":
             genevieve "Yeah, it is."
-        "It’s cos you’re so caring":
-            genevieve "Aw, that’s nice of you to say."
-            genevieve "You’re probably right. Not a lot of people would pay someone else’s rent, but I suppose he targeted me cos he knew I would."
+        "It's cos you're so caring":
+            genevieve "Aw, that's nice of you to say."
+            genevieve "You're probably right. Not a lot of people would pay someone else's rent, but I suppose he targeted me cos he knew I would."
         "Me too":
-            genevieve "Babe, I’m sorry."
+            genevieve "Babe, I'm sorry."
             s3_mc "Thanks."
 
     "She holds up her fist and bumps yours."
@@ -1961,65 +1962,65 @@ label s3e9p1_shower:
 
     # Nicky's Segment
     $ entering("nicky")
-    nicky "Here’s something."
+    nicky "Here's something."
     nicky "I might have a proposal for Seb. But I wanna get your take on it before I ask him."
 
     menu:
-        "A ‘proposal’ for Seb?"
-        "You’re going to rob a bank together?":
+        "A 'proposal' for Seb?"
+        "You're going to rob a bank together?":
             nicky "Hmm. Someday, maybe."
-            s3_mc "Do you think he’d be any good?"
-            nicky "You never know. I think he’d be good at moving silently, so maybe he can be the one who does the actual stealing."
-            nicky "I’m the ringleader and the planner, obviously."
+            s3_mc "Do you think he'd be any good?"
+            nicky "You never know. I think he'd be good at moving silently, so maybe he can be the one who does the actual stealing."
+            nicky "I'm the ringleader and the planner, obviously."
             nicky "And you can be the one who distracts the guards with your womanly charm."
-        "You’re going to ask him to marry you?":
-            nicky "Ha, not yet. He doesn’t seem like the marrying sort."
-            s3_mc "No offence, but I don’t think you’re his type, either."
+        "You're going to ask him to marry you?":
+            nicky "Ha, not yet. He doesn't seem like the marrying sort."
+            s3_mc "No offence, but I don't think you're his type, either."
             nicky "Tragic but true."
-            nicky "Well, you never know. Maybe someday he’ll get married in a graveyard or something and live gloomily ever after."
+            nicky "Well, you never know. Maybe someday he'll get married in a graveyard or something and live gloomily ever after."
             nicky "He could have a bat for the officiant."
-        "You’re going to buy out his shop?":
+        "You're going to buy out his shop?":
             nicky "God, no. Can you imagine?"
-            nicky "I’d have to shut it down and turn it into a shoe shop or something."
-            nicky "I don’t understand how he stays in business. Who’s buying records anymore? And from Seb, of all people?"
+            nicky "I'd have to shut it down and turn it into a shoe shop or something."
+            nicky "I don't understand how he stays in business. Who's buying records anymore? And from Seb, of all people?"
             nicky "Can you imagine his customer service? How does he do it?"
-            s3_mc "I think he said the shop has a little café as part of it, so it’s not just records."
+            s3_mc "I think he said the shop has a little café as part of it, so it's not just records."
             s3_mc "But I know what you mean."
 
     s3_mc "What does this have to do with your proposal?"
     nicky "Oh, right, yeah. The thing."
     nicky "I was thinking about asking Seb to do a podcast with me, once all this is over."
-    nicky "‘Cause he actually really knows his stuff when it comes to music, and obviously I take an interest, ‘cause it’s my job."
+    nicky "'Cause he actually really knows his stuff when it comes to music, and obviously I take an interest, 'cause it's my job."
     nicky "And we could talk about our favourite artists, do reviews, that kind of thing."
-    nicky "What d’you think? Would anybody listen to that?"
+    nicky "What d'you think? Would anybody listen to that?"
 
     menu:
         "Nicky wants to ask Seb to host a podcast with him…"
-        "He’ll never agree to that":
+        "He'll never agree to that":
             pass
-        "Yeah, that’s a great idea!":
-            s3_mc "You guys are both smart, and you’re funny together, too. I think it’ll be a great combination."
-            nicky "Cheers! I’m really glad you think so."
-        "If you’re sure he’s up to it…":
-            s3_mc "Talking to people isn’t exactly Seb’s favourite thing in the world."
-            s3_mc "I know he’s come out of his shell a bit since we’ve been here, but it’s still a big ask."
-            nicky "True, but don’t forget, he did apply to come on Love Island. And he’s done well so far."
+        "Yeah, that's a great idea!":
+            s3_mc "You guys are both smart, and you're funny together, too. I think it'll be a great combination."
+            nicky "Cheers! I'm really glad you think so."
+        "If you're sure he's up to it…":
+            s3_mc "Talking to people isn't exactly Seb's favourite thing in the world."
+            s3_mc "I know he's come out of his shell a bit since we've been here, but it's still a big ask."
+            nicky "True, but don't forget, he did apply to come on Love Island. And he's done well so far."
             nicky "After this, I reckon a little podcast will be no trouble."
 
-    nicky "To be honest, and don’t tell him this…"
+    nicky "To be honest, and don't tell him this…"
     nicky "….Part of the reason I want to ask him is so we have an excuse to stay in touch after Love Island."
-    nicky "I don’t want him to just retreat into this cave when it ends and none of us ever see him again, y’know?"
+    nicky "I don't want him to just retreat into this cave when it ends and none of us ever see him again, y'know?"
 
     menu:
-        "Nicky’s doing this as an excuse to stay friends with Seb…"
-        "That’s silly, you should just tell him you want to hang out":
+        "Nicky's doing this as an excuse to stay friends with Seb…"
+        "That's silly, you should just tell him you want to hang out":
             pass
-        "Aw, that’s actually pretty cute":
-            s3_mc "I won’t tell him. I think it might be too much sweetness for him to handle all at once."
-            nicky "Yeah, that’s my thinking."
+        "Aw, that's actually pretty cute":
+            s3_mc "I won't tell him. I think it might be too much sweetness for him to handle all at once."
+            nicky "Yeah, that's my thinking."
             nicky "Friendship is still new to him. He just needs time to get used to it."
-        "Then why aren’t you asking me to host a podcast with you?":
-            nicky "‘Cause you’re not like Seb. I don’t need to trick you into hanging out with me."
+        "Then why aren't you asking me to host a podcast with you?":
+            nicky "'Cause you're not like Seb. I don't need to trick you into hanging out with me."
             s3_mc "Well, maybe, but you should at least be trying!"
 
     "Nicky grins."
@@ -2028,71 +2029,68 @@ label s3e9p1_shower:
     # Seb's Segment
     $ entering("seb")
     seb "Hey, [s3_name]. Have you ever made a mixtape for someone you fancied?"
-    s3_mc "A ‘mixtape’?"
+    s3_mc "A 'mixtape'?"
     seb "You know what I mean. A playlist."
 
     menu:
         "Have I ever made a playlist for someone I fancied?"
-        "Come on, I’m not that melty":
+        "Come on, I'm not that melty":
             pass
-        "Yeah, it’s a great way to flirt":
+        "Yeah, it's a great way to flirt":
             s3_mc "I love it. So romantic."
             seb "Yes! Me too."
-        "No, but it’s a cute idea":
-            s3_mc "I think I’d just melt if someone did that for me."
-            seb "Oh, good. I wasn’t sure if any girls actually liked it."
+        "No, but it's a cute idea":
+            s3_mc "I think I'd just melt if someone did that for me."
+            seb "Oh, good. I wasn't sure if any girls actually liked it."
             s3_mc "Tried it before, have you?"
             seb "Only a lot."
             s3_mc "Does it work?"
             seb "…Sometimes."
 
-    seb "It’s like a reflex. When I really like a girl, I just have to start making a playlist for her."
-    seb "With all the songs we’ve talked about together, or songs I think she’ll like, or songs that remind me of her."
-    seb "I’m thinking about making one for Viv."
+    seb "It's like a reflex. When I really like a girl, I just have to start making a playlist for her."
+    seb "With all the songs we've talked about together, or songs I think she'll like, or songs that remind me of her."
+    seb "I'm thinking about making one for Viv."
     seb "Obvs. I have to do it in my head until I get home."
-    seb "And I know it’s too soon! I know that. But I can’t help it."
-    seb "I can’t stop thinking of things I could do to try and make her smile."
+    seb "And I know it's too soon! I know that. But I can't help it."
+    seb "I can't stop thinking of things I could do to try and make her smile."
     seb "Her smile is just… mate, it goes right through me."
 
     menu:
-        "Seb’s going on about Viv…"
+        "Seb's going on about Viv…"
         "You two are adorable":
             s3_mc "You make such a cute couple."
-            seb "We’re not… I mean, we’re not a proper couple. Like, officially."
+            seb "We're not… I mean, we're not a proper couple. Like, officially."
             seb "I think."
         "Come on, give it a rest":
-            s3_mc "Dude, I don’t want this friendship to turn into you banging on about how great your girlfriend is."
-            seb "She’s not my girlfriend!"
+            s3_mc "Dude, I don't want this friendship to turn into you banging on about how great your girlfriend is."
+            seb "She's not my girlfriend!"
         "Have you told her this?":
             seb "Told her what?"
-            s3_mc "Uh, that you’re in love with her?"
-            seb "What? No I’m not!"
+            s3_mc "Uh, that you're in love with her?"
+            seb "What? No I'm not!"
 
-    s3_mc "Well, it seems like you’re already halfway there, at least."
-    s3_mc "Just a few days ago you told me you ‘never fall for girls like her’."
-    s3_mc "And now you’re talking about her like you’ve fallen head over heels."
-    seb "You’re right. I mean, I always wished I could be with a girl like that."
-    seb "And now I think I’ve finally done it."
-    seb "I’ve fallen for someone nice who actually likes me back."
+    s3_mc "Well, it seems like you're already halfway there, at least."
+    s3_mc "Just a few days ago you told me you 'never fall for girls like her'."
+    s3_mc "And now you're talking about her like you've fallen head over heels."
+    seb "You're right. I mean, I always wished I could be with a girl like that."
+    seb "And now I think I've finally done it."
+    seb "I've fallen for someone nice who actually likes me back."
 
     menu:
-        "Seb’s feeling good about falling for Genevieve…"
+        "Seb's feeling good about falling for Genevieve…"
         "Alright, now just try not to mess it up":
             pass
-        "I’m really happy for you":
-            s3_mc "I think you’re gonna be good for each other."
+        "I'm really happy for you":
+            s3_mc "I think you're gonna be good for each other."
             seb "Thanks, mate."
+        "I wouldn't get too excited yet":
+            s3_mc "Look, I know being happy is still new and exciting for you, but don't get carried away."
+            s3_mc "You haven't actually known each other that long. You don't know how things will be outside the Villa."
+            seb "You're right. I'll try to keep my feet on the ground."
 
-    $ leaving("seb")
-menu:
-        "I wouldn’t get too excited yet":
-            s3_mc "Look, I know being happy is still new and exciting for you, but don’t get carried away."
-            s3_mc "You haven’t actually known each other that long. You don’t know how things will be outside the Villa."
-            seb "You’re right. I’ll try to keep my feet on the ground."
-
-    seb "I’m finally starting to feel like I do belong here after all."
+    seb "I'm finally starting to feel like I do belong here after all."
     seb "Actually, I think that chat we had the other day really helped."
-    seb "It turns out nice things happen sometimes when you’re not always on the lookout for the next disaster."
+    seb "It turns out nice things happen sometimes when you're not always on the lookout for the next disaster."
     s3_mc "Who knew?"
     "Seb grins."
     $ leaving("seb")
@@ -2105,38 +2103,38 @@ menu:
         "How do I feel about getting with [s3_li]?"
         "[s3_li] is punching up, to be honest":
             "[s3_bff] frowns."
-            s3_bff "I don’t think that’s very fair."
-            s3_bff "You’re both, like, solid tens for sure."
+            s3_bff "I don't think that's very fair."
+            s3_bff "You're both, like, solid tens for sure."
             "You shrug."
             s3_mc "If you say so."
             "[s3_bff] looks awkwardly at the ground."
 
-        "I couldn’t be happier":
+        "I couldn't be happier":
             "[s3_bff] smiles."
             s3_bff "You two look great together."
             # Logic check for Harry/Genevieve drama
             if s3_li == "Harry":
                 $ entering("genevieve")
-                genevieve "Oh, and [s3_name], I really wanted to say that I’m happy for you and Harry."
-                genevieve "So don’t worry about me. In case you were."
+                genevieve "Oh, and [s3_name], I really wanted to say that I'm happy for you and Harry."
+                genevieve "So don't worry about me. In case you were."
                 "Genevieve smiles at you."
-                genevieve "And I’m actually kind of excited to see where this whole thing with Seb goes."
+                genevieve "And I'm actually kind of excited to see where this whole thing with Seb goes."
                 $ leaving("genevieve")
 
         "It was fate, nothing could stop us":
             $ s3e9_fate = True # Flag for later dialogue
-            s3_bff "Ha, yeah, I guess you’re right!"
+            s3_bff "Ha, yeah, I guess you're right!"
             if s3_li == "Harry":
                 $ entering("genevieve")
-                genevieve "Oh, and [s3_name], I really wanted to say that I’m happy for you and Harry."
-                genevieve "So don’t worry about me. In case you were."
+                genevieve "Oh, and [s3_name], I really wanted to say that I'm happy for you and Harry."
+                genevieve "So don't worry about me. In case you were."
                 "Genevieve smiles at you."
-                genevieve "And I’m actually kind of excited to see where this whole thing with Seb goes."
+                genevieve "And I'm actually kind of excited to see where this whole thing with Seb goes."
                 $ leaving("genevieve")
 
     # Special condition: BFF is Genevieve and LI is Harry
     if not (s3_bff == "Genevieve" and s3_li == "Harry"):
-        s3_bff "I’m so, like, happy for you both."
+        s3_bff "I'm so, like, happy for you both."
 
     s3_bff "Your speech was amazing, by the way."
 
@@ -2148,7 +2146,7 @@ menu:
             if s3_bff in ["Genevieve", "Elladine"]:
                 s3_bff "Sometimes improvisation gives us the most genuine words."
             else:
-                s3_bff "That’s well brave. I couldn’t have done that."
+                s3_bff "That's well brave. I couldn't have done that."
         "Thanks, it came from the bottom of my heart":
             $ s3e9_heart = True # Flag for later dialogue
             "[s3_bff] starts to sniff the air."
@@ -2156,7 +2154,7 @@ menu:
             "[he_she_cap] sniffs your shoulder."
             s3_bff "Smells like cheese."
             s3_mc "Very funny."
-            s3_bff "I’m kidding. You’re both class."
+            s3_bff "I'm kidding. You're both class."
 
     "The kettle stops boiling."
     s3_bff "So…"
@@ -2165,8 +2163,8 @@ menu:
     s3_bff "It seems like things are all good for you two."
 
     # smitten dialogue check
-    if s3e9_fate and s3e9_heart:
-        s3_bff "Yeah, from everything you’ve said, you seem really smitten."
+    # if s3e9_fate and s3e9_heart:
+    #     s3_bff "Yeah, from everything you've said, you seem really smitten."
 
     # Shower check (using the flag from your previous prompt)
     if s3e9p1_shower:
@@ -2174,7 +2172,7 @@ menu:
             s3_bff "Did I hear that mouse in the bathroom earlier?"
             s3_mc "Um…"
             s3_bff "I definitely heard some squeaking."
-            s3_mc "No, I didn’t see any mice."
+            s3_mc "No, I didn't see any mice."
             s3_bff "Huh, I thought I could hear it when you and [s3_li] were in the bathroom."
             s3_bff "I must have pool water in my ear or something."
         else:
@@ -2184,23 +2182,23 @@ menu:
             "You blush."
 
     s3_bff "But, like, between you and me…"
-    s3_bff "Do you think you’ll be loyal with [s3_li] for, like, the rest of the time in the Villa?"
+    s3_bff "Do you think you'll be loyal with [s3_li] for, like, the rest of the time in the Villa?"
 
     menu:
         "Will I be loyal with [s3_li]?"
         "Yeah, I want to be loyal":
-            s3_bff "That’s cool."
+            s3_bff "That's cool."
         "My head could turn":
             s3_bff "Really?"
             s3_mc "You never know what will happen in this place."
             "[s3_bff] sighs."
-            s3_bff "Yeah, I guess you’re right."
+            s3_bff "Yeah, I guess you're right."
         "We will rule the land together forever":
             s3_bff "I meant loyal, not royal."
             s3_mc "I know."
             s3_mc "And we will reign as the best, most royally loyal couple ever."
             "[s3_bff] laughs, spitting out [his_her] tea a little."
-            s3_bff "You’re so funny."
+            s3_bff "You're so funny."
 
     s3_bff "But seriously. Have you had a chat with [s3_li] about, like, loyalty and stuff?"
     s3_mc "Nope, not exactly…"
@@ -2208,42 +2206,42 @@ menu:
 
     menu:
         "Do I think [s3_li] is loyal?"
-        "Yeah, I think we’re pretty solid":
-            s3_bff "Well, that’s good."
-        " [he_she_cap]'s [his_her] own person, I’m not forcing anything":
-            s3_bff "That’s a good headspace to be in."
-        "If [he_she] knows what’s good for [him_her] then [he_she] will be":
-            s3_bff "Don’t you think that’s, like, a bit threatening?"
+        "Yeah, I think we're pretty solid":
+            s3_bff "Well, that's good."
+        "[he_she!c]'s [his_her] own person, I'm not forcing anything":
+            s3_bff "That's a good headspace to be in."
+        "If [he_she] knows what's good for [him_her] then [he_she] will be":
+            s3_bff "Don't you think that's, like, a bit threatening?"
             "You sigh."
             s3_mc "I guess…"
-            s3_bff "You don’t want to come across, like, possessive."
+            s3_bff "You don't want to come across, like, possessive."
 
-    s3_bff "I don’t want you to worry or anything."
+    s3_bff "I don't want you to worry or anything."
     "[s3_bff] grabs a spoon from the drawer and starts to stir the tea."
     "The sound of the teaspoon hitting the china rings across the kitchen."
     s3_mc "Um, [s3_bff]…"
     s3_mc "What are you saying?"
-    s3_bff "I’m not insinuating anything, [s3_mc]."
+    s3_bff "I'm not insinuating anything, [s3_mc]."
     s3_mc "Has [he_she] said something about me to you?"
-    s3_bff "I’m just thinking out loud. Ignore me, [s3_mc]."
+    s3_bff "I'm just thinking out loud. Ignore me, [s3_mc]."
     "[s3_bff] picks up the mugs."
-    s3_bff "I’m sure it’ll be fine. Ah, phew, it’s Ciaran."
+    s3_bff "I'm sure it'll be fine. Ah, phew, it's Ciaran."
     "[s3_bff] glances at you, looking a little flustered."
-    s3_bff "Tea’s ready."
+    s3_bff "Tea's ready."
     
     $ entering("ciaran")
     ciaran "Ta, [s3_bff]."
     "He blows on it and then takes an indulgent sip."
-    ciaran "That’s cracking, cheers."
+    ciaran "That's cracking, cheers."
 
     "Some other Islanders saunter into the kitchen."
-    thought "What if [s3_li] isn’t as loyal as I thought?"
+    thought "What if [s3_li] isn't as loyal as I thought?"
     
     $ entering("s3_li_image")
     "[s3_li] heads over to the fridge."
     thought "Could [s3_bff] be right?"
     s3_li "I am in such a snacking mood today."
-    thought "I guess that’s [his_her] priority right now."
+    thought "I guess that's [his_her] priority right now."
     thought "Food."
 
     # Shower joke if BFF is Seb or Nicky and LI is male
@@ -2252,7 +2250,7 @@ menu:
         s3_li "From the bathroom?"
         "[s3_li] laughs."
         s3_li "Oh, we were just cleaning the tiles, like, really hard."
-        s3_bff "Aw, that’s nice of you."
+        s3_bff "Aw, that's nice of you."
 
     $ entering("yasmin")
     yasmin "It's snack time."
@@ -2268,14 +2266,14 @@ menu:
 
     menu:
         "Ciaran asked what brunch is…"
-        "It’s a late morning meal":
+        "It's a late morning meal":
             pass
-        "It’s a ploy to make you spend more money":
+        "It's a ploy to make you spend more money":
             pass
-        "It’s when you have a brilliant hunch about something":
+        "It's when you have a brilliant hunch about something":
             pass
 
-    tai "I’ll make you the best brunch of your life, Ciaran."
+    tai "I'll make you the best brunch of your life, Ciaran."
     tai "You just wait and see. I am a master brunch-maker."
 
     # Check if MC is coupled with the girls
@@ -2286,28 +2284,28 @@ menu:
         tai "I know. Prepare for the best bap of your life! I need avocados."
 
     "Tai gets out a couple of avocados from the fridge."
-    ciaran "So what’s the secret?"
-    tai "As long as it looks good you can’t go wrong."
+    ciaran "So what's the secret?"
+    tai "As long as it looks good you can't go wrong."
     "Tai mushes up some avocado with raw egg."
     
-    $ bill_cam = "Bill" if s3_li != "Bill" else "Camilo"
-    "[bill_cam] says: Raw egg is, like, worse than celery."
-    "[bill_cam] says: Did you know that an uncooked egg doesn’t give you barely any of the protein a cooked one would?"
+    
+    s3_other_m "Raw egg is, like, worse than celery."
+    s3_other_m "Did you know that an uncooked egg doesn't give you barely any of the protein a cooked one would?"
     
     tai "Nonsense."
     "Tai continues to mash the sticky green mixture and packs it into baps."
-    "[bill_cam] says: Looks like the boogey monster sneezed on the baps."
+    s3_other_m "Looks like the boogey monster sneezed on the baps."
 
     menu:
         "Raw egg and avocado in a bap…"
-        "You’ve ruined a good bap":
+        "You've ruined a good bap":
             $ s3_mc.dislike("Tai")
-            tai "I didn’t mean to…"
-        "I wouldn’t eat that even if you paid me":
+            tai "I didn't mean to…"
+        "I wouldn't eat that even if you paid me":
             $ s3_mc.dislike("Tai")
             tai "Oh…"
         "Sounds like a good hair mousse":
-            "Miki/Iona says: That’s actually a really good shout."
+            "Miki/Iona says: That's actually a really good shout."
             "Tai sighs."
             tai "Yeah…"
 
@@ -2318,12 +2316,12 @@ menu:
         "Tai dejectedly scrapes the bap into the bin."
     else:
         tai "Think I got a bit carried away. Sorry Ciaran…"
-        ciaran "It’s the thought that counts. Don’t worry about it."
-        ciaran "We can get brunch in my hometown together when we get out if you’d like."
+        ciaran "It's the thought that counts. Don't worry about it."
+        ciaran "We can get brunch in my hometown together when we get out if you'd like."
         "Tai smiles, scraping the bap in the bin."
-        tai "Yeah, I’d like that."
+        tai "Yeah, I'd like that."
 
-    s3_li "I’m still hungry though…"
+    s3_li "I'm still hungry though…"
 
     "A text rings out."
     s3_bff "Oh."
@@ -2331,7 +2329,7 @@ menu:
     s3_bff "I got a text!"
     "Everyone crowds around [s3_bff]'s screen."
 
-    $ phone_text("Islanders, put your best foot forward because two new Islanders will be arriving sometime today. #twosaparty #thirteenisacrowd")
+    text "Islanders, put your best foot forward because two new Islanders will be arriving sometime today. #twosaparty #thirteenisacrowd"
 
     $ pronouns(s3_li)
     s3_li "Ooh, new people!"
@@ -2343,21 +2341,21 @@ menu:
     menu:
         "New Islanders are coming into the Villa!"
         "Yay! That means more friends":
-            thought "It’s always great to meet new people!"
+            thought "It's always great to meet new people!"
             thought "I wonder if [s3_li] will just see them like a friend though…"
 
-        "I hope [s3_li]’s head doesn’t turn…":
-            thought "I’d hate to lose [him_her] now!"
+        "I hope [s3_li]'s head doesn't turn…":
+            thought "I'd hate to lose [him_her] now!"
 
         "I hope they sweep me off my feet":
             thought "[s3_li] is old news."
-            thought "I’m ready to be, like, properly swept off my feet."
+            thought "I'm ready to be, like, properly swept off my feet."
             "You glance over at [s3_li]."
-            "[he_she_cap]’s smiling at you, unaware of your thoughts."
+            "[he_she_cap]'s smiling at you, unaware of your thoughts."
 
     # Using the bill_cam logic from before
     $ bill_cam = "Bill" if s3_li != "Bill" else "Camilo"
-    "[bill_cam] says: I wonder how they’re going to arrive."
+    "[bill_cam] says: I wonder how they're going to arrive."
     
     genevieve "Giant suitcase?"
     elladine "Forget how."
